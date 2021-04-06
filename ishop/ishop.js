@@ -38,8 +38,7 @@ var ISHOP = React.createClass({
       itemsArr.forEach(function(v,i,a){
           var textAmount='Количество товаров на складе';
           var textCost='Цена';
-          var propsKey=this.props.allItems;
-          var item=propsKey[i];
+          var propsKey=this.props.allItems[i];
           var itemCode=
           React.DOM.tr({key:item.code, className:'tableRow'}, 
           React.DOM.td({className:'itemPhoto'}, item.itemPhotoURL),
