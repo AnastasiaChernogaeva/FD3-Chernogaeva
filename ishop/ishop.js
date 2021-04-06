@@ -19,7 +19,7 @@
 
 
     ];
-    
+
 var ISHOP = React.createClass({
 
     displayName: "ISHOP",
@@ -35,7 +35,7 @@ var ISHOP = React.createClass({
 
       var itemsCode=[];
 
-      allItems.forEach(function(v,i,a){
+      itemsArr.forEach(function(v,i,a){
           var textAmount='Количество товаров на складе';
           var textCost='Цена';
           var item=this.props.allItems[i];
