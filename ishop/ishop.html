@@ -5,7 +5,7 @@
   <title>Ishop</title>
 </head> 
 <body> 
-  <table id="container"></table> 
+  <div id="container"></div> 
       
   <script src="https://unpkg.com/react@15/dist/react.js"></script> 
   <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
@@ -33,14 +33,9 @@
       {code:15, itemName:'Папка с ручкой для рисунков "Нотр-Дам"', itemCost:'15руб', itemPhotoURL:'https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780052.jpg', itemAmount:'3',},
 
 
-      
-
     ];
 
-    ReactDOM.render(
-      React.createElement(ISHOP), 
-      document.getElementById('container') 
-    );
+    ReactDOM.render(React.createElement(ISHOP), document.getElementById('container'));
 
   </script>
 

@@ -14,7 +14,7 @@ var ISHOP = React.createClass({
 
       var itemsCode=[];
 
-      items.forEach(function(v,i,a){
+      allItems.forEach(function(v,i,a){
           var textAmount='Количество товаров на складе';
           var textCost='Цена';
           var item=this.props.allItems[i];
@@ -28,7 +28,7 @@ var ISHOP = React.createClass({
       })
       return React.DOM.div( {className:'ISHOP'}, 
       React.DOM.div( {className:'SHOPNAME'}, this.props.shopName ),
-      React.DOM.div( {className:'ALLITEMS'}, itemsCode ),
+      React.DOM.table( {className:'ALLITEMS'}, itemsCode ),
       );
     },
   
