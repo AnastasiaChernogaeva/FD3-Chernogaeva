@@ -22,9 +22,14 @@ var ISHOP = React.createClass({
           React.DOM.tr({key:item.code, className:'tableRow'}, 
           React.DOM.td({className:'itemPhoto'}, item.itemPhotoURL),
           React.DOM.td({className:'itemInfo'}, React.DOM.h3(item.itemName), React.DOM.p(textAmount,item.itemAmount),React.DOM.p({className:'cost'},textAmount,item.itemCost) )
-          )
+          );
+
+          itemsCode.push(itemCode);
       })
-      return React.createElement(ISHOP);
+      return React.DOM.div( {className:'ISHOP'}, 
+      React.DOM.div( {className:'SHOPNAME'}, this.props.shopName ),
+      React.DOM.div( {className:'ALLITEMS'}, itemsCode ),
+      );
     },
   
   })
