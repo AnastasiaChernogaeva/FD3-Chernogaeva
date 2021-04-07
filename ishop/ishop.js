@@ -13,7 +13,7 @@ var ISHOP = React.createClass({
           var textAmount='Количество товаров на складе: ';
           var textCost='Цена: ';
           var itemCode=
-          React.DOM.tr({ className:'tableRow'}, 
+          React.DOM.tr({ className:'tableRow', key:v.code}, 
           React.DOM.td({className:'itemPhoto'}, React.DOM.img({src:v.itemPhotoURL}) ),
           React.DOM.td({className:'itemInfo'}, React.DOM.h3({className:'nameItem',}, v.itemName), React.DOM.p({className:'amount',}, textAmount,v.itemAmount),React.DOM.p({className:'cost'},textCost,v.itemCost) )
           );
