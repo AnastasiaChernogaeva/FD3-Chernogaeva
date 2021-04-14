@@ -4,7 +4,7 @@ var FilterText = React.createClass({
   
     propTypes: {
       text: React.PropTypes.string,
-      textWords: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+      textWords: React.PropTypes.array.isRequired,
       workMode: React.PropTypes.number.isRequired
     },
   

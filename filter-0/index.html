@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>FILTER</title>
+    </head>
+
+    <body>
+        <div id="container"></div>
+
+        <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+        
+        <script src="Filter.js"></script>
+        <link src="Filter.css"></link>
+
+        <script>
+    var rowText=[Активный, Актуальный, Альтернатива, Аморальный, безнравственный, Анализ, разбор, Анкета, вопросник, Концентрация, сосредоточение, Концепция, построение, Коррективы, поправки, Корреспонденция, переписка, сообщение, Кредитор, заимодатель, Криминальный, преступный];
+
+    ReactDOM.render(
+      React.createElement(Filter,{rows:rowText,workMode:0}), 
+      document.getElementById('container') 
+    );
+   
+        </script>
+
+    </body>
+</html>
