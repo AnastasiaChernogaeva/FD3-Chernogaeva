@@ -10,9 +10,9 @@ var Filter = React.createClass({
       cbTextChanged: React.PropTypes.func.isRequired,
     },
   
-    getInitialState: function(fat) {
+    getInitialState: function() {
         return { 
-          freeText:fat,
+          freeText:"введите",
         };
       },
 
@@ -22,43 +22,28 @@ var Filter = React.createClass({
         this.props.workMode==1;
       },
 
+      fun:function(fText) { 
+        console.log('VotesBlock: текст свободного ответа изменён - '+fText); 
+        this.setState( {freeText:fText} );
+      },
+            
+      newMode:function (m){
+        if (m!=0){
+         m=0;
+        }
+    },
+
+
     render: function () {
+    var blockText=React.createElement(Arr, {rows:this.props.rows,  workMode:this.props.workMode,
+      })
 
-        if ( this.props.workMode==0 ) {
-            return React.DOM.div({className:"Filter", },
-                React.DOM.input({type:'checkbox', }),
-                React.DOM.input({type:'text', defaultValue:this.freeText, onChange:this.textChanged}),
-                React.DOM.input({type:'button', value:"reset", onClick:this.newMode(this.props.workMode)},),
-                React.DOM.div({className:"words"},this.props.rows.forEach( v=> (v+" ") )),
-    
-              )
-            }
-        else if(this.props.workMode==1){          
-            return React.DOM.div( {className:"Filter", workMode:this.props.workMode,},
-            React.DOM.input({type:'checkbox', defaultChecked:checked}),
-            React.DOM.input({type:'text', defaultValue:this.freeText, onChange:this.textChanged,}),
-            React.DOM.input({type:'button', value:"reset", onClick:this.newMode(this.props.workMode)},),
-            React.DOM.div({className:"words"},this.props.rows.sort()),
-            );
-          }
-        },
-      
-        newMode:function (m){
-           if (m!=0){
-            m=0;
-           }
-       },
-    
 
-        ff:  function(v,i,a){
-            var word="";
-            for(let k=0; k<this.props.text.length; k++){
-              if(this.props.text[k]===v[n]){
-                word+=v[n];
-              }
-              arrWords.push(word);
-            }
-          },
+        return React.DOM.div( {className:"Filter"}, 
+        React.createElement(Inputs, {workMode:this.props.workMode, freeText:this.fun,} ),
+        React.DOM.div( {className:'Arr'}, blockText),
+      )
+    },
       
     
 

@@ -1,0 +1,6 @@
+.words{
+    border:2px solid black;
+    overflow:scroll;
+    padding:5px;
+    height:150px;
+}
