@@ -16,9 +16,10 @@
 
         <script>
     var rowText=["Активный", "Актуальный", "Альтернатива", "Аморальный", "безнравственный", "Анализ", "разбор", "Анкета", "вопросник", "Концентрация", "сосредоточение", "Концепция", "построение", "Коррективы", "поправки", "Корреспонденция", "переписка", "сообщение", "Кредитор", "заимодатель", "Криминальный", "преступный"];
+    var ttext="Введите";
 
     ReactDOM.render(
-      React.createElement(Filter,{rows:rowText,workMode:0}), 
+      React.createElement(Filter,{rows:rowText, workMode:0, freeText:ttext, }), 
       document.getElementById('container') 
     );
    

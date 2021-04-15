@@ -6,49 +6,51 @@ var Filter = React.createClass({
     propTypes: {
       workMode: React.PropTypes.number.isRequired,
       rows:React.PropTypes.array.isRequired,
+      freeText: React.PropTypes.string.isRequired,
+      cbTextChanged: React.PropTypes.func.isRequired,
     },
   
+    getInitialState: function(fat) {
+        return { 
+          freeText:fat,
+        };
+      },
+
+    textChanged: function(EO) { 
+        console.log('текст  изменён - '+EO.target.value); 
+        this.props.cbTextChanged(EO.target.value);
+        this.props.workMode==1;
+      },
+
     render: function () {
 
         if ( this.props.workMode==0 ) {
-            return React.DOM.div({className:"Filter", workMode:this.props.workMode,},
-                React.DOM.input({type:'checkbox'}),
-                React.DOM.input({type:'text', defaultValue:"", onchange:search(defaultValue, this.props.rows)}),
-                React.DOM.input({type:'button', value:"reset", onclick:newMode(this.props.workMode)},),
-                React.DOM.div({className:words},this.props.rows),
+            return React.DOM.div({className:"Filter", },
+                React.DOM.input({type:'checkbox', }),
+                React.DOM.input({type:'text', defaultValue:this.freeText, onChange:this.textChanged}),
+                React.DOM.input({type:'button', value:"reset", onClick:this.newMode(this.props.workMode)},),
+                React.DOM.div({className:"words"},this.props.rows.forEach( v=> (v+" ") )),
     
               )
             }
         else if(this.props.workMode==1){          
             return React.DOM.div( {className:"Filter", workMode:this.props.workMode,},
-            React.DOM.input({type:'checkbox', dafaultChecked:checked}),
-            React.DOM.input({type:'text', defaultValue:"", onchange:search(defaultValue, this.props.rows),}),
-            React.DOM.input({type:'button', value:"reset", onclick:newMode(this.props.workMode)},),
-            React.DOM.div({className:words},this.props.rows.sort()),
+            React.DOM.input({type:'checkbox', defaultChecked:checked}),
+            React.DOM.input({type:'text', defaultValue:this.freeText, onChange:this.textChanged,}),
+            React.DOM.input({type:'button', value:"reset", onClick:this.newMode(this.props.workMode)},),
+            React.DOM.div({className:"words"},this.props.rows.sort()),
             );
           }
-
-        function search(val, ourArr){
-            var arrWords=[];
-            for(let i=0; i<val.length; i++ ){
-                for(let j=0; j<ourArr.length; j++){
-                    var newWord=ourArr[j];
-                    if(val[i]===newWord[k]){
-
-                    }
-                }
-            }
-
-        }
+        },
       
-       function newMode(m){
+        newMode:function (m){
            if (m!=0){
             m=0;
            }
-       }
+       },
     
 
-          function ff(v,i,a){
+        ff:  function(v,i,a){
             var word="";
             for(let k=0; k<this.props.text.length; k++){
               if(this.props.text[k]===v[n]){
@@ -56,10 +58,10 @@ var Filter = React.createClass({
               }
               arrWords.push(word);
             }
-          }
+          },
       
     
 
-    },
+    
   
   });
