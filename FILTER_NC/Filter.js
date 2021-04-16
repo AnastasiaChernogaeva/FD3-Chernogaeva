@@ -12,10 +12,11 @@ var Filter = React.createClass({
           arr:rowText,
           sort:false,
           filterString:'',
+ 
         };
       },
 
-    compileList: function(){
+      compileList: function(){
         let lines=this.props.arr.slice(); // делаем плоскую копию всех слов, т.к. возможно будем сортировать массив
             if ( this.state.filterString )
                lines=lines.filter( line => line.indexOf(this.state.filterString)!=-1, line+" " );
@@ -25,7 +26,26 @@ var Filter = React.createClass({
     },
 
    change: function(){
-       this.state.sort=true;
+    console.log("new changes " + this.state.sort);
+    if(this.state.sort==false){
+      this.setState( { sort:true } );
+    }
+    else{
+      this.setState( { sort:false } );
+    }
+    this.compileList;
+   },
+
+   newState: function(){
+    console.log("new state " + this.state.filterString+ this.state.sort);
+    this.setState( { sort:false, filterString:'', arr:rowText,} );
+    this.compileList;
+   },
+
+   search: function(EO){
+     console.log("new text"+ EO.target.value);
+    this.setState( {  filterString:EO.target.value, } );
+    this.compileList;
    },
 
 
@@ -33,8 +53,8 @@ var Filter = React.createClass({
 
         return React.DOM.div( {className:'block'}, 
         React.DOM.input({className:'checkbox', type:'checkbox', onClick:this.change,},), 
-        React.DOM.input( {className:'text', type:'text', }, ),
-        React.DOM.input( {className:'button', type:'button', defaultValue:'reset', }, ),
+        React.DOM.input( {className:'text', type:'text', defaultValue:"введите слово", onChange:this.search,}, ),
+        React.DOM.input( {className:'button', type:'button', defaultValue:'reset', onClick:this.newState, }, ),
         React.DOM.div( {className:'arr'}, this.state.arr  ),
         );
       },
