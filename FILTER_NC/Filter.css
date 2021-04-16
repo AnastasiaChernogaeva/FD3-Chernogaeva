@@ -1,0 +1,6 @@
+.arr {
+    border: 2px solid black;
+    width: 240px;
+    overflow-y: scroll;
+    height: 150px;
+}
