@@ -2,11 +2,9 @@ var Filter = React.createClass({
 
     displayName: " Filter ",
 
-    getDefaultProps: function () {
-        return {
-          arr: rowText,
-        };
-    },
+    propTypes: {
+        arr: React.PropTypes.array.isRequired,
+      },
     
   
     getInitialState: function() {
