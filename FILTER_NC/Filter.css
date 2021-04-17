@@ -1,6 +1,10 @@
 .arr {
+    margin-top:15px;
     border: 2px solid black;
     width: 240px;
     overflow-y: scroll;
     height: 150px;
+}
+input.button {
+    margin-left: 5px;
 }
