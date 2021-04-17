@@ -12,14 +12,14 @@ var Filter = React.createClass({
           arr:rowText,
           sortArr:false,
           filterString:'',
- 
+    
         };
       },
 
       compileList: function(){
         let lines=this.props.arr.slice(); // делаем плоскую копию всех слов, т.к. возможно будем сортировать массив
             if ( this.state.filterString )
-               lines=lines.filter( line => line.indexOf(this.state.filterString)!=-1, line+" " );
+               lines=lines.filter( line => line.indexOf(this.state.filterString)!=-1, );
             if ( this.state.sortArr )
                lines.sort();
         this.setState( { arr:lines } );
