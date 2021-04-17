@@ -10,7 +10,7 @@ var Filter = React.createClass({
     getInitialState: function() {
         return { 
           arr:rowText,
-          sort:false,
+          sortArr:false,
           filterString:'',
  
         };
@@ -20,25 +20,25 @@ var Filter = React.createClass({
         let lines=this.props.arr.slice(); // делаем плоскую копию всех слов, т.к. возможно будем сортировать массив
             if ( this.state.filterString )
                lines=lines.filter( line => line.indexOf(this.state.filterString)!=-1, line+" " );
-            if ( this.state.sort )
+            if ( this.state.sortArr )
                lines.sort();
         this.setState( { arr:lines } );
     },
 
    change: function(){
-    console.log("new changes " + this.state.sort);
-    if(this.state.sort==false){
-      this.setState( { sort:true } );
+    console.log("new changes " + this.state.sortArr);
+    if(this.state.sortArr==false){
+      this.setState( { sortArr:true, } );
     }
     else{
-      this.setState( { sort:false } );
-    }
+      this.setState( { sortArr:false, } );
+    };
     this.compileList;
    },
 
    newState: function(){
-    console.log("new state " + this.state.filterString+ this.state.sort);
-    this.setState( { sort:false, filterString:'', arr:rowText,} );
+    console.log("new state " + this.state.filterString+ this.state.sortArr);
+    this.setState( { sortArr:false, filterString:'', arr:rowText,} );
     this.compileList;
    },
 
