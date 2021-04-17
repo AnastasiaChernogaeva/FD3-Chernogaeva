@@ -28,24 +28,21 @@ var Filter = React.createClass({
    change: function(){
     console.log("new changes " + this.state.sortArr);
     if(this.state.sortArr==false){
-      this.setState( { sortArr:true, } );
+      this.setState( { sortArr:true, }, this.compileList() );
     }
     else{
-      this.setState( { sortArr:false, } );
+      this.setState( { sortArr:false, }, this.compileList() );
     };
-    this.compileList;
    },
 
    newState: function(){
     console.log("new state " + this.state.filterString+ this.state.sortArr);
-    this.setState( { sortArr:false, filterString:'', arr:rowText,} );
-    this.compileList;
+    this.setState( { sortArr:false, filterString:'', arr:rowText,}, this.compileList() );
    },
 
    search: function(EO){
      console.log("new text"+ EO.target.value);
-    this.setState( {  filterString:EO.target.value, } );
-    this.compileList;
+    this.setState( {  filterString:EO.target.value, },this.compileList() );
    },
 
 
