@@ -1,0 +1,36 @@
+h1.SHOPNAME {
+    text-align: center;
+}
+
+table.ALLITEMS {
+    width: 100%;
+}
+
+tr.tableRow {
+    border-bottom: 5px solid black;
+}
+
+td.itemPhoto {
+    width: 28%;
+    text-align: center;
+    border: black 3px solid;
+}
+
+td.itemInfo {
+    border: black 3px solid;
+    padding-left: 3%;
+}
+
+p.cost {
+    border: white 3px double;
+    width: 30%;
+    text-align: center;
+    background: darkblue;
+    color: white;
+    font-size: 20px;
+    border-radius: 12px;
+}
+
+p.amount {
+    font-size: 18px;
+}
