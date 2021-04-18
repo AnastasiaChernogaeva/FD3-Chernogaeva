@@ -12,7 +12,7 @@ var Filter = React.createClass({
           arr:rowText,
           sortArr:false,
           filterString:'',
-    
+          defChecked:false,
         };
       },
 
@@ -27,30 +27,30 @@ var Filter = React.createClass({
 
    change: function(){
     console.log("new changes " + this.state.sortArr);
-    if(this.state.sortArr==false){
-      this.setState( { sortArr:true, }, this.compileList() );
+    if(this.state.sortArr==false&&this.state.defChecked==false){
+      this.setState( { sortArr:true, defChecked:true,}, this.compileList );
     }
     else{
-      this.setState( { sortArr:false, }, this.compileList() );
+      this.setState( { sortArr:false, defChecked:false, }, this.compileList );
     };
    },
 
    newState: function(){
     console.log("new state " + this.state.filterString+ this.state.sortArr);
-    this.setState( { sortArr:false, filterString:'', arr:rowText,}, this.compileList() );
+    this.setState( { sortArr:false, filterString:'', arr:rowText, defChecked:false,}, this.compileList );
    },
 
    search: function(EO){
      console.log("new text"+ EO.target.value);
-    this.setState( {  filterString:EO.target.value, },this.compileList() );
+    this.setState( {  filterString:EO.target.value, },this.compileList );
    },
 
 
     render: function(){
 
         return React.DOM.div( {className:'block'}, 
-        React.DOM.input({className:'checkbox', type:'checkbox', onClick:this.change,},), 
-        React.DOM.input( {className:'text', type:'text', defaultValue:"введите слово", onChange:this.search,}, ),
+        React.DOM.input({className:'checkbox', type:'checkbox', onClick:this.change, defaultChecked:this.state.defChecked,},), 
+        React.DOM.input( {className:'text', type:'text', defaultValue:this.state.filterString, onChange:this.search,}, ),
         React.DOM.input( {className:'button', type:'button', defaultValue:'reset', onClick:this.newState, }, ),
         React.DOM.div( {className:'arr'}, this.state.arr  ),
         );
