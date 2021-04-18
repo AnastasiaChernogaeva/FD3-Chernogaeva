@@ -49,8 +49,8 @@ var Filter = React.createClass({
     render: function(){
 
         return React.DOM.div( {className:'block'}, 
-        React.DOM.input({className:'checkbox', type:'checkbox', onClick:this.change, defaultChecked:this.state.defChecked,},), 
-        React.DOM.input( {className:'text', type:'text', defaultValue:this.state.filterString, onChange:this.search,}, ),
+        React.DOM.input({className:'checkbox', type:'checkbox', onClick:this.change, checked:this.state.defChecked,},), 
+        React.DOM.input( {className:'text', type:'text',  onChange:this.search, value:this.state.filterString}, ),
         React.DOM.input( {className:'button', type:'button', defaultValue:'reset', onClick:this.newState, }, ),
         React.DOM.div( {className:'arr'}, this.state.arr  ),
         );

@@ -34,3 +34,8 @@ p.cost {
 p.amount {
     font-size: 18px;
 }
+
+td.del{
+    border: black 3px solid;
+    text-align: center;
+}
