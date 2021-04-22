@@ -5,7 +5,11 @@ var ISHOP = React.createClass({
 
     propTypes: {
         allItems: React.PropTypes.array.isRequired,
-      },
+        cbSelected: React.PropTypes.func.isRequired,
+        code:React.PropTypes.number.isRequired,
+        cbDelete:React.PropTypes.func.isRequired,
+    },
+
 
 
     getInitialState: function () {
@@ -14,21 +18,13 @@ var ISHOP = React.createClass({
         };
       },
     
-    
   
-    funDelete: function(remember) {
-    let elem=this.state.items[remember-1];
-    let newArr=this.props.allItems.slice();
-    let ind=newArr.indexOf(elem);
-    newArr=newArr.slice(ind,1);
-     this.set.state({items:newArr});
+    funDelete: function() {
+     this.props.cbDelete(this.props.code)
     },
 
-    readyToDelete: function(EO){
-        var choosenRow=EO.target;
-        
-
-
+    select: function(EO){
+     this.props.cbSelected(EO.target.value);   
     },
 
     render: function () {
@@ -38,11 +34,10 @@ var ISHOP = React.createClass({
       this.state.items.forEach(function(v,i,a){
           var textAmount='Количество товаров на складе: ';
           var textCost='Цена: ';
-          var remember=v.code;
           var itemCode=
-          React.DOM.tr({ className:'tableRow', key:v.code}, 
-          React.DOM.td({className:'itemPhoto', onClick:readyToDelete(),}, React.DOM.img({src:v.itemPhotoURL}) ),
-          React.DOM.td({className:'itemInfo', onClick:readyToDelete(),}, React.DOM.h3({className:'nameItem',}, v.itemName), React.DOM.p({className:'amount',}, textAmount,v.itemAmount),React.DOM.p({className:'cost'},textCost,v.itemCost) ),
+          React.DOM.tr({ className:'tableRow', id:v.code, key:v.code, onClick:this.select,}, 
+          React.DOM.td({className:'itemPhoto', }, React.DOM.img({src:v.itemPhotoURL}) ),
+          React.DOM.td({className:'itemInfo', }, React.DOM.h3({className:'nameItem',}, v.itemName), React.DOM.p({className:'amount',}, textAmount,v.itemAmount),React.DOM.p({className:'cost'},textCost,v.itemCost) ),
           React.DOM.td({className:'del'}, React.DOM.input({type:"button", defaultValue:"delete", onClick: this.funDelete,},) )
           );
 

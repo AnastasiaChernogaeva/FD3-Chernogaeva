@@ -16,7 +16,8 @@ var Filter = React.createClass({
         };
       },
 
-      compileList: function(){
+
+    compileList: function(){
         let lines=this.props.arr.slice(); // делаем плоскую копию всех слов, т.к. возможно будем сортировать массив
             if ( this.state.filterString )
                lines=lines.filter( line => line.indexOf(this.state.filterString)!=-1, );
@@ -48,11 +49,13 @@ var Filter = React.createClass({
 
     render: function(){
 
+       let changedDiv=this.state.arr.map( elem=> React.DOM.p(null, elem));
+
         return React.DOM.div( {className:'block'}, 
         React.DOM.input({className:'checkbox', type:'checkbox', onClick:this.change, checked:this.state.defChecked,},), 
         React.DOM.input( {className:'text', type:'text',  onChange:this.search, value:this.state.filterString}, ),
         React.DOM.input( {className:'button', type:'button', defaultValue:'reset', onClick:this.newState, }, ),
-        React.DOM.div( {className:'arr'}, this.state.arr  ),
+        React.DOM.div( {className:'arr'},  changedDiv),
         );
       },
       
