@@ -24,13 +24,12 @@ var SHOP = React.createClass({
     },
 
     deleteItem: function(id){ 
-       let filteredItems=this.state.items.filter(i=> id!=id)
+       let filteredItems=this.state.items.filter(i=> i.id!=id)
        
         this.set.state({items:filteredItems});
        },
 
 
-    
   
 
     render: function () {

@@ -6,7 +6,7 @@ var ISHOP = React.createClass({
     propTypes: {
         allItems: React.PropTypes.array.isRequired,
         cbSelected: React.PropTypes.func.isRequired,
-        code:React.PropTypes.number.isRequired,
+        code:React.PropTypes.number,
         cbDelete:React.PropTypes.func.isRequired,
     },
 
@@ -35,10 +35,10 @@ var ISHOP = React.createClass({
           var textAmount='Количество товаров на складе: ';
           var textCost='Цена: ';
           var itemCode=
-          React.DOM.tr({ className:'tableRow', id:v.code, key:v.code, onClick:this.select,}, 
-          React.DOM.td({className:'itemPhoto', }, React.DOM.img({src:v.itemPhotoURL}) ),
-          React.DOM.td({className:'itemInfo', }, React.DOM.h3({className:'nameItem',}, v.itemName), React.DOM.p({className:'amount',}, textAmount,v.itemAmount),React.DOM.p({className:'cost'},textCost,v.itemCost) ),
-          React.DOM.td({className:'del'}, React.DOM.input({type:"button", defaultValue:"delete", onClick: this.funDelete,},) )
+          React.DOM.tr({ className:'tableRow', id:v.code, key:v.code, onClick:this.select, }, 
+          React.DOM.td({className:'itemPhoto',  }, React.DOM.img({src:v.itemPhotoURL}) ),
+          React.DOM.td({className:'itemInfo',  }, React.DOM.h3({className:'nameItem',}, v.itemName), React.DOM.p({className:'amount',}, textAmount,v.itemAmount),React.DOM.p({className:'cost'},textCost,v.itemCost) ),
+          React.DOM.td({className:'del', }, React.DOM.input({type:"button", defaultValue:"delete", onClick: this.funDelete,},) )
           );
 
           function readyToDelete(itemCode){
