@@ -41,10 +41,7 @@ var ISHOP = React.createClass({
           React.DOM.td({className:'del', }, React.DOM.input({type:"button", defaultValue:"delete", onClick: this.funDelete,},) )
           );
 
-          function readyToDelete(itemCode){
-              
-
-          };
+         ;
 
           itemsCode.push(itemCode);
       })
