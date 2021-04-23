@@ -37,7 +37,8 @@ var SHOP = React.createClass({
 
       return React.DOM.div( {className:'SHOP'}, 
       React.DOM.h1( {className:'SHOPNAME'}, this.props.shopName ),
-      React.createElement(ISHOP, {className:'ALLITEMS', cbSelected:this.selectedRow, allItems:this.props.allItems, cbDelete:this.deleteItem,},) );
+      React.DOM.div( {className:'ISHOP'},  React.DOM.table( {className:'ALLITEMS'}, React.DOM.tbody({className:'tb'},
+       this.state.items.forEach((elem,ind,) => React.createElement( ISHOP, {v:elem, i:ind, className:'item', cbSelected:this.selectedRow, allItems:this.props.allItems, cbDelete:this.deleteItem,}, elem) )))));
       
     },
   
