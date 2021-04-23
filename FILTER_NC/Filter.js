@@ -49,7 +49,7 @@ var Filter = React.createClass({
 
     render: function(){
 
-       let changedDiv=this.state.arr.map( elem=> React.DOM.p(null, elem));
+       let changedDiv=this.state.arr.map((v,i)=> React.DOM.p({key:i,}, v));
 
         return React.DOM.div( {className:'block'}, 
         React.DOM.input({className:'checkbox', type:'checkbox', onClick:this.change, checked:this.state.defChecked,},), 
