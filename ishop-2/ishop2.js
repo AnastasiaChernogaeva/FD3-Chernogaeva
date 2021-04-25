@@ -21,18 +21,19 @@ var ISHOP = React.createClass({
     
   
     funDelete: function() {
-     this.props.cbDelete(this.props.code)
+     this.props.cbDelete(this.props.v)
     },
 
     select: function(EO){
-     this.props.cbSelected(EO.target.value);   
+     var code=this.props.v.code;
+     this.props.cbSelected(code);   
     },
 
     render: function () {
       
           var textAmount='Количество товаров на складе: ';
           var textCost='Цена: ';
-          
+
          return  React.DOM.tr({ className:'tableRow', id:this.props.v.code, key:this.props.v.code, onClick:this.select, }, 
           React.DOM.td({className:'itemPhoto',  }, React.DOM.img({src:this.props.v.itemPhotoURL}) ),
           React.DOM.td({className:'itemInfo',  }, React.DOM.h3({className:'nameItem',}, this.props.v.itemName), React.DOM.p({className:'amount',}, textAmount,this.props.v.itemAmount),React.DOM.p({className:'cost'},textCost,this.props.v.itemCost) ),
