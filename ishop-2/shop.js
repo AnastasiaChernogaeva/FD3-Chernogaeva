@@ -11,6 +11,8 @@ var SHOP = React.createClass({
         return {
           selectedItemId:0,
           items: this.props.allItems,
+          deletedItemId:0,
+          chosen:false,
         };
       },
 
@@ -18,26 +20,30 @@ var SHOP = React.createClass({
 
     selectedRow: function(code){
         
-        
-        if (this.state.selectedItemId===code){
-          var elem=document.getElementById(this.state.selectedItemId);
-          elem.style.cssText= 'background:transparent;';
-        }
-        else{
-        this.setState({selectedItemId:code},highTimeToAct);
+      if(this.state.selectedItemId!=code){
+        this.setState({ chosen:false,},highTimeToAct);  
+      }
+      else if(this.state.selectedItemId==code){
+        this.setState({selectedItemId:0, chosen:false,},answer);
+      }
+      else{
+        highTimeToAct();
+      }
 
-        function highTimeToAct(){
-        var elem=document.getElementById(this.state.selectedItemId);
-        elem.style.cssText= 'background:lightsalmon;';
+     
+      function highTimeToAct(){
+        this.setState({selectedItemId:code, chosen:true,},answer);
         };
-      
-      };
+
+      function answer(){
+        console.log("Ready!!!");
+      }
       
     },
 
     deleteItem: function(id){ 
        let filteredItems=this.state.items.filter(i=> i!=id)
-       this.setState({items:filteredItems});
+       this.setState({items:filteredItems, deletedItemId:id,});
        },
 
 
@@ -48,7 +54,7 @@ var SHOP = React.createClass({
       return React.DOM.div( {className:'SHOP'}, 
       React.DOM.h1( {className:'SHOPNAME'}, this.props.shopName ),
       React.DOM.div( {className:'ISHOP'},  React.DOM.table( {className:'ALLITEMS'}, React.DOM.tbody({className:'tb'},
-       this.state.items.map((elem,ind,) => React.createElement( ISHOP, {v:elem, i:ind, key:ind, className:'item',  allItems:this.props.allItems, cbDelete:this.deleteItem, cbSelected:this.selectedRow,}, elem) )))));
+       this.state.items.map((elem,ind,) => React.createElement( ISHOP, {v:elem, i:ind, key:ind, className:'item',   cbDelete:this.deleteItem, cbSelected:this.selectedRow, chosenRow:this.state.chosen, selectedItem:this.state.selectedItemId, }, elem) )))));
       
     },
   

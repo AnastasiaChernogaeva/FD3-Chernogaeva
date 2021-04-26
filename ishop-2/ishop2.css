@@ -39,3 +39,8 @@ td.del{
     border: black 3px solid;
     text-align: center;
 }
+
+
+tbody tr.chosen{
+    background:lightsalmon;
+}
