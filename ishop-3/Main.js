@@ -7,9 +7,4 @@ import SHOP from './shop';
 
 var itemsArr=require('./items.json'); 
 
-ReactDOM.render(
-    <SHOP 
-     shopName= "Интернет-магазин NAM'S" 
-     allItems={ itemsArr}/>
-     , document.getElementById('container')
-     );
+     ReactDOM.render( < SHOP shopName="Интернет-магазин NAM'S"  allItems={ itemsArr}/> , document.getElementById('container'));
