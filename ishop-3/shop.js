@@ -87,7 +87,7 @@ class Shop extends React.Component {
          </table>       
        </div> 
 
-        {this.state.selectedItemId}?:null
+        {this.state.selectedItemId}?{card}:null
 
       </div> 
       
