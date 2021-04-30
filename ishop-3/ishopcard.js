@@ -25,8 +25,7 @@ class IshopCard extends React.Component {
           var textCost='Цена: ';
 
 
-
-           (this.props.selectedItem==this.props.v.code)?return(
+          return(
               <div className='card'  id={this.props.v.code} key={this.props.v.code}> 
                 <div className='itemPhoto'><img  src= {this.props.v.itemPhotoURL}/></div> 
                 <div className='itemInfo'> 
@@ -35,9 +34,7 @@ class IshopCard extends React.Component {
                     <p className='cost'>textCost{this.props.v.itemCost}</p>
                 </div>
             </div>
-            ):null;
-        
-
+            );
     };
   
   };
