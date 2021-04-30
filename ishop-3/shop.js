@@ -70,9 +70,9 @@ class Shop extends React.Component {
       </Ishop>  
       );
 
-      var card=this.state.items.map((elem,ind,) => <IshopCard 
+      var card=this.state.items.map((elem,ind,) => {this.state.selectedItemId}?<IshopCard 
         v={elem} i={ind} key={ind} className='Itemscard'  selectedItem={this.state.selectedItemId}>
-      </IshopCard>);
+      </IshopCard>:null);
 
       return(
       <div className='SHOP'>
@@ -87,7 +87,7 @@ class Shop extends React.Component {
          </table>       
        </div> 
 
-        {this.state.selectedItemId}?{card}:null
+        {card}
 
       </div> 
       
