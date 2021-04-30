@@ -498,21 +498,6 @@ module.exports = ReactPropTypesSecret;
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(13);
-} else {
-  module.exports = __webpack_require__(14);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -531,6 +516,21 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
   module.exports = __webpack_require__(23)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(13);
+} else {
+  module.exports = __webpack_require__(14);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -571,7 +571,7 @@ var _shop2 = _interopRequireDefault(_shop);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var itemsArr = __webpack_require__(27);
+var itemsArr = __webpack_require__(28);
 
 _reactDom2.default.render(_react2.default.createElement(_shop2.default, { shopName: '\u0418\u043D\u0442\u0435\u0440\u043D\u0435\u0442-\u043C\u0430\u0433\u0430\u0437\u0438\u043D NAM\'S', allItems: itemsArr }), document.getElementById('container'));
 
@@ -2590,7 +2590,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),n=__webpack_require__(2),r=__webpack_require__(5);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
+var aa=__webpack_require__(1),n=__webpack_require__(2),r=__webpack_require__(6);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
 function ba(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}var da=!1,ea=null,fa=!1,ha=null,ia={onError:function(a){da=!0;ea=a}};function ja(a,b,c,d,e,f,g,h,k){da=!1;ea=null;ba.apply(ia,arguments)}function ka(a,b,c,d,e,f,g,h,k){ja.apply(this,arguments);if(da){if(da){var l=ea;da=!1;ea=null}else throw Error(u(198));fa||(fa=!0,ha=l)}}var la=null,ma=null,na=null;
 function oa(a,b,c){var d=a.type||"unknown-event";a.currentTarget=na(c);ka(d,b,void 0,a);a.currentTarget=null}var pa=null,qa={};
 function ra(){if(pa)for(var a in qa){var b=qa[a],c=pa.indexOf(a);if(!(-1<c))throw Error(u(96,a));if(!sa[c]){if(!b.extractEvents)throw Error(u(97,a));sa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;if(ta.hasOwnProperty(h))throw Error(u(99,h));ta[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ua(k[e],g,h);e=!0}else f.registrationName?(ua(f.registrationName,g,h),e=!0):e=!1;if(!e)throw Error(u(98,d,a));}}}}
@@ -3790,7 +3790,7 @@ if (process.env.NODE_ENV !== "production") {
 
 var React = __webpack_require__(1);
 var _assign = __webpack_require__(2);
-var Scheduler = __webpack_require__(5);
+var Scheduler = __webpack_require__(6);
 var checkPropTypes = __webpack_require__(3);
 var tracing = __webpack_require__(16);
 
@@ -29192,7 +29192,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(6);
+var _propTypes = __webpack_require__(5);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -30205,7 +30205,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(6);
+var _propTypes = __webpack_require__(5);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -30344,12 +30344,105 @@ exports.default = Ishop;
 
 /***/ }),
 /* 26 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: D:/FD3-Chernogaeva/ishop-3/ishopcard.js: Unexpected token (29:56)\n\n\u001b[0m \u001b[90m 27 | \u001b[39m\n \u001b[90m 28 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 | \u001b[39m           (\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mselectedItem\u001b[33m==\u001b[39m\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mv\u001b[33m.\u001b[39mcode)\u001b[33m?\u001b[39m\u001b[36mreturn\u001b[39m(\n \u001b[90m    | \u001b[39m                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 | \u001b[39m              \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m'card'\u001b[39m  id\u001b[33m=\u001b[39m{\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mv\u001b[33m.\u001b[39mcode} key\u001b[33m=\u001b[39m{\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mv\u001b[33m.\u001b[39mcode}\u001b[33m>\u001b[39m \n \u001b[90m 31 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m'itemPhoto'\u001b[39m\u001b[33m>\u001b[39m\u001b[33m<\u001b[39m\u001b[33mimg\u001b[39m  src\u001b[33m=\u001b[39m {\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mv\u001b[33m.\u001b[39mitemPhotoURL}\u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m \n \u001b[90m 32 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m'itemInfo'\u001b[39m\u001b[33m>\u001b[39m \u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+__webpack_require__(27);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IshopCard = function (_React$Component) {
+  _inherits(IshopCard, _React$Component);
+
+  function IshopCard() {
+    _classCallCheck(this, IshopCard);
+
+    return _possibleConstructorReturn(this, (IshopCard.__proto__ || Object.getPrototypeOf(IshopCard)).apply(this, arguments));
+  }
+
+  _createClass(IshopCard, [{
+    key: 'render',
+    value: function render() {
+
+      var textAmount = 'Количество товаров на складе: ';
+      var textCost = 'Цена: ';
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'card', id: this.props.v.code, key: this.props.v.code },
+        _react2.default.createElement(
+          'div',
+          { className: 'itemPhoto' },
+          _react2.default.createElement('img', { src: this.props.v.itemPhotoURL })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'itemInfo' },
+          _react2.default.createElement(
+            'h3',
+            { className: 'nameItem' },
+            this.props.v.itemName
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'amount' },
+            'textAmount',
+            this.props.v.itemAmount
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'cost' },
+            'textCost',
+            this.props.v.itemCost
+          )
+        )
+      );
+    }
+  }]);
+
+  return IshopCard;
+}(_react2.default.Component);
+
+IshopCard.propTypes = {
+  code: _propTypes2.default.number,
+  v: _propTypes2.default.object,
+  i: _propTypes2.default.number,
+  selectedItem: _propTypes2.default.number
+};
+;
+
+exports.default = IshopCard;
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = [{"code":1,"itemName":"Набор для творчества стринг арт \"Панда\"","itemCost":"10руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/421/4207639.jpg","itemAmount":"8"},{"code":2,"itemName":"Набор для детского творчества \"Шоколадная ручка\"","itemCost":"5 руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/434/4335142.jpg","itemAmount":"15"},{"code":3,"itemName":"Набор для творчества \"Квиллинг\" ","itemCost":"4руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/404/4031310.jpg","itemAmount":"30"},{"code":4,"itemName":"Картина из пайеток \"Сверкающая бабочка\"","itemCost":"7руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/2/190/1899041.jpg","itemAmount":"15"},{"code":5,"itemName":"Французские опыты \"Науки с Буки\"","itemCost":"6руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/169/1687737.jpg","itemAmount":"20"},{"code":6,"itemName":"Игра-викторина Bondibon \"Умная Сова\"","itemCost":"8руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/426/4254952.jpg","itemAmount":"9"},{"code":7,"itemName":"Настольная игра \"Кто я?\"","itemCost":"3руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/286/2852395.jpg","itemAmount":"5"},{"code":8,"itemName":"Глобус-бар","itemCost":"35руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/445/4449325.jpg","itemAmount":"2"},{"code":9,"itemName":"Салфетница","itemCost":"20руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416743.jpg","itemAmount":"40"},{"code":10,"itemName":"Подставка для бутылки","itemCost":"100руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416682.jpg","itemAmount":"31"},{"code":11,"itemName":"Ваза для фруктов 2-х ярусная","itemCost":"85руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416639.jpg","itemAmount":"12"},{"code":12,"itemName":"Ваза для фруктов","itemCost":"48руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416636.jpg","itemAmount":"96"},{"code":13,"itemName":"Инструмент для гофрирования","itemCost":"4руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/205/2041219.jpg","itemAmount":"22"},{"code":14,"itemName":"Папка с ручкой для рисунков \"Художники\"","itemCost":"7руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780053.jpg","itemAmount":"7"},{"code":15,"itemName":"Папка с ручкой для рисунков \"Нотр-Дам\"","itemCost":"15руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780052.jpg","itemAmount":"3"}]
