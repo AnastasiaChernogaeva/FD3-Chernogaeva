@@ -3,8 +3,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import SHOP from './shop';
+import Shop from './shop';
 
 var itemsArr=require('./items.json'); 
 
-     ReactDOM.render( < SHOP shopName="Интернет-магазин NAM'S"  allItems={ itemsArr}/> , document.getElementById('container'));
+     ReactDOM.render( <Shop shopName="Интернет-магазин NAM'S"  allItems={ itemsArr}/> , document.getElementById('container'));

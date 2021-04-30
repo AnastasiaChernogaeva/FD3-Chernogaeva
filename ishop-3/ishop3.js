@@ -5,17 +5,17 @@ import './ishop3.css';
 
 
 
-class ISHOP extends React.Component {
+class Ishop extends React.Component {
 
 
   static propTypes = {
-        cbSelected: React.PropTypes.func.isRequired,
-        code:React.PropTypes.number,
-        cbDelete:React.PropTypes.func.isRequired,
-        v:React.PropTypes.object,
-        i:React.PropTypes.number,
-        chosenRow:React.PropTypes.bool,
-        selectedItem:React.PropTypes.number,
+        cbSelected: PropTypes.func,
+        code:PropTypes.number,
+        cbDelete:PropTypes.func,
+        v:PropTypes.object,
+        i:PropTypes.number,
+        chosenRow:PropTypes.bool,
+        selectedItem:PropTypes.number,
     };
 
 
@@ -67,4 +67,4 @@ class ISHOP extends React.Component {
   
   };
 
-  export default ISHOP;
+  export default Ishop;

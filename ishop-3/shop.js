@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './shop.css';
 
-import ISHOP from './ishop3';
 
-class SHOP extends React.Component {
+import Ishop from './ishop3';
+
+class Shop extends React.Component {
 
 
     static propTypes = {
-        allItems: React.PropTypes.array.isRequired,
-        shopName: React.PropTypes.string.isRequired,
+        allItems: PropTypes.array.isRequired,
+        shopName: PropTypes.string.isRequired,
       };
 
     state = {
@@ -23,6 +23,8 @@ class SHOP extends React.Component {
 
 
     selectedRow=(code)=>{
+
+
         
       if(this.state.selectedItemId!=code){
         this.setState({ chosen:false,},highTimeToAct);  
@@ -33,16 +35,20 @@ class SHOP extends React.Component {
       else{
         highTimeToAct();
       }
-    };
-
-         
-    highTimeToAct=()=>{
-      this.setState({selectedItemId:code, chosen:true,},answer);
+   
+      highTimeToAct=()=>{
+        this.setState({selectedItemId:code, chosen:true,},answer);
+        };
+  
+      answer=()=>{
+        console.log("Ready!!!");
       };
 
-    answer=()=>{
-      console.log("Ready!!!");
     };
+
+  
+
+
 
 
     deleteItem=(id)=>{ 
@@ -55,12 +61,12 @@ class SHOP extends React.Component {
 
     render() {
       var innerItems=this.state.items.map((elem,ind,) => 
-      <ISHOP
+      <Ishop
        v={elem} i={ind} key={ind} className='item' 
        cbDelete={this.deleteItem} cbSelected={this.selectedRow}
         chosenRow={this.state.chosen} selectedItem={this.state.selectedItemId}>
           elem
-      </ISHOP>  
+      </Ishop>  
       );
 
       return(
@@ -83,5 +89,5 @@ class SHOP extends React.Component {
   
   }
 
-  export default SHOP;
+  export default Shop;
 
