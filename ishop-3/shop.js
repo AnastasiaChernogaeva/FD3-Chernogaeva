@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 
 import Ishop from './ishop3';
+import IshopCard from './ishopcard.js';
 
 class Shop extends React.Component {
 
@@ -27,26 +28,26 @@ class Shop extends React.Component {
 
         
       if(this.state.selectedItemId!=code){
-        this.setState({ chosen:false,},highTimeToAct);  
+        this.setState({ chosen:false,},this.highTimeToAct(code));  
       }
       else if(this.state.selectedItemId==code){
-        this.setState({selectedItemId:0, chosen:false,},answer);
+        this.setState({selectedItemId:0, chosen:false,},this.answer);
       }
       else{
-        highTimeToAct();
+        this.highTimeToAct();
       }
    
-      highTimeToAct=()=>{
-        this.setState({selectedItemId:code, chosen:true,},answer);
-        };
-  
-      answer=()=>{
-        console.log("Ready!!!");
-      };
+
 
     };
 
-  
+    highTimeToAct=(code)=>{
+      this.setState({selectedItemId:code, chosen:true,},this.answer);
+      };
+
+    answer=()=>{
+      console.log("Ready!!!");
+    };
 
 
 
@@ -69,6 +70,10 @@ class Shop extends React.Component {
       </Ishop>  
       );
 
+      var card=<IshopCard 
+        v={elem} i={ind} key={ind} className='Itemscard'  selectedItem={this.state.selectedItemId}>
+      </IshopCard>
+
       return(
       <div className='SHOP'>
 
@@ -79,8 +84,10 @@ class Shop extends React.Component {
            <tbody className='tb'>
            {innerItems}
            </tbody>
-         </table>
+         </table>       
        </div> 
+
+        {this.state.selectedItemId}?:null
 
       </div> 
       

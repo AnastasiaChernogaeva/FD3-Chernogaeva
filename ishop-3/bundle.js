@@ -571,7 +571,7 @@ var _shop2 = _interopRequireDefault(_shop);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var itemsArr = __webpack_require__(26);
+var itemsArr = __webpack_require__(27);
 
 _reactDom2.default.render(_react2.default.createElement(_shop2.default, { shopName: '\u0418\u043D\u0442\u0435\u0440\u043D\u0435\u0442-\u043C\u0430\u0433\u0430\u0437\u0438\u043D NAM\'S', allItems: itemsArr }), document.getElementById('container'));
 
@@ -29200,6 +29200,10 @@ var _ishop = __webpack_require__(24);
 
 var _ishop2 = _interopRequireDefault(_ishop);
 
+var _ishopcard = __webpack_require__(26);
+
+var _ishopcard2 = _interopRequireDefault(_ishopcard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29230,14 +29234,14 @@ var Shop = function (_React$Component) {
     }, _this.selectedRow = function (code) {
 
       if (_this.state.selectedItemId != code) {
-        _this.setState({ chosen: false }, highTimeToAct);
+        _this.setState({ chosen: false }, _this.highTimeToAct(code));
       } else if (_this.state.selectedItemId == code) {
-        _this.setState({ selectedItemId: 0, chosen: false }, answer);
+        _this.setState({ selectedItemId: 0, chosen: false }, _this.answer);
       } else {
-        highTimeToAct();
+        _this.highTimeToAct();
       }
-    }, _this.highTimeToAct = function () {
-      _this.setState({ selectedItemId: code, chosen: true }, answer);
+    }, _this.highTimeToAct = function (code) {
+      _this.setState({ selectedItemId: code, chosen: true }, _this.answer);
     }, _this.answer = function () {
       console.log("Ready!!!");
     }, _this.deleteItem = function (id) {
@@ -29264,6 +29268,9 @@ var Shop = function (_React$Component) {
         );
       });
 
+      var card = _react2.default.createElement(_ishopcard2.default, {
+        v: elem, i: ind, key: ind, className: 'Itemscard', selectedItem: this.state.selectedItemId });
+
       return _react2.default.createElement(
         'div',
         { className: 'SHOP' },
@@ -29284,7 +29291,9 @@ var Shop = function (_React$Component) {
               innerItems
             )
           )
-        )
+        ),
+        this.state.selectedItemId,
+        '?:null'
       );
     }
   }]);
@@ -29293,8 +29302,8 @@ var Shop = function (_React$Component) {
 }(_react2.default.Component);
 
 Shop.propTypes = {
-  allItems: _react2.default.PropTypes.array.isRequired,
-  shopName: _react2.default.PropTypes.string.isRequired
+  allItems: _propTypes2.default.array.isRequired,
+  shopName: _propTypes2.default.string.isRequired
 };
 exports.default = Shop;
 
@@ -30315,13 +30324,13 @@ var Ishop = function (_React$Component) {
 }(_react2.default.Component);
 
 Ishop.propTypes = {
-    cbSelected: _react2.default.PropTypes.func.isRequired,
-    code: _react2.default.PropTypes.number,
-    cbDelete: _react2.default.PropTypes.func.isRequired,
-    v: _react2.default.PropTypes.object,
-    i: _react2.default.PropTypes.number,
-    chosenRow: _react2.default.PropTypes.bool,
-    selectedItem: _react2.default.PropTypes.number
+    cbSelected: _propTypes2.default.func,
+    code: _propTypes2.default.number,
+    cbDelete: _propTypes2.default.func,
+    v: _propTypes2.default.object,
+    i: _propTypes2.default.number,
+    chosenRow: _propTypes2.default.bool,
+    selectedItem: _propTypes2.default.number
 };
 ;
 
@@ -30335,6 +30344,12 @@ exports.default = Ishop;
 
 /***/ }),
 /* 26 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: SyntaxError: D:/FD3-Chernogaeva/ishop-3/ishopcard.js: Unexpected token (40:17)\n\n\u001b[0m \u001b[90m 38 | \u001b[39m        }\n \u001b[90m 39 | \u001b[39m         \u001b[36melse\u001b[39m{\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 | \u001b[39m         \u001b[36mreturn\u001b[39m ()\u001b[33m;\u001b[39m\n \u001b[90m    | \u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 | \u001b[39m        }\n \u001b[90m 42 | \u001b[39m\n \u001b[90m 43 | \u001b[39m    }\u001b[33m;\u001b[39m\u001b[0m\n");
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = [{"code":1,"itemName":"Набор для творчества стринг арт \"Панда\"","itemCost":"10руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/421/4207639.jpg","itemAmount":"8"},{"code":2,"itemName":"Набор для детского творчества \"Шоколадная ручка\"","itemCost":"5 руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/434/4335142.jpg","itemAmount":"15"},{"code":3,"itemName":"Набор для творчества \"Квиллинг\" ","itemCost":"4руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/404/4031310.jpg","itemAmount":"30"},{"code":4,"itemName":"Картина из пайеток \"Сверкающая бабочка\"","itemCost":"7руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/2/190/1899041.jpg","itemAmount":"15"},{"code":5,"itemName":"Французские опыты \"Науки с Буки\"","itemCost":"6руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/169/1687737.jpg","itemAmount":"20"},{"code":6,"itemName":"Игра-викторина Bondibon \"Умная Сова\"","itemCost":"8руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/426/4254952.jpg","itemAmount":"9"},{"code":7,"itemName":"Настольная игра \"Кто я?\"","itemCost":"3руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/286/2852395.jpg","itemAmount":"5"},{"code":8,"itemName":"Глобус-бар","itemCost":"35руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/445/4449325.jpg","itemAmount":"2"},{"code":9,"itemName":"Салфетница","itemCost":"20руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416743.jpg","itemAmount":"40"},{"code":10,"itemName":"Подставка для бутылки","itemCost":"100руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416682.jpg","itemAmount":"31"},{"code":11,"itemName":"Ваза для фруктов 2-х ярусная","itemCost":"85руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416639.jpg","itemAmount":"12"},{"code":12,"itemName":"Ваза для фруктов","itemCost":"48руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416636.jpg","itemAmount":"96"},{"code":13,"itemName":"Инструмент для гофрирования","itemCost":"4руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/205/2041219.jpg","itemAmount":"22"},{"code":14,"itemName":"Папка с ручкой для рисунков \"Художники\"","itemCost":"7руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780053.jpg","itemAmount":"7"},{"code":15,"itemName":"Папка с ручкой для рисунков \"Нотр-Дам\"","itemCost":"15руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780052.jpg","itemAmount":"3"}]
