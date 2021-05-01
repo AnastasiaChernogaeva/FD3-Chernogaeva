@@ -2,29 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
+import "./newone.css";
 
 
 
-class EditCard extends React.Component {
+
+class Newproduct extends React.Component {
 
 
   static propTypes = {
-        code:PropTypes.number,
-        v:PropTypes.object,
-        i:PropTypes.number,
-        editItem:PropTypes.number,
+        items:PropTypes.array,
+        cancel:PropTypes.bool,
     };
 
-   
-    
-   
-    
     state = {
-        valueName:this.props.v.itemName,
-        valueAmount:this.props.v.itemAmount,
-        valuePrice:this.props.v.itemCost,
-        valueURL:this.props.v.itemPhotoURL,
+        valueName:0,
+        valueAmount:0,
+        valuePrice:0,
+        valueURL:0,
         buttonAdd:0,
+        cancelbool:this.props.cancel,
     };
 
     validatingName=(EO)=>{
@@ -98,13 +95,13 @@ cancel=()=>{
         if(this.state.cancelbool==false){
             return(
                 <div> 
-                    <h2>Edit</h2>
+                    <h2>New product</h2>
   
-                  <label className='id'><b>ID:</b>{this.props.i}</label> <br/>
-                  <label htmlFor="Name"><b>Name:</b></label> <input type="text" id="Name" value={this.state.valueName} onChange={this.validatingName}></input> {(this.state.valueName!=0)?null:<span className="error"> Please, fill the field</span>}<br/>
-                  <label htmlFor="AmountItems"><b>Quantity:</b></label> <input type="text" id="AmountItems" value={this.state.valueAmount} onChange={this.validatingAmount}></input> {(this.state.valueAmount!=0)?null:<span className="error">Please, fill the field</span>}<br/>
-                  <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" value={this.state.valuePrice} onChange={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
-                  <label htmlFor="URL"><b>URL Photo:</b></label> <input type="text" id="URL" value={this.state.valueURL} onChange={this.validatingURL}></input> {(this.state.valueURL!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label className='id'><b>ID:</b>{this.props.items.length+1}</label> <br/>
+                  <label htmlFor="Name"><b>Name:</b></label> <input type="text" id="Name" onChange={this.validatingName}></input> {(this.state.valueName!=0)?null:<span className="error"> Please, fill the field</span>}<br/>
+                  <label htmlFor="AmountItems"><b>Quantity:</b></label> <input type="text" id="AmountItems" onChange={this.validatingAmount}></input> {(this.state.valueAmount!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" onChange={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label htmlFor="URL"><b>URL Photo:</b></label> <input type="text" id="URL" onChange={this.validatingURL}></input> {(this.state.valueURL!=0)?null:<span className="error">Please, fill the field</span>}<br/>
   
                 <input  type="button" defaultValue="Add"  onClick={this.add}  disabled={this.state.buttonAdd==0?false:true} />
                 <input  type="button" defaultValue="Cancel" onClick={this.cancel}/>
@@ -126,11 +123,4 @@ cancel=()=>{
   
   };
 
-
-  
-    export default EditCard;
-  
-  
-    
-    
- 
+  export default Newproduct;

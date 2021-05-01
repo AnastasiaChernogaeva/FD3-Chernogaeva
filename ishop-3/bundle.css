@@ -35,7 +35,7 @@ p.amount {
     font-size: 18px;
 }
 
-td.del{
+td.buttons{
     border: black 3px solid;
     text-align: center;
 }

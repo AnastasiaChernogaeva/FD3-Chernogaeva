@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Shop from './shop';
+import Shop from './shop.js';
 
 var itemsArr=require('./items.json'); 
 

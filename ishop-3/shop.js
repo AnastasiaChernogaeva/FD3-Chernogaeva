@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Ishop from './ishop3';
 import IshopCard from './ishopcard.js';
 import EditCard from './editcard.js';
+import Newproduct from './newone.js';
 
 class Shop extends React.Component {
 
@@ -20,8 +21,8 @@ class Shop extends React.Component {
           items: this.props.allItems,
           deletedItemId:0,
           chosen:false,
-          editItemId:0;
-          editElem:null;
+          editItemId:0,
+          newelement:false,
       };
 
 
@@ -62,13 +63,16 @@ class Shop extends React.Component {
 
 
    editItem=(id)=>{ 
-        let filteredItems=this.state.items.forEach(elem, i=> {
-          if(i==id){
-            this.setState({ editItemId:id, editElem:elem;};
-          }
-        });
-        };
+            this.setState({ editItemId:id, })
+          };
 
+    newElement=(hh)=>{
+      this.state.items.push(hh);
+    };
+
+   newState=()=>{
+    this.setState({ newelement:true,})
+   };
 
   
 
@@ -86,9 +90,14 @@ class Shop extends React.Component {
         v={elem} i={ind} key={ind} className='Itemscard'  selectedItem={this.state.selectedItemId}>
       </IshopCard>:null));
 
+
       var edit=this.state.items.map((elem,ind,) => ((this.state.editItemId==elem.code)?<IshopCard 
         v={elem} i={ind} key={ind} className='EditItem'  editItem={this.state.editItemId}>
       </IshopCard>:null));
+
+     var codeNewItem=<Newproduct items={this.state.items} cbnewelement={this.newElement} cancel="false" ></Newproduct>;
+      
+  
 
       return(
       <div className='SHOP'>
@@ -100,17 +109,22 @@ class Shop extends React.Component {
            <tbody className='tb'>
            {innerItems}
            </tbody>
-         </table>       
+         </table>  
+         <input  type="button" defaultValue="new product" onClick={this.newState} cancel="false"/>   
        </div> 
 
         {card}
+        {(this.state.editItemId!=0)?edit:null}
+        {(this.state.newelement==true)?codeNewItem:null}
 
       </div> 
       
        ) 
     };
+
+  };
   
-  }
+  
 
   export default Shop;
 

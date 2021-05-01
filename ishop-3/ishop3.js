@@ -47,7 +47,10 @@ class Ishop extends React.Component {
                     <p className='amount'>Количество товаров на складе:{this.props.v.itemAmount}</p>
                     <p className='cost'>Цена:<br/> {this.props.v.itemCost}</p>
                 </td>
-                <td className='del'><input  type="button" defaultValue="delete" onClick={this.funDelete}/></td>
+          <td className='buttons'>
+              <input  type="button" defaultValue="edit" onClick={this.funEdit}/>
+              <input  type="button" defaultValue="delete" onClick={this.funDelete}/>
+          </td>
             </tr>
             );
         }
