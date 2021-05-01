@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import Ishop from './ishop3';
 import IshopCard from './ishopcard.js';
+import EditCard from './editcard.js';
 
 class Shop extends React.Component {
 
@@ -19,6 +20,8 @@ class Shop extends React.Component {
           items: this.props.allItems,
           deletedItemId:0,
           chosen:false,
+          editItemId:0;
+          editElem:null;
       };
 
 
@@ -58,21 +61,34 @@ class Shop extends React.Component {
        };
 
 
+   editItem=(id)=>{ 
+        let filteredItems=this.state.items.forEach(elem, i=> {
+          if(i==id){
+            this.setState({ editItemId:id, editElem:elem;};
+          }
+        });
+        };
+
+
   
 
     render() {
       var innerItems=this.state.items.map((elem,ind,) => 
       <Ishop
        v={elem} i={ind} key={ind} className='item' 
-       cbDelete={this.deleteItem} cbSelected={this.selectedRow}
+       cbDelete={this.deleteItem} cbSelected={this.selectedRow}  cbEdit={this.deleteItem}
         chosenRow={this.state.chosen} selectedItem={this.state.selectedItemId}>
           elem
       </Ishop>  
       );
 
-      var card=this.state.items.map((elem,ind,) => {this.state.selectedItemId}?<IshopCard 
+      var card=this.state.items.map((elem,ind,) => ((this.state.selectedItemId==elem.code)?<IshopCard 
         v={elem} i={ind} key={ind} className='Itemscard'  selectedItem={this.state.selectedItemId}>
-      </IshopCard>:null);
+      </IshopCard>:null));
+
+      var edit=this.state.items.map((elem,ind,) => ((this.state.editItemId==elem.code)?<IshopCard 
+        v={elem} i={ind} key={ind} className='EditItem'  editItem={this.state.editItemId}>
+      </IshopCard>:null));
 
       return(
       <div className='SHOP'>

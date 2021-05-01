@@ -29268,8 +29268,10 @@ var Shop = function (_React$Component) {
         );
       });
 
-      var card = _react2.default.createElement(_ishopcard2.default, {
-        v: elem, i: ind, key: ind, className: 'Itemscard', selectedItem: this.state.selectedItemId });
+      var card = this.state.items.map(function (elem, ind) {
+        _this2.state.selectedItemId;
+      } ? _react2.default.createElement(_ishopcard2.default, {
+        v: elem, i: ind, key: ind, className: 'Itemscard', selectedItem: this.state.selectedItemId }) : null);
 
       return _react2.default.createElement(
         'div',
@@ -29292,8 +29294,7 @@ var Shop = function (_React$Component) {
             )
           )
         ),
-        this.state.selectedItemId,
-        '?:null'
+        card
       );
     }
   }]);

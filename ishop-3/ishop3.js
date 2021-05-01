@@ -25,6 +25,10 @@ class Ishop extends React.Component {
     funDelete=()=>{
      this.props.cbDelete(this.props.v)
     };
+    
+    funEdit=()=>{
+      this.props.cbEdit(this.props.v)
+     };
 
     select=(EO)=>{
      var code=this.props.v.code;
@@ -33,8 +37,6 @@ class Ishop extends React.Component {
 
     render () {
       
-          var textAmount='Количество товаров на складе: ';
-          var textCost='Цена: ';
 
           if (this.props.selectedItem==this.props.v.code){
             return(
@@ -42,8 +44,8 @@ class Ishop extends React.Component {
                 <td className='itemPhoto'><img  src= {this.props.v.itemPhotoURL}/></td> 
                 <td className='itemInfo'> 
                     <h3 className='nameItem'>{this.props.v.itemName}</h3>
-                    <p className='amount'>{textAmount,this.props.v.itemAmount}</p>
-                    <p className='cost'>{textCost,this.props.v.itemCost}</p>
+                    <p className='amount'>Количество товаров на складе:{this.props.v.itemAmount}</p>
+                    <p className='cost'>Цена:<br/> {this.props.v.itemCost}</p>
                 </td>
                 <td className='del'><input  type="button" defaultValue="delete" onClick={this.funDelete}/></td>
             </tr>
@@ -55,10 +57,13 @@ class Ishop extends React.Component {
             <td className='itemPhoto'><img  src= {this.props.v.itemPhotoURL}/></td> 
             <td className='itemInfo'> 
                 <h3 className='nameItem'>{this.props.v.itemName}</h3>
-                <p className='amount'>{textAmount,this.props.v.itemAmount}</p>
-                <p className='cost'>{textCost,this.props.v.itemCost}</p>
+                <p className='amount'>Количество товаров на складе:{this.props.v.itemAmount}</p>
+                <p className='cost'>Цена:<br/>{this.props.v.itemCost}</p>
             </td>
-            <td className='del'><input  type="button" defaultValue="delete" onClick={this.funDelete}/></td>
+            <td className='buttons'>
+              <input  type="button" defaultValue="edit" onClick={this.funEdit}/>
+              <input  type="button" defaultValue="delete" onClick={this.funDelete}/>
+          </td>
         </tr>
         );
 
