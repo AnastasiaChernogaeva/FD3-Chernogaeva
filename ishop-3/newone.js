@@ -12,7 +12,9 @@ class Newproduct extends React.Component {
 
   static propTypes = {
         items:PropTypes.array,
-        cancel:PropTypes.bool,
+        cbnewelement:PropTypes.func,
+        cbcancel:PropTypes.func,
+
     };
 
     state = {
@@ -21,7 +23,6 @@ class Newproduct extends React.Component {
         valuePrice:0,
         valueURL:0,
         buttonAdd:0,
-        cancelbool:this.props.cancel,
     };
 
     validatingName=(EO)=>{
@@ -76,7 +77,7 @@ class Newproduct extends React.Component {
                     if(this.state.valueURL!=0){
                         let newelementHash={"code":this.props.items.length+1, "itemName":this.state.valueName, "itemCost":this.state.valuePrice, "itemPhotoURL":this.state.valueURL, "itemAmount":this.state.valueAmount};
 
-              this.cbnewelement(newelementHash);
+              this.props.cbnewelement(newelementHash);
             }
         }
         }
@@ -84,7 +85,7 @@ class Newproduct extends React.Component {
 };
 
 cancel=()=>{
-    this.setState({cancelbool:true,})
+    this.props.cbcancel();
 }
   
 
@@ -92,7 +93,6 @@ cancel=()=>{
     render () {
 
 
-        if(this.state.cancelbool==false){
             return(
                 <div> 
                     <h2>New product</h2>
@@ -108,10 +108,8 @@ cancel=()=>{
             
               </div>
               );
-        }
-        else if(this.state.cancelbool==true){
-            return(<br/>)
-        }
+       
+       
         
             
         

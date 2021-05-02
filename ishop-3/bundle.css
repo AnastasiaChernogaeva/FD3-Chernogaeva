@@ -43,5 +43,8 @@ td.buttons{
 
 tbody tr.chosen{
     background:lightsalmon;
+}.error{
+    font-style:italic;
+    color: coral;
 }
 /*# sourceMappingURL=bundle.css.map*/

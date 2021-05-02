@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 
 
 
-import Ishop from './ishop3';
+import Ishop from './ishop3.js';
+
 import IshopCard from './ishopcard.js';
-import EditCard from './editcard.js';
+
 import Newproduct from './newone.js';
+
+import Elementeditnow from './edit.js';
+
 
 class Shop extends React.Component {
 
@@ -22,15 +26,13 @@ class Shop extends React.Component {
           deletedItemId:0,
           chosen:false,
           editItemId:0,
+          editItemElem:0,
           newelement:false,
       };
 
 
-
-    selectedRow=(code)=>{
-
-
-        
+    /* выделение элемента и получение информации об элементе */
+    selectedRow=(code)=>{ 
       if(this.state.selectedItemId!=code){
         this.setState({ chosen:false,},this.highTimeToAct(code));  
       }
@@ -40,9 +42,6 @@ class Shop extends React.Component {
       else{
         this.highTimeToAct();
       }
-   
-
-
     };
 
     highTimeToAct=(code)=>{
@@ -55,24 +54,49 @@ class Shop extends React.Component {
 
 
 
-
+  /* удаление элемента */
     deleteItem=(id)=>{ 
        let filteredItems=this.state.items.filter(i=> i!=id)
        this.setState({items:filteredItems, deletedItemId:id,});
        };
 
 
-   editItem=(id)=>{ 
-            this.setState({ editItemId:id, })
-          };
 
+
+
+    /* создание нового элемента */
     newElement=(hh)=>{
       this.state.items.push(hh);
+      this.setState({newelement:false,});
     };
 
    newState=()=>{
     this.setState({ newelement:true,})
    };
+
+   closeNewProduct=()=>{
+    this.setState({newelement:false,});
+   };
+
+
+
+
+
+    /* редактирование элемента */
+    editItem=(id)=>{ 
+      let element=this.state.items.filter(i=> i==id);
+
+            this.setState({ editItemId:id, editItemElem:element[0], });
+    };
+
+    editElement=(inf)=>{
+      this.state.items.split(this.state.editItemElem).join(inf);
+      this.setState({editItemId:0, editItemElem:0,});
+
+    }
+
+
+
 
   
 
@@ -92,10 +116,11 @@ class Shop extends React.Component {
 
 
       var edit=this.state.items.map((elem,ind,) => ((this.state.editItemId==elem.code)?<IshopCard 
-        v={elem} i={ind} key={ind} className='EditItem'  editItem={this.state.editItemId}>
+        v={elem} i={ind} key={ind} className='EditItem'  editItem={this.state.editItemId} cbEdit={this.editElement} cbcancel={this.closeNewProduct}>
       </IshopCard>:null));
 
-     var codeNewItem=<Newproduct items={this.state.items} cbnewelement={this.newElement} cancel="false" ></Newproduct>;
+
+     var codeNewItem=<Newproduct items={this.state.items} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
       
   
 
@@ -110,7 +135,7 @@ class Shop extends React.Component {
            {innerItems}
            </tbody>
          </table>  
-         <input  type="button" defaultValue="new product" onClick={this.newState} cancel="false"/>   
+         <input  type="button" defaultValue="new product" onClick={this.newState} />   
        </div> 
 
         {card}

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 
 
-class EditCard extends React.Component {
+class Elementeditnow extends React.Component {
 
 
   static propTypes = {
@@ -13,6 +13,8 @@ class EditCard extends React.Component {
         v:PropTypes.object,
         i:PropTypes.number,
         editItem:PropTypes.number,
+        cbeditelement:PropTypes.func,
+        cbcancel:PropTypes.func,
     };
 
    
@@ -77,9 +79,9 @@ class EditCard extends React.Component {
             if(this.state.valueAmount!=0){
                 if(this.state.valuePrice!=0){
                     if(this.state.valueURL!=0){
-                        let newelementHash={"code":this.props.items.length+1, "itemName":this.state.valueName, "itemCost":this.state.valuePrice, "itemPhotoURL":this.state.valueURL, "itemAmount":this.state.valueAmount};
+                        let newelementHash={"code":this.props.i, "itemName":this.state.valueName, "itemCost":this.state.valuePrice, "itemPhotoURL":this.state.valueURL, "itemAmount":this.state.valueAmount};
 
-              this.cbnewelement(newelementHash);
+              this.props.cbeditelement(newelementHash);
             }
         }
         }
@@ -87,7 +89,7 @@ class EditCard extends React.Component {
 };
 
 cancel=()=>{
-    this.setState({cancelbool:true,})
+    this.props.cbcancel();
 }
   
 
@@ -95,7 +97,6 @@ cancel=()=>{
     render () {
 
 
-        if(this.state.cancelbool==false){
             return(
                 <div> 
                     <h2>Edit</h2>
@@ -111,10 +112,7 @@ cancel=()=>{
             
               </div>
               );
-        }
-        else if(this.state.cancelbool==true){
-            return(<br/>)
-        }
+        
         
             
         
@@ -128,7 +126,7 @@ cancel=()=>{
 
 
   
-    export default EditCard;
+    export default Elementeditnow;
   
   
     

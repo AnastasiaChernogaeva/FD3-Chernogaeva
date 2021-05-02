@@ -17,6 +17,7 @@ class Ishop extends React.Component {
         i:PropTypes.number,
         chosenRow:PropTypes.bool,
         selectedItem:PropTypes.number,
+        cbEdit:PropTypes.func,
     };
 
 

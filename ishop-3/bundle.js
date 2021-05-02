@@ -571,7 +571,7 @@ var _shop2 = _interopRequireDefault(_shop);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var itemsArr = __webpack_require__(30);
+var itemsArr = __webpack_require__(31);
 
 _reactDom2.default.render(_react2.default.createElement(_shop2.default, { shopName: '\u0418\u043D\u0442\u0435\u0440\u043D\u0435\u0442-\u043C\u0430\u0433\u0430\u0437\u0438\u043D NAM\'S', allItems: itemsArr }), document.getElementById('container'));
 
@@ -29240,10 +29240,8 @@ var Shop = function (_React$Component) {
       deletedItemId: 0,
       chosen: false,
       editItemId: 0,
-      editElem: null,
       newelement: false
     }, _this.selectedRow = function (code) {
-
       if (_this.state.selectedItemId != code) {
         _this.setState({ chosen: false }, _this.highTimeToAct(code));
       } else if (_this.state.selectedItemId == code) {
@@ -29260,16 +29258,32 @@ var Shop = function (_React$Component) {
         return i != id;
       });
       _this.setState({ items: filteredItems, deletedItemId: id });
-    }, _this.editItem = function (id) {
-      var filteredItems = _this.state.items.forEach(elem, function (i) {
-        if (i == id) {
-          _this.setState({ editItemId: id, editElem: elem });
-        }
-      });
     }, _this.newElement = function (hh) {
       _this.state.items.push(hh);
+      _this.setState({ newelement: false });
+    }, _this.newState = function () {
+      _this.setState({ newelement: true });
+    }, _this.closeNewProduct = function () {
+      _this.setState({ newelement: false });
+    }, _this.editItem = function (id) {
+      _this.setState({ editItemId: id });
+    }, _this.editElement = function () {
+      _this.state.items.split(_this.state.editItemId).join(_this.state.editItemId);
+      _this.setState({ editItemId: 0 });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
+
+  /* выделение элемента и получение информации об элементе */
+
+
+  /* удаление элемента */
+
+
+  /* создание нового элемента */
+
+
+  /* редактирование элемента */
+
 
   _createClass(Shop, [{
     key: 'render',
@@ -29294,13 +29308,10 @@ var Shop = function (_React$Component) {
 
       var edit = this.state.items.map(function (elem, ind) {
         return _this2.state.editItemId == elem.code ? _react2.default.createElement(_ishopcard2.default, {
-          v: elem, i: ind, key: ind, className: 'EditItem', editItem: _this2.state.editItemId }) : null;
+          v: elem, i: ind, key: ind, className: 'EditItem', editItem: _this2.state.editItemId, cbeditelement: _this2.editElement, cbcancel: _this2.closeNewProduct }) : null;
       });
 
-      var codeNewItem;
-      newElem = function newElem() {
-        return codeNewItem = _react2.default.createElement(_newone2.default, { items: _this2.state.items, cbnewelement: _this2.newElement });
-      };
+      var codeNewItem = _react2.default.createElement(_newone2.default, { items: this.state.items, cbnewelement: this.newElement, cbcancel: this.closeNewProduct });
 
       return _react2.default.createElement(
         'div',
@@ -29322,11 +29333,11 @@ var Shop = function (_React$Component) {
               innerItems
             )
           ),
-          _react2.default.createElement('input', { type: 'button', defaultValue: 'new product', onClick: this.setState({ newElement: true }, newElem) })
+          _react2.default.createElement('input', { type: 'button', defaultValue: 'new product', onClick: this.newState })
         ),
         card,
-        edit,
-        codeNewItem
+        this.state.editItemId != 0 ? edit : null,
+        this.state.newelement == true ? codeNewItem : null
       );
     }
   }]);
@@ -30490,7 +30501,7 @@ exports.default = IshopCard;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -30512,60 +30523,166 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var EditCard = function (_React$Component) {
-  _inherits(EditCard, _React$Component);
+    _inherits(EditCard, _React$Component);
 
-  function EditCard() {
-    _classCallCheck(this, EditCard);
+    function EditCard() {
+        var _ref;
 
-    return _possibleConstructorReturn(this, (EditCard.__proto__ || Object.getPrototypeOf(EditCard)).apply(this, arguments));
-  }
+        var _temp, _this, _ret;
 
-  _createClass(EditCard, [{
-    key: 'render',
-    value: function render() {
+        _classCallCheck(this, EditCard);
 
-      return _react2.default.createElement(
-        'div',
-        { className: 'Edit', id: this.props.v.code, key: this.props.v.code },
-        _react2.default.createElement(
-          'div',
-          { className: 'itemPhoto' },
-          _react2.default.createElement('img', { src: this.props.v.itemPhotoURL })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'itemInfo' },
-          _react2.default.createElement(
-            'h3',
-            { className: 'nameItem' },
-            this.props.v.itemName
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'amount' },
-            '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u043D\u0430 \u0441\u043A\u043B\u0430\u0434\u0435:',
-            this.props.v.itemAmount
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'cost' },
-            '\u0426\u0435\u043D\u0430:',
-            _react2.default.createElement('br', null),
-            this.props.v.itemCost
-          )
-        )
-      );
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditCard.__proto__ || Object.getPrototypeOf(EditCard)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            valueName: _this.props.v.itemName,
+            valueAmount: _this.props.v.itemAmount,
+            valuePrice: _this.props.v.itemCost,
+            valueURL: _this.props.v.itemPhotoURL,
+            buttonAdd: 0
+        }, _this.validatingName = function (EO) {
+            if (EO.target.value != null) _this.setState({ valueName: EO.target.value });
+            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+        }, _this.validatingAmount = function (EO) {
+            if (EO.target.value != null) _this.setState({ valueAmount: EO.target.value });
+            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+        }, _this.validatingPrice = function (EO) {
+            if (EO.target.value != null) _this.setState({ valuePrice: EO.target.value });
+            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+        }, _this.validatingURL = function (EO) {
+            if (EO.target.value != null) _this.setState({ valueURL: EO.target.value });
+            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+        }, _this.add = function () {
+            if (_this.state.valueName != 0) {
+                if (_this.state.valueAmount != 0) {
+                    if (_this.state.valuePrice != 0) {
+                        if (_this.state.valueURL != 0) {
+                            var newelementHash = { "code": _this.props.i, "itemName": _this.state.valueName, "itemCost": _this.state.valuePrice, "itemPhotoURL": _this.state.valueURL, "itemAmount": _this.state.valueAmount };
+
+                            _this.props.cbeditelement(newelementHash);
+                        }
+                    }
+                }
+            }
+        }, _this.cancel = function () {
+            _this.props.cbcancel();
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
-  }]);
 
-  return EditCard;
+    _createClass(EditCard, [{
+        key: 'render',
+        value: function render() {
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Edit'
+                ),
+                _react2.default.createElement(
+                    'label',
+                    { className: 'id' },
+                    _react2.default.createElement(
+                        'b',
+                        null,
+                        'ID:'
+                    ),
+                    this.props.i
+                ),
+                ' ',
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    { htmlFor: 'Name' },
+                    _react2.default.createElement(
+                        'b',
+                        null,
+                        'Name:'
+                    )
+                ),
+                ' ',
+                _react2.default.createElement('input', { type: 'text', id: 'Name', value: this.state.valueName, onChange: this.validatingName }),
+                ' ',
+                this.state.valueName != 0 ? null : _react2.default.createElement(
+                    'span',
+                    { className: 'error' },
+                    ' Please, fill the field'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    { htmlFor: 'AmountItems' },
+                    _react2.default.createElement(
+                        'b',
+                        null,
+                        'Quantity:'
+                    )
+                ),
+                ' ',
+                _react2.default.createElement('input', { type: 'text', id: 'AmountItems', value: this.state.valueAmount, onChange: this.validatingAmount }),
+                ' ',
+                this.state.valueAmount != 0 ? null : _react2.default.createElement(
+                    'span',
+                    { className: 'error' },
+                    'Please, fill the field'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    { htmlFor: 'Price' },
+                    _react2.default.createElement(
+                        'b',
+                        null,
+                        'Price:'
+                    )
+                ),
+                ' ',
+                _react2.default.createElement('input', { type: 'text', id: 'Price', value: this.state.valuePrice, onChange: this.validatingPrice }),
+                ' ',
+                this.state.valuePrice != 0 ? null : _react2.default.createElement(
+                    'span',
+                    { className: 'error' },
+                    'Please, fill the field'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    { htmlFor: 'URL' },
+                    _react2.default.createElement(
+                        'b',
+                        null,
+                        'URL Photo:'
+                    )
+                ),
+                ' ',
+                _react2.default.createElement('input', { type: 'text', id: 'URL', value: this.state.valueURL, onChange: this.validatingURL }),
+                ' ',
+                this.state.valueURL != 0 ? null : _react2.default.createElement(
+                    'span',
+                    { className: 'error' },
+                    'Please, fill the field'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('input', { type: 'button', defaultValue: 'Add', onClick: this.add, disabled: this.state.buttonAdd == 0 ? false : true }),
+                _react2.default.createElement('input', { type: 'button', defaultValue: 'Cancel', onClick: this.cancel })
+            );
+        }
+    }]);
+
+    return EditCard;
 }(_react2.default.Component);
 
 EditCard.propTypes = {
-  code: _propTypes2.default.number,
-  v: _propTypes2.default.object,
-  i: _propTypes2.default.number,
-  editItem: _propTypes2.default.number
+    code: _propTypes2.default.number,
+    v: _propTypes2.default.object,
+    i: _propTypes2.default.number,
+    editItem: _propTypes2.default.number,
+    cbeditelement: _propTypes2.default.func,
+    cbcancel: _propTypes2.default.func
 };
 ;
 
@@ -30591,6 +30708,8 @@ var _react2 = _interopRequireDefault(_react);
 var _propTypes = __webpack_require__(3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
+
+__webpack_require__(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30621,13 +30740,17 @@ var Newproduct = function (_React$Component) {
             valueURL: 0,
             buttonAdd: 0
         }, _this.validatingName = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueName: EO.target.value });else _this.setState({ buttonAdd: 1 });
+            if (EO.target.value != null) _this.setState({ valueName: EO.target.value });
+            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
         }, _this.validatingAmount = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueAmount: EO.target.value });else _this.setState({ buttonAdd: 2 });
+            if (EO.target.value != null) _this.setState({ valueAmount: EO.target.value });
+            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
         }, _this.validatingPrice = function (EO) {
-            if (EO.target.value != null) _this.setState({ valuePrice: EO.target.value });else _this.setState({ buttonAdd: 3 });
+            if (EO.target.value != null) _this.setState({ valuePrice: EO.target.value });
+            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
         }, _this.validatingURL = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueURL: EO.target.value });else _this.setState({ buttonAdd: 4 });
+            if (EO.target.value != null) _this.setState({ valueURL: EO.target.value });
+            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
         }, _this.add = function () {
             if (_this.state.valueName != 0) {
                 if (_this.state.valueAmount != 0) {
@@ -30635,17 +30758,20 @@ var Newproduct = function (_React$Component) {
                         if (_this.state.valueURL != 0) {
                             var newelementHash = { "code": _this.props.items.length + 1, "itemName": _this.state.valueName, "itemCost": _this.state.valuePrice, "itemPhotoURL": _this.state.valueURL, "itemAmount": _this.state.valueAmount };
 
-                            _this.cbnewelement(newelementHash);
+                            _this.props.cbnewelement(newelementHash);
                         }
                     }
                 }
             }
+        }, _this.cancel = function () {
+            _this.props.cbcancel();
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(Newproduct, [{
         key: 'render',
         value: function render() {
+
             return _react2.default.createElement(
                 'div',
                 null,
@@ -30658,81 +30784,87 @@ var Newproduct = function (_React$Component) {
                     'label',
                     { className: 'id' },
                     _react2.default.createElement(
-                        'em',
+                        'b',
                         null,
                         'ID:'
                     ),
                     this.props.items.length + 1
                 ),
+                ' ',
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'label',
                     { htmlFor: 'Name' },
                     _react2.default.createElement(
-                        'em',
+                        'b',
                         null,
                         'Name:'
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'Name', onchange: this.validatingName }),
+                _react2.default.createElement('input', { type: 'text', id: 'Name', onChange: this.validatingName }),
                 ' ',
                 this.state.valueName != 0 ? null : _react2.default.createElement(
                     'span',
-                    null,
-                    'Please, fill the field'
+                    { className: 'error' },
+                    ' Please, fill the field'
                 ),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'label',
                     { htmlFor: 'AmountItems' },
                     _react2.default.createElement(
-                        'em',
+                        'b',
                         null,
                         'Quantity:'
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'AmountItems', onchange: this.validatingAmount }),
+                _react2.default.createElement('input', { type: 'text', id: 'AmountItems', onChange: this.validatingAmount }),
                 ' ',
                 this.state.valueAmount != 0 ? null : _react2.default.createElement(
                     'span',
-                    null,
+                    { className: 'error' },
                     'Please, fill the field'
                 ),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'label',
                     { htmlFor: 'Price' },
                     _react2.default.createElement(
-                        'em',
+                        'b',
                         null,
                         'Price:'
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'Price', onchange: this.validatingPrice }),
+                _react2.default.createElement('input', { type: 'text', id: 'Price', onChange: this.validatingPrice }),
                 ' ',
                 this.state.valuePrice != 0 ? null : _react2.default.createElement(
                     'span',
-                    null,
+                    { className: 'error' },
                     'Please, fill the field'
                 ),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'label',
                     { htmlFor: 'URL' },
                     _react2.default.createElement(
-                        'em',
+                        'b',
                         null,
                         'URL Photo:'
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'URL', onchange: this.validatingURL }),
+                _react2.default.createElement('input', { type: 'text', id: 'URL', onChange: this.validatingURL }),
                 ' ',
                 this.state.valueURL != 0 ? null : _react2.default.createElement(
                     'span',
-                    null,
+                    { className: 'error' },
                     'Please, fill the field'
                 ),
-                _react2.default.createElement('input', { type: 'button', defaultValue: 'Add', onClick: this.add }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('input', { type: 'button', defaultValue: 'Add', onClick: this.add, disabled: this.state.buttonAdd == 0 ? false : true }),
                 _react2.default.createElement('input', { type: 'button', defaultValue: 'Cancel', onClick: this.cancel })
             );
         }
@@ -30742,7 +30874,10 @@ var Newproduct = function (_React$Component) {
 }(_react2.default.Component);
 
 Newproduct.propTypes = {
-    items: _propTypes2.default.array
+    items: _propTypes2.default.array,
+    cbnewelement: _propTypes2.default.func,
+    cbcancel: _propTypes2.default.func
+
 };
 ;
 
@@ -30750,6 +30885,12 @@ exports.default = Newproduct;
 
 /***/ }),
 /* 30 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = [{"code":1,"itemName":"Набор для творчества стринг арт \"Панда\"","itemCost":"10руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/421/4207639.jpg","itemAmount":"8"},{"code":2,"itemName":"Набор для детского творчества \"Шоколадная ручка\"","itemCost":"5 руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/434/4335142.jpg","itemAmount":"15"},{"code":3,"itemName":"Набор для творчества \"Квиллинг\" ","itemCost":"4руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/404/4031310.jpg","itemAmount":"30"},{"code":4,"itemName":"Картина из пайеток \"Сверкающая бабочка\"","itemCost":"7руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/2/190/1899041.jpg","itemAmount":"15"},{"code":5,"itemName":"Французские опыты \"Науки с Буки\"","itemCost":"6руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/169/1687737.jpg","itemAmount":"20"},{"code":6,"itemName":"Игра-викторина Bondibon \"Умная Сова\"","itemCost":"8руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/426/4254952.jpg","itemAmount":"9"},{"code":7,"itemName":"Настольная игра \"Кто я?\"","itemCost":"3руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/286/2852395.jpg","itemAmount":"5"},{"code":8,"itemName":"Глобус-бар","itemCost":"35руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/445/4449325.jpg","itemAmount":"2"},{"code":9,"itemName":"Салфетница","itemCost":"20руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416743.jpg","itemAmount":"40"},{"code":10,"itemName":"Подставка для бутылки","itemCost":"100руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416682.jpg","itemAmount":"31"},{"code":11,"itemName":"Ваза для фруктов 2-х ярусная","itemCost":"85руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416639.jpg","itemAmount":"12"},{"code":12,"itemName":"Ваза для фруктов","itemCost":"48руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416636.jpg","itemAmount":"96"},{"code":13,"itemName":"Инструмент для гофрирования","itemCost":"4руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/205/2041219.jpg","itemAmount":"22"},{"code":14,"itemName":"Папка с ручкой для рисунков \"Художники\"","itemCost":"7руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780053.jpg","itemAmount":"7"},{"code":15,"itemName":"Папка с ручкой для рисунков \"Нотр-Дам\"","itemCost":"15руб","itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780052.jpg","itemAmount":"3"}]
