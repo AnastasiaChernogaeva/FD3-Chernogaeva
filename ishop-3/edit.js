@@ -5,16 +5,15 @@ import PropTypes from 'prop-types';
 
 
 
-class Elementeditnow extends React.Component {
+class Editcard extends React.Component {
 
 
   static propTypes = {
-        code:PropTypes.number,
         v:PropTypes.object,
-        i:PropTypes.number,
         editItem:PropTypes.number,
-        cbeditelement:PropTypes.func,
-        cbcancel:PropTypes.func,
+        cbeditelement:PropTypes.func.isRequired,
+        cbcancelediting:PropTypes.func,
+        
     };
 
    
@@ -74,14 +73,14 @@ class Elementeditnow extends React.Component {
    
     }
 
-    add=()=>{
+    save=()=>{
         if(this.state.valueName!=0){
             if(this.state.valueAmount!=0){
                 if(this.state.valuePrice!=0){
                     if(this.state.valueURL!=0){
-                        let newelementHash={"code":this.props.i, "itemName":this.state.valueName, "itemCost":this.state.valuePrice, "itemPhotoURL":this.state.valueURL, "itemAmount":this.state.valueAmount};
+                        let elementHash={ code:this.props.v.code, itemName:this.state.valueName, itemCost:this.state.valuePrice,  itemAmount:this.state.valueAmount, itemPhotoURL:this.state.valueURL};
 
-              this.props.cbeditelement(newelementHash);
+              this.props.cbeditelement(elementHash);
             }
         }
         }
@@ -89,7 +88,7 @@ class Elementeditnow extends React.Component {
 };
 
 cancel=()=>{
-    this.props.cbcancel();
+    this.props.cbcancelediting();
 }
   
 
@@ -107,7 +106,7 @@ cancel=()=>{
                   <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" value={this.state.valuePrice} onChange={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
                   <label htmlFor="URL"><b>URL Photo:</b></label> <input type="text" id="URL" value={this.state.valueURL} onChange={this.validatingURL}></input> {(this.state.valueURL!=0)?null:<span className="error">Please, fill the field</span>}<br/>
   
-                <input  type="button" defaultValue="Add"  onClick={this.add}  disabled={this.state.buttonAdd==0?false:true} />
+                <input  type="button" defaultValue="Save"  onClick={this.save}  disabled={this.state.buttonAdd==0?false:true} />
                 <input  type="button" defaultValue="Cancel" onClick={this.cancel}/>
             
               </div>
@@ -126,7 +125,7 @@ cancel=()=>{
 
 
   
-    export default Elementeditnow;
+    export default Editcard;
   
   
     

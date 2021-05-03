@@ -28,7 +28,9 @@ class Ishop extends React.Component {
     };
     
     funEdit=()=>{
-      this.props.cbEdit(this.props.v)
+      console.log ('нажали на кнопку edit');
+      this.props.cbEdit(this.props.v.code);
+   
      };
 
     select=(EO)=>{

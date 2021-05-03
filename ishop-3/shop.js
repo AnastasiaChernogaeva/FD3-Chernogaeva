@@ -9,7 +9,7 @@ import IshopCard from './ishopcard.js';
 
 import Newproduct from './newone.js';
 
-import Elementeditnow from './edit.js';
+import Editcard from './edit.js';
 
 
 class Shop extends React.Component {
@@ -26,30 +26,40 @@ class Shop extends React.Component {
           deletedItemId:0,
           chosen:false,
           editItemId:0,
-          editItemElem:0,
           newelement:false,
+
+          cardMode:0,/**1-view,2-edit, 3-new product */
       };
 
 
     /* выделение элемента и получение информации об элементе */
     selectedRow=(code)=>{ 
+ 
       if(this.state.selectedItemId!=code){
         this.setState({ chosen:false,},this.highTimeToAct(code));  
+        
       }
       else if(this.state.selectedItemId==code){
-        this.setState({selectedItemId:0, chosen:false,},this.answer);
+        this.setState({selectedItemId:0, chosen:false, cardMode:0,},this.answer);
       }
       else{
         this.highTimeToAct();
       }
     };
 
+  
+
     highTimeToAct=(code)=>{
-      this.setState({selectedItemId:code, chosen:true,},this.answer);
+      this.setState({selectedItemId:code, chosen:true, cardMode:1,},this.answer);
       };
 
     answer=()=>{
-      console.log("Ready!!!");
+      if(this.state.selectedItemId==this.state.editItemId){
+        this.setState({ chosen:false, selectedItemId:0,});  
+      }
+      else{
+        console.log("Ready!!!");
+      }
     };
 
 
@@ -58,6 +68,7 @@ class Shop extends React.Component {
     deleteItem=(id)=>{ 
        let filteredItems=this.state.items.filter(i=> i!=id)
        this.setState({items:filteredItems, deletedItemId:id,});
+
        };
 
 
@@ -67,15 +78,15 @@ class Shop extends React.Component {
     /* создание нового элемента */
     newElement=(hh)=>{
       this.state.items.push(hh);
-      this.setState({newelement:false,});
+      this.setState({newelement:false, cardMode:0,});
     };
 
    newState=()=>{
-    this.setState({ newelement:true,})
+    this.setState({ selectedItemId:0,  newelement:true,  cardMode:3,})
    };
 
    closeNewProduct=()=>{
-    this.setState({newelement:false,});
+    this.setState({newelement:false,  cardMode:0,});
    };
 
 
@@ -84,16 +95,18 @@ class Shop extends React.Component {
 
     /* редактирование элемента */
     editItem=(id)=>{ 
-      let element=this.state.items.filter(i=> i==id);
-
-            this.setState({ editItemId:id, editItemElem:element[0], });
+            this.setState({  editItemId:id, cardMode:2, });
     };
 
-    editElement=(inf)=>{
-      this.state.items.split(this.state.editItemElem).join(inf);
-      this.setState({editItemId:0, editItemElem:0,});
+    closeEditProduct=()=>{
+      this.setState({editItemId:0,  cardMode:0,});
+     };
 
-    }
+     saveEditElement=(newI)=>{
+      let items=this.state.items.map(elem=> (elem.code==newI.code)?newI:elem);
+      this.setState({items:items, editItemId:0,  cardMode:0, });
+     }
+    
 
 
 
@@ -101,23 +114,30 @@ class Shop extends React.Component {
   
 
     render() {
+
       var innerItems=this.state.items.map((elem,ind,) => 
       <Ishop
        v={elem} i={ind} key={ind} className='item' 
-       cbDelete={this.deleteItem} cbSelected={this.selectedRow}  cbEdit={this.deleteItem}
+       cbDelete={this.deleteItem} cbSelected={this.selectedRow}  cbEdit={this.editItem} 
         chosenRow={this.state.chosen} selectedItem={this.state.selectedItemId}>
           elem
       </Ishop>  
       );
 
+
+       
       var card=this.state.items.map((elem,ind,) => ((this.state.selectedItemId==elem.code)?<IshopCard 
         v={elem} i={ind} key={ind} className='Itemscard'  selectedItem={this.state.selectedItemId}>
       </IshopCard>:null));
 
 
-      var edit=this.state.items.map((elem,ind,) => ((this.state.editItemId==elem.code)?<IshopCard 
-        v={elem} i={ind} key={ind} className='EditItem'  editItem={this.state.editItemId} cbEdit={this.editElement} cbcancel={this.closeNewProduct}>
-      </IshopCard>:null));
+
+      let item=this.state.items.find((elem, ) => (this.state.editItemId==elem.code));
+
+      var edit=<Editcard 
+        v={item} className='EditItem'  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
+      </Editcard>;
+
 
 
      var codeNewItem=<Newproduct items={this.state.items} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
@@ -138,9 +158,10 @@ class Shop extends React.Component {
          <input  type="button" defaultValue="new product" onClick={this.newState} />   
        </div> 
 
-        {card}
-        {(this.state.editItemId!=0)?edit:null}
-        {(this.state.newelement==true)?codeNewItem:null}
+        {this.state.cardMode==1 && card}
+        
+        {this.state.editItemId!=0?edit:null}
+        {this.state.cardMode==3 && codeNewItem}
 
       </div> 
       
