@@ -78,13 +78,14 @@ class Editcard extends React.Component {
             if(this.state.valueAmount!=0){
                 if(this.state.valuePrice!=0){
                     if(this.state.valueURL!=0){
-                        let elementHash={ code:this.props.v.code, itemName:this.state.valueName, itemCost:this.state.valuePrice,  itemAmount:this.state.valueAmount, itemPhotoURL:this.state.valueURL};
+             let elementHash={ code:this.props.v.code, itemName:this.state.valueName, itemCost:this.state.valuePrice,  itemAmount:this.state.valueAmount, itemPhotoURL:this.state.valueURL};
 
               this.props.cbeditelement(elementHash);
             }
         }
         }
-    }
+    }     
+       
 };
 
 cancel=()=>{
