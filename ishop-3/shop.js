@@ -100,6 +100,7 @@ class Shop extends React.Component {
 
     /* редактирование элемента */
     editItem=(id)=>{ 
+      if(this.state.editItemId!=id)
             this.setState({  editItemId:id, cardMode:2, });
     };
 
