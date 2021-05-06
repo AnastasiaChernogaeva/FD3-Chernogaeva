@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import RainBowFrame from 'RainBowFrame';
+import RainBowFrame from './RainBowFrame.js';
 let colors = ['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
 
-ReactDOM.render( <RainbowFrame colors={colors}> Hello! </RainbowFrame> , document.getElementById('container') );
+ReactDOM.render( <RainBowFrame colors={colors} text="Hello!">  </RainBowFrame> , document.getElementById('container') );

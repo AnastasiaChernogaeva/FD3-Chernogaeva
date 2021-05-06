@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ColorFrame extends React.Component {
+class RainBowFrame extends React.Component {
 
   static propTypes = {
     colors: PropTypes.array.isRequired,
+    text:PropTypes.string,
   };
   
   render() {
-    return (
-    this.props.colors.forEach((elem, ind)=>{(this.props.colors.length-1)==ind?<div style={{border:"solid 3px "+elem,padding:"10px"}}>{this.props.children} </div>:<div style={{border:"solid 3px "+elem,padding:"10px"}}>{this.props.children} </div>
-    })
-    )
+    let code=this.props.colors.filter((elem, ind)=>{(this.props.colors.length-1)==ind?<div style={{border:`solid 3px ${elem}`,padding:"10px"}}>{this.props.text} </div>:<div style={{border:`solid 3px ${elem}`,padding:"10px"}}>{this.props.children} </div>
+  });
+   
+    return ({code});
   }
 
 }
 
-export default ColorFrame;
+export default RainBowFrame;
