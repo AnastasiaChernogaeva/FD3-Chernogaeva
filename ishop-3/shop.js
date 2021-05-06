@@ -55,7 +55,7 @@ class Shop extends React.Component {
 
     answer=()=>{
       if(this.state.selectedItemId==this.state.editItemId){
-        this.setState({ chosen:false, selectedItemId:0,});  
+        this.setState({ chosen:false, selectedItemId:0, cardMode:2});  
       }
       else{
         console.log("Ready!!!");
@@ -65,10 +65,15 @@ class Shop extends React.Component {
 
 
   /* удаление элемента */
-    deleteItem=(id)=>{ 
-       let filteredItems=this.state.items.filter(i=> i!=id)
-       this.setState({items:filteredItems, deletedItemId:id,});
-
+    deleteItem=(id)=>{
+      let filteredItems=this.state.items.filter(i=> i!=id)
+       if(id==this.state.editItemId){
+        this.setState({items:filteredItems, deletedItemId:id, cardMode:0,},);
+       }
+  
+       else{
+       this.setState({items:filteredItems, deletedItemId:id,},);
+       }
        };
 
 
@@ -110,7 +115,6 @@ class Shop extends React.Component {
 
 
 
-
   
 
     render() {
@@ -137,7 +141,7 @@ class Shop extends React.Component {
       var edit=<Editcard 
         v={item} className='EditItem'  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
       </Editcard>;
-
+      
 
 
      var codeNewItem=<Newproduct items={this.state.items} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
@@ -160,7 +164,7 @@ class Shop extends React.Component {
 
         {this.state.cardMode==1 && card}
         
-        {this.state.editItemId!=0?edit:null}
+        {this.state.cardMode==2 &&this.state.editItemId!=0?edit:null}
         {this.state.cardMode==3 && codeNewItem}
 
       </div> 
