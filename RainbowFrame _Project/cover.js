@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import RainBowFrame from './RainBowFrame.js';
 
@@ -11,7 +11,7 @@ class Cover extends React.Component {
     };
     
     render() {
-      let code=this.props.colors.map((elem, ind)=><RainBowFrame color={elem} id={ind}></RainBowFrame>
+      let code=this.props.colors.map((elem, ind)=><RainBowFrame color={elem} colors={this.props.colors} id={ind}></RainBowFrame>
     );
      
       return ({code});
