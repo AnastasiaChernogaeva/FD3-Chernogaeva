@@ -67,16 +67,18 @@ class Shop extends React.Component {
   /* удаление элемента */
     deleteItem=(id)=>{
       let filteredItems=this.state.items.filter(i=> i!=id)
-       if(id==this.state.editItemId){
-        this.setState({items:filteredItems, deletedItemId:id, cardMode:0,},);
-       }
-  
-       else{
-       this.setState({items:filteredItems, deletedItemId:id,},);
-       }
+       this.setState({items:filteredItems, deletedItemId:id,}, this.check);
+       
        };
 
-
+check=()=>{
+   if(this.state.editItemId===this.state.deletedItemId){
+    this.closeEditProduct();
+   }
+   else{
+   console.log("M.A.K.E. IT W.O.R.K.")
+   };
+};
 
 
 
