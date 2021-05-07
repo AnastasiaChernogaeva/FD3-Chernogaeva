@@ -54,31 +54,35 @@ class Shop extends React.Component {
       };
 
     answer=()=>{
+      if(this.state.selectedItemId!=0){
       if(this.state.selectedItemId==this.state.editItemId){
-        this.setState({ chosen:false, selectedItemId:0, cardMode:2});  
+        this.setState({ chosen:false, selectedItemId:0, cardMode:2,});  
       }
       else{
         console.log("Ready!!!");
       }
+    }
+    else{
+      this.setState({ chosen:false, selectedItemId:0, cardMode:0,})
+    }
     };
 
 
 
   /* удаление элемента */
-    deleteItem=(id)=>{
+    deleteItem=(id)=>{ 
       let filteredItems=this.state.items.filter(i=> i!=id)
-       this.setState({items:filteredItems, deletedItemId:id,}, this.check);
+      this.setState({items:filteredItems, deletedItemId:id,},);      
+      if(id.code==this.state.editItemId){
+        this.setState({items:filteredItems, deletedItemId:id, cardMode:0, editItemId:0,},);
+        }
+         
+        else{
+        this.setState({items:filteredItems, deletedItemId:id,},);
+        }
        
        };
 
-check=()=>{
-   if(this.state.editItemId===this.state.deletedItemId){
-    this.closeEditProduct();
-   }
-   else{
-   console.log("M.A.K.E. IT W.O.R.K.")
-   };
-};
 
 
 
@@ -89,7 +93,7 @@ check=()=>{
     };
 
    newState=()=>{
-    this.setState({ selectedItemId:0,  newelement:true,  cardMode:3,})
+    this.setState({ selectedItemId:0, editItemId:0,  newelement:true,  cardMode:3,})
    };
 
    closeNewProduct=()=>{
@@ -107,7 +111,7 @@ check=()=>{
     };
 
     closeEditProduct=()=>{
-      this.setState({editItemId:0,  cardMode:0,});
+      this.setState({editItemId:0,  cardMode:0,},this.announce);
      };
 
      saveEditElement=(newI)=>{
@@ -116,6 +120,9 @@ check=()=>{
      }
     
 
+    announce=()=>{
+  console.log("close editcard")
+};
 
 
   
@@ -167,7 +174,7 @@ check=()=>{
 
         {this.state.cardMode==1 && card}
         
-        {this.state.cardMode==2 &&this.state.editItemId!=0?edit:null}
+        {this.state.cardMode==2 &&edit}
         {this.state.cardMode==3 && codeNewItem}
 
       </div> 

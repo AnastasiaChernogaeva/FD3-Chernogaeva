@@ -29264,6 +29264,7 @@ var Shop = function (_React$Component) {
       var filteredItems = _this.state.items.filter(function (i) {
         return i != id;
       });
+      _this.setState({ items: filteredItems, deletedItemId: id });
       if (id == _this.state.editItemId) {
         _this.setState({ items: filteredItems, deletedItemId: id, cardMode: 0, editItemId: 0 });
       } else {
@@ -29273,18 +29274,20 @@ var Shop = function (_React$Component) {
       _this.state.items.push(hh);
       _this.setState({ newelement: false, cardMode: 0 });
     }, _this.newState = function () {
-      _this.setState({ selectedItemId: 0, newelement: true, cardMode: 3 });
+      _this.setState({ selectedItemId: 0, editItemId: 0, newelement: true, cardMode: 3 });
     }, _this.closeNewProduct = function () {
       _this.setState({ newelement: false, cardMode: 0 });
     }, _this.editItem = function (id) {
       if (_this.state.editItemId != id) _this.setState({ editItemId: id, cardMode: 2 });
     }, _this.closeEditProduct = function () {
-      _this.setState({ editItemId: 0, cardMode: 0 });
+      _this.setState({ editItemId: 0, cardMode: 0 }, _this.announce);
     }, _this.saveEditElement = function (newI) {
       var items = _this.state.items.map(function (elem) {
         return elem.code == newI.code ? newI : elem;
       });
       _this.setState({ items: items, editItemId: 0, cardMode: 0 });
+    }, _this.announce = function () {
+      console.log("close editcard");
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -29353,7 +29356,7 @@ var Shop = function (_React$Component) {
           _react2.default.createElement('input', { type: 'button', defaultValue: 'new product', onClick: this.newState })
         ),
         this.state.cardMode == 1 && card,
-        this.state.cardMode == 2 && this.state.editItemId != 0 ? edit : null,
+        this.state.cardMode == 2 && edit,
         this.state.cardMode == 3 && codeNewItem
       );
     }
@@ -30810,8 +30813,12 @@ var Editcard = function (_React$Component) {
                         'b',
                         null,
                         'ID:'
-                    ),
-                    this.props.i
+                    )
+                ),
+                _react2.default.createElement(
+                    'span',
+                    null,
+                    this.props.v.code
                 ),
                 ' ',
                 _react2.default.createElement('br', null),

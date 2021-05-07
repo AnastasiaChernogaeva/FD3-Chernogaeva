@@ -101,7 +101,7 @@ cancel=()=>{
                 <div> 
                     <h2>Edit</h2>
   
-                  <label className='id'><b>ID:</b>{this.props.i}</label> <br/>
+                  <label className='id'><b>ID:</b></label><span>{this.props.v.code}</span> <br/>
                   <label htmlFor="Name"><b>Name:</b></label> <input type="text" id="Name" value={this.state.valueName} onChange={this.validatingName}></input> {(this.state.valueName!=0)?null:<span className="error"> Please, fill the field</span>}<br/>
                   <label htmlFor="AmountItems"><b>Quantity:</b></label> <input type="text" id="AmountItems" value={this.state.valueAmount} onChange={this.validatingAmount}></input> {(this.state.valueAmount!=0)?null:<span className="error">Please, fill the field</span>}<br/>
                   <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" value={this.state.valuePrice} onChange={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
