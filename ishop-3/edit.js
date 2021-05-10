@@ -25,67 +25,65 @@ class Editcard extends React.Component {
         valueAmount:this.props.v.itemAmount,
         valuePrice:this.props.v.itemCost,
         valueURL:this.props.v.itemPhotoURL,
-        buttonAdd:0,
+        buttonAdd:false,
     };
 
     validatingName=(EO)=>{
-        if (EO.target.value!=null)
-             this.setState({valueName:EO.target.value,});
-             if( this.state.buttonAdd!=0)
-            this.setState({buttonAdd:this.state.buttonAdd--,});
-        
-        else
-            this.setState({buttonAdd:this.state.buttonAdd++,});
+             this.setState({valueName:EO.target.value,},this.check);
         
     }
 
     validatingAmount=(EO)=>{
-        if (EO.target.value!=null)
-             this.setState({valueAmount:EO.target.value,});
-            if( this.state.buttonAdd!=0)
-            this.setState({buttonAdd:this.state.buttonAdd--,});
-        
-        else
-            this.setState({buttonAdd:this.state.buttonAdd++,});
-        
+             this.setState({valueAmount:EO.target.value, },this.check);
+
     }
 
     validatingPrice=(EO)=>{
-        if (EO.target.value!=null)
-             this.setState({valuePrice:EO.target.value,});
-             if( this.state.buttonAdd!=0)
-            this.setState({buttonAdd:this.state.buttonAdd--,});
-        
-        else
-            this.setState({buttonAdd:this.state.buttonAdd++,});     
+             this.setState({valuePrice:EO.target.value, },this.check);
+   
         
     }
 
     validatingURL=(EO)=>{
-        if (EO.target.value!=null)
-            this.setState({valueURL:EO.target.value,});
-            if( this.state.buttonAdd!=0)
-            this.setState({buttonAdd:this.state.buttonAdd--,});
-       
-       else
-           this.setState({buttonAdd:this.state.buttonAdd++,});     
+            this.setState({valueURL:EO.target.value, },this.check);
        
    
     }
 
-    save=()=>{
-        if(this.state.valueName!=0){
-            if(this.state.valueAmount!=0){
-                if(this.state.valuePrice!=0){
-                    if(this.state.valueURL!=0){
-             let elementHash={ code:this.props.v.code, itemName:this.state.valueName, itemCost:this.state.valuePrice,  itemAmount:this.state.valueAmount, itemPhotoURL:this.state.valueURL};
-
-              this.props.cbeditelement(elementHash);
-            }
-        }
-        }
-    }     
+    check=()=>{
+        switch ( "" ) {
+            case this.state.valueName:
+                return this.setState({buttonAdd:"disabled",});
+              break;
+            case this.state.valueAmount:
+                return this.setState({buttonAdd:"disabled",});
+              break;
+            case this.state.valuePrice:
+                return this.setState({buttonAdd:"disabled",});
+              break;
+            case this.state.valueURL:
+                return this.setState({buttonAdd:"disabled",});
+              break;
+            default:
+                return this.setState({buttonAdd:null,});
+          }
+  
        
+};
+
+save=()=>{
+    if(this.state.valueName!=0){
+        if(this.state.valueAmount!=0){
+            if(this.state.valuePrice!=0){
+                if(this.state.valueURL!=0){
+         let elementHash={ code:this.props.v.code, itemName:this.state.valueName, itemCost:this.state.valuePrice,  itemAmount:this.state.valueAmount, itemPhotoURL:this.state.valueURL};
+
+          this.props.cbeditelement(elementHash);
+        }
+    }
+    }
+}     
+   
 };
 
 cancel=()=>{
@@ -102,12 +100,12 @@ cancel=()=>{
                     <h2>Edit</h2>
   
                   <label className='id'><b>ID:</b></label><span>{this.props.v.code}</span> <br/>
-                  <label htmlFor="Name"><b>Name:</b></label> <input type="text" id="Name" value={this.state.valueName} onChange={this.validatingName}></input> {(this.state.valueName!=0)?null:<span className="error"> Please, fill the field</span>}<br/>
-                  <label htmlFor="AmountItems"><b>Quantity:</b></label> <input type="text" id="AmountItems" value={this.state.valueAmount} onChange={this.validatingAmount}></input> {(this.state.valueAmount!=0)?null:<span className="error">Please, fill the field</span>}<br/>
-                  <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" value={this.state.valuePrice} onChange={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
-                  <label htmlFor="URL"><b>URL Photo:</b></label> <input type="text" id="URL" value={this.state.valueURL} onChange={this.validatingURL}></input> {(this.state.valueURL!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label htmlFor="Name"><b>Name:</b></label> <input type="text" id="Name" defaultValue={this.state.valueName} onBlur={this.validatingName}></input> {(this.state.valueName!=0)?null:<span className="error"> Please, fill the field</span>}<br/>
+                  <label htmlFor="AmountItems"><b>Quantity:</b></label> <input type="text" id="AmountItems" defaultValue={this.state.valueAmount} onBlur={this.validatingAmount}></input> {(this.state.valueAmount!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" defaultValue={this.state.valuePrice} onBlur={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label htmlFor="URL"><b>URL Photo:</b></label> <input type="text" id="URL" defaultValue={this.state.valueURL} onBlur={this.validatingURL}></input> {(this.state.valueURL!=0)?null:<span className="error">Please, fill the field</span>}<br/>
   
-                <input  type="button" defaultValue="Save"  onClick={this.save}  disabled={this.state.buttonAdd==0?false:true} />
+                <input  type="button" defaultValue="Save"  onClick={this.save}  disabled={this.state.buttonAdd?"disabled":null}  />
                 <input  type="button" defaultValue="Cancel" onClick={this.cancel}/>
             
               </div>

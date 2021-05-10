@@ -3,7 +3,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Cover from './cover.js';
-let colors = ['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
+import CoverRainBow from './CoverRainBow.js';
 
-ReactDOM.render( <Cover colors={colors} text="Hello!">  </Cover> , document.getElementById('container') );
+ReactDOM.render( <CoverRainBow/>  , document.getElementById('container') );

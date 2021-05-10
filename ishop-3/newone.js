@@ -22,66 +22,39 @@ class Newproduct extends React.Component {
         valueAmount:0,
         valuePrice:0,
         valueURL:0,
-        buttonAdd:0,
+        buttonAdd:-4,
     };
 
     validatingName=(EO)=>{
         if (EO.target.value!=null)
-             this.setState({valueName:EO.target.value,});
-             if( this.state.buttonAdd!=0)
-            this.setState({buttonAdd:this.state.buttonAdd--,});
-        
-        else
-            this.setState({buttonAdd:this.state.buttonAdd++,});
+             this.setState({valueName:EO.target.value,buttonAdd:this.state.buttonAdd+1,});
         
     }
 
     validatingAmount=(EO)=>{
         if (EO.target.value!=null)
-             this.setState({valueAmount:EO.target.value,});
-            if( this.state.buttonAdd!=0)
-            this.setState({buttonAdd:this.state.buttonAdd--,});
-        
-        else
-            this.setState({buttonAdd:this.state.buttonAdd++,});
+             this.setState({valueAmount:EO.target.value, buttonAdd:this.state.buttonAdd+1,});
         
     }
 
     validatingPrice=(EO)=>{
         if (EO.target.value!=null)
-             this.setState({valuePrice:EO.target.value,});
-             if( this.state.buttonAdd!=0)
-            this.setState({buttonAdd:this.state.buttonAdd--,});
-        
-        else
-            this.setState({buttonAdd:this.state.buttonAdd++,});     
+             this.setState({valuePrice:EO.target.value, buttonAdd:this.state.buttonAdd+1,});   
         
     }
 
     validatingURL=(EO)=>{
         if (EO.target.value!=null)
-            this.setState({valueURL:EO.target.value,});
-            if( this.state.buttonAdd!=0)
-            this.setState({buttonAdd:this.state.buttonAdd--,});
-       
-       else
-           this.setState({buttonAdd:this.state.buttonAdd++,});     
+            this.setState({valueURL:EO.target.value,buttonAdd:this.state.buttonAdd+1,});   
        
    
     }
 
     add=()=>{
-        if(this.state.valueName!=0){
-            if(this.state.valueAmount!=0){
-                if(this.state.valuePrice!=0){
-                    if(this.state.valueURL!=0){
                         let newelementHash={"code":this.props.items.length+1, "itemName":this.state.valueName, "itemCost":this.state.valuePrice, "itemPhotoURL":this.state.valueURL, "itemAmount":this.state.valueAmount};
 
               this.props.cbnewelement(newelementHash);
-            }
-        }
-        }
-    }
+            
 };
 
 cancel=()=>{
@@ -103,7 +76,7 @@ cancel=()=>{
                   <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" onChange={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
                   <label htmlFor="URL"><b>URL Photo:</b></label> <input type="text" id="URL" onChange={this.validatingURL}></input> {(this.state.valueURL!=0)?null:<span className="error">Please, fill the field</span>}<br/>
   
-                <input  type="button" defaultValue="Add"  onClick={this.add}  disabled={this.state.buttonAdd==0?false:true} />
+                <input  type="button" defaultValue="Add"  onClick={this.add}  disabled={this.state.buttonAdd<0?"disabled":null} />
                 <input  type="button" defaultValue="Cancel" onClick={this.cancel}/>
             
               </div>

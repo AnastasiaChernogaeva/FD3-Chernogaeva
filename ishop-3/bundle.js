@@ -29255,17 +29255,21 @@ var Shop = function (_React$Component) {
     }, _this.highTimeToAct = function (code) {
       _this.setState({ selectedItemId: code, chosen: true, cardMode: 1 }, _this.answer);
     }, _this.answer = function () {
-      if (_this.state.selectedItemId == _this.state.editItemId) {
-        _this.setState({ chosen: false, selectedItemId: 0, cardMode: 2 });
+      if (_this.state.selectedItemId != 0) {
+        if (_this.state.selectedItemId == _this.state.editItemId) {
+          _this.setState({ chosen: false, selectedItemId: 0, cardMode: 2 });
+        } else {
+          console.log("Ready!!!");
+        }
       } else {
-        console.log("Ready!!!");
+        _this.setState({ chosen: false, selectedItemId: 0, cardMode: 0 });
       }
     }, _this.deleteItem = function (id) {
       var filteredItems = _this.state.items.filter(function (i) {
         return i != id;
       });
       _this.setState({ items: filteredItems, deletedItemId: id });
-      if (id == _this.state.editItemId) {
+      if (id.code == _this.state.editItemId) {
         _this.setState({ items: filteredItems, deletedItemId: id, cardMode: 0, editItemId: 0 });
       } else {
         _this.setState({ items: filteredItems, deletedItemId: id });
