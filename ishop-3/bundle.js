@@ -30569,31 +30569,19 @@ var Newproduct = function (_React$Component) {
             valueAmount: 0,
             valuePrice: 0,
             valueURL: 0,
-            buttonAdd: 0
+            buttonAdd: -4
         }, _this.validatingName = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueName: EO.target.value });
-            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+            if (EO.target.value != null) _this.setState({ valueName: EO.target.value, buttonAdd: _this.state.buttonAdd + 1 });
         }, _this.validatingAmount = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueAmount: EO.target.value });
-            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+            if (EO.target.value != null) _this.setState({ valueAmount: EO.target.value, buttonAdd: _this.state.buttonAdd + 1 });
         }, _this.validatingPrice = function (EO) {
-            if (EO.target.value != null) _this.setState({ valuePrice: EO.target.value });
-            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+            if (EO.target.value != null) _this.setState({ valuePrice: EO.target.value, buttonAdd: _this.state.buttonAdd + 1 });
         }, _this.validatingURL = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueURL: EO.target.value });
-            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+            if (EO.target.value != null) _this.setState({ valueURL: EO.target.value, buttonAdd: _this.state.buttonAdd + 1 });
         }, _this.add = function () {
-            if (_this.state.valueName != 0) {
-                if (_this.state.valueAmount != 0) {
-                    if (_this.state.valuePrice != 0) {
-                        if (_this.state.valueURL != 0) {
-                            var newelementHash = { "code": _this.props.items.length + 1, "itemName": _this.state.valueName, "itemCost": _this.state.valuePrice, "itemPhotoURL": _this.state.valueURL, "itemAmount": _this.state.valueAmount };
+            var newelementHash = { "code": _this.props.items.length + 1, "itemName": _this.state.valueName, "itemCost": _this.state.valuePrice, "itemPhotoURL": _this.state.valueURL, "itemAmount": _this.state.valueAmount };
 
-                            _this.props.cbnewelement(newelementHash);
-                        }
-                    }
-                }
-            }
+            _this.props.cbnewelement(newelementHash);
         }, _this.cancel = function () {
             _this.props.cbcancel();
         }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -30695,7 +30683,7 @@ var Newproduct = function (_React$Component) {
                     'Please, fill the field'
                 ),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement('input', { type: 'button', defaultValue: 'Add', onClick: this.add, disabled: this.state.buttonAdd == 0 ? false : true }),
+                _react2.default.createElement('input', { type: 'button', defaultValue: 'Add', onClick: this.add, disabled: this.state.buttonAdd < 0 ? "disabled" : null }),
                 _react2.default.createElement('input', { type: 'button', defaultValue: 'Cancel', onClick: this.cancel })
             );
         }
@@ -30768,19 +30756,32 @@ var Editcard = function (_React$Component) {
             valueAmount: _this.props.v.itemAmount,
             valuePrice: _this.props.v.itemCost,
             valueURL: _this.props.v.itemPhotoURL,
-            buttonAdd: 0
+            buttonAdd: false
         }, _this.validatingName = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueName: EO.target.value });
-            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+            _this.setState({ valueName: EO.target.value }, _this.check);
         }, _this.validatingAmount = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueAmount: EO.target.value });
-            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+            _this.setState({ valueAmount: EO.target.value }, _this.check);
         }, _this.validatingPrice = function (EO) {
-            if (EO.target.value != null) _this.setState({ valuePrice: EO.target.value });
-            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+            _this.setState({ valuePrice: EO.target.value }, _this.check);
         }, _this.validatingURL = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueURL: EO.target.value });
-            if (_this.state.buttonAdd != 0) _this.setState({ buttonAdd: _this.state.buttonAdd-- });else _this.setState({ buttonAdd: _this.state.buttonAdd++ });
+            _this.setState({ valueURL: EO.target.value }, _this.check);
+        }, _this.check = function () {
+            switch ("") {
+                case _this.state.valueName:
+                    return _this.setState({ buttonAdd: "disabled" });
+                    break;
+                case _this.state.valueAmount:
+                    return _this.setState({ buttonAdd: "disabled" });
+                    break;
+                case _this.state.valuePrice:
+                    return _this.setState({ buttonAdd: "disabled" });
+                    break;
+                case _this.state.valueURL:
+                    return _this.setState({ buttonAdd: "disabled" });
+                    break;
+                default:
+                    return _this.setState({ buttonAdd: null });
+            }
         }, _this.save = function () {
             if (_this.state.valueName != 0) {
                 if (_this.state.valueAmount != 0) {
@@ -30836,7 +30837,7 @@ var Editcard = function (_React$Component) {
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'Name', value: this.state.valueName, onChange: this.validatingName }),
+                _react2.default.createElement('input', { type: 'text', id: 'Name', defaultValue: this.state.valueName, onBlur: this.validatingName }),
                 ' ',
                 this.state.valueName != 0 ? null : _react2.default.createElement(
                     'span',
@@ -30854,7 +30855,7 @@ var Editcard = function (_React$Component) {
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'AmountItems', value: this.state.valueAmount, onChange: this.validatingAmount }),
+                _react2.default.createElement('input', { type: 'text', id: 'AmountItems', defaultValue: this.state.valueAmount, onBlur: this.validatingAmount }),
                 ' ',
                 this.state.valueAmount != 0 ? null : _react2.default.createElement(
                     'span',
@@ -30872,7 +30873,7 @@ var Editcard = function (_React$Component) {
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'Price', value: this.state.valuePrice, onChange: this.validatingPrice }),
+                _react2.default.createElement('input', { type: 'text', id: 'Price', defaultValue: this.state.valuePrice, onBlur: this.validatingPrice }),
                 ' ',
                 this.state.valuePrice != 0 ? null : _react2.default.createElement(
                     'span',
@@ -30890,7 +30891,7 @@ var Editcard = function (_React$Component) {
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'URL', value: this.state.valueURL, onChange: this.validatingURL }),
+                _react2.default.createElement('input', { type: 'text', id: 'URL', defaultValue: this.state.valueURL, onBlur: this.validatingURL }),
                 ' ',
                 this.state.valueURL != 0 ? null : _react2.default.createElement(
                     'span',
@@ -30898,7 +30899,7 @@ var Editcard = function (_React$Component) {
                     'Please, fill the field'
                 ),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement('input', { type: 'button', defaultValue: 'Save', onClick: this.save, disabled: this.state.buttonAdd == 0 ? false : true }),
+                _react2.default.createElement('input', { type: 'button', defaultValue: 'Save', onClick: this.save, disabled: this.state.buttonAdd ? "disabled" : null }),
                 _react2.default.createElement('input', { type: 'button', defaultValue: 'Cancel', onClick: this.cancel })
             );
         }

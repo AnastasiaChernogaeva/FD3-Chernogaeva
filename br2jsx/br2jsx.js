@@ -16,7 +16,7 @@ class Br2jsx extends React.Component {
     render() {
 
         return(
-            <div>{this.state.text.split(/<br ?\/?>/).join(" <br> ")}</div>
+            <div>{this.state.text.split(/<br ?\/?>/).map(elem=> <div>{elem}</div> ) }</div>
         );
             
       

@@ -27,6 +27,7 @@ class Shop extends React.Component {
           chosen:false,
           editItemId:0,
           newelement:false,
+          bButtons:"",
 
           cardMode:0,/**1-view,2-edit, 3-new product */
       };
@@ -124,6 +125,9 @@ class Shop extends React.Component {
   console.log("close editcard")
 };
 
+bButtons=(mean)=>{
+  this.setState({bButtons:mean, });
+}
 
   
 
@@ -131,8 +135,8 @@ class Shop extends React.Component {
 
       var innerItems=this.state.items.map((elem,ind,) => 
       <Ishop
-       v={elem} i={ind} key={ind} className='item' 
-       cbDelete={this.deleteItem} cbSelected={this.selectedRow}  cbEdit={this.editItem} 
+       v={elem} i={ind} key={ind} className='item'  bButtons={this.state.bButtons}
+       cbDelete={this.deleteItem} cbSelected={this.selectedRow}  cbEdit={this.editItem}  
         chosenRow={this.state.chosen} selectedItem={this.state.selectedItemId}>
           elem
       </Ishop>  
@@ -149,12 +153,12 @@ class Shop extends React.Component {
       let item=this.state.items.find((elem, ) => (this.state.editItemId==elem.code));
 
       var edit=<Editcard 
-        v={item} className='EditItem'  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
+        v={item} className='EditItem' cbbuttons={this.bButtons}  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
       </Editcard>;
       
 
 
-     var codeNewItem=<Newproduct items={this.state.items} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
+     var codeNewItem=<Newproduct items={this.state.items} cbbuttons={this.bButtons} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
       
   
 

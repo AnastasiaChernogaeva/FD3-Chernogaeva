@@ -14,46 +14,73 @@ class Newproduct extends React.Component {
         items:PropTypes.array,
         cbnewelement:PropTypes.func,
         cbcancel:PropTypes.func,
+        cbbuttons:PropTypes.func,
 
     };
 
     state = {
-        valueName:0,
-        valueAmount:0,
-        valuePrice:0,
-        valueURL:0,
-        buttonAdd:-4,
+        valueName:"",
+        valueAmount:"",
+        valuePrice:"",
+        valueURL:"",
+        buttonAdd:null,
     };
 
     validatingName=(EO)=>{
-        if (EO.target.value!=null)
-             this.setState({valueName:EO.target.value,buttonAdd:this.state.buttonAdd+1,});
-        
-    }
-
-    validatingAmount=(EO)=>{
-        if (EO.target.value!=null)
-             this.setState({valueAmount:EO.target.value, buttonAdd:this.state.buttonAdd+1,});
-        
-    }
-
-    validatingPrice=(EO)=>{
-        if (EO.target.value!=null)
-             this.setState({valuePrice:EO.target.value, buttonAdd:this.state.buttonAdd+1,});   
-        
-    }
-
-    validatingURL=(EO)=>{
-        if (EO.target.value!=null)
-            this.setState({valueURL:EO.target.value,buttonAdd:this.state.buttonAdd+1,});   
-       
+        this.setState({valueName:EO.target.value,},this.check);
    
-    }
+}
+
+validatingAmount=(EO)=>{
+        this.setState({valueAmount:EO.target.value, },this.check);
+
+}
+
+validatingPrice=(EO)=>{
+        this.setState({valuePrice:EO.target.value, },this.check);
+
+   
+}
+
+validatingURL=(EO)=>{
+       this.setState({valueURL:EO.target.value, },this.check);
+  
+
+}
+
+
+check=()=>{
+        
+
+    switch ( "" ) {
+        case this.state.valueName:
+            return this.setState({buttonAdd:"disabled",},this.props.cbbuttons(this.state.button));
+          break;
+        case this.state.valueAmount:
+            return this.setState({buttonAdd:"disabled",},this.props.cbbuttons(this.state.button));
+          break;
+        case this.state.valuePrice:
+            return this.setState({buttonAdd:"disabled",},this.props.cbbuttons(this.state.button));
+          break;
+        case this.state.valueURL:
+            return this.setState({buttonAdd:"disabled",},this.props.cbbuttons(this.state.button));
+          break;
+        default:
+            return this.setState({buttonAdd:null,},this.props.cbbuttons(this.state.button));
+      }
+
+   
+};
 
     add=()=>{
+        if(this.state.valueName!=0){
+            if(this.state.valueAmount!=0){
+                if(this.state.valuePrice!=0){
+                    if(this.state.valueURL!=0){
                         let newelementHash={"code":this.props.items.length+1, "itemName":this.state.valueName, "itemCost":this.state.valuePrice, "itemPhotoURL":this.state.valueURL, "itemAmount":this.state.valueAmount};
 
               this.props.cbnewelement(newelementHash);
+                    }}}}
             
 };
 
@@ -71,12 +98,12 @@ cancel=()=>{
                     <h2>New product</h2>
   
                   <label className='id'><b>ID:</b>{this.props.items.length+1}</label> <br/>
-                  <label htmlFor="Name"><b>Name:</b></label> <input type="text" id="Name" onChange={this.validatingName}></input> {(this.state.valueName!=0)?null:<span className="error"> Please, fill the field</span>}<br/>
-                  <label htmlFor="AmountItems"><b>Quantity:</b></label> <input type="text" id="AmountItems" onChange={this.validatingAmount}></input> {(this.state.valueAmount!=0)?null:<span className="error">Please, fill the field</span>}<br/>
-                  <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" onChange={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
-                  <label htmlFor="URL"><b>URL Photo:</b></label> <input type="text" id="URL" onChange={this.validatingURL}></input> {(this.state.valueURL!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label htmlFor="Name"><b>Name:</b></label> <input type="text" id="Name" onBlur={this.validatingName}></input> {(this.state.valueName!=0)?null:<span className="error"> Please, fill the field</span>}<br/>
+                  <label htmlFor="AmountItems"><b>Quantity:</b></label> <input type="text" id="AmountItems" onBlur={this.validatingAmount}></input> {(this.state.valueAmount!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label htmlFor="Price"><b>Price:</b></label> <input type="text" id="Price" onBlur={this.validatingPrice}></input> {(this.state.valuePrice!=0)?null:<span className="error">Please, fill the field</span>}<br/>
+                  <label htmlFor="URL"><b>URL Photo:</b></label> <input type="text" id="URL" onBlur={this.validatingURL}></input> {(this.state.valueURL!=0)?null:<span className="error">Please, fill the field</span>}<br/>
   
-                <input  type="button" defaultValue="Add"  onClick={this.add}  disabled={this.state.buttonAdd<0?"disabled":null} />
+                <input  type="button" defaultValue="Add"  onClick={this.add}  disabled={this.state.buttonAdd?"disabled":null} />
                 <input  type="button" defaultValue="Cancel" onClick={this.cancel}/>
             
               </div>

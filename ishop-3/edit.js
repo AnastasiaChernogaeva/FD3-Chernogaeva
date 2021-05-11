@@ -25,7 +25,7 @@ class Editcard extends React.Component {
         valueAmount:this.props.v.itemAmount,
         valuePrice:this.props.v.itemCost,
         valueURL:this.props.v.itemPhotoURL,
-        buttonAdd:false,
+        buttonAdd:null,
     };
 
     validatingName=(EO)=>{
@@ -51,22 +51,22 @@ class Editcard extends React.Component {
     }
 
     check=()=>{
-        switch ( "" ) {
-            case this.state.valueName:
-                return this.setState({buttonAdd:"disabled",});
-              break;
-            case this.state.valueAmount:
-                return this.setState({buttonAdd:"disabled",});
-              break;
-            case this.state.valuePrice:
-                return this.setState({buttonAdd:"disabled",});
-              break;
-            case this.state.valueURL:
-                return this.setState({buttonAdd:"disabled",});
-              break;
-            default:
-                return this.setState({buttonAdd:null,});
-          }
+      switch ( "" ) {
+        case this.state.valueName:
+            return this.setState({buttonAdd:"disabled",},this.props.cbbuttons(this.state.button));
+          break;
+        case this.state.valueAmount:
+            return this.setState({buttonAdd:"disabled",},this.props.cbbuttons(this.state.button));
+          break;
+        case this.state.valuePrice:
+            return this.setState({buttonAdd:"disabled",},this.props.cbbuttons(this.state.button));
+          break;
+        case this.state.valueURL:
+            return this.setState({buttonAdd:"disabled",},this.props.cbbuttons(this.state.button));
+          break;
+        default:
+            return this.setState({buttonAdd:null,},this.props.cbbuttons(this.state.button));
+      }
   
        
 };

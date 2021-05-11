@@ -10,13 +10,12 @@ class RainBowFrame extends React.Component {
   };
   
   render() {
-    let rbf=this.props.colors.filter((elem,ind)=>{
-      (this.props.colors.length-1)==ind?<div style={{border:`solid 3px ${elem}`,padding:"10px"}}>{this.props.children} </div>:<div style={{border:`solid 3px ${elem}`,padding:"10px"}}>{this.props.children} </div>
-  ;})
+    let code=this.props.children;
+    this.props.colors.forEach((color)=>{
+      code=<div style={{border:`solid 5px ${color}`,padding:"20px"}}>{code}</div>
+   ;})
+    return (code);
    
-    return (
-      {rbf}
-    );
   }
 
 }

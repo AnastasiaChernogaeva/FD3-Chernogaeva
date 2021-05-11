@@ -565,19 +565,13 @@ var _reactDom = __webpack_require__(11);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _cover = __webpack_require__(19);
+var _CoverRainBow = __webpack_require__(19);
 
-var _cover2 = _interopRequireDefault(_cover);
+var _CoverRainBow2 = _interopRequireDefault(_CoverRainBow);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var colors = ['red', 'orange', 'yellow', 'green', '#00BFFF', 'blue', 'purple'];
-
-_reactDom2.default.render(_react2.default.createElement(
-  _cover2.default,
-  { colors: colors, text: 'Hello!' },
-  '  '
-), document.getElementById('container'));
+_reactDom2.default.render(_react2.default.createElement(_CoverRainBow2.default, null), document.getElementById('container'));
 
 /***/ }),
 /* 9 */
@@ -29212,36 +29206,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Cover = function (_React$Component) {
-  _inherits(Cover, _React$Component);
+var CoverRainBow = function (_React$Component) {
+  _inherits(CoverRainBow, _React$Component);
 
-  function Cover() {
-    _classCallCheck(this, Cover);
+  function CoverRainBow() {
+    _classCallCheck(this, CoverRainBow);
 
-    return _possibleConstructorReturn(this, (Cover.__proto__ || Object.getPrototypeOf(Cover)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (CoverRainBow.__proto__ || Object.getPrototypeOf(CoverRainBow)).apply(this, arguments));
   }
 
-  _createClass(Cover, [{
+  _createClass(CoverRainBow, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
-      var code = this.props.colors.map(function (elem, ind) {
-        return _react2.default.createElement(_RainBowFrame2.default, { color: elem, colors: _this2.props.colors, id: ind });
-      });
-
-      return { code: code };
+      var colors = ['red', 'orange', 'yellow', 'green', '#00BFFF', 'blue', 'purple'];
+      return _react2.default.createElement(
+        _RainBowFrame2.default,
+        { colors: colors },
+        'Hello!'
+      );
     }
   }]);
 
-  return Cover;
+  return CoverRainBow;
 }(_react2.default.Component);
 
-Cover.propTypes = {
-  colors: _propTypes2.default.array.isRequired,
-  text: _propTypes2.default.string
-};
-exports.default = Cover;
+exports.default = CoverRainBow;
 
 /***/ }),
 /* 20 */
@@ -30145,7 +30134,7 @@ var _propTypes = __webpack_require__(6);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"RBF.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(25);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30167,17 +30156,15 @@ var RainBowFrame = function (_React$Component) {
   _createClass(RainBowFrame, [{
     key: 'render',
     value: function render() {
-      var code = this.props.colors.length - 1 == ind ? _react2.default.createElement(
-        'div',
-        { style: { border: 'solid 3px ' + this.props.color, padding: "10px" } },
-        this.props.text,
-        ' '
-      ) : _react2.default.createElement(
-        'div',
-        { style: { border: 'solid 3px ' + this.props.color, padding: "10px" } },
-        this.props.children,
-        ' '
-      );
+      var code = this.props.children;
+
+      this.props.colors.forEach(function (color) {
+        code = _react2.default.createElement(
+          'div',
+          { style: { border: 'solid 3px ' + color, padding: "10px" } },
+          code
+        );
+      });
 
       return { code: code };
     }
@@ -30187,11 +30174,15 @@ var RainBowFrame = function (_React$Component) {
 }(_react2.default.Component);
 
 RainBowFrame.propTypes = {
-  colors: _propTypes2.default.array.isRequired,
-  color: _propTypes2.default.string.isRequired,
-  text: _propTypes2.default.string
+  colors: _propTypes2.default.array.isRequired
 };
 exports.default = RainBowFrame;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
