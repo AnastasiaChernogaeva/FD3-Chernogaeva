@@ -547,7 +547,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var text = "первый<br>второй<br/>третий<br />последний";
 
-_reactDom2.default.render(_react2.default.createElement(BR2JSX, { text: text }), document.getElementById('container'));
+_reactDom2.default.render(_react2.default.createElement(_br2jsx2.default, { text: text }), document.getElementById('container'));
 
 /***/ }),
 /* 8 */
@@ -29170,6 +29170,8 @@ var _propTypes = __webpack_require__(19);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+__webpack_require__(24);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29194,20 +29196,22 @@ var Br2jsx = function (_React$Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Br2jsx.__proto__ || Object.getPrototypeOf(Br2jsx)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             text: _this.props.text
-        }, _this.editing = function () {
-            var row = _this.state.text.replace(/ ?\//, "");
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(Br2jsx, [{
         key: 'render',
         value: function render() {
-            var row = this.state.text.replace(/ ?\//, "");
 
-            return _react2.default.createElement(
-                'div',
-                null,
-                row
+            var parts = [];
+            this.state.text.split(/<br ?\/?>/).forEach(function (word, ind) {
+                parts.push(_react2.default.createElement('br', null));
+                parts.push({ word: word });
+            });
+
+            return (
+                /*  <div>{this.state.text.split(/<br ?\/?>/).map(elem=> <div>{elem}</div> ) }</div>*/
+                { parts: parts }
             );
         }
     }]);
@@ -29215,10 +29219,10 @@ var Br2jsx = function (_React$Component) {
     return Br2jsx;
 }(_react2.default.Component);
 
-Br2jsx.PropTypes = {
+Br2jsx.propTypes = {
     text: _propTypes2.default.string
 };
-exports.default = CoverRainBow;
+exports.default = Br2jsx;
 
 /***/ }),
 /* 19 */
@@ -30126,6 +30130,12 @@ module.exports = function() {
   return ReactPropTypes;
 };
 
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
