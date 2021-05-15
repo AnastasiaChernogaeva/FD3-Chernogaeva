@@ -29241,6 +29241,7 @@ var Shop = function (_React$Component) {
       chosen: false,
       editItemId: 0,
       newelement: false,
+      bButtons: "",
 
       cardMode: 0 /**1-view,2-edit, 3-new product */
     }, _this.selectedRow = function (code) {
@@ -29292,6 +29293,8 @@ var Shop = function (_React$Component) {
       _this.setState({ items: items, editItemId: 0, cardMode: 0 });
     }, _this.announce = function () {
       console.log("close editcard");
+    }, _this.changebButtons = function (mean) {
+      _this.setState({ bButtons: mean });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -29316,7 +29319,7 @@ var Shop = function (_React$Component) {
         return _react2.default.createElement(
           _ishop2.default,
           {
-            v: elem, i: ind, key: ind, className: 'item',
+            v: elem, i: ind, key: ind, className: 'item', bButtons: _this2.state.bButtons,
             cbDelete: _this2.deleteItem, cbSelected: _this2.selectedRow, cbEdit: _this2.editItem,
             chosenRow: _this2.state.chosen, selectedItem: _this2.state.selectedItemId },
           'elem'
@@ -29333,9 +29336,9 @@ var Shop = function (_React$Component) {
       });
 
       var edit = _react2.default.createElement(_edit2.default, {
-        v: item, className: 'EditItem', editItem: this.state.editItemId, cbcancelediting: this.closeEditProduct, cbeditelement: this.saveEditElement });
+        v: item, className: 'EditItem', cbbuttons: this.changebButtons, editItem: this.state.editItemId, cbcancelediting: this.closeEditProduct, cbeditelement: this.saveEditElement });
 
-      var codeNewItem = _react2.default.createElement(_newone2.default, { items: this.state.items, cbnewelement: this.newElement, cbcancel: this.closeNewProduct });
+      var codeNewItem = _react2.default.createElement(_newone2.default, { items: this.state.items, cbbuttons: this.changebButtons, cbnewelement: this.newElement, cbcancel: this.closeNewProduct });
 
       return _react2.default.createElement(
         'div',
@@ -30353,8 +30356,8 @@ var Ishop = function (_React$Component) {
           _react2.default.createElement(
             'td',
             { className: 'buttons' },
-            _react2.default.createElement('input', { type: 'button', defaultValue: 'edit', onClick: this.funEdit }),
-            _react2.default.createElement('input', { type: 'button', defaultValue: 'delete', onClick: this.funDelete })
+            _react2.default.createElement('input', { type: 'button', defaultValue: 'edit', onClick: this.funEdit, disabled: this.props.bButtons ? "disabled" : null }),
+            _react2.default.createElement('input', { type: 'button', defaultValue: 'delete', onClick: this.funDelete, disabled: this.props.bButtons ? "disabled" : null })
           )
         );
       } else {
@@ -30391,8 +30394,8 @@ var Ishop = function (_React$Component) {
           _react2.default.createElement(
             'td',
             { className: 'buttons' },
-            _react2.default.createElement('input', { type: 'button', defaultValue: 'edit', onClick: this.funEdit }),
-            _react2.default.createElement('input', { type: 'button', defaultValue: 'delete', onClick: this.funDelete })
+            _react2.default.createElement('input', { type: 'button', defaultValue: 'edit', onClick: this.funEdit, disabled: this.props.bButtons ? "disabled" : null }),
+            _react2.default.createElement('input', { type: 'button', defaultValue: 'delete', onClick: this.funDelete, disabled: this.props.bButtons ? "disabled" : null })
           )
         );
       }
@@ -30410,7 +30413,8 @@ Ishop.propTypes = {
   i: _propTypes2.default.number,
   chosenRow: _propTypes2.default.bool,
   selectedItem: _propTypes2.default.number,
-  cbEdit: _propTypes2.default.func
+  cbEdit: _propTypes2.default.func,
+  bButtons: _propTypes2.default.string
 };
 ;
 
@@ -30565,23 +30569,49 @@ var Newproduct = function (_React$Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Newproduct.__proto__ || Object.getPrototypeOf(Newproduct)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            valueName: 0,
-            valueAmount: 0,
-            valuePrice: 0,
-            valueURL: 0,
-            buttonAdd: -4
+            valueName: "",
+            valueAmount: "",
+            valuePrice: "",
+            valueURL: "",
+            buttonAdd: null
         }, _this.validatingName = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueName: EO.target.value, buttonAdd: _this.state.buttonAdd + 1 });
+            _this.setState({ valueName: EO.target.value }, _this.check);
         }, _this.validatingAmount = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueAmount: EO.target.value, buttonAdd: _this.state.buttonAdd + 1 });
+            _this.setState({ valueAmount: EO.target.value }, _this.check);
         }, _this.validatingPrice = function (EO) {
-            if (EO.target.value != null) _this.setState({ valuePrice: EO.target.value, buttonAdd: _this.state.buttonAdd + 1 });
+            _this.setState({ valuePrice: EO.target.value }, _this.check);
         }, _this.validatingURL = function (EO) {
-            if (EO.target.value != null) _this.setState({ valueURL: EO.target.value, buttonAdd: _this.state.buttonAdd + 1 });
-        }, _this.add = function () {
-            var newelementHash = { "code": _this.props.items.length + 1, "itemName": _this.state.valueName, "itemCost": _this.state.valuePrice, "itemPhotoURL": _this.state.valueURL, "itemAmount": _this.state.valueAmount };
+            _this.setState({ valueURL: EO.target.value }, _this.check);
+        }, _this.check = function () {
 
-            _this.props.cbnewelement(newelementHash);
+            switch ("") {
+                case _this.state.valueName:
+                    return _this.setState({ buttonAdd: "disabled" }, _this.props.cbbuttons(_this.state.button));
+                    break;
+                case _this.state.valueAmount:
+                    return _this.setState({ buttonAdd: "disabled" }, _this.props.cbbuttons(_this.state.button));
+                    break;
+                case _this.state.valuePrice:
+                    return _this.setState({ buttonAdd: "disabled" }, _this.props.cbbuttons(_this.state.button));
+                    break;
+                case _this.state.valueURL:
+                    return _this.setState({ buttonAdd: "disabled" }, _this.props.cbbuttons(_this.state.button));
+                    break;
+                default:
+                    return _this.setState({ buttonAdd: null }, _this.props.cbbuttons(_this.state.button));
+            }
+        }, _this.add = function () {
+            if (_this.state.valueName != 0) {
+                if (_this.state.valueAmount != 0) {
+                    if (_this.state.valuePrice != 0) {
+                        if (_this.state.valueURL != 0) {
+                            var newelementHash = { "code": _this.props.items.length + 1, "itemName": _this.state.valueName, "itemCost": _this.state.valuePrice, "itemPhotoURL": _this.state.valueURL, "itemAmount": _this.state.valueAmount };
+
+                            _this.props.cbnewelement(newelementHash);
+                        }
+                    }
+                }
+            }
         }, _this.cancel = function () {
             _this.props.cbcancel();
         }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -30683,7 +30713,7 @@ var Newproduct = function (_React$Component) {
                     'Please, fill the field'
                 ),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement('input', { type: 'button', defaultValue: 'Add', onClick: this.add, disabled: this.state.buttonAdd < 0 ? "disabled" : null }),
+                _react2.default.createElement('input', { type: 'button', defaultValue: 'Add', onClick: this.add, disabled: this.state.buttonAdd ? "disabled" : null }),
                 _react2.default.createElement('input', { type: 'button', defaultValue: 'Cancel', onClick: this.cancel })
             );
         }
@@ -30695,7 +30725,8 @@ var Newproduct = function (_React$Component) {
 Newproduct.propTypes = {
     items: _propTypes2.default.array,
     cbnewelement: _propTypes2.default.func,
-    cbcancel: _propTypes2.default.func
+    cbcancel: _propTypes2.default.func,
+    cbbuttons: _propTypes2.default.func
 
 };
 ;
@@ -30756,31 +30787,35 @@ var Editcard = function (_React$Component) {
             valueAmount: _this.props.v.itemAmount,
             valuePrice: _this.props.v.itemCost,
             valueURL: _this.props.v.itemPhotoURL,
-            buttonAdd: false
+            buttonAdd: null
         }, _this.validatingName = function (EO) {
+            _this.props.cbbuttons("disabled");
             _this.setState({ valueName: EO.target.value }, _this.check);
         }, _this.validatingAmount = function (EO) {
+            _this.props.cbbuttons("disabled");
             _this.setState({ valueAmount: EO.target.value }, _this.check);
         }, _this.validatingPrice = function (EO) {
+            _this.props.cbbuttons("disabled");
             _this.setState({ valuePrice: EO.target.value }, _this.check);
         }, _this.validatingURL = function (EO) {
+            _this.props.cbbuttons("disabled");
             _this.setState({ valueURL: EO.target.value }, _this.check);
         }, _this.check = function () {
             switch ("") {
                 case _this.state.valueName:
-                    return _this.setState({ buttonAdd: "disabled" });
+                    return _this.setState({ buttonAdd: "disabled" }, _this.props.cbbuttons(_this.state.button));
                     break;
                 case _this.state.valueAmount:
-                    return _this.setState({ buttonAdd: "disabled" });
+                    return _this.setState({ buttonAdd: "disabled" }, _this.props.cbbuttons(_this.state.button));
                     break;
                 case _this.state.valuePrice:
-                    return _this.setState({ buttonAdd: "disabled" });
+                    return _this.setState({ buttonAdd: "disabled" }, _this.props.cbbuttons(_this.state.button));
                     break;
                 case _this.state.valueURL:
-                    return _this.setState({ buttonAdd: "disabled" });
+                    return _this.setState({ buttonAdd: "disabled" }, _this.props.cbbuttons(_this.state.button));
                     break;
                 default:
-                    return _this.setState({ buttonAdd: null });
+                    return _this.setState({ buttonAdd: null }, _this.props.cbbuttons(_this.state.button));
             }
         }, _this.save = function () {
             if (_this.state.valueName != 0) {
@@ -30837,7 +30872,7 @@ var Editcard = function (_React$Component) {
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'Name', defaultValue: this.state.valueName, onBlur: this.validatingName }),
+                _react2.default.createElement('input', { type: 'text', id: 'Name', value: this.state.valueName, onChange: this.validatingName }),
                 ' ',
                 this.state.valueName != 0 ? null : _react2.default.createElement(
                     'span',
@@ -30855,7 +30890,7 @@ var Editcard = function (_React$Component) {
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'AmountItems', defaultValue: this.state.valueAmount, onBlur: this.validatingAmount }),
+                _react2.default.createElement('input', { type: 'text', id: 'AmountItems', value: this.state.valueAmount, onChange: this.validatingAmount }),
                 ' ',
                 this.state.valueAmount != 0 ? null : _react2.default.createElement(
                     'span',
@@ -30873,7 +30908,7 @@ var Editcard = function (_React$Component) {
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'Price', defaultValue: this.state.valuePrice, onBlur: this.validatingPrice }),
+                _react2.default.createElement('input', { type: 'text', id: 'Price', value: this.state.valuePrice, onChange: this.validatingPrice }),
                 ' ',
                 this.state.valuePrice != 0 ? null : _react2.default.createElement(
                     'span',
@@ -30891,7 +30926,7 @@ var Editcard = function (_React$Component) {
                     )
                 ),
                 ' ',
-                _react2.default.createElement('input', { type: 'text', id: 'URL', defaultValue: this.state.valueURL, onBlur: this.validatingURL }),
+                _react2.default.createElement('input', { type: 'text', id: 'URL', value: this.state.valueURL, onChange: this.validatingURL }),
                 ' ',
                 this.state.valueURL != 0 ? null : _react2.default.createElement(
                     'span',

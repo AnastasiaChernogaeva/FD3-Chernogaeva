@@ -125,7 +125,7 @@ class Shop extends React.Component {
   console.log("close editcard")
 };
 
-bButtons=(mean)=>{
+changebButtons=(mean)=>{
   this.setState({bButtons:mean, });
 }
 
@@ -153,12 +153,12 @@ bButtons=(mean)=>{
       let item=this.state.items.find((elem, ) => (this.state.editItemId==elem.code));
 
       var edit=<Editcard 
-        v={item} className='EditItem' cbbuttons={this.bButtons}  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
+        v={item} className='EditItem' cbbuttons={this.changebButtons}  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
       </Editcard>;
       
 
 
-     var codeNewItem=<Newproduct items={this.state.items} cbbuttons={this.bButtons} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
+     var codeNewItem=<Newproduct items={this.state.items} cbbuttons={this.changebButtons} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
       
   
 
