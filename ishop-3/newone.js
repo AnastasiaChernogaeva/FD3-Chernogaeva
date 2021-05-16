@@ -15,6 +15,7 @@ class Newproduct extends React.Component {
         cbnewelement:PropTypes.func,
         cbcancel:PropTypes.func,
         cbbuttons:PropTypes.func,
+        cbeditstate:PropTypes.func,
 
     };
 
@@ -24,38 +25,38 @@ class Newproduct extends React.Component {
         valuePrice:"",
         valueURL:"",
         buttonAdd:null,
+        editstate:null,
     };
 
     validatingName=(EO)=>{
-      this.setState({buttonAdd:"disabled", },this.send);
+      this.setState({ editstate:"disabled", },this.send);
       this.setState({valueName:EO.target.value, },this.check);
         
     }
 
     validatingAmount=(EO)=>{
-      this.setState({buttonAdd:"disabled", },this.send);
+      this.setState({ editstate:"disabled", },this.send);
              this.setState({valueAmount:EO.target.value,  },this.check);
 
     }
 
     validatingPrice=(EO)=>{
-      this.setState({buttonAdd:"disabled", },this.send);
+      this.setState({ editstate:"disabled", },this.send);
              this.setState({valuePrice:EO.target.value,},this.check);
    
         
     }
 
     validatingURL=(EO)=>{
-      this.setState({buttonAdd:"disabled", },this.send);
+      this.setState({ editstate:"disabled", },this.send);
             this.setState({valueURL:EO.target.value, },this.check);
        
    
     }
 
-send=()=>{
-  this.props.cbbuttons(this.state.buttonAdd);
-}
-
+    send=()=>{
+      this.props.cbeditstate(this.state.editstate);
+    }
 check=()=>{
         
 
@@ -86,13 +87,14 @@ check=()=>{
                     if(this.state.valueURL!=0){
                         let newelementHash={"code":this.props.items.length+1, "itemName":this.state.valueName, "itemCost":this.state.valuePrice, "itemPhotoURL":this.state.valueURL, "itemAmount":this.state.valueAmount};
 
+                        this.props.cbeditstate();
               this.props.cbnewelement(newelementHash);
                     }}}}
             
 };
 
 cancel=()=>{
-  this.props.cbbuttons();
+  this.props.cbeditstate();
     this.props.cbcancel();
 }
   

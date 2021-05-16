@@ -13,7 +13,7 @@ class Editcard extends React.Component {
         editItem:PropTypes.number,
         cbeditelement:PropTypes.func.isRequired,
         cbcancelediting:PropTypes.func,
-        
+        cbeditstate:PropTypes.func,
     };
 
    
@@ -26,36 +26,37 @@ class Editcard extends React.Component {
         valuePrice:this.props.v.itemCost,
         valueURL:this.props.v.itemPhotoURL,
         buttonAdd:null,
+        editstate:null,
     };
 
     validatingName=(EO)=>{
-      this.setState({buttonAdd:"disabled", },this.send);
+      this.setState({ editstate:"disabled", },this.send);
       this.setState({valueName:EO.target.value, },this.check);
         
     }
 
     validatingAmount=(EO)=>{
-      this.setState({buttonAdd:"disabled", },this.send);
+      this.setState({ editstate:"disabled", },this.send);
              this.setState({valueAmount:EO.target.value,  },this.check);
 
     }
 
     validatingPrice=(EO)=>{
-      this.setState({buttonAdd:"disabled", },this.send);
+      this.setState({ editstate:"disabled", },this.send);
              this.setState({valuePrice:EO.target.value,},this.check);
    
         
     }
 
     validatingURL=(EO)=>{
-      this.setState({buttonAdd:"disabled", },this.send);
+      this.setState({ editstate:"disabled", },this.send);
             this.setState({valueURL:EO.target.value, },this.check);
        
    
     }
 
     send=()=>{
-      this.props.cbbuttons(this.state.buttonAdd);
+      this.props.cbeditstate(this.state.editstate);
     }
 
     check=()=>{
@@ -86,7 +87,9 @@ save=()=>{
                 if(this.state.valueURL!=0){
          let elementHash={ code:this.props.v.code, itemName:this.state.valueName, itemCost:this.state.valuePrice,  itemAmount:this.state.valueAmount, itemPhotoURL:this.state.valueURL};
 
+         this.props.cbeditstate();
           this.props.cbeditelement(elementHash);
+          
         }
     }
     }
@@ -95,7 +98,7 @@ save=()=>{
 };
 
 cancel=()=>{
-  this.props.cbbuttons();
+  this.props.cbeditstate();
     this.props.cbcancelediting();
 }
   

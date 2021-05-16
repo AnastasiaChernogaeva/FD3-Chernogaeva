@@ -28,16 +28,21 @@ class Shop extends React.Component {
           editItemId:0,
           newelement:false,
           bButtons:"",
+          bedit:"",
 
           cardMode:0,/**1-view,2-edit, 3-new product */
       };
 
 
     /* выделение элемента и получение информации об элементе */
+    changeFinish=()=>{
+      this.setState({editItemId:0,})
+    }
+
     selectedRow=(code)=>{ 
  
       if(this.state.selectedItemId!=code){
-        this.setState({ chosen:false,},this.highTimeToAct(code));  
+        this.setState({chosen:false,},this.highTimeToAct(code));  
         
       }
       else if(this.state.selectedItemId==code){
@@ -64,7 +69,7 @@ class Shop extends React.Component {
       }
     }
     else{
-      this.setState({ chosen:false, selectedItemId:0, cardMode:0,})
+      this.setState({ chosen:false, selectedItemId:0, cardMode:0, editItemId:0,})
     }
     };
 
@@ -129,20 +134,22 @@ changebButtons=(mean)=>{
   this.setState({bButtons:mean, });
 }
 
+editChange=(mean)=>{
+  this.setState({bedit:mean, });
+}
+
   
 
     render() {
 
       var innerItems=this.state.items.map((elem,ind,) => 
       <Ishop
-       v={elem} i={ind} key={ind} className='item'  bButtons={this.state.bButtons}
+       v={elem} i={ind} key={ind} className='item' bedit={this.state.bedit} 
        cbDelete={this.deleteItem} cbSelected={this.selectedRow}  cbEdit={this.editItem}  
         chosenRow={this.state.chosen} selectedItem={this.state.selectedItemId}>
           elem
       </Ishop>  
       );
-
-
        
       var card=this.state.items.map((elem,ind,) => ((this.state.selectedItemId==elem.code)?<IshopCard 
         v={elem} i={ind} key={ind} className='Itemscard'  selectedItem={this.state.selectedItemId}>
@@ -153,12 +160,12 @@ changebButtons=(mean)=>{
       let item=this.state.items.find((elem, ) => (this.state.editItemId==elem.code));
 
       var edit=<Editcard 
-        v={item} className='EditItem' cbbuttons={this.changebButtons}  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
+        v={item} className='EditItem' cbbuttons={this.changebButtons} cbeditstate={this.editChange}  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
       </Editcard>;
       
 
 
-     var codeNewItem=<Newproduct items={this.state.items} cbbuttons={this.changebButtons} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
+     var codeNewItem=<Newproduct items={this.state.items} cbeditstate={this.editChange} cbbuttons={this.changebButtons} cbnewelement={this.newElement} cbcancel={this.closeNewProduct} ></Newproduct>;
       
   
 
