@@ -40,7 +40,6 @@ class Shop extends React.Component {
     }
 
     selectedRow=(code)=>{ 
- 
       if(this.state.selectedItemId!=code){
         this.setState({chosen:false,},this.highTimeToAct(code));  
         
@@ -114,6 +113,8 @@ class Shop extends React.Component {
     editItem=(id)=>{ 
       if(this.state.editItemId!=id)
             this.setState({  editItemId:id, cardMode:2, });
+            
+
     };
 
     closeEditProduct=()=>{
@@ -160,7 +161,7 @@ editChange=(mean)=>{
       let item=this.state.items.find((elem, ) => (this.state.editItemId==elem.code));
 
       var edit=<Editcard 
-        v={item} className='EditItem' cbbuttons={this.changebButtons} cbeditstate={this.editChange}  editItem={this.state.editItemId} cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
+        v={item} className='EditItem' cbbuttons={this.changebButtons} cbeditstate={this.editChange}  cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
       </Editcard>;
       
 

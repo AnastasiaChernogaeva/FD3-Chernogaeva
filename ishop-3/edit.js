@@ -10,7 +10,6 @@ class Editcard extends React.Component {
 
   static propTypes = {
         v:PropTypes.object,
-        editItem:PropTypes.number,
         cbeditelement:PropTypes.func.isRequired,
         cbcancelediting:PropTypes.func,
         cbeditstate:PropTypes.func,
