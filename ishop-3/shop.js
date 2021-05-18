@@ -35,12 +35,28 @@ class Shop extends React.Component {
 
 
     /* выделение элемента и получение информации об элементе */
-    changeFinish=()=>{
-      this.setState({editItemId:0,})
-    }
+       selectedRow=(code, a)=>{ 
+         if(a==2){
+          this.setState({chosen:false,  editItemId:code, cardMode:2, });
+         }
+         else if(a==1){
+          if(this.state.selectedItemId!=code){
+            this.setState({chosen:false,},this.highTimeToAct(code));  
+            
+          }
+          else if(this.state.selectedItemId==code){
+            this.setState({selectedItemId:0, chosen:false, cardMode:0,},this.answer);
+          }
+         }
+     
+            };
+    
+  highTimeToAct=(code)=>{
+                this.setState({selectedItemId:code, chosen:true, cardMode:1,},this.answer);
+                };
+  answer=()=>{console.log("Ready!!!");};
 
-    selectedRow=(code)=>{ 
-      if(this.state.selectedItemId!=code){
+      /*if(this.state.selectedItemId!=code){
         this.setState({chosen:false,},this.highTimeToAct(code));  
         
       }
@@ -70,7 +86,7 @@ class Shop extends React.Component {
     else{
       this.setState({ chosen:false, selectedItemId:0, cardMode:0, editItemId:0,})
     }
-    };
+    };*/
 
 
 
@@ -110,12 +126,12 @@ class Shop extends React.Component {
 
 
     /* редактирование элемента */
-    editItem=(id)=>{ 
+    /*editItem=(id)=>{ 
       if(this.state.editItemId!=id)
             this.setState({  editItemId:id, cardMode:2, });
             
 
-    };
+    };*/
 
     closeEditProduct=()=>{
       this.setState({editItemId:0,  cardMode:0,},this.announce);
@@ -146,7 +162,7 @@ editChange=(mean)=>{
       var innerItems=this.state.items.map((elem,ind,) => 
       <Ishop
        v={elem} i={ind} key={ind} className='item' bedit={this.state.bedit} 
-       cbDelete={this.deleteItem} cbSelected={this.selectedRow}  cbEdit={this.editItem}  
+       cbDelete={this.deleteItem} cbSelected={this.selectedRow} /* cbEdit={this.editItem}  */
         chosenRow={this.state.chosen} selectedItem={this.state.selectedItemId}>
           elem
       </Ishop>  

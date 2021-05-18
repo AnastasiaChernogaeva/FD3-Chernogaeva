@@ -1,16 +1,15 @@
 import React from 'react';
 
-function withFrame(colors) {
-    return colors.forEach(color=>{
-        (function(component){
-      return props => (
-        <div style={{border:`6px solid ${color}`}}>
-          <Component {...props} />
-        </div>
-      );
-    })();
-    }
-    );
-}
+
+const withFrame=colors=>props=> {
+  let ccc=props.children;
+   colors.forEach(color=>{
+     ccc=<div style={{border:`6px solid ${color}`}}>
+        {ccc} 
+      </div>
+  })
+  };
+
+
 
 export { withFrame };

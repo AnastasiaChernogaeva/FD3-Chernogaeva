@@ -17,7 +17,7 @@ class Ishop extends React.Component {
         i:PropTypes.number,
         chosenRow:PropTypes.bool,
         selectedItem:PropTypes.number,
-        cbEdit:PropTypes.func,
+        /*cbEdit:PropTypes.func,*/
         bedit:PropTypes.string,
     };
 
@@ -28,9 +28,19 @@ class Ishop extends React.Component {
      this.props.cbDelete(this.props.v)
     };
     
-    funEdit=()=>{
+    /*funEdit=()=>{
       console.log ('нажали на кнопку edit');
       this.props.cbEdit(this.props.v.code);
+   
+     };
+
+    select=(EO)=>{
+     var code=this.props.v.code;
+     this.props.cbSelected(code);   
+    };*/
+    funEdit=()=>{
+      var code=this.props.v.code;
+      this.props.cbSelected(code,2);
    
      };
 

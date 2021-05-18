@@ -6,22 +6,21 @@ import DoubleButton from './buttons';
 import { withFrame } from './withFrame';
 
 
-let colors=['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
-let Framed=withFrame(colors);
-let FramedDB=Framed(DoubleButton);
+
 
 class CoverRB extends React.Component {
     static propTypes={
-        captio1:PropTypes.string,
-        captio2:PropTypes.string,
+        caption1:PropTypes.string,
+        caption2:PropTypes.string,
         cbPressed:PropTypes.func,
 
     }
 
     render() {
-        
+      let colors=['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
+      let Framed=withFrame(colors)(DoubleButton);
       return(
-        <FramedDB caption1={this.props.caption1} caption2={this.props.caption2}  cbPressed={ this.props.cbPressed }>или</FramedDB>
+        <div><Framed caption1={this.props.caption1} caption2={this.props.caption2}  cbPressed={ this.props.cbPressed }>или</Framed></div>
       );
     }
   
