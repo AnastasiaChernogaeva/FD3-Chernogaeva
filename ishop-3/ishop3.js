@@ -19,7 +19,12 @@ class Ishop extends React.Component {
         selectedItem:PropTypes.number,
         /*cbEdit:PropTypes.func,*/
         bedit:PropTypes.string,
+        rem:PropTypes.number,
     };
+
+    state={
+      remember:this.props.rem,
+    }
 
 
     
@@ -39,14 +44,24 @@ class Ishop extends React.Component {
      this.props.cbSelected(code);   
     };*/
     funEdit=()=>{
+
       var code=this.props.v.code;
-      this.props.cbSelected(code,2);
+      console.log(this.state.remember);
+      this.setState({remember:2},  this.props.cbSelected(code,this.state.remember));
+      this.props.cbSelected(code,this.state.remember);
    
      };
 
     select=(EO)=>{
+      console.log(this.state.remember);
      var code=this.props.v.code;
-     this.props.cbSelected(code);   
+     switch ( this.state.remember ) {
+      case 0:
+          return this.props.cbSelected(code,1);
+        break;
+      default:
+          return console.log("редактируется");
+    } 
     };
 
     render () {

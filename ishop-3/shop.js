@@ -37,7 +37,7 @@ class Shop extends React.Component {
     /* выделение элемента и получение информации об элементе */
        selectedRow=(code, a)=>{ 
          if(a==2){
-          this.setState({chosen:false,  editItemId:code, cardMode:2, });
+          this.setState({chosen:false, selectedItemId:0, editItemId:code, cardMode:2, });
          }
          else if(a==1){
           if(this.state.selectedItemId!=code){
@@ -161,7 +161,7 @@ editChange=(mean)=>{
 
       var innerItems=this.state.items.map((elem,ind,) => 
       <Ishop
-       v={elem} i={ind} key={ind} className='item' bedit={this.state.bedit} 
+       v={elem} i={ind} key={ind} className='item' bedit={this.state.bedit} rem={0}
        cbDelete={this.deleteItem} cbSelected={this.selectedRow} /* cbEdit={this.editItem}  */
         chosenRow={this.state.chosen} selectedItem={this.state.selectedItemId}>
           elem
