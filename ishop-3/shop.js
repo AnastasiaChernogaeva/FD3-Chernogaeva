@@ -56,7 +56,9 @@ class Shop extends React.Component {
                 };
   answer=()=>{console.log("Ready!!!");};
 
-      /*if(this.state.selectedItemId!=code){
+      /*
+      selectedRow=(code)=>{
+      if(this.state.selectedItemId!=code){
         this.setState({chosen:false,},this.highTimeToAct(code));  
         
       }

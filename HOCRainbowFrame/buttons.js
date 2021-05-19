@@ -30,7 +30,7 @@ clicked2=()=>{
         return(
         <div>
         <input type="button" value={this.props.caption1} onClick={this.clicked1}/>
-        <span>{this.props.children}</span>
+       <p>{this.props.children}</p>
         <input type="button"  value={this.props.caption2}  onClick={this.clicked2}/></div>
 
         );
