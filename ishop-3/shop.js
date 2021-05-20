@@ -35,28 +35,7 @@ class Shop extends React.Component {
 
 
     /* выделение элемента и получение информации об элементе */
-  /*     selectedRow=(code, a)=>{ 
-         if(a==2){
-          this.setState({chosen:false, selectedItemId:0, editItemId:code, cardMode:2, });
-         }
-         else if(a==1){
-          if(this.state.selectedItemId!=code){
-            this.setState({chosen:false,},this.highTimeToAct(code));  
-            
-          }
-          else if(this.state.selectedItemId==code){
-            this.setState({selectedItemId:0, chosen:false, cardMode:0,},this.answer);
-          }
-         }
-     
-            };
-    
-  highTimeToAct=(code)=>{
-                this.setState({selectedItemId:code, chosen:true, cardMode:1,},this.answer);
-                };
-  answer=()=>{console.log("Ready!!!");};
-
-      */
+ 
 
 
  
@@ -79,19 +58,7 @@ class Shop extends React.Component {
       this.setState({selectedItemId:code, chosen:true, cardMode:1,},this.announce);
       };
 
-   /* answer=()=>{
-      if(this.state.selectedItemId!=0){
-      if(this.state.selectedItemId==this.state.editItemId){
-        this.setState({ chosen:false, selectedItemId:0, cardMode:2,});  
-      }
-      else{
-        console.log("Ready!!!");
-      }
-    }
-    else{
-      this.setState({ chosen:false, selectedItemId:0, cardMode:0, editItemId:0,})
-    }
-    };*/
+  
 
 
 
