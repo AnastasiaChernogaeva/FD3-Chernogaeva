@@ -35,7 +35,7 @@ class Shop extends React.Component {
 
 
     /* выделение элемента и получение информации об элементе */
-       selectedRow=(code, a)=>{ 
+  /*     selectedRow=(code, a)=>{ 
          if(a==2){
           this.setState({chosen:false, selectedItemId:0, editItemId:code, cardMode:2, });
          }
@@ -56,7 +56,17 @@ class Shop extends React.Component {
                 };
   answer=()=>{console.log("Ready!!!");};
 
-      /*
+      */
+
+
+  componentDidUpdate=()=>{
+    if(this.state.cardMode==2){
+     if(this.state.selectedItemId!=0)
+        this.setState({ selectedItemId:0,},this.announce);
+    }
+    if(this.state.cardMode==1){
+     }
+  };
       selectedRow=(code)=>{
       if(this.state.selectedItemId!=code){
         this.setState({chosen:false,},this.highTimeToAct(code));  
@@ -88,7 +98,7 @@ class Shop extends React.Component {
     else{
       this.setState({ chosen:false, selectedItemId:0, cardMode:0, editItemId:0,})
     }
-    };*/
+    };
 
 
 
@@ -128,12 +138,12 @@ class Shop extends React.Component {
 
 
     /* редактирование элемента */
-    /*editItem=(id)=>{ 
+    editItem=(id)=>{ 
       if(this.state.editItemId!=id)
-            this.setState({  editItemId:id, cardMode:2, });
+            this.setState({  editItemId:id, cardMode:2, }, this.announce);
             
 
-    };*/
+    };
 
     closeEditProduct=()=>{
       this.setState({editItemId:0,  cardMode:0,},this.announce);
@@ -146,7 +156,7 @@ class Shop extends React.Component {
     
 
     announce=()=>{
-  console.log("close editcard")
+  console.log("announce!")
 };
 
 changebButtons=(mean)=>{
@@ -164,7 +174,7 @@ editChange=(mean)=>{
       var innerItems=this.state.items.map((elem,ind,) => 
       <Ishop
        v={elem} i={ind} key={ind} className='item' bedit={this.state.bedit} rem={0}
-       cbDelete={this.deleteItem} cbSelected={this.selectedRow} /* cbEdit={this.editItem}  */
+       cbDelete={this.deleteItem} cbSelected={this.selectedRow}  cbEdit={this.editItem}  
         chosenRow={this.state.chosen} selectedItem={this.state.selectedItemId}>
           elem
       </Ishop>  
@@ -176,7 +186,7 @@ editChange=(mean)=>{
 
 
 
-      let item=this.state.items.find((elem, ) => (this.state.editItemId==elem.code));
+      let item=this.state.items.find((elem,) => (this.state.editItemId==elem.code));
 
       var edit=<Editcard 
         v={item} className='EditItem' cbbuttons={this.changebButtons} cbeditstate={this.editChange}  cbcancelediting={this.closeEditProduct} cbeditelement={this.saveEditElement}>
