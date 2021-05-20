@@ -33,15 +33,20 @@ class Ishop extends React.Component {
      this.props.cbDelete(this.props.v)
     };
     
-    funEdit=()=>{
+    funEdit=(EO)=>{
+      EO=EO||window.event;
       console.log ('нажали на кнопку edit');
       this.props.cbEdit(this.props.v.code);
+
+     EO.stopPropagation();
    
      };
 
     select=(EO)=>{
+      EO=EO||window.event;
      var code=this.props.v.code;
-     this.props.cbSelected(code);   
+     this.props.cbSelected(code); 
+
     };
     /*
     funEdit=()=>{

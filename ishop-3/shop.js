@@ -59,21 +59,14 @@ class Shop extends React.Component {
       */
 
 
-  componentDidUpdate=()=>{
-    if(this.state.cardMode==2){
-     if(this.state.selectedItemId!=0)
-        this.setState({ selectedItemId:0,},this.announce);
-    }
-    if(this.state.cardMode==1){
-     }
-  };
+ 
       selectedRow=(code)=>{
       if(this.state.selectedItemId!=code){
         this.setState({chosen:false,},this.highTimeToAct(code));  
         
       }
       else if(this.state.selectedItemId==code){
-        this.setState({selectedItemId:0, chosen:false, cardMode:0,},this.answer);
+        this.setState({selectedItemId:0, chosen:false, cardMode:0,},this.announce);
       }
       else{
         this.highTimeToAct();
@@ -83,10 +76,10 @@ class Shop extends React.Component {
   
 
     highTimeToAct=(code)=>{
-      this.setState({selectedItemId:code, chosen:true, cardMode:1,},this.answer);
+      this.setState({selectedItemId:code, chosen:true, cardMode:1,},this.announce);
       };
 
-    answer=()=>{
+   /* answer=()=>{
       if(this.state.selectedItemId!=0){
       if(this.state.selectedItemId==this.state.editItemId){
         this.setState({ chosen:false, selectedItemId:0, cardMode:2,});  
@@ -98,7 +91,7 @@ class Shop extends React.Component {
     else{
       this.setState({ chosen:false, selectedItemId:0, cardMode:0, editItemId:0,})
     }
-    };
+    };*/
 
 
 
@@ -140,7 +133,7 @@ class Shop extends React.Component {
     /* редактирование элемента */
     editItem=(id)=>{ 
       if(this.state.editItemId!=id)
-            this.setState({  editItemId:id, cardMode:2, }, this.announce);
+            this.setState({  editItemId:id, cardMode:2, chosen:false, selectedItemId:0, }, this.announce);
             
 
     };
