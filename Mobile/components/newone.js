@@ -24,6 +24,25 @@ class NewElemForm extends React.PureComponent {
   add=()=>{};
   cancel=()=>{};
 
+  lastNameRef=null;
+  setNewLastName=(ref)=>{
+    this.lastNameRef=ref;
+  }
+
+  nameRef=null;
+  setNewName=(ref)=>{
+    this.nameRef=ref;
+  }
+
+  middleNameRef=null;
+  setNewMiddleName=(ref)=>{
+    this.middleNameRef=ref;
+  }
+
+  balanceRef=null;
+  setBalance=(ref)=>{
+    this.balanceRef=ref;
+  }
   render() {
 
     let status=this.state.balance>0?"active":"blocked"
@@ -36,10 +55,10 @@ class NewElemForm extends React.PureComponent {
         <h2>Новый клиент</h2>
 
       <label className='id'><b>ID:</b>{this.props.items.length+5}</label> <br/>
-      <label htmlFor="LastName"><b>Фамилия:</b></label> <input type="text" id="LastName" ref></input> <br/>
-      <label htmlFor="Name"><b>Имя:</b></label> <input type="text" id="Name" ></input> <br/>
-      <label htmlFor="MiddleName"><b>Отчество:</b></label> <input type="text" id="MiddleName" ></input> <br/>
-      <label htmlFor="Balance"><b>Баланс:</b></label> <input type="number" id="Balance" ></input><br/>
+      <label htmlFor="LastName"><b>Фамилия:</b></label> <input type="text" id="LastName" ref={this.setNewLastName}></input> <br/>
+      <label htmlFor="Name"><b>Имя:</b></label> <input type="text" id="Name"  ref={this.setNewName} ></input> <br/>
+      <label htmlFor="MiddleName"><b>Отчество:</b></label> <input type="text" id="MiddleName"  ref={this.setNewMiddleName}></input> <br/>
+      <label htmlFor="Balance"><b>Баланс:</b></label> <input type="number" id="Balance" ref={this.setBalance}></input><br/>
 
     <input  type="button" defaultValue="Добавить"  onClick={this.add}  disabled={this.state.buttonAdd?"disabled":null} />
     <input  type="button" defaultValue="Закончить" onClick={this.cancel}/>
