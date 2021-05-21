@@ -21,7 +21,17 @@ class NewElemForm extends React.PureComponent {
 
 
 
-  add=()=>{};
+  add=()=>{
+      if(this.this.lastNameRef.value!=null){
+        if(this.this.nameRef.value!=null){
+            if(this.this.middleNameRef.value!=null){
+                if(this.this.balanceRef.value!=null){
+                    
+                }
+            }
+        }
+      }
+  };
   cancel=()=>{};
 
   lastNameRef=null;
