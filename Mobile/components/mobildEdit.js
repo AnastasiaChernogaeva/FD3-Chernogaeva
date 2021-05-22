@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import './mobileClients.css';
 
-class NewElemForm extends React.PureComponent {
+class EditClient extends React.PureComponent {
 
   static propTypes = {
-    clients:PropTypes.array.isRequired
+    client:PropTypes.object.isRequired
   };
 
   state = {
-    clients: this.props.clients,
+    client: this.props.client,
     
   };
 
@@ -21,13 +21,13 @@ class NewElemForm extends React.PureComponent {
 
 
 
-  add=(EO)=>{
+  save=(EO)=>{
       if(this.lastNameRef.value!=null){
         if(this.nameRef.value!=null){
             if(this.middleNameRef.value!=null){
                 if(this.balanceRef.value!=null){
-                  let newclient={"id":this.state.clients.length+5, "f":this.lastNameRef.value, "n":this.nameRef.value, "MN":this.middleNameRef.value, "balance":this.balanceRef.value};
-                  clientEvents.emit('NewElemAdd',newclient);
+                  let editClient={"id":this.props.client.id, "f":this.lastNameRef.value, "n":this.nameRef.value, "MN":this.middleNameRef.value, "balance":this.balanceRef.value};
+                  clientEvents.emit('EditElemAdd',editClient);
 
                 }
             }
@@ -68,13 +68,13 @@ class NewElemForm extends React.PureComponent {
         <div> 
         <h2>Новый клиент</h2>
 
-      <label className='id'><b>ID:</b>{this.props.items.length+5}</label> <br/>
-      <label htmlFor="LastName"><b>Фамилия:</b></label> <input type="text" id="LastName" ref={this.setNewLastName}></input> <br/>
-      <label htmlFor="Name"><b>Имя:</b></label> <input type="text" id="Name"  ref={this.setNewName} ></input> <br/>
-      <label htmlFor="MiddleName"><b>Отчество:</b></label> <input type="text" id="MiddleName"  ref={this.setNewMiddleName}></input> <br/>
-      <label htmlFor="Balance"><b>Баланс:</b></label> <input type="number" id="Balance" ref={this.setBalance}></input><br/>
+      <label className='id'><b>ID:</b>{this.props.client.id}</label> <br/>
+      <label htmlFor="LastName"><b>Фамилия:</b></label> <input type="text" id="LastName" ref={this.setNewLastName} defaultValue={this.state.client.f}></input> <br/>
+      <label htmlFor="Name"><b>Имя:</b></label> <input type="text" id="Name"  ref={this.setNewName} defaultValue={this.state.client.n}></input> <br/>
+      <label htmlFor="MiddleName"><b>Отчество:</b></label> <input type="text" id="MiddleName"  ref={this.setNewMiddleName} defaultValue={this.state.client.MN}></input> <br/>
+      <label htmlFor="Balance"><b>Баланс:</b></label> <input type="number" id="Balance" ref={this.setBalance} defaultValue={this.state.client.balance}></input><br/>
 
-    <input  type="button" defaultValue="Добавить"  onClick={this.add}  />
+    <input  type="button" defaultValue="Добавить"  onClick={this.save}  />
     <input  type="button" defaultValue="Закончить" onClick={this.cancel}/>
 
   </div>

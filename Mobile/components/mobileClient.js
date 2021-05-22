@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import './mobileClients.css';
 
+import {clientEvents} from './events';
+
 class MobileClient extends React.PureComponent {
 
   static propTypes = {
@@ -26,13 +28,13 @@ class MobileClient extends React.PureComponent {
     this.setState({balance:newProps.balance});
   };
  
-   edit=()=>{
+   edit=(EO)=>{
+    clientEvents.emit('EditClicked',this.props.id);
+   };
 
-   }
-
-   delete=()=>{
-       
-   }
+   delete=(EO)=>{
+    clientEvents.emit('DeleteClicked',this.props.id);
+   };
 
   render() {
 

@@ -6,6 +6,8 @@ import NewElemForm from './newone';
 
 import './mobile.css';
 
+import {clientEvents} from './events';
+
 class MobileCompany extends React.PureComponent {
 
   static propTypes = {
@@ -24,11 +26,38 @@ class MobileCompany extends React.PureComponent {
   state = {
     clients:this.props.clients,
     name: this.props.name,
-    clients: this.props.clients,
     clientsMode:0,
     viewMode:0,
+    forallId:0,
   };
 
+
+  /*подписка на события */
+  componentDidMount = () => {
+    clientEvents.addListener('EditClicked',this.edit);
+    clientEvents.addListener('DeleteClicked',this.delete);
+    clientEvents.addListener('NewElemAdd',this.add);
+    clientEvents.addListener('Cancel',this.close);
+    clientEvents.addListener('EditElemAdd',this.save);
+
+  };
+
+  componentWillUnmount = () => {
+    clientEvents.removeListener('EditClicked',this.edit);
+    clientEvents.removeListener('DeleteClicked',this.delete);
+    clientEvents.addListener('NewElemAdd',this.add);
+    clientEvents.addListener('Cancel',this.close);
+    clientEvents.addListener('EditElemAdd',this.save);
+
+
+  };
+
+  
+
+
+
+
+/*имя компании*/
   setName1 = () => {
     this.setState({name:'МТС'});
   };
@@ -37,23 +66,12 @@ class MobileCompany extends React.PureComponent {
     this.setState({name:'Velcom'});
   };
   
- /* setBalance = (clientId,newBalance) => {
-    let newClients=this.state.clients;
-    newClients.forEach( c => {
-      if ( c.id==clientId )
-        c.balance=newBalance;
-    } );
-    this.setState({clients:newClients});
-  };
+ 
 
-  setBalance1 = () => {
-    this.setBalance(105,230);
-  };
 
-  setBalance2 = () => {
-    this.setBalance(105,250);
-  };*/
 
+
+/*статус клиентов(все, заблокированные, активные) */
 showAll=()=>{
     this.setState({clientsMode:0,}, this.change);
 }
@@ -65,15 +83,62 @@ onlyActive=()=>{
 onlyBlocked=()=>{
     this.setState({clientsMode:2,}, this.change);
 }
+
+
+
+
   
 change=()=>{
     console.log("New state leads to new render");
 }
 
 
+
+
+/*новый элемент */
 newClient=()=>{
     this.setState({viewMode:1,},this.change);
+};
+
+add=(a)=>{
+  this.state.clients.push(a);
+  this.setState({viewMode:0,}, this.change);
+};
+
+
+
+
+close=(v)=>{
+  this.setState({viewMode:v,}, this.change);
 }
+
+
+
+
+
+/*редактирование элемента */
+edit=(id)=>{
+  this.setState({viewMode:2, forallId:id,},this.change);
+};
+
+save=(a)=>{
+  this.setState({viewMode:0,}, this.change);
+  let clients=this.state.clients.map(client=> (client.id==a.id)?a:client);
+  this.setState({clients:clients, viewMode:0, forallId:0, });
+};
+
+
+
+
+/*удаление элемента */
+delete=(id)=>{
+  let filteredClients=this.state.clients.filter(i=> i!=id)
+  this.setState({clients:filteredClients, forallId:0, viewMode:0,},this.change);  
+};
+
+
+
+
 
   render() {
 
@@ -88,6 +153,9 @@ newClient=()=>{
       );
 
     var newElem=<NewElemForm clients={this.state.clients}></NewElemForm>;
+
+    let client=this.state.clients.find((elem,) => (this.state.forallId==elem.id));
+    var editElem=<EditClient client={client}></EditClient>;
 
     return (
       <div className='MobileCompany'>
@@ -113,13 +181,14 @@ newClient=()=>{
                 {this.state.clientsMode==0 && clientsCodeAll}
                 {this.state.clientsMode==1 && clientsCodeActive}
                 {this.state.clientsMode==2 && clientsCodeBlocked}
-          {clientsCode}
+          
           </tbody>
         </table>
 
         <input type="button" value="Добавить клиента" onClick={this.newClient} />
  
            {this.state.viewMode==1 && newElem}
+           {this.state.viewMode==2 && editElem}
       </div>
     )
     ;
