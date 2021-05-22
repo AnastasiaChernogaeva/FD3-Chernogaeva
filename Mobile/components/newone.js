@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import './mobileClients.css';
 
+import {clientEvents} from './events';
+
+
 class NewElemForm extends React.PureComponent {
 
   static propTypes = {
@@ -13,11 +16,11 @@ class NewElemForm extends React.PureComponent {
     clients: this.props.clients,
     
   };
-
+/*
   componentWillReceiveProps = (newProps) => {
     console.log("MobileClient id="+this.props.id+" componentWillReceiveProps");
     this.setState({balance:newProps.balance});
-  };
+  };*/
 
 
 
@@ -60,7 +63,7 @@ class NewElemForm extends React.PureComponent {
   render() {
 
     let status=this.state.balance>0?"active":"blocked"
-    console.log("MobileClient id="+this.props.id+" render");
+   /* console.log("MobileClient id="+this.props.id+" render");*/
     
 
 
@@ -68,7 +71,7 @@ class NewElemForm extends React.PureComponent {
         <div> 
         <h2>Новый клиент</h2>
 
-      <label className='id'><b>ID:</b>{this.props.items.length+5}</label> <br/>
+      <label className='id'><b>ID:</b>{this.props.clients.length+101}</label> <br/>
       <label htmlFor="LastName"><b>Фамилия:</b></label> <input type="text" id="LastName" ref={this.setNewLastName}></input> <br/>
       <label htmlFor="Name"><b>Имя:</b></label> <input type="text" id="Name"  ref={this.setNewName} ></input> <br/>
       <label htmlFor="MiddleName"><b>Отчество:</b></label> <input type="text" id="MiddleName"  ref={this.setNewMiddleName}></input> <br/>
@@ -84,4 +87,4 @@ class NewElemForm extends React.PureComponent {
 
 }
 
-export default MobileClient;
+export default NewElemForm;

@@ -3,22 +3,25 @@ import PropTypes from 'prop-types';
 
 import './mobileClients.css';
 
+import {clientEvents} from './events';
+
+
 class EditClient extends React.PureComponent {
 
   static propTypes = {
-    client:PropTypes.object.isRequired
+    client:PropTypes.object
   };
 
   state = {
     client: this.props.client,
     
   };
-
+/*
   componentWillReceiveProps = (newProps) => {
     console.log("MobileClient id="+this.props.id+" componentWillReceiveProps");
     this.setState({balance:newProps.balance});
   };
-
+*/
 
 
   save=(EO)=>{
@@ -60,7 +63,7 @@ class EditClient extends React.PureComponent {
   render() {
 
     let status=this.state.balance>0?"active":"blocked"
-    console.log("MobileClient id="+this.props.id+" render");
+   /* console.log("MobileClient id="+this.props.id+" render");*/
     
 
 
@@ -84,4 +87,4 @@ class EditClient extends React.PureComponent {
 
 }
 
-export default MobileClient;
+export default EditClient;

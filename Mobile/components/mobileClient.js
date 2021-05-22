@@ -8,38 +8,34 @@ import {clientEvents} from './events';
 class MobileClient extends React.PureComponent {
 
   static propTypes = {
-    id: PropTypes.number.isRequired,
-    f: PropTypes.string.isRequired,
-    n: PropTypes.string.isRequired,
-    MN: PropTypes.string.isRequired,
-    balance: PropTypes.number.isRequired,
+   info:PropTypes.object,
   };
 
   state = {
-    f: this.props.f,
-    n: this.props.n,
-    MN: this.props.MN,
-    balance: this.props.balance,
+    f: this.props.info.f,
+    n: this.props.info.n,
+    MN: this.props.info.MN,
+    balance: this.props.info.balance,
     
   };
-
+/*
   componentWillReceiveProps = (newProps) => {
     console.log("MobileClient id="+this.props.id+" componentWillReceiveProps");
     this.setState({balance:newProps.balance});
   };
- 
+ */
    edit=(EO)=>{
-    clientEvents.emit('EditClicked',this.props.id);
+    clientEvents.emit('EditClicked',this.props.info.id);
    };
 
    delete=(EO)=>{
-    clientEvents.emit('DeleteClicked',this.props.id);
+    clientEvents.emit('DeleteClicked',this.props.info.id);
    };
 
   render() {
 
     let status=this.state.balance>0?"active":"blocked"
-    console.log("MobileClient id="+this.props.id+" render");
+    console.log("MobileClient id="+this.props.info.id+" render");
     
     return (
       <tr className='MobileClient'>

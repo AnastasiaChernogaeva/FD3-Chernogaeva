@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import MobileClient from './mobileClient';
 import NewElemForm from './newone';
+import EditClient from './mobileEdit';
 
 import './mobile.css';
 
@@ -12,15 +13,8 @@ class MobileCompany extends React.PureComponent {
 
   static propTypes = {
     name: PropTypes.string.isRequired,
-    clients:PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        f: PropTypes.string.isRequired,
-        n: PropTypes.string.isRequired,
-        MN: PropTypes.string.isRequired,
-        balance: PropTypes.number.isRequired,
-      })
-    ),
+    clients:PropTypes.array
+ 
   };
 
   state = {
@@ -132,7 +126,7 @@ save=(a)=>{
 
 /*удаление элемента */
 delete=(id)=>{
-  let filteredClients=this.state.clients.filter(i=> i!=id)
+  let filteredClients=this.state.clients.filter(i=> (i+101)!=id)
   this.setState({clients:filteredClients, forallId:0, viewMode:0,},this.change);  
 };
 
