@@ -47,17 +47,26 @@ class MobileCompany extends React.PureComponent {
   };
 
   
+  shouldPureComponentUpdate = (newProps,newState) => {
+    return (newProps!=this.props)||(newState!=this.state);
+  };
 
 
 
 
 /*имя компании*/
   setName1 = () => {
-    this.setState({name:'МТС'});
+    this.setState({name:'МТС', 
+    clientsMode:0,
+    viewMode:0,
+    forallId:0,});
   };
 
   setName2 = () => {
-    this.setState({name:'Velcom'});
+    this.setState({name:'Velcom',
+    clientsMode:0,
+    viewMode:0,
+    forallId:0,});
   };
   
  
@@ -116,9 +125,8 @@ edit=(id)=>{
 };
 
 save=(a)=>{
-  this.setState({viewMode:0,}, this.change);
   let clients=this.state.clients.map(client=> (client.id==a.id)?a:client);
-  this.setState({clients:clients, viewMode:0, forallId:0, });
+  this.setState({clients:clients, viewMode:0, forallId:0, }, this.change);
 };
 
 
@@ -126,7 +134,8 @@ save=(a)=>{
 
 /*удаление элемента */
 delete=(id)=>{
-  let filteredClients=this.state.clients.filter(i=> (i+101)!=id)
+  let filteredClients=this.state.clients.filter(elem=>
+    elem.id!=id);
   this.setState({clients:filteredClients, forallId:0, viewMode:0,},this.change);  
 };
 
@@ -141,15 +150,17 @@ delete=(id)=>{
     var clientsCodeAll=this.state.clients.map( client =>
       <MobileClient key={client.id} info={client}  />
     );
-    var clientsCodeActive=this.state.clients.filter( client =>{ (client.balance>0)?<MobileClient key={client.id} info={client} />:null}
-      );
-    var clientsCodeBlocked=this.state.clients.map( client =>{ (client.balance<0)?<MobileClient key={client.id} info={client} />:null}
-      );
+
+    var clientsCodeActive=this.state.clients.map(client =>
+       client.balance>=0?(<MobileClient key={client.id} info={client}/>):null);
+
+    var clientsCodeBlocked=this.state.clients.map(client =>
+       client.balance<=0?(<MobileClient key={client.id} info={client}/>):null);
 
     var newElem=<NewElemForm clients={this.state.clients}></NewElemForm>;
 
-    let client=this.state.clients.find((elem,) => (this.state.forallId==elem.id));
-    var editElem=<EditClient client={client}></EditClient>;
+    let editClient=this.state.clients.find((elem,) => (this.state.forallId==elem.id));
+    var editElem=<EditClient client={editClient}></EditClient>;
 
     return (
       <div className='MobileCompany'>

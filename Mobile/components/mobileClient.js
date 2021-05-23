@@ -12,18 +12,19 @@ class MobileClient extends React.PureComponent {
   };
 
   state = {
-    f: this.props.info.f,
+    info:this.props.info,
+   /* f: this.props.info.f,
     n: this.props.info.n,
     MN: this.props.info.MN,
-    balance: this.props.info.balance,
+    balance: this.props.info.balance,*/
     
   };
-/*
+
   componentWillReceiveProps = (newProps) => {
-    console.log("MobileClient id="+this.props.id+" componentWillReceiveProps");
-    this.setState({balance:newProps.balance});
+    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
+    this.setState({info:newProps.info});
   };
- */
+ 
    edit=(EO)=>{
     clientEvents.emit('EditClicked',this.props.info.id);
    };
@@ -34,16 +35,16 @@ class MobileClient extends React.PureComponent {
 
   render() {
 
-    let status=this.state.balance>0?"active":"blocked"
+    let status=this.state.info.balance>0?"active":"blocked"
     console.log("MobileClient id="+this.props.info.id+" render");
     
     return (
       <tr className='MobileClient'>
-        <td className='MobileClientFIO'>{this.state.f}</td>
-        <td className='MobileClientFIO'>{this.state.n}</td>
-        <td className='MobileClientFIO'>{this.state.MN}</td>
+        <td className='MobileClientFIO'>{this.state.info.f}</td>
+        <td className='MobileClientFIO'>{this.state.info.n}</td>
+        <td className='MobileClientFIO'>{this.state.info.MN}</td>
 
-        <td className='MobileClientBalance'>{this.state.balance}</td>
+        <td className='MobileClientBalance'>{this.state.info.balance}</td>
         <td className={status}>{status}</td>
         <td className='MobileClientFIO'><input type="button" value="Редактировать" onClick={this.edit} /></td>
         <td className='MobileClientFIO'><input type="button" value="Удалить" onClick={this.delete} /></td>
