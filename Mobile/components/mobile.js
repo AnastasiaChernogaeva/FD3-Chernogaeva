@@ -47,9 +47,9 @@ class MobileCompany extends React.PureComponent {
   };
 
   
-  shouldComponentUpdate = (newProps,newState) => {
+  /*shouldComponentUpdate = (newProps,newState) => {
     return (newProps!=this.props)||(newState!=this.state);
-  };
+  };*/
   /*componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
     if(this.state.info!=newProps.info)
@@ -80,15 +80,15 @@ class MobileCompany extends React.PureComponent {
 
 /*статус клиентов(все, заблокированные, активные) */
 showAll=()=>{
-    this.setState({clientsMode:0,}, this.change);
+   this.setState({clientsMode:0,}, this.change);
 }
 
 onlyActive=()=>{
-    this.setState({clientsMode:1,}, this.change);
+   this.setState({clientsMode:1,}, this.change);
 }
 
 onlyBlocked=()=>{
-    this.setState({clientsMode:2,}, this.change);
+  this.setState({clientsMode:2,}, this.change);
 }
 
 
@@ -154,17 +154,22 @@ delete=(id)=>{
   render() {
 
     console.log("MobileCompany render");
+      
+ 
 
-    var clientsCodeAll=this.state.clients.map( client =>
+  var clientsCodeAll=this.state.clients.map( client =>
       <MobileClient key={client.id} info={client}  />
     );
-
-    var clientsCodeActive=this.state.clients.map(client =>
+ 
+ var clientsCodeActive=this.state.clients.map(client =>
        client.balance>=0?(<MobileClient key={client.id} info={client}/>):null);
-
-    var clientsCodeBlocked=this.state.clients.map(client =>
+       
+       var clientsCodeBlocked=this.state.clients.map(client =>
        client.balance<=0?(<MobileClient key={client.id} info={client}/>):null);
+ 
+       
 
+  
     var newElem=<NewElemForm clients={this.state.clients}></NewElemForm>;
 
     let editClient=this.state.clients.find((elem,) => (this.state.forallId==elem.id));
@@ -180,7 +185,6 @@ delete=(id)=>{
         <input type="button" value="Активные" onClick={this.onlyActive} />
         <input type="button" value="Заблокированные" onClick={this.onlyBlocked} />
         <hr/>
-        <hr/>
         <table className='MobileCompanyClients'>
             <tbody>
                 <tr>
@@ -193,7 +197,7 @@ delete=(id)=>{
                 </tr>
                 {this.state.clientsMode==0 && clientsCodeAll}
                 {this.state.clientsMode==1 && clientsCodeActive}
-                {this.state.clientsMode==2 && clientsCodeBlocked}
+                {this.state.clientsMode==2 && clientsCodeBlocked} 
           
           </tbody>
         </table>
