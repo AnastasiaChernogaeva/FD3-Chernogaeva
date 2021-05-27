@@ -75,20 +75,30 @@ class MobileCompany extends React.PureComponent {
   
  
 
-
+  cClients=this.state.clients;
 
 
 /*статус клиентов(все, заблокированные, активные) */
 showAll=()=>{
-   this.setState({clientsMode:0,}, this.change);
+  let filteredClients=this.cClients.slice();
+  this.setState({clients:filteredClients, },this.change);  
+   /*this.setState({clientsMode:0,}, this.change);*/
 }
 
 onlyActive=()=>{
-   this.setState({clientsMode:1,}, this.change);
+  let filteredClients=this.state.clients.filter(client=>
+    client.balance>=0);
+
+  this.setState({clients:filteredClients, },this.change);  
+ /*  this.setState({clientsMode:1,}, this.change);*/
 }
 
 onlyBlocked=()=>{
-  this.setState({clientsMode:2,}, this.change);
+  let filteredClients=this.state.clients.filter(client=>
+    client.balance<=0);
+
+  this.setState({clients:filteredClients, },this.change);  
+  /*this.setState({clientsMode:2,}, this.change);*/
 }
 
 
@@ -157,16 +167,16 @@ delete=(id)=>{
       
  
 
-  var clientsCodeAll=this.state.clients.map( client =>
+      var clientsCodeAll=this.state.clients.map( client =>
       <MobileClient key={client.id} info={client}  />
-    );
+       );
  
- var clientsCodeActive=this.state.clients.map(client =>
+       /* var clientsCodeActive=this.state.clients.map(client =>
        client.balance>=0?(<MobileClient key={client.id} info={client}/>):null);
        
        var clientsCodeBlocked=this.state.clients.map(client =>
        client.balance<=0?(<MobileClient key={client.id} info={client}/>):null);
- 
+ */
        
 
   
@@ -196,8 +206,8 @@ delete=(id)=>{
                     <th>Удалить</th>
                 </tr>
                 {this.state.clientsMode==0 && clientsCodeAll}
-                {this.state.clientsMode==1 && clientsCodeActive}
-                {this.state.clientsMode==2 && clientsCodeBlocked} 
+            {/*    {this.state.clientsMode==1 && clientsCodeActive}
+                {this.state.clientsMode==2 && clientsCodeBlocked} */}
           
           </tbody>
         </table>
