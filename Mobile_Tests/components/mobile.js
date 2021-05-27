@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MobileClient from './mobileClient';
+import MobileClient from './mobileClients';
 import NewElemForm from './newone';
 import EditClient from './mobileEdit';
 
@@ -12,14 +12,12 @@ import {clientEvents} from './events';
 class MobileCompany extends React.PureComponent {
 
   static propTypes = {
-    name: PropTypes.string.isRequired,
     clients:PropTypes.array
  
   };
 
   state = {
     clients:this.props.clients,
-    name: this.props.name,
     clientsMode:0,
     viewMode:0,
     forallId:0,
@@ -47,31 +45,14 @@ class MobileCompany extends React.PureComponent {
   };
 
   
-  shouldComponentUpdate = (newProps,newState) => {
+  shouldPureComponentUpdate = (newProps,newState) => {
     return (newProps!=this.props)||(newState!=this.state);
   };
-  /*componentWillReceiveProps = (newProps) => {
-    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
-    if(this.state.info!=newProps.info)
-    this.setState({info:newProps.info});
-  };*/
 
 
 
-/*имя компании*/
-  setName1 = () => {
-    this.setState({name:'МТС', 
-    clientsMode:0,
-    viewMode:0,
-    forallId:0,});
-  };
 
-  setName2 = () => {
-    this.setState({name:'Velcom',
-    clientsMode:0,
-    viewMode:0,
-    forallId:0,});
-  };
+
   
  
 
@@ -108,9 +89,8 @@ newClient=()=>{
 };
 
 add=(a)=>{
-  let cClients=this.state.clients;
-  cClients.push(a);
-  this.setState({viewMode:0, clients:cClients, }, this.change);
+  this.state.clients.push(a);
+  this.setState({viewMode:0,}, this.change);
 };
 
 
@@ -130,8 +110,7 @@ edit=(id)=>{
 };
 
 save=(a)=>{
-  let cClients=this.state.clients;
-  let clients=cClients.map(client=> (client.id==a.id)?a:client);
+  let clients=this.state.clients.map(client=> (client.id==a.id)?a:client);
   this.setState({clients:clients, viewMode:0, forallId:0, }, this.change);
 };
 
@@ -140,10 +119,8 @@ save=(a)=>{
 
 /*удаление элемента */
 delete=(id)=>{
-  let cClients=this.state.clients;
-  let filteredClients=cClients.filter(elem=>
+  let filteredClients=this.state.clients.filter(elem=>
     elem.id!=id);
-
   this.setState({clients:filteredClients, forallId:0, viewMode:0,},this.change);  
 };
 
@@ -172,9 +149,6 @@ delete=(id)=>{
 
     return (
       <div className='MobileCompany'>
-        <input type="button" value="МТС" onClick={this.setName1} />
-        <input type="button" value="Velcom" onClick={this.setName2} />
-        <div className='MobileCompanyName'>Компания &laquo;{this.state.name}&raquo;</div>
         <hr/>
         <input type="button" value="Все" onClick={this.showAll} />
         <input type="button" value="Активные" onClick={this.onlyActive} />

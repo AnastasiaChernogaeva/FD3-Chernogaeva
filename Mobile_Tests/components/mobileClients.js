@@ -22,10 +22,7 @@ class MobileClient extends React.PureComponent {
 
   componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
-    if(this.state.info!=newProps.info){
-      this.setState({info:newProps.info});
-    }
-    
+    this.setState({info:newProps.info});
   };
  
    edit=(EO)=>{
