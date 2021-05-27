@@ -18,19 +18,46 @@ test('работа MobileCompany', () => {
 
   // найдём в вёрстке компонента саму кнопку
 
-  let allButtons=[];
+ 
   
-  const buttonElem = component.root.find( el => el.type=='input' /*&& el.props.aaa == 'bbb'*/ ); 
+  const buttonElem = component.root.find( el => el.id=='#1' /*&& el.props.aaa == 'bbb'*/ ); 
   // и "нажмём" на неё
 
-  buttonElem.props.forEach(elem=>{
-      elem.props.onClick();
+  buttonElem.props.onClick();
+  
+  // получаем уже изменённый снэпшот
+  componentTree=component.toJSON();
+  expect(componentTree).toMatchSnapshot();
+
+  const buttonElem = component.root.find( el => el.id=='#2' /*&& el.props.aaa == 'bbb'*/ ); 
+  // и "нажмём" на неё
+
+  buttonElem.props.onClick();
+  
+  // получаем уже изменённый снэпшот
+  componentTree=component.toJSON();
+  expect(componentTree).toMatchSnapshot();
+
+
+  const buttonElem = component.root.find( el => el.id=='#3' /*&& el.props.aaa == 'bbb'*/ ); 
+  // и "нажмём" на неё
+
+  buttonElem.props.onClick();
+  
+  // получаем уже изменённый снэпшот
+  componentTree=component.toJSON();
+  expect(componentTree).toMatchSnapshot();
+
+  const buttonElem = component.root.find( el => el.id=='#4' /*&& el.props.aaa == 'bbb'*/ ); 
+  // и "нажмём" на неё
+
+  buttonElem.props.onClick();
   
   // получаем уже изменённый снэпшот
   componentTree=component.toJSON();
   expect(componentTree).toMatchSnapshot();
    
- m.push( expect(componentTree).toMatchSnapshot());
+ 
   
   /*
   // можно эмулировать события, передавая в качестве объекта события то что нам нужно:
@@ -38,6 +65,4 @@ test('работа MobileCompany', () => {
     target: { value: "hello" },
   });
   */
-  })
-  console.log(m);
-});
+  });

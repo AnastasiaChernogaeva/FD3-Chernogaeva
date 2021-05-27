@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MobileClient from './mobileClients';
+import MobileClient from './mobileClient';
 import NewElemForm from './newone';
 import EditClient from './mobileEdit';
 
@@ -12,12 +12,14 @@ import {clientEvents} from './events';
 class MobileCompany extends React.PureComponent {
 
   static propTypes = {
+    name: PropTypes.string.isRequired,
     clients:PropTypes.array
  
   };
 
   state = {
     clients:this.props.clients,
+    name: this.props.name,
     clientsMode:0,
     viewMode:0,
     forallId:0,
@@ -45,31 +47,70 @@ class MobileCompany extends React.PureComponent {
   };
 
   
-  shouldPureComponentUpdate = (newProps,newState) => {
+  /*shouldComponentUpdate = (newProps,newState) => {
     return (newProps!=this.props)||(newState!=this.state);
+  };*/
+  /*componentWillReceiveProps = (newProps) => {
+    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
+    if(this.state.info!=newProps.info)
+    this.setState({info:newProps.info});
+  };*/
+
+
+
+/*имя компании*/
+  setName1 = () => {
+    this.setState({name:'МТС', 
+    clientsMode:0,
+    viewMode:0,
+    forallId:0,});
   };
 
-
-
-
-
+  setName2 = () => {
+    this.setState({name:'Velcom',
+    clientsMode:0,
+    viewMode:0,
+    forallId:0,});
+  };
   
  
 
-
+  cClients=this.state.clients;
 
 
 /*статус клиентов(все, заблокированные, активные) */
 showAll=()=>{
-    this.setState({clientsMode:0,}, this.change);
+  let filteredClients=this.cClients.slice();
+  this.setState({clients:filteredClients, clientsMode:0 },this.change);  
+   /*this.setState({clientsMode:0,}, this.change);*/
 }
 
 onlyActive=()=>{
-    this.setState({clientsMode:1,}, this.change);
+  let filteredClients
+  if(this.state.clientsMode==0){
+   filteredClients=this.state.clients.filter(client=>
+    client.balance>=0);
+  }
+  else{
+     filteredClients=this.cClients.filter(client=>
+      client.balance>=0);
+  }
+  this.setState({clients:filteredClients, clientsMode:1, },this.change);  
+ /*  this.setState({clientsMode:1,}, this.change);*/
 }
 
 onlyBlocked=()=>{
-    this.setState({clientsMode:2,}, this.change);
+  let filteredClients
+  if(this.state.clientsMode==0){
+   filteredClients=this.state.clients.filter(client=>
+    client.balance<=0);
+  }
+  else{
+     filteredClients=this.cClients.filter(client=>
+      client.balance<=0);
+  }
+  this.setState({clients:filteredClients, clientsMode:2,},this.change);  
+  /*this.setState({clientsMode:2,}, this.change);*/
 }
 
 
@@ -89,8 +130,9 @@ newClient=()=>{
 };
 
 add=(a)=>{
-  this.state.clients.push(a);
-  this.setState({viewMode:0,}, this.change);
+ /* let cClients=this.state.clients;*/
+this.cClients.push(a);
+  this.setState({viewMode:0, clients:this.cClients, }, this.change);
 };
 
 
@@ -110,8 +152,9 @@ edit=(id)=>{
 };
 
 save=(a)=>{
-  let clients=this.state.clients.map(client=> (client.id==a.id)?a:client);
-  this.setState({clients:clients, viewMode:0, forallId:0, }, this.change);
+ /* let cClients=this.state.clients;*/
+ this.cClients=this.cClients.map(client=> (client.id==a.id)?a:client);
+  this.setState({clients:this.cClients, viewMode:0, forallId:0, }, this.change);
 };
 
 
@@ -119,9 +162,11 @@ save=(a)=>{
 
 /*удаление элемента */
 delete=(id)=>{
-  let filteredClients=this.state.clients.filter(elem=>
+ /* let cClients=this.state.clients;*/
+ this.cClients=this.cClients.filter(elem=>
     elem.id!=id);
-  this.setState({clients:filteredClients, forallId:0, viewMode:0,},this.change);  
+
+  this.setState({clients:this.cClients, forallId:0, viewMode:0,},this.change);  
 };
 
 
@@ -131,17 +176,22 @@ delete=(id)=>{
   render() {
 
     console.log("MobileCompany render");
+      
+ 
 
-    var clientsCodeAll=this.state.clients.map( client =>
+      var clientsCodeAll=this.state.clients.map( client =>
       <MobileClient key={client.id} info={client}  />
-    );
-
-    var clientsCodeActive=this.state.clients.map(client =>
+       );
+ 
+       /* var clientsCodeActive=this.state.clients.map(client =>
        client.balance>=0?(<MobileClient key={client.id} info={client}/>):null);
-
-    var clientsCodeBlocked=this.state.clients.map(client =>
+       
+       var clientsCodeBlocked=this.state.clients.map(client =>
        client.balance<=0?(<MobileClient key={client.id} info={client}/>):null);
+ */
+       
 
+  
     var newElem=<NewElemForm clients={this.state.clients}></NewElemForm>;
 
     let editClient=this.state.clients.find((elem,) => (this.state.forallId==elem.id));
@@ -149,11 +199,13 @@ delete=(id)=>{
 
     return (
       <div className='MobileCompany'>
+        <input type="button" value="МТС" onClick={this.setName1} />
+        <input type="button" value="Velcom" onClick={this.setName2} />
+        <div className='MobileCompanyName'>Компания &laquo;{this.state.name}&raquo;</div>
         <hr/>
-        <input type="button" value="Все" onClick={this.showAll} />
-        <input type="button" value="Активные" onClick={this.onlyActive} />
-        <input type="button" value="Заблокированные" onClick={this.onlyBlocked} />
-        <hr/>
+        <input type="button" id="1" value="Все" onClick={this.showAll} />
+        <input type="button" id="2" value="Активные" onClick={this.onlyActive} />
+        <input type="button" id="3" value="Заблокированные" onClick={this.onlyBlocked} />
         <hr/>
         <table className='MobileCompanyClients'>
             <tbody>
@@ -165,14 +217,15 @@ delete=(id)=>{
                     <th>Редактировать</th>
                     <th>Удалить</th>
                 </tr>
-                {this.state.clientsMode==0 && clientsCodeAll}
-                {this.state.clientsMode==1 && clientsCodeActive}
-                {this.state.clientsMode==2 && clientsCodeBlocked}
+            {/*     {this.state.clientsMode==0 && clientsCodeAll}
+               {this.state.clientsMode==1 && clientsCodeActive}
+                {this.state.clientsMode==2 && clientsCodeBlocked} */}
+                {clientsCodeAll}
           
           </tbody>
         </table>
 
-        <input type="button" value="Добавить клиента" onClick={this.newClient} />
+        <input type="button" value="Добавить клиента" id="4" onClick={this.newClient} />
  
            {this.state.viewMode==1 && newElem}
            {this.state.viewMode==2 && editElem}
