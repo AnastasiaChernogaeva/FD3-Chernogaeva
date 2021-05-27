@@ -81,23 +81,35 @@ class MobileCompany extends React.PureComponent {
 /*статус клиентов(все, заблокированные, активные) */
 showAll=()=>{
   let filteredClients=this.cClients.slice();
-  this.setState({clients:filteredClients, },this.change);  
+  this.setState({clients:filteredClients, clientsMode:0 },this.change);  
    /*this.setState({clientsMode:0,}, this.change);*/
 }
 
 onlyActive=()=>{
-  let filteredClients=this.state.clients.filter(client=>
+  let filteredClients
+  if(this.state.clientsMode==0){
+   filteredClients=this.state.clients.filter(client=>
     client.balance>=0);
-
-  this.setState({clients:filteredClients, },this.change);  
+  }
+  else{
+     filteredClients=this.cClients.filter(client=>
+      client.balance>=0);
+  }
+  this.setState({clients:filteredClients, clientsMode:1, },this.change);  
  /*  this.setState({clientsMode:1,}, this.change);*/
 }
 
 onlyBlocked=()=>{
-  let filteredClients=this.state.clients.filter(client=>
+  let filteredClients
+  if(this.state.clientsMode==0){
+   filteredClients=this.state.clients.filter(client=>
     client.balance<=0);
-
-  this.setState({clients:filteredClients, },this.change);  
+  }
+  else{
+     filteredClients=this.cClients.filter(client=>
+      client.balance<=0);
+  }
+  this.setState({clients:filteredClients, clientsMode:2,},this.change);  
   /*this.setState({clientsMode:2,}, this.change);*/
 }
 
@@ -118,9 +130,9 @@ newClient=()=>{
 };
 
 add=(a)=>{
-  let cClients=this.state.clients;
-  cClients.push(a);
-  this.setState({viewMode:0, clients:cClients, }, this.change);
+ /* let cClients=this.state.clients;*/
+this.cClients.push(a);
+  this.setState({viewMode:0, clients:this.cClients, }, this.change);
 };
 
 
@@ -140,9 +152,9 @@ edit=(id)=>{
 };
 
 save=(a)=>{
-  let cClients=this.state.clients;
-  let clients=cClients.map(client=> (client.id==a.id)?a:client);
-  this.setState({clients:clients, viewMode:0, forallId:0, }, this.change);
+ /* let cClients=this.state.clients;*/
+ this.cClients=this.cClients.map(client=> (client.id==a.id)?a:client);
+  this.setState({clients:this.cClients, viewMode:0, forallId:0, }, this.change);
 };
 
 
@@ -150,11 +162,11 @@ save=(a)=>{
 
 /*удаление элемента */
 delete=(id)=>{
-  let cClients=this.state.clients;
-  let filteredClients=cClients.filter(elem=>
+ /* let cClients=this.state.clients;*/
+ this.cClients=this.cClients.filter(elem=>
     elem.id!=id);
 
-  this.setState({clients:filteredClients, forallId:0, viewMode:0,},this.change);  
+  this.setState({clients:this.cClients, forallId:0, viewMode:0,},this.change);  
 };
 
 
@@ -205,9 +217,10 @@ delete=(id)=>{
                     <th>Редактировать</th>
                     <th>Удалить</th>
                 </tr>
-                {this.state.clientsMode==0 && clientsCodeAll}
-            {/*    {this.state.clientsMode==1 && clientsCodeActive}
+            {/*     {this.state.clientsMode==0 && clientsCodeAll}
+               {this.state.clientsMode==1 && clientsCodeActive}
                 {this.state.clientsMode==2 && clientsCodeBlocked} */}
+                {clientsCodeAll}
           
           </tbody>
         </table>
