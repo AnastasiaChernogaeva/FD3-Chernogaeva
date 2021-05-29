@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MobileClient from './mobileClient';
-import NewElemForm from './newone';
-import EditClient from './mobileEdit';
+import MobileClient from './mobileClient.js';
+import NewElemForm from './newone.js';
+import EditClient from './mobileEdit.js';
 
 import './mobile.css';
 
@@ -12,14 +12,12 @@ import {clientEvents} from './events';
 class MobileCompany extends React.PureComponent {
 
   static propTypes = {
-    name: PropTypes.string.isRequired,
     clients:PropTypes.array
  
   };
 
   state = {
     clients:this.props.clients,
-    name: this.props.name,
     clientsMode:0,
     viewMode:0,
     forallId:0,
@@ -58,20 +56,6 @@ class MobileCompany extends React.PureComponent {
 
 
 
-/*имя компании*/
-  setName1 = () => {
-    this.setState({name:'МТС', 
-    clientsMode:0,
-    viewMode:0,
-    forallId:0,});
-  };
-
-  setName2 = () => {
-    this.setState({name:'Velcom',
-    clientsMode:0,
-    viewMode:0,
-    forallId:0,});
-  };
   
  
 
@@ -199,9 +183,6 @@ delete=(id)=>{
 
     return (
       <div className='MobileCompany'>
-        <input type="button" value="МТС" onClick={this.setName1} />
-        <input type="button" value="Velcom" onClick={this.setName2} />
-        <div className='MobileCompanyName'>Компания &laquo;{this.state.name}&raquo;</div>
         <hr/>
         <input type="button" id="1" value="Все" onClick={this.showAll} />
         <input type="button" id="2" value="Активные" onClick={this.onlyActive} />
