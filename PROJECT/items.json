@@ -57,11 +57,11 @@
     {"code":53, "category":"товары для птиц и грызунов", "itemName":"Лакомство для всех видов грызунов Little One \"Лакомые ветви с пастернаком и тыквой\", 5 г", "itemCost":"35руб", "itemPhotoURL":"https://static.my-shop.ru/product/3/377/3765130.jpg", "itemAmount":"2"},
     {"code":54, "category":"товары для птиц и грызунов", "itemName":"Домик для грызунов \"Тыква\", 13х13х10 см", "itemCost":"20руб", "itemPhotoURL":"https://static.my-shop.ru/product/3/375/3742219.jpg", "itemAmount":"40"},
     {"code":55, "category":"товары для птиц и грызунов", "itemName":"Минеральная смесь для всех видов птиц \"RIO\", 520 г", "itemCost":"100руб", "itemPhotoURL":"https://static.my-shop.ru/product/3/210/2099831.png", "itemAmount":"31"},
-    {"code":56, "itemName":"Ваза для фруктов 2-х ярусная", "itemCost":"85руб", "itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416639.jpg", "itemAmount":"12"},
-    {"code":57, "itemName":"Ваза для фруктов", "itemCost":"48руб", "itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/442/4416636.jpg", "itemAmount":"96"},
-    {"code":58, "itemName":"Инструмент для гофрирования", "itemCost":"4руб", "itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/205/2041219.jpg", "itemAmount":"22"},
-    {"code":59, "itemName":"Папка с ручкой для рисунков \"Художники\"", "itemCost":"7руб", "itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780053.jpg", "itemAmount":"7"},
-    {"code":60, "itemName":"Папка с ручкой для рисунков \"Нотр-Дам\"", "itemCost":"15руб", "itemPhotoURL":"https://static.my-shop.ru/imo/transform/profile=slider/product/3/379/3780052.jpg", "itemAmount":"3"},
+    {"code":56, "category":"игры", "itemName":"Настольная игра \"Эволюция\"", "itemCost":"11руб", "itemPhotoURL":"https://static.my-shop.ru/product/3/137/1364989.jpg", "itemAmount":"12"},
+    {"code":57, "category":"игры", "itemName":"Игра настольная \"Секретный лабиринт\"", "itemCost":"9руб", "itemPhotoURL":"https://static.my-shop.ru/product/3/350/3494034.png", "itemAmount":"96"},
+    {"code":58, "category":"игры", "itemName":"Настольная игра \"Эволюция. Биология для начинающих\"", "itemCost":"24руб", "itemPhotoURL":"https://static.my-shop.ru/product/3/376/3753278.jpg", "itemAmount":"22"},
+    {"code":59, "category":"игры", "itemName":"Настольная игра \"Варенье\"", "itemCost":"7руб", "itemPhotoURL":"https://static.my-shop.ru/product/3/137/1364979.jpg", "itemAmount":"7"},
+    {"code":60, "category":"игры", "itemName":"Настольная игра \"КвестМастер 5. За кулисами\"", "itemCost":"12руб", "itemPhotoURL":"https://static.my-shop.ru/product/3/388/3873991.jpg", "itemAmount":"3"}
 
 
 
