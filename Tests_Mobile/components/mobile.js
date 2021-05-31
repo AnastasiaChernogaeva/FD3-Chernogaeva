@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MobileClient from './mobileClient.js';
+import MobileClient from './mobileClients.js';
 import NewElemForm from './newone.js';
 import EditClient from './mobileEdit.js';
 

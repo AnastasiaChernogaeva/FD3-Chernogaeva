@@ -22,14 +22,14 @@ class Home extends React.PureComponent {
       state = {
           goods:this.props.goods,
           toShowBodyMode:1, /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа */
-          card:null,
+          cart:null,
           wishList:null,
         };
 
   componentDidMount = () => {
     pageEvents.addListener('ChangeBody',this.changeBody);
     pageEvents.addListener('Search',this.search);
-    pageEvents.addListener('AddToCard',this.addToCard);
+    pageEvents.addListener('AddToCart',this.addToCart);
     pageEvents.addListener('AddToWishList',this.addToWishList);
     };
 
@@ -37,17 +37,17 @@ class Home extends React.PureComponent {
   componentWillUnmount = () => {
     pageEvents.removeListener('ChangeBody',this.changeBody);
     pageEvents.removeListener('Search',this.search);
-    pageEvents.removeListener('AddToCard',this.addToCard);
+    pageEvents.removeListener('AddToCart',this.addToCart);
     pageEvents.removeListener('AddToWishList',this.addToWishList);
   };
 
-   arrCard=[];
+   arrCart=[];
 
-  addToCard=(id)=>{
+  addToCart=(id)=>{
     let goods=this.props.goods.slice();
     let elem=goods.find(item=>item.code===id);
-    this.arrCard.push(elem);
-    this.setState({card:this.arrCard}, this.announce);
+    this.arrCart.push(elem);
+    this.setState({cart:this.arrCart}, this.announce);
   };
 
   arrWishList=[];
@@ -92,7 +92,7 @@ announce=()=>{
       return(
       <div>
       <Top shopName={this.props.shopName}/>
-      <MainBody goods={this.state.goods} categories={categories} bodyChange={this.state.toShowBodyMode} card={this.state.card} wishList={this.state.wishList} />
+      <MainBody goods={this.state.goods} categories={categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
       </div>
       )

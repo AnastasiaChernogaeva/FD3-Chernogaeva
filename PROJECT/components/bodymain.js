@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 /*import './mobileClients.css';*/
 
 import BodyShop from './bodyshop.js';
+import CartPage from './cart.js';
+import WishListPage from './wishList.js';
+import Registration from './registration.js';
+import Login from './login.js';
 
 import {pageEvents} from './events';
 
@@ -13,7 +17,7 @@ class MainBody extends React.PureComponent {
     goods:PropTypes.array,
     categories:PropTypes.array,
     bodyChange:PropTypes.number,
-    card:PropTypes.array,
+    cart:PropTypes.array,
     wishList:PropTypes.array,
   };
 
@@ -31,7 +35,7 @@ class MainBody extends React.PureComponent {
 
   render() {
     let shop=<BodyShop goods={this.props.goods} categories={this.props.categories}/>
-    let cardPage=<CardPage card={this.props.card} />
+    let cartPage=<CartPage cart={this.props.cart} />
     let wishListPage=<WishListPage wish={this.props.wishList} />
     let registration=<Registration/>
     let login=<Login />
@@ -39,7 +43,7 @@ class MainBody extends React.PureComponent {
     return (
      <div>
          {this.props.bodyChange===1&&shop}
-         {this.props.bodyChange===2&&cardPage}
+         {this.props.bodyChange===2&&cartPage}
          {this.props.bodyChange===3&&wishListPage}
          {this.props.bodyChange===4&&registration}
          {this.props.bodyChange===5&&login}
