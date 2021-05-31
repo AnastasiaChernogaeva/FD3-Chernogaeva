@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MobileClient from './mobileClients.js';
-import NewElemForm from './newone.js';
-import EditClient from './mobileEdit.js';
+import MobileClient from './mobileClients';
+import NewElemForm from './newone';
+import EditClient from './mobileEdit';
 
 import './mobile.css';
 
@@ -37,9 +37,9 @@ class MobileCompany extends React.PureComponent {
   componentWillUnmount = () => {
     clientEvents.removeListener('EditClicked',this.edit);
     clientEvents.removeListener('DeleteClicked',this.delete);
-    clientEvents.addListener('NewElemAdd',this.add);
-    clientEvents.addListener('Cancel',this.close);
-    clientEvents.addListener('EditElemAdd',this.save);
+    clientEvents.removeListener('NewElemAdd',this.add);
+    clientEvents.removeListener('Cancel',this.close);
+    clientEvents.removeListener('EditElemAdd',this.save);
 
 
   };
@@ -161,9 +161,9 @@ delete=(id)=>{
 
     console.log("MobileCompany render");
       
- 
-
-      var clientsCodeAll=this.state.clients.map( client =>
+    console.log("this.state.clients");
+      let clientsCodeAll=this.state.clients.slice();
+       clientsCodeAll=clientsCodeAll.map( client =>
       <MobileClient key={client.id} info={client}  />
        );
  

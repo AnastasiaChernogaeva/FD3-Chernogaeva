@@ -599,11 +599,9 @@ var _mobile2 = _interopRequireDefault(_mobile);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var clients = __webpack_require__(31);
+var clients = [{ "id": 0, "f": "Иванов ", "n": "Иван", "MN": "Иванович", "balance": 200 }, { "id": 1, "f": "Сидоров .", "n": "Сидор", "MN": "Сидорович", "balance": 250 }, { "id": 2, "f": "Петров ", "n": "Петр", "MN": "Петрович", "balance": 180 }, { "id": 3, "f": "Григорьев ", "n": "Григорий", "MN": "Григорьевич", "balance": -220 }];
 
-_reactDom2.default.render(_react2.default.createElement(_mobile2.default, {
-     clients: clients
-}), document.getElementById('container'));
+_reactDom2.default.render(_react2.default.createElement(_mobile2.default, { clients: clients }), document.getElementById('container'));
 
 /***/ }),
 /* 11 */
@@ -29278,43 +29276,78 @@ var MobileCompany = function (_React$PureComponent) {
     }, _this.componentWillUnmount = function () {
       _events.clientEvents.removeListener('EditClicked', _this.edit);
       _events.clientEvents.removeListener('DeleteClicked', _this.delete);
-      _events.clientEvents.addListener('NewElemAdd', _this.add);
-      _events.clientEvents.addListener('Cancel', _this.close);
-      _events.clientEvents.addListener('EditElemAdd', _this.save);
-    }, _this.shouldPureComponentUpdate = function (newProps, newState) {
-      return newProps != _this.props || newState != _this.state;
-    }, _this.showAll = function () {
-      _this.setState({ clientsMode: 0 }, _this.change);
+      _events.clientEvents.removeListener('NewElemAdd', _this.add);
+      _events.clientEvents.removeListener('Cancel', _this.close);
+      _events.clientEvents.removeListener('EditElemAdd', _this.save);
+    }, _this.cClients = _this.state.clients, _this.showAll = function () {
+      var filteredClients = _this.cClients.slice();
+      _this.setState({ clients: filteredClients, clientsMode: 0 }, _this.change);
+      /*this.setState({clientsMode:0,}, this.change);*/
     }, _this.onlyActive = function () {
-      _this.setState({ clientsMode: 1 }, _this.change);
+      var filteredClients = void 0;
+      if (_this.state.clientsMode == 0) {
+        filteredClients = _this.state.clients.filter(function (client) {
+          return client.balance >= 0;
+        });
+      } else {
+        filteredClients = _this.cClients.filter(function (client) {
+          return client.balance >= 0;
+        });
+      }
+      _this.setState({ clients: filteredClients, clientsMode: 1 }, _this.change);
+      /*  this.setState({clientsMode:1,}, this.change);*/
     }, _this.onlyBlocked = function () {
-      _this.setState({ clientsMode: 2 }, _this.change);
+      var filteredClients = void 0;
+      if (_this.state.clientsMode == 0) {
+        filteredClients = _this.state.clients.filter(function (client) {
+          return client.balance <= 0;
+        });
+      } else {
+        filteredClients = _this.cClients.filter(function (client) {
+          return client.balance <= 0;
+        });
+      }
+      _this.setState({ clients: filteredClients, clientsMode: 2 }, _this.change);
+      /*this.setState({clientsMode:2,}, this.change);*/
     }, _this.change = function () {
       console.log("New state leads to new render");
     }, _this.newClient = function () {
       _this.setState({ viewMode: 1 }, _this.change);
     }, _this.add = function (a) {
-      _this.state.clients.push(a);
-      _this.setState({ viewMode: 0 }, _this.change);
+      /* let cClients=this.state.clients;*/
+      _this.cClients.push(a);
+      _this.setState({ viewMode: 0, clients: _this.cClients }, _this.change);
     }, _this.close = function (v) {
       _this.setState({ viewMode: v }, _this.change);
     }, _this.edit = function (id) {
       _this.setState({ viewMode: 2, forallId: id }, _this.change);
     }, _this.save = function (a) {
-      var clients = _this.state.clients.map(function (client) {
+      /* let cClients=this.state.clients;*/
+      _this.cClients = _this.cClients.map(function (client) {
         return client.id == a.id ? a : client;
       });
-      _this.setState({ clients: clients, viewMode: 0, forallId: 0 }, _this.change);
+      _this.setState({ clients: _this.cClients, viewMode: 0, forallId: 0 }, _this.change);
     }, _this.delete = function (id) {
-      var filteredClients = _this.state.clients.filter(function (elem) {
+      /* let cClients=this.state.clients;*/
+      _this.cClients = _this.cClients.filter(function (elem) {
         return elem.id != id;
       });
-      _this.setState({ clients: filteredClients, forallId: 0, viewMode: 0 }, _this.change);
+
+      _this.setState({ clients: _this.cClients, forallId: 0, viewMode: 0 }, _this.change);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   /*подписка на события */
 
+
+  /*shouldComponentUpdate = (newProps,newState) => {
+    return (newProps!=this.props)||(newState!=this.state);
+  };*/
+  /*componentWillReceiveProps = (newProps) => {
+    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
+    if(this.state.info!=newProps.info)
+    this.setState({info:newProps.info});
+  };*/
 
   /*статус клиентов(все, заблокированные, активные) */
 
@@ -29335,17 +29368,17 @@ var MobileCompany = function (_React$PureComponent) {
 
       console.log("MobileCompany render");
 
-      var clientsCodeAll = this.state.clients.map(function (client) {
+      var clientsCodeAll = this.cClients.slice();
+      clientsCodeAll = clientsCodeAll.map(function (client) {
         return _react2.default.createElement(_mobileClients2.default, { key: client.id, info: client });
       });
 
-      var clientsCodeActive = this.state.clients.map(function (client) {
-        return client.balance >= 0 ? _react2.default.createElement(_mobileClients2.default, { key: client.id, info: client }) : null;
-      });
-
-      var clientsCodeBlocked = this.state.clients.map(function (client) {
-        return client.balance <= 0 ? _react2.default.createElement(_mobileClients2.default, { key: client.id, info: client }) : null;
-      });
+      /* var clientsCodeActive=this.state.clients.map(client =>
+      client.balance>=0?(<MobileClient key={client.id} info={client}/>):null);
+      
+      var clientsCodeBlocked=this.state.clients.map(client =>
+      client.balance<=0?(<MobileClient key={client.id} info={client}/>):null);
+      */
 
       var newElem = _react2.default.createElement(_newone2.default, { clients: this.state.clients });
 
@@ -29358,10 +29391,9 @@ var MobileCompany = function (_React$PureComponent) {
         'div',
         { className: 'MobileCompany' },
         _react2.default.createElement('hr', null),
-        _react2.default.createElement('input', { type: 'button', value: '\u0412\u0441\u0435', onClick: this.showAll }),
-        _react2.default.createElement('input', { type: 'button', value: '\u0410\u043A\u0442\u0438\u0432\u043D\u044B\u0435', onClick: this.onlyActive }),
-        _react2.default.createElement('input', { type: 'button', value: '\u0417\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435', onClick: this.onlyBlocked }),
-        _react2.default.createElement('hr', null),
+        _react2.default.createElement('input', { type: 'button', id: '1', value: '\u0412\u0441\u0435', onClick: this.showAll }),
+        _react2.default.createElement('input', { type: 'button', id: '2', value: '\u0410\u043A\u0442\u0438\u0432\u043D\u044B\u0435', onClick: this.onlyActive }),
+        _react2.default.createElement('input', { type: 'button', id: '3', value: '\u0417\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435', onClick: this.onlyBlocked }),
         _react2.default.createElement('hr', null),
         _react2.default.createElement(
           'table',
@@ -29403,12 +29435,10 @@ var MobileCompany = function (_React$PureComponent) {
                 '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
               )
             ),
-            this.state.clientsMode == 0 && clientsCodeAll,
-            this.state.clientsMode == 1 && clientsCodeActive,
-            this.state.clientsMode == 2 && clientsCodeBlocked
+            clientsCodeAll
           )
         ),
-        _react2.default.createElement('input', { type: 'button', value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043B\u0438\u0435\u043D\u0442\u0430', onClick: this.newClient }),
+        _react2.default.createElement('input', { type: 'button', value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043B\u0438\u0435\u043D\u0442\u0430', id: '4', onClick: this.newClient }),
         this.state.viewMode == 1 && newElem,
         this.state.viewMode == 2 && editElem
       );
@@ -31278,12 +31308,6 @@ exports.default = EditClient;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-module.exports = [{"id":0,"f":"Иванов ","n":"Иван","MN":"Иванович","balance":200},{"id":1,"f":"Сидоров .","n":"Сидор","MN":"Сидорович","balance":250},{"id":2,"f":"Петров ","n":"Петр","MN":"Петрович","balance":180},{"id":3,"f":"Григорьев ","n":"Григорий","MN":"Григорьевич","balance":-220}]
 
 /***/ })
 /******/ ]);
