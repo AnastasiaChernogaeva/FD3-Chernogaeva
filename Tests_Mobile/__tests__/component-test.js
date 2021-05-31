@@ -2,8 +2,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
  
+/*import  '../App.js';*/
 import MobileCompany from '../components/mobile';
- 
+
+
 test('работа MobileCompany', () => {
  
   // создаём тестовую версию компонента

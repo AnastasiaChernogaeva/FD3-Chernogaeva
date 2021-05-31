@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MobileClient from './mobileClients.js';
-import NewElemForm from './newone.js';
-import EditClient from './mobileEdit.js';
+import MobileClient from './mobileClients';
+import NewElemForm from './newone';
+import EditClient from './mobileEdit';
 
 import './mobile.css';
 
@@ -17,7 +17,7 @@ class MobileCompany extends React.PureComponent {
   };
 
   state = {
-    clients:this.props.clients,
+    clients:[ {"id":0, "f":"Иванов ", "n":"Иван", "MN":"Иванович", "balance":200},  {"id":1, "f":"Сидоров .", "n":"Сидор", "MN":"Сидорович", "balance":250},      {"id":2, "f":"Петров ", "n":"Петр", "MN":"Петрович", "balance":180},      {"id":3, "f":"Григорьев ", "n":"Григорий", "MN":"Григорьевич", "balance":-220}   ],
     clientsMode:0,
     viewMode:0,
     forallId:0,
@@ -37,9 +37,9 @@ class MobileCompany extends React.PureComponent {
   componentWillUnmount = () => {
     clientEvents.removeListener('EditClicked',this.edit);
     clientEvents.removeListener('DeleteClicked',this.delete);
-    clientEvents.addListener('NewElemAdd',this.add);
-    clientEvents.addListener('Cancel',this.close);
-    clientEvents.addListener('EditElemAdd',this.save);
+    clientEvents.removeListener('NewElemAdd',this.add);
+    clientEvents.removeListener('Cancel',this.close);
+    clientEvents.removeListener('EditElemAdd',this.save);
 
 
   };
