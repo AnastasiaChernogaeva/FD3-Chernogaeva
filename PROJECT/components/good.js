@@ -23,8 +23,8 @@ class Good extends React.PureComponent {
     
   };*/
 
-  addToCard=()=>{
-    pageEvents.emit('AddToCard', this.state.good.code);
+  addToCart=()=>{
+    pageEvents.emit('AddToCart', this.state.good.code);
   };
 
   addToWishList=()=>{
@@ -33,9 +33,6 @@ class Good extends React.PureComponent {
 
   render() {
 
-      let goods=this.state.goods.map(elem=>{
-        <Good info={elem}/>
-      });
     
     return (
      <div className="good">
@@ -48,7 +45,7 @@ class Good extends React.PureComponent {
          </div>
          <div className="Buttons">
              <input type="button" onClick="this.addToWishList" value="WishList" />
-             <input type="button" onClick="this.addToCard" value="Корзина" />
+             <input type="button" onClick="this.addToCart" value="Корзина" />
          </div>
      </div>
     );
@@ -57,4 +54,4 @@ class Good extends React.PureComponent {
 
 }
 
-export default BodyShop;
+export default Good;

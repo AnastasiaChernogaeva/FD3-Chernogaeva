@@ -24,6 +24,7 @@ class Home extends React.PureComponent {
           toShowBodyMode:1, /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа */
           cart:null,
           wishList:null,
+          toShowSentOrder:0,
         };
 
   componentDidMount = () => {
@@ -31,6 +32,8 @@ class Home extends React.PureComponent {
     pageEvents.addListener('Search',this.search);
     pageEvents.addListener('AddToCart',this.addToCart);
     pageEvents.addListener('AddToWishList',this.addToWishList);
+    pageEvents.addListener('DeletefromCart',this.deletefromCart);
+    pageEvents.addListener('Order',this.order);
     };
 
     
@@ -39,7 +42,21 @@ class Home extends React.PureComponent {
     pageEvents.removeListener('Search',this.search);
     pageEvents.removeListener('AddToCart',this.addToCart);
     pageEvents.removeListener('AddToWishList',this.addToWishList);
+    pageEvents.removeListener('DeletefromCart',this.deletefromCart);
+    pageEvents.removeListener('Order',this.order);
+
+
   };
+
+  order=()=>{
+   this.setState({toShowSentOrder:1, toShowBodyMode:1,}, this.announce);
+  }
+
+  deletefromCart=(id)=>{
+    let newCart=this.state.cart;
+    newCart=newCart.filter(item=>item.code!=id);
+    this.setState({cart:newCart}, this.announce);
+  }
 
    arrCart=[];
 
@@ -87,14 +104,18 @@ announce=()=>{
           categories.push(elem.category);
          }
         });
-       
+        /*let infoAboutOrder=
+        let infoAboutOrderFunc=setTimeout(((infoAboutOrder)=>{div});*/
 
       return(
       <div>
       <Top shopName={this.props.shopName}/>
       <MainBody goods={this.state.goods} categories={categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
+      {this.state.toShowSentOrder==1 && infoAboutOrderFunc}
       </div>
+
+      
       )
     };
 
