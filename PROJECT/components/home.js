@@ -27,12 +27,15 @@ class Home extends React.PureComponent {
           toShowSentOrder:0,
         };
 
+
+
   componentDidMount = () => {
     pageEvents.addListener('ChangeBody',this.changeBody);
     pageEvents.addListener('Search',this.search);
     pageEvents.addListener('AddToCart',this.addToCart);
     pageEvents.addListener('AddToWishList',this.addToWishList);
     pageEvents.addListener('DeletefromCart',this.deletefromCart);
+    pageEvents.addListener('DeletefromWishList',this.deletefromWishList);
     pageEvents.addListener('Order',this.order);
     };
 
@@ -43,20 +46,27 @@ class Home extends React.PureComponent {
     pageEvents.removeListener('AddToCart',this.addToCart);
     pageEvents.removeListener('AddToWishList',this.addToWishList);
     pageEvents.removeListener('DeletefromCart',this.deletefromCart);
+    pageEvents.removeListener('DeletefromWishList',this.deletefromWishList);
     pageEvents.removeListener('Order',this.order);
 
 
   };
 
-  order=()=>{
-   this.setState({toShowSentOrder:1, toShowBodyMode:1,}, this.announce);
-  }
 
-  deletefromCart=(id)=>{
-    let newCart=this.state.cart;
-    newCart=newCart.filter(item=>item.code!=id);
-    this.setState({cart:newCart}, this.announce);
-  }
+  // работа  с заказом(когда он уже оформлен)
+
+  order=()=>{
+   this.setState({toShowSentOrder:1, toShowBodyMode:1, cart:null,}, this.announce);
+  };
+
+  finishOrderDemonstration=()=>{
+    this.setState({toShowSentOrder:0,}, this.announce);
+  };
+
+
+
+
+  // работа с корзиной
 
    arrCart=[];
 
@@ -67,6 +77,16 @@ class Home extends React.PureComponent {
     this.setState({cart:this.arrCart}, this.announce);
   };
 
+  deletefromCart=(id)=>{
+    let newCart=this.state.cart.slice();
+    newCart=newCart.filter(item=>item.code!=id);
+    this.setState({cart:newCart}, this.announce);
+  };
+
+
+
+
+  // работа с wishlist(ом)
   arrWishList=[];
 
   addToWishList=(id)=>{
@@ -75,26 +95,43 @@ class Home extends React.PureComponent {
     this.arrWishList.push(elem);
     this.setState({wishList:this.arrWishList}, this.announce);
   };
+  
+  deletefromWishList=(id)=>{
+    let newWishList=this.state.wishList.slice();
+    newWishList=newWishList.filter(item=>item.code!=id);
+    this.setState({wishList:newWishList}, this.announce);
+  }
 
 
+
+
+// меняет  на /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа */
 changeBody=(num)=>{
  if(num!=this.state.toShowBodyMode){
     this.setState({toShowBodyMode:num}, this.announce);
  }
 };
 
+
+
+
+//занимается поиском товаров
 search=(word)=>{
     let needfulElem=this.props.goods.slice();
     needfulElem=needfulElem.filter(item=> item.itemName==word|| item.indexOf(word)!=-1);
     this.setState( { goods:needfulElem }, this.announce );
-    
-
+  
 };
+
+
+
+
 
 announce=()=>{
     console.log("Something has changed");
 }
   
+
 
     render() {
         let categoriesCheck=this.props.goods.slice();
@@ -104,15 +141,15 @@ announce=()=>{
           categories.push(elem.category);
          }
         });
-        /*let infoAboutOrder=
-        let infoAboutOrderFunc=setTimeout(((infoAboutOrder)=>{div});*/
+        let infoAboutOrder=<div className="Oder"><p>Ваш заказ оформлен!</p><p>В ближайшее время с Вами свяжется оператор.</p></div>
+       let finishOrder=this.finishOrderDemonstration;
 
       return(
       <div>
       <Top shopName={this.props.shopName}/>
       <MainBody goods={this.state.goods} categories={categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
-      {this.state.toShowSentOrder==1 && infoAboutOrderFunc}
+      {this.state.toShowSentOrder==1 &&  setTimeout({infoAboutOrder}, 500) && setTimeout({finishOrder}, 2000)}
       </div>
 
       

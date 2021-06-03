@@ -39,7 +39,7 @@ class CartPage extends React.PureComponent {
      <div>
          <h2>Товары в корзине:</h2>
          <table className="CartGood"><tbody>{goodsInCart}</tbody></table>
-         <input type="button" onClick="this.sendNewOrder" value="Заказать" />
+         <input type="button" onClick={this.sendNewOrder} value="Заказать" />
      </div>
     );
 

@@ -47,11 +47,11 @@ class Top extends React.PureComponent {
              <input type="text" onChange={this.remember}></input><input type="button" onClick={this.search}/>
          </div>
          <div>
-             <input type="button" onClick="this.change" value="Главная" id="1"/>
-             <input type="button" onClick="this.change" value="Корзина" id="2"/>
-             <input type="button" onClick="this.change" value="WishList" id="3"/>
-             <input type="button" onClick="this.change" value="Регистрация" id="4"/>
-             <input type="button" onClick="this.change" value="Войти" id="5"/>
+             <input type="button" onClick={this.change} value="Главная" id="1"/>
+             <input type="button" onClick={this.change} value="Корзина" id="2"/>
+             <input type="button" onClick={this.change} value="WishList" id="3"/>
+             <input type="button" onClick={this.change} value="Регистрация" id="4"/>
+             <input type="button" onClick={this.change} value="Войти" id="5"/>
          </div>
      </div>
     );
