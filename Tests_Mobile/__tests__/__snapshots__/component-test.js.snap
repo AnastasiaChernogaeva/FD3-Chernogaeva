@@ -6,19 +6,19 @@ exports[`работа MobileCompany 1`] = `
 >
   <hr />
   <input
-    id="1"
+    bb="block"
     onClick={[Function]}
     type="button"
     value="Все"
   />
   <input
-    id="2"
+    bb="block"
     onClick={[Function]}
     type="button"
     value="Активные"
   />
   <input
-    id="3"
+    bb="block"
     onClick={[Function]}
     type="button"
     value="Заблокированные"
@@ -80,6 +80,7 @@ exports[`работа MobileCompany 1`] = `
           className="MobileClientFIO"
         >
           <input
+            id="5"
             onClick={[Function]}
             type="button"
             value="Редактировать"
@@ -89,6 +90,7 @@ exports[`работа MobileCompany 1`] = `
           className="MobileClientFIO"
         >
           <input
+            id="6"
             onClick={[Function]}
             type="button"
             value="Удалить"
@@ -127,6 +129,7 @@ exports[`работа MobileCompany 1`] = `
           className="MobileClientFIO"
         >
           <input
+            id="5"
             onClick={[Function]}
             type="button"
             value="Редактировать"
@@ -136,6 +139,7 @@ exports[`работа MobileCompany 1`] = `
           className="MobileClientFIO"
         >
           <input
+            id="6"
             onClick={[Function]}
             type="button"
             value="Удалить"
@@ -174,6 +178,7 @@ exports[`работа MobileCompany 1`] = `
           className="MobileClientFIO"
         >
           <input
+            id="5"
             onClick={[Function]}
             type="button"
             value="Редактировать"
@@ -183,6 +188,7 @@ exports[`работа MobileCompany 1`] = `
           className="MobileClientFIO"
         >
           <input
+            id="6"
             onClick={[Function]}
             type="button"
             value="Удалить"
@@ -221,6 +227,7 @@ exports[`работа MobileCompany 1`] = `
           className="MobileClientFIO"
         >
           <input
+            id="5"
             onClick={[Function]}
             type="button"
             value="Редактировать"
@@ -230,6 +237,7 @@ exports[`работа MobileCompany 1`] = `
           className="MobileClientFIO"
         >
           <input
+            id="6"
             onClick={[Function]}
             type="button"
             value="Удалить"

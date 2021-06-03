@@ -21,7 +21,7 @@ test('работа MobileCompany', () => {
  
  
   
-  const buttonElems = component.root.find( el => el.type =='input'); 
+  const buttonElems = component.root.find( el =>(el.props.bb=="block")); 
   // находим все кнопки
  
   buttonElems.props.forEach(elem=>{elem.props.onClick(); // по очереди нажимаем на кнопки и делаем снимк(так два раза)

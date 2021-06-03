@@ -46,8 +46,8 @@ class MobileClient extends React.PureComponent {
 
         <td className='MobileClientBalance'>{this.state.info.balance}</td>
         <td className={status}>{status}</td>
-        <td className='MobileClientFIO'><input type="button" value="Редактировать" onClick={this.edit} /></td>
-        <td className='MobileClientFIO'><input type="button" value="Удалить" onClick={this.delete} /></td>
+        <td className='MobileClientFIO'><input type="button" id="5" value="Редактировать" onClick={this.edit} /></td>
+        <td className='MobileClientFIO'><input type="button" id="6" value="Удалить" onClick={this.delete} /></td>
 
   
       </tr>

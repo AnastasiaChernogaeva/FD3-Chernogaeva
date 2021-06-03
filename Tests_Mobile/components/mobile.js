@@ -21,6 +21,7 @@ class MobileCompany extends React.PureComponent {
     clientsMode:0,
     viewMode:0,
     forallId:0,
+    kk:"block",
   };
 
 
@@ -184,9 +185,9 @@ delete=(id)=>{
     return (
       <div className='MobileCompany'>
         <hr/>
-        <input type="button" id="1" value="Все" onClick={this.showAll} />
-        <input type="button" id="2" value="Активные" onClick={this.onlyActive} />
-        <input type="button" id="3" value="Заблокированные" onClick={this.onlyBlocked} />
+        <input type="button" bb={this.state.kk} value="Все" onClick={this.showAll} />
+        <input type="button" bb={this.state.kk}  value="Активные" onClick={this.onlyActive} />
+        <input type="button" bb={this.state.kk}  value="Заблокированные" onClick={this.onlyBlocked} />
         <hr/>
         <table className='MobileCompanyClients'>
             <tbody>
