@@ -7,7 +7,7 @@
     "builddev": "cross-env NODE_ENV=development .//node_modules//.bin//webpack-dev-server --progress --colors --history-api-fallback",
     "buildprod": "cross-env NODE_ENV=production .//node_modules//.bin//webpack --progress",
     "browse": ".\\node_modules\\.bin\\lite-server",
-    "tenst": "jest"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
