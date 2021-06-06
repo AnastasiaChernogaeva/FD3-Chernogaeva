@@ -185,9 +185,9 @@ delete=(id)=>{
     return (
       <div className='MobileCompany'>
         <hr/>
-        <input type="button" bb={this.state.kk} value="Все" onClick={this.showAll} />
-        <input type="button" bb={this.state.kk}  value="Активные" onClick={this.onlyActive} />
-        <input type="button" bb={this.state.kk}  value="Заблокированные" onClick={this.onlyBlocked} />
+        <input type="button" bb1={this.state.kk} value="Все" onClick={this.showAll} />
+        <input type="button" bb2={this.state.kk}  value="Активные" onClick={this.onlyActive} />
+        <input type="button" bb3={this.state.kk}  value="Заблокированные" onClick={this.onlyBlocked} />
         <hr/>
         <table className='MobileCompanyClients'>
             <tbody>
@@ -207,7 +207,7 @@ delete=(id)=>{
           </tbody>
         </table>
 
-        <input type="button" value="Добавить клиента" id="4" onClick={this.newClient} />
+        <input type="button" value="Добавить клиента" id="4"  bb4={this.state.kk} onClick={this.newClient} />
  
            {this.state.viewMode==1 && newElem}
            {this.state.viewMode==2 && editElem}

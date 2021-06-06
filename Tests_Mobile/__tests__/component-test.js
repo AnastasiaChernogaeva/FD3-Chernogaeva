@@ -21,10 +21,15 @@ test('работа MobileCompany', () => {
  
  
   
-  const buttonElems = component.root.find( el =>(el.props.bb=="block")); 
+  const buttonEleme1 = component.root.find( el =>(el.props.bb1=="block")); 
+  const buttonEleme2 = component.root.find( el =>(el.props.bb2=="block")); 
+  const buttonEleme3 = component.root.find( el =>(el.props.bb3=="block")); 
+  const buttonEleme4 = component.root.find( el =>(el.props.bb4=="block")); 
+
+  const buttonElems=[buttonEleme1, buttonEleme2, buttonEleme3, buttonEleme4];
   // находим все кнопки
  
-  buttonElems.props.forEach(elem=>{elem.props.onClick(); // по очереди нажимаем на кнопки и делаем снимк(так два раза)
+  buttonElems.forEach(elem=>{elem.props.onClick(); // по очереди нажимаем на кнопки и делаем снимк(так два раза)
   
   // получаем уже изменённый снэпшот
   componentTree=component.toJSON();
