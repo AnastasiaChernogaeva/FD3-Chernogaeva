@@ -2,7 +2,7 @@
 class Scales {
 
     static productsCount:number=0;
-    products:Array<object>;
+    products:Array<Product>;
     scale:number;
     name:string;
 
@@ -11,7 +11,7 @@ class Scales {
      
     }
 
-    add(_newProduct:{scale:number,name:string,}):void {
+    add(_newProduct:Product):void {
         this.products.push(_newProduct);
     };
 
@@ -59,7 +59,7 @@ class Apple extends Product {
     constructor(_species:string) {
         // конструктор класса-потомка должен вызвать 
         // конструктор класса-предка
-        super(_name:string, _scale:number); 
+        super(); 
         this.species=_species;
     }
 
@@ -76,7 +76,7 @@ class Tomato extends Product {
     constructor(_species:string) {
         // конструктор класса-потомка должен вызвать 
         // конструктор класса-предка
-        super(_name:string, _scale:number); 
+        super(); 
         this.species=_species;
     }
 

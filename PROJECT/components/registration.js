@@ -32,6 +32,7 @@ class Registration extends React.PureComponent {
 
     return (
      <div>
+       <input
      </div>
     );
 
