@@ -11,13 +11,13 @@ class Scales {
 
     getSumScale():number {
         let sumScale:number=0;
-        this.products.forEach((elem:IProduct):void=>{sumScale+=elem.scale});
+        this.products.forEach((elem:IProduct):void=>{sumScale+=elem.getScale()});
         return sumScale;
     }
 
     getNameList ():Array<string> {
         let nameList;
-        this.products.forEach((elem:IProduct):void=>{nameList.push(elem.name)});
+        this.products.forEach((elem:IProduct):void=>{nameList.push(elem.getName())});
         return nameList;
     }
     
@@ -28,8 +28,8 @@ class Scales {
 interface IProduct{
     scale:number;
     name:string;
-    getScale(_scale:number):number;
-    getName(_name:string):string ;
+    getScale():number;
+    getName():string ;
 }
 
 class Apple implements IProduct {
@@ -46,13 +46,13 @@ class Apple implements IProduct {
         this.name="Яблоки";
         this.scale=scale;
     }
-    getScale(_scale:number):number {
-        console.log(` ${this.name}: вес-${_scale} грамм `);
+    getScale():number {
+        console.log(` ${this.name}: вес-${this.scale} грамм `);
     return  this.scale;
     }
 
-     getName(_name:string):string {
-        console.log(` Название продукта ${_name} `);
+     getName():string {
+        console.log(` Название продукта ${this.name} `);
         return  this.name;
     }
 
@@ -77,13 +77,13 @@ class Tomato implements IProduct  {
         this.scale=scale;
     }
 
-    getScale(_scale:number):number {
-        console.log(` Помидоры: вес-${_scale} грамм `);
+    getScale():number {
+        console.log(` ${this.name}: вес-${this.scale} грамм `);
     return  this.scale;
     }
 
-     getName(_name:string):string {
-        console.log(` Название продукта ${_name} `);
+     getName():string {
+        console.log(` Название продукта ${this.name} `);
         return  this.name;
     }
 
@@ -94,33 +94,33 @@ class Tomato implements IProduct  {
 
 let Apple1:Apple=new Apple(60,"фрукт");
 Apple1.show();
-Apple1.getName("Яблоко");
-Apple1.getScale(60);
+Apple1.getName();
+Apple1.getScale();
 
 let Apple2:Apple=new Apple(140,"фрукт");
 Apple2.show();
-Apple2.getName("Яблоко");
-Apple2.getScale(140);
+Apple2.getName();
+Apple2.getScale();
 
 let Apple3:Apple=new Apple(140,"фрукт");
 Apple3.show();
-Apple3.getName("Яблоко");
-Apple3.getScale(140);
+Apple3.getName();
+Apple3.getScale();
 
 let Tomato1:Tomato=new Tomato(60,"овощь");
 Tomato1.show();
-Tomato1.getName("Помидор");
-Tomato1.getScale(60);
+Tomato1.getName();
+Tomato1.getScale();
 
 let Tomato2:Tomato=new Tomato(120,"овощь");
 Tomato2.show();
-Tomato2.getName("Помидор");
-Tomato2.getScale(120);
+Tomato2.getName();
+Tomato2.getScale();
 
 let Tomato3:Tomato=new Tomato(180,"овощь");
 Tomato3.show();
-Tomato3.getName("Помидор");
-Tomato3.getScale(180);
+Tomato3.getName();
+Tomato3.getScale();
 
 
 
