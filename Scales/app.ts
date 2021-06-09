@@ -1,15 +1,9 @@
 
 class Scales {
 
-    static productsCount:number=0;
+  
     products:Array<Product>=[];
-   /* scale:number;
-    name:string;
-
-    constructor() {
-        Scales.productsCount++;
-     
-    }*/
+  
 
     add(_newProduct:Product):void {
         this.products.push(_newProduct);
@@ -17,13 +11,13 @@ class Scales {
 
     getSumScale():number {
         let sumScale:number=0;
-        this.products.forEach(elem=>{sumScale+=elem.scale});
+        this.products.forEach((elem:Product):void=>{sumScale+=elem.scale});
         return sumScale;
     }
 
     getNameList ():Array<string> {
         let nameList;
-        this.products.forEach(elem=>{nameList.push(elem.name)});
+        this.products.forEach((elem:Product):void=>{nameList.push(elem.name)});
         return nameList;
     }
     
