@@ -1,56 +1,114 @@
+function uniFactory<objtype>(classRef: { new (): objtype; }): objtype {
+
+    return new classRef();
+ 
+ }
+
+
+
+
 interface IStorageEngine {
   
-    addItem(item:StorageEngine):void;  
-    getItem(index:number):object ;
+    addItem(item:Product):void;  
+    getItem(index:number):Product ;
     getCount():number;
 }
 
 
-class StorageEngine implements IStorageEngine{
-    products:StorageEngine[];
-    addItem(_newProduct:StorageEngine):void {
-        this.products=[];
+class StorageEngineLocalStorage {
+    LocalStoragekey:string="products";
+    products:Product[]=[];
+    addItem(_newProduct:Product):void {
+        if( localStorage.products!=undefined){
+            let a:any[]=JSON.parse(localStorage.products);
+            a.push(_newProduct);
+            localStorage.products=JSON.stringify(a);
+        }
+        else{
+            let a=[];
+            a.push(_newProduct);
+         }
+
+        
+    };
+
+    getItem(i:number):Product {
+        let a:any[]=JSON.parse(localStorage.products);
+      //let item=this.products[index];
+        return new Product(a[i].name, a[i].scale);
+    }
+
+    getCount():number{
+        let counts=this.products.length;
+        return counts;
+    };
+}
+
+class ScalesLS<StorageEngineLocalStorage> {
+
+  
+
+    storageEngine:StorageEngineLocalStorage=uniFactory(StorageEngineLocalStorage);
+
+    getSumScale():number {
+    
+        let sumScale:number=0;
+        for(let i=0; i<this.storageEngine.getCount();i++){
+            sumScale+=this.storageEngine.getItem(i).getScale();
+            
+        }
+        return sumScale;
+    }
+
+   /* getNameList ():Array<string> {
+        let nameList;
+        this.storageEngine.forEach((elem:Product):void=>{nameList.push(elem.name)});
+        return nameList;
+    }*/
+    
+    
+}
+
+
+class StorageEngineArray {
+    products:Product[]=[];
+    addItem(_newProduct:Product):void {
         this.products.push(_newProduct);
     };
 
-    getItem(index:number):object {
-        let item=this.products.find(( ind:number):object=>ind===index);
+    getItem(index:number):Product {
+      let item=this.products[index];
         return item;
     }
 
     getCount():number{
-        let sumScale:number=0;
-        this.products.forEach((elem:StorageEngine):void=>{sumScale+=elem.scale});
-        return sumScale;
+        let counts=this.products.length;
+        return counts;
     };
 }
 
-class Scales<StorageEngine> {
+class ScalesAr<StorageEngineArray> {
 
   
-    products:StorageEngine[];
-  
-/*
-    addItem(_newProduct:StorageEngine):void {
-        this.products=[];
-        this.products.push(_newProduct);
-    };
 
-    getItem():number {
+    storageEngine:StorageEngineArray=uniFactory(StorageEngineArray);
+
+    getSumScale():number {
+    
         let sumScale:number=0;
-        this.products.forEach((elem:StorageEngine):void=>{sumScale+=elem.scale});
+        for(let i=0; i<this.storageEngine.getCount();i++){
+            sumScale+=this.storageEngine.getItem(i).getScale();
+            
+        }
         return sumScale;
     }
 
-    getCount():number{
-    return ;
-    };*/
-
-    getNameList ():Array<string> {
+   /* getNameList ():Array<string> {
         let nameList;
-        this.products.forEach((elem:StorageEngine):void=>{nameList.push(elem.name)});
+        this.storageEngine.forEach((elem:Product):void=>{nameList.push(elem.name)});
         return nameList;
-    }
+    }*/
+    
     
 }
 
@@ -67,13 +125,13 @@ class Product {
 
     }
 
-    getScale(_scale:number):number {
-        console.log(` ${this.name}: вес-${_scale} грамм `);
+    getScale():number {
+        console.log(` ${this.name}: вес-${this.scale} грамм `);
     return  this.scale;
     }
 
-     getName(_name:string):string {
-        console.log(` Название продукта ${_name} `);
+     getName():string {
+        console.log(` Название продукта ${this.name} `);
         return  this.name;
     }
     
@@ -81,33 +139,42 @@ class Product {
 
 
 let Product1:Product=new Product(1000,"молоко");
-Product1.getName("молоко");
-Product1.getScale(1000);
+Product1.getName();
+Product1.getScale();
 
 let Product2:Product=new Product(1000,"кефир");
-Product2.getName("кефир");
-Product2.getScale(1000);
+Product2.getName();
+Product2.getScale();
 
 let Product3:Product=new Product(100,"сыр");
-Product3.getName("сыр");
-Product3.getScale(1000);
+Product3.getName();
+Product3.getScale();
 
 let Product4:Product=new Product(300,"хлеб");
-Product4.getName("хлеб");
-Product4.getScale(1000);
+Product4.getName();
+Product4.getScale();
 
 
 
 
 
-let Scales1=new Scales<Product>();
+let Scales1=new ScalesAr<StorageEngineArray>();
 
 Scales1.addItem(Product1);
 Scales1.addItem(Product2);
 Scales1.addItem(Product3);
 Scales1.addItem(Product4);
-Scales1.getNameList();
+//Scales1.getNameList();
 Scales1.getItem();
 
 
+
+let Scales2=new ScalesLS<StorageEngineLocalStorage>();
+
+Scales1.addItem(Product1);
+Scales1.addItem(Product2);
+Scales1.addItem(Product3);
+Scales1.addItem(Product4);
+//Scales1.getNameList();
+Scales1.getItem();
 
