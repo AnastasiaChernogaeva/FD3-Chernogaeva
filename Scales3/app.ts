@@ -60,11 +60,13 @@ class ScalesLS<StorageEngineLocalStorage> {
         return sumScale;
     }
 
-   /* getNameList ():Array<string> {
-        let nameList;
-        this.storageEngine.forEach((elem:Product):void=>{nameList.push(elem.name)});
+    getNameList ():Array<string> {
+        let nameList:any[]=[];
+        for(let i=0; i<this.storageEngine.getCount();i++ ){
+            nameList.push(this.storageEngine[i].getName());
+        }
         return nameList;
-    }*/
+    }
     
     
 }
@@ -103,11 +105,13 @@ class ScalesAr<StorageEngineArray> {
         return sumScale;
     }
 
-   /* getNameList ():Array<string> {
-        let nameList;
-        this.storageEngine.forEach((elem:Product):void=>{nameList.push(elem.name)});
+    getNameList ():Array<string> {
+        let nameList:any[]=[];
+        for(let i=0; i<this.storageEngine.getCount();i++ ){
+            nameList.push(this.storageEngine[i].getName());
+        }
         return nameList;
-    }*/
+    }
     
     
 }
@@ -164,7 +168,7 @@ Scales1.addItem(Product1);
 Scales1.addItem(Product2);
 Scales1.addItem(Product3);
 Scales1.addItem(Product4);
-//Scales1.getNameList();
+Scales1.getNameList();
 Scales1.getItem();
 
 
@@ -175,6 +179,6 @@ Scales1.addItem(Product1);
 Scales1.addItem(Product2);
 Scales1.addItem(Product3);
 Scales1.addItem(Product4);
-//Scales1.getNameList();
+Scales1.getNameList();
 Scales1.getItem();
 
