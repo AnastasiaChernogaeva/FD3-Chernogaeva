@@ -1,8 +1,8 @@
 
-class Scales <StorageEngine implements IStorageEngine>{
+class Scales <StorageEngine extends IStorageEngine>{
   
 
-    storageEngine:StorageEngine=uniFactory(StorageEngine),
+    storageEngine:StorageEngine;
 
     getSumScale():number {
     
@@ -12,7 +12,7 @@ class Scales <StorageEngine implements IStorageEngine>{
             
         }
         return sumScale;
-    },
+    }
 
     getNameList():Array<string>{
         let nameList:any[]=[];
@@ -20,7 +20,7 @@ class Scales <StorageEngine implements IStorageEngine>{
             nameList.push(this.storageEngine[i].getName());
         }
         return nameList;
-    },
+    }
 
   
     

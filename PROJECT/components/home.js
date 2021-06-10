@@ -9,9 +9,7 @@ import Footer from './footer.js';
 
 import {pageEvents} from './events';
 
-var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-var updatePassword;
-var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
+
 
 class Home extends React.PureComponent {
 
@@ -27,6 +25,7 @@ class Home extends React.PureComponent {
           cart:null,
           wishList:null,
           toShowSentOrder:0,
+          passwordCanBeChanged:false,
         };
 
 
@@ -44,7 +43,6 @@ class Home extends React.PureComponent {
     pageEvents.addListener('restore', this.restorePassword);
 
     };
-    newPersonWantsToBeAddedToOurBigFamily
 
     
   componentWillUnmount = () => {
@@ -67,20 +65,209 @@ class Home extends React.PureComponent {
   // работа  с заказом(когда он уже оформлен)
 
 restorePassword=(objAddInfoPerson)=>{
-    
+
+  var add=objAddInfoPerson;
+var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+var updatePassword;
+var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
+  $.ajax(
+    {
+        url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+        data : { f : 'READ', n : stringName },
+        success : this.readReady(objAddInfoPerson),
+    }
+);
+}
+
+readReady(objAddInfoPerson, callresult) {
+if ( callresult.error!=undefined )
+    console.log(callresult.error);
+else if ( callresult.result!="" ) {
+    var info=JSON.parse(callresult.result);
+    let pet=info.find(elem=>elem.pet===objAddInfoPerson.pet);
+    let color=info.find(elem=>elem.color===objAddInfoPerson.color);
+    let year=info.find(elem=>elem.year===objAddInfoPerson.year);
+    this.equalAddInformationAboutPersonToRestorePassword(pet,color,year);
+}
 };
+equalAddInformationAboutPersonToRestorePassword(pet,color,year){
+  if(pet||color||year!=undefined||null){
+    this.setState({passwordCanBeChanged:true,}, this.announce);
+  }
+  else{
+    this.setState({passwordCanBeChanged:false,}, this.announce);
+  }
+  pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged)
+}
 
 
 registrate=(personInfo)=>{
-  updatePassword=Math.random();
-    $.ajax( {
-            url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
-            data : { f : 'LOCKGET', n : stringName, p : updatePassword },
-            success : this.lockGetReady, error : errorHandler
-        }
-    );
+
+var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+var updatePassword;
+var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
+$.ajax( {
+  url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+  data : { f : 'UPDATE', n : stringName, v : JSON.stringify(personInfo), p : updatePassword },
+  success :this.announce,
+}
+);
   
 };
+/*
+workWithAjax=(personInfo)=>{
+  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  var updatePassword;
+  var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
+
+  function readAjax(){
+    $.ajax( {
+                url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                data : { f : 'READ', n : stringName },
+                success : HH
+    })
+  }
+
+
+function readAjax(){
+  $.ajax( {
+              url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+              data : { f : 'READ', n : stringName },
+              success : HH
+  })
+}
+
+
+function storeInfo() {
+  updatePassword=Math.random();
+  $.ajax( {
+                url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+                success : lockGetReady, error : erRor
+  });
+}
+
+
+function erRor(){
+
+}
+
+function lockGetReady(callresult) {
+if ( callresult.error!=undefined )
+alert(callresult.error);
+else {
+                                                playersStorage;
+                                                $.ajax( {
+                                                               url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                                                               data : { f : 'UPDATE', n : stringName, v : JSON.stringify(playersStorage), p : updatePassword },
+                                                               error : erRor
+                                                });     
+}                                         
+}
+
+
+
+
+
+
+
+
+function restoreInfo() {
+  $.ajax({
+               url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+               data : { f : 'READ', n : stringName },
+               success : readReady
+  });
+}
+
+
+var name;
+
+function readReady(callresult) {
+                                                    playersStorage=JSON.parse(callresult.result);
+                                                    var keys=Object.keys(playersStorage);
+console.log(keys);
+
+                                                    var visibleTableRecords=document.getElementById('tableDiv');
+
+                                                   if(keys.length>30){var optionalNum=keys.length-30; keys.length=30; keys=keys.slice(optionalNum-1)}
+
+                                                    for (var i=0; i<keys.length; i++){
+                                                                  name=keys[i];
+                                                                  var previous;
+                                                        if(name in playersStorage){
+                                                                                            var newRow=document.createElement('tr');
+                                                                                            if(previous!=undefined){
+                                                                                            visibleTableRecords.insertBefore(newRow, previous);
+                                                                                            }
+                                                                                            else{
+                                                                                            visibleTableRecords.appendChild(newRow);
+                                                                                            }
+
+
+                                                                                            var nRowTdName=document.createElement('td'); 
+                                                                                            var nRowTdPercent=document.createElement('td'); 
+
+                                                                                             nRowTdName.innerHTML=name;    
+                                                                                             
+                                                                                             if(playersStorage[name].games===playersStorage[name].victory){
+                                                                                                                             nRowTdPercent.innerHTML='100%';    
+                                                                                              }                              
+                                                                                              else{
+                                                                                                                             var num=(playersStorage[name].victory*100)/playersStorage[name].games;
+                                                                                                                             nRowTdPercent.innerHTML=Math.round(num)*1+'%';    
+
+                                                                                                      }
+
+                                                                                             
+
+                                                                                             newRow.appendChild(nRowTdName);
+                                                                                             newRow.appendChild(nRowTdPercent);
+                                                                                             previous=newRow;
+
+                                                                           }
+
+                                                    }                                             
+
+};
+
+
+
+
+
+
+
+
+
+function tableRecPage(){
+         restoreInfo();
+}
+
+
+window.onbeforeunload=bUnload;
+
+
+
+function bUnload(EO) {
+      EO=EO||window.event;
+     if ( condition!=4 )
+                 EO.returnValue='При уходе со страницы игра будет не сохранена';
+
+};
+
+
+
+}*/
+/*
+storeInfo() {
+  updatePassword=Math.random();
+  $.ajax( {
+          url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+          data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+          success : this.lockGetReady, error : this.errorHandler
+      }
+  );
+}
 lockGetReady=(callresult)=>{
   if ( callresult.error!=undefined )
       alert(callresult.error);
@@ -100,12 +287,12 @@ lockGetReady=(callresult)=>{
   }
 }
 
-function updateReady(callresult) {
+ updateReady(callresult) {
   if ( callresult.error!=undefined )
       alert(callresult.error);
 }
 
-function restoreInfo() {
+ restoreInfo() {
   $.ajax(
       {
           url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
@@ -115,7 +302,7 @@ function restoreInfo() {
   );
 }
 
-function readReady(callresult) {
+ readReady(callresult) {
   if ( callresult.error!=undefined )
       alert(callresult.error);
   else if ( callresult.result!="" ) {
@@ -125,11 +312,13 @@ function readReady(callresult) {
   }
 }
 
-function errorHandler(jqXHR,statusStr,errorStr) {
+ errorHandler(jqXHR,statusStr,errorStr) {
   alert(statusStr+' '+errorStr);
 }
 
 restoreInfo();
+*/
+
 
 enter=(personName)=>{
 

@@ -29,10 +29,8 @@ class Registration extends React.PureComponent {
 
     allPersonalInfo:{},
 
-    errorage:"",
     errorpet:"",
     errorcolor:"",
-    age:"",
     pet:"",
     color:"",
 
@@ -64,10 +62,8 @@ cleanTheForm=()=>{
   Mail:"",
   Password:"",
   allPersonalInfo:{},
-  errorage:"",
   errorpet:"",
   errorcolor:"",
-  age:"",
   pet:"",
   color:"",
 }, this.announce);
@@ -148,15 +144,7 @@ cleanTheForm=()=>{
     }
   };
 
-  age=(EO)=>{
-    let textError="Не оставлять поле пустым в ваших интересах!"
-    if(EO.target.value!=this.state.age){
-      this.setState({errorage:textError,}, this.announce);
-    }
-    else{
-      this.setState({errorage:"",  age:EO.target.value,}, this.announce);
-    }
-  };
+
 
 
 
@@ -164,7 +152,7 @@ cleanTheForm=()=>{
   let bornTime=new Date();
   let registerYear=bornTime.getFullYear();
   let personInfo=this.state.Mail+"_"+this.state.Password;
-  let objMainInfo={name:this.state.Name, lastName:this.state.LastName, password:this.state.Password, mail:this.state.Mail, year:registerYear, age:this.state.age, color:this.state.color, pet:this.state.pet,}
+  let objMainInfo={name:this.state.Name, lastName:this.state.LastName, password:this.state.Password, mail:this.state.Mail, year:registerYear, color:this.state.color, pet:this.state.pet,}
   this.setState({allPersonalInfo:{[personInfo]:objMainInfo,},}, this.newEvent);
   }
 
@@ -193,7 +181,7 @@ cleanTheForm=()=>{
 
       <label for="pet">Введите имя первого домашнего питомца</label><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/><span className="error">{this.state.errorpet}</span>
       <label for="color">Введите ваш любимый цвет</label><input type="text" id="color" onChange={this.color} value={this.state.color}/><span className="error">{this.state.errorcolor}</span>
-      <label for="age">Введите ваш возраст</label><input type="text" id="age" onChange={this.age} value={this.state.age}/><span className="error">{this.state.errorage}</span>
+      
 
        
        <input type="button" value="Зарегистрироваться" onClick={this.highTimetoAddNewPerson}/>

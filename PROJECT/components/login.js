@@ -23,14 +23,16 @@ class Login extends React.PureComponent {
     errorPassword:"",
     forgottenPassword:false,
 
-    errorage:"",
+  
     errorpet:"",
     errorcolor:"",
-    age:"",
     pet:"",
     color:"",
     erroryear:"",
     year:"",
+
+
+    passwordCanBeChanged:"",
 
   };
 
@@ -41,6 +43,22 @@ class Login extends React.PureComponent {
     }
     
   };*/
+
+  componentDidMount = () => {
+    pageEvents.addListener('PasswordChanged',this.passwordChanged);
+
+    };
+
+    
+  componentWillUnmount = () => {
+    pageEvents.removeListener('PasswordChanged',this.passwordChanged);
+
+  };
+
+  passwordChanged=(mean)=>{
+    this.setState({passwordCanBeChanged:mean,}, this.announce);
+  }
+
 
   changeMail=(EO)=>{
     let textError="Введите почту!"
@@ -63,6 +81,18 @@ class Login extends React.PureComponent {
   };
 
   
+  toequalPasswords=(EO)=>{
+    let textError="Пароли не совпадают!"
+    if(EO.target.value!=this.state.Password){
+      this.setState({errorPasswordCheck:textError,}, this.announce);
+    }
+    else{
+      this.setState({errorPasswordCheck:"",}, this.announce);
+    }
+  };
+
+
+  
 pet=(EO)=>{
   let textError="Не оставлять поле пустым в ваших интересах!"
   if(EO.target.value!=this.state.pet){
@@ -83,15 +113,7 @@ color=(EO)=>{
   }
 };
 
-age=(EO)=>{
-  let textError="Не оставлять поле пустым в ваших интересах!"
-  if(EO.target.value!=this.state.age){
-    this.setState({errorage:textError,}, this.announce);
-  }
-  else{
-    this.setState({errorage:"",  age:EO.target.value,}, this.announce);
-  }
-};
+
 
 year=(EO)=>{
   let textError="Не оставлять поле пустым в ваших интересах!"
@@ -117,7 +139,7 @@ year=(EO)=>{
   }
 
   restore=()=>{
-    let additionalPersonalInfo={pet:this.state.pet, year:this.state.year, color:this.state.color, age:this.state.age,};
+    let additionalPersonalInfo={pet:this.state.pet, year:this.state.year, color:this.state.color,};
     pageEvents.emit('restore', additionalPersonalInfo);
     this.cleanTheForm();
   }
@@ -140,15 +162,20 @@ cleanTheForm=()=>{
   Mail:"",
   Password:"",
   allPersonalInfo:{},
-  errorage:"",
   errorpet:"",
   errorcolor:"",
-  age:"",
   pet:"",
   color:"",
+  passwordCanBeChanged:"",
 }, this.announce);
 };
 
+
+change=()=>{
+  let num=4;//страница регистрация отмечена под номером 4 в home.js
+  pageEvents.emit('ChangeBody',num);
+
+}
 
 
   render() {
@@ -156,8 +183,7 @@ cleanTheForm=()=>{
     let question=<div>
       <label for="pet">Введите имя первого домашнего питомца</label><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/><span className="error">{this.state.errorpet}</span>
       <label for="color">Введите ваш любимый цвет</label><input type="text" id="color" onChange={this.color} value={this.state.color}/><span className="error">{this.state.errorcolor}</span>
-      <label for="age">Введите ваш возраст</label><input type="text" id="age" onChange={this.age} value={this.state.age}/><span className="error">{this.state.errorage}</span>
-      <label for="year">Введите год регистрации на нашем сайте</label><input type="text" id="year" onChange={this.year} value={this.state.year}/><span className="error">{this.state.errorage}</span>
+      <label for="year">Введите год регистрации на нашем сайте</label><input type="text" id="year" onChange={this.year} value={this.state.year}/><span className="error">{this.state.erroryear}</span>
       <input type="button" value="Восстановить пароль" onClick={this.restore}/>
     </div>
 
@@ -171,13 +197,27 @@ cleanTheForm=()=>{
       <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
     </div>
 
+    let youCanNotChangeYourPassword=<p>К сожалению, Вы не можете изменить пароль. Такого пользователя не сущствует. Вы можете пройти регистрацию <a href="" onClick={this.change}>здесь</a></p>
+    
+    let youCanChangeYourPassword=<div>
+       <label for="Password">Введите новый пароль</label>
+       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
+       <label for="RePassword">Подтвердите пароль</label>
+       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password} /><span className="error">{this.state.errorPasswordCheck}</span>
+    </div>
+
+
     return (
 
 
      <div>
        
-       {forgottenPassword==="false"&& enter}   
-       {forgottenPassword==="true"&& question}
+       {this.state.forgottenPassword==="false"&& enter}   
+       {this.state.forgottenPassword==="true"&& question}
+
+       {this.state.passwordCanBeChanged==="true"&& youCanChangeYourPassword}
+       {this.state.passwordCanBeChanged==="false"&& youCanNotChangeYourPassword}
+       
      </div>
     );
 
