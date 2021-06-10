@@ -20,7 +20,9 @@ class Scales <StorageEngine implements IStorageEngine>{
             nameList.push(this.storageEngine[i].getName());
         }
         return nameList;
-    }
+    },
+
+  
     
     
 }
