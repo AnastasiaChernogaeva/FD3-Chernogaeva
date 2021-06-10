@@ -9,7 +9,9 @@ import Footer from './footer.js';
 
 import {pageEvents} from './events';
 
-
+var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+var updatePassword;
+var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
 
 class Home extends React.PureComponent {
 
@@ -64,15 +66,70 @@ class Home extends React.PureComponent {
 
   // работа  с заказом(когда он уже оформлен)
 
-  restorePassword=(objAddInfoPerson)=>{
+restorePassword=(objAddInfoPerson)=>{
     
-  };
+};
 
 
 registrate=(personInfo)=>{
-  
+  updatePassword=Math.random();
+    $.ajax( {
+            url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+            data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+            success : this.lockGetReady, error : errorHandler
+        }
+    );
   
 };
+lockGetReady=(callresult)=>{
+  if ( callresult.error!=undefined )
+      alert(callresult.error);
+  else {
+      // нам всё равно, что было прочитано -
+      // всё равно перезаписываем
+      var info={
+          name : document.getElementById('IName').value,
+          age : document.getElementById('IAge').value
+      };
+      $.ajax( {
+              url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+              data : { f : 'UPDATE', n : stringName, v : JSON.stringify(info), p : updatePassword },
+              success : updateReady, error : errorHandler
+          }
+      );
+  }
+}
+
+function updateReady(callresult) {
+  if ( callresult.error!=undefined )
+      alert(callresult.error);
+}
+
+function restoreInfo() {
+  $.ajax(
+      {
+          url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+          data : { f : 'READ', n : stringName },
+          success : readReady, error : errorHandler
+      }
+  );
+}
+
+function readReady(callresult) {
+  if ( callresult.error!=undefined )
+      alert(callresult.error);
+  else if ( callresult.result!="" ) {
+      var info=JSON.parse(callresult.result);
+      document.getElementById('IName').value=info.name;
+      document.getElementById('IAge').value=info.age;
+  }
+}
+
+function errorHandler(jqXHR,statusStr,errorStr) {
+  alert(statusStr+' '+errorStr);
+}
+
+restoreInfo();
 
 enter=(personName)=>{
 
