@@ -26,8 +26,8 @@ class Scales {
 
 
 interface IProduct{
-    scale:number;
-    name:string;
+  /*  scale:number;
+    name:string;*/
     getScale():number;
     getName():string ;
 }
