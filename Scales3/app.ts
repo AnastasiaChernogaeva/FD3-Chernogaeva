@@ -89,7 +89,10 @@ class StorageEngineArray {
     };
 }
 
-class ScalesAr<StorageEngineArray> {
+class Scales<StorageEngine implements IStorageEngine>{
+    
+}
+class Scales<StorageEngineArray implements IStorageEngine> {
 
   
 
