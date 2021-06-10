@@ -37,7 +37,12 @@ class Home extends React.PureComponent {
     pageEvents.addListener('DeletefromCart',this.deletefromCart);
     pageEvents.addListener('DeletefromWishList',this.deletefromWishList);
     pageEvents.addListener('Order',this.order);
+    pageEvents.addListener('newPersonWantsToBeAddedToOurBigFamily',this.registrate);
+    pageEvents.addListener('enter',this.enter);
+    pageEvents.addListener('restore', this.restorePassword);
+
     };
+    newPersonWantsToBeAddedToOurBigFamily
 
     
   componentWillUnmount = () => {
@@ -48,12 +53,30 @@ class Home extends React.PureComponent {
     pageEvents.removeListener('DeletefromCart',this.deletefromCart);
     pageEvents.removeListener('DeletefromWishList',this.deletefromWishList);
     pageEvents.removeListener('Order',this.order);
+    pageEvents.removeListener('newPersonWantsToBeAddedToOurBigFamily',this.registrate);
+    pageEvents.removeListener('enter',this.enter);
+    pageEvents.removeListener('restore', this.restorePassword);
+
 
 
   };
 
 
   // работа  с заказом(когда он уже оформлен)
+
+  restorePassword=(objAddInfoPerson)=>{
+    
+  };
+
+
+registrate=(personInfo)=>{
+  
+  
+};
+
+enter=(personName)=>{
+
+}
 
   order=()=>{
    this.setState({toShowSentOrder:1, toShowBodyMode:1, cart:null,}, this.announce);
