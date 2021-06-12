@@ -122,7 +122,7 @@ var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
 }*/
 
 let sp = new URLSearchParams();
-sp.append('f', 'UPDATE');
+sp.append('f', 'READ');
 sp.append('n', stringName);
 sp.append('v', JSON.stringify(personInfo));
 sp.append('p', updatePassword);
@@ -342,8 +342,32 @@ restoreInfo();
 
 
 enter=(personName)=>{
+  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
+  /** $.ajax(
+    {
+        url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+        data : { f : 'READ', n : stringName },
+        success : this.readReady(objAddInfoPerson),
+    }*/
+  
+  let sp = new URLSearchParams();
+  sp.append('f', 'READ');
+  sp.append('n', stringName);
+  
+  
+  fetch(ajaxHandlerScript, { method: 'post', body: sp })
+      .then( response => response.json() )
+      .then( data => this.checkPasswordsInOurSystem(data,personName))
+      .catch( error => { console.error(error); } ); 
+};
 
-}
+checkPasswordsInOurSystem=(serverData,userData)=>{
+  
+};
+
+
+
 
   order=()=>{
    this.setState({toShowSentOrder:1, toShowBodyMode:1, cart:null,}, this.announce);
