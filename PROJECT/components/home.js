@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import combinedReducer from '../redux/reducers.js';
+
+
 
 import Top from './top.js';
 import MainBody from './bodymain.js';
@@ -26,6 +32,8 @@ class Home extends React.PureComponent {
           wishList:null,
           toShowSentOrder:0,
           passwordCanBeChanged:false,
+          accountName:"",
+          accountLastName:"",
         };
 
 
@@ -342,14 +350,14 @@ restoreInfo();
 
 
 enter=(personName)=>{
-  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+ /* var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
   var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
-  /** $.ajax(
+   $.ajax(
     {
         url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
         data : { f : 'READ', n : stringName },
         success : this.readReady(objAddInfoPerson),
-    }*/
+    }
   
   let sp = new URLSearchParams();
   sp.append('f', 'READ');
@@ -359,13 +367,26 @@ enter=(personName)=>{
   fetch(ajaxHandlerScript, { method: 'post', body: sp })
       .then( response => response.json() )
       .then( data => this.checkPasswordsInOurSystem(data,personName))
-      .catch( error => { console.error(error); } ); 
-};
+      .catch( error => { console.error(error); } ); */
 
+      let store=createStore(combinedReducer, applyMiddleware(thunk));
+      for(personName in store ){
+        let personWeNeed=store[personName];
+        let name=personWeNeed.name;
+        let lastName=personWeNeed.lastName;
+        this.setState({accountName:name,accountLastName:lastName, }, this.announce);
+      }
+
+};
+/*
 checkPasswordsInOurSystem=(serverData,userData)=>{
-  
+  for(userData in serverData ){
+    let personWeNeed=serverData[userData];
+    let name=personWeNeed.name;
+    let lastName=personWeNeed.lastName;
+  }
 };
-
+*/
 
 
 
@@ -459,13 +480,14 @@ announce=()=>{
        let finishOrder=this.finishOrderDemonstration;
 
       return(
+      <Provider>
       <div>
       <Top shopName={this.props.shopName}/>
       <MainBody goods={this.state.goods} categories={categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
       {this.state.toShowSentOrder==1 &&  setTimeout({infoAboutOrder}, 500) && setTimeout({finishOrder}, 2000)}
       </div>
-
+      </Provider>
       
       )
     };

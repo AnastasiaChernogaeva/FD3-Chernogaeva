@@ -2,7 +2,7 @@
     "name": "basisreact",
     "version": "1.0.0",
     "description": "стартовый проект на React",
-    "main": "App.js",
+    "main": "Main.js",
     "scripts": {
       "builddev": "cross-env NODE_ENV=development .//node_modules//.bin//webpack-dev-server --progress --colors --history-api-fallback",
       "buildprod": "cross-env NODE_ENV=production .//node_modules//.bin//webpack --progress",
