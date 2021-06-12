@@ -17,7 +17,7 @@ class Scales <StorageEngine extends IStorageEngine>{
     getNameList():Array<string>{
         let nameList:any[]=[];
         for(let i=0; i<this.storageEngine.getCount();i++ ){
-            nameList.push(this.storageEngine[i].getName());
+            nameList.push(this.storageEngine.getItem(i).getName());
         }
         return nameList;
     }
