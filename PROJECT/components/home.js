@@ -66,17 +66,24 @@ class Home extends React.PureComponent {
 
 restorePassword=(objAddInfoPerson)=>{
 
-  var add=objAddInfoPerson;
 var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-var updatePassword;
 var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
-  $.ajax(
+ /** $.ajax(
     {
         url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
         data : { f : 'READ', n : stringName },
         success : this.readReady(objAddInfoPerson),
     }
-);
+*/
+  let sp = new URLSearchParams();
+    sp.append('f', 'READ');
+    sp.append('n', stringName);
+
+    fetch(ajaxHandlerScript, { method: 'post', body: sp })
+        .then( response => response.json() )
+        .then( data => {this.readReady(objAddInfoPerson, data) } )
+        .catch( error => { console.error(error); } ); 
+
 }
 
 readReady(objAddInfoPerson, callresult) {
@@ -90,6 +97,8 @@ else if ( callresult.result!="" ) {
     this.equalAddInformationAboutPersonToRestorePassword(pet,color,year);
 }
 };
+
+
 equalAddInformationAboutPersonToRestorePassword(pet,color,year){
   if(pet||color||year!=undefined||null){
     this.setState({passwordCanBeChanged:true,}, this.announce);
@@ -106,12 +115,24 @@ registrate=(personInfo)=>{
 var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
 var updatePassword;
 var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
-$.ajax( {
+/**$.ajax( {
   url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
   data : { f : 'UPDATE', n : stringName, v : JSON.stringify(personInfo), p : updatePassword },
   success :this.announce,
-}
-);
+}*/
+
+let sp = new URLSearchParams();
+sp.append('f', 'UPDATE');
+sp.append('n', stringName);
+sp.append('v', JSON.stringify(personInfo));
+sp.append('p', updatePassword);
+
+
+fetch(ajaxHandlerScript, { method: 'post', body: sp })
+    .then( response => response.json() )
+    .then( () => this.announce())
+    .catch( error => { console.error(error); } ); 
+
   
 };
 /*
