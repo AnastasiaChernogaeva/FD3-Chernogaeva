@@ -22,9 +22,15 @@ class Footer extends React.PureComponent {
     }
     
   };*/
-  change=(num)=>{
-    pageEvents.emit('ChangeBody',num);
+  change5=()=>{
+    pageEvents.emit('ChangeBody',5);
  };
+ change2=()=>{
+  pageEvents.emit('ChangeBody',2);
+};
+change3=()=>{
+  pageEvents.emit('ChangeBody',3);
+};
 
   render() {
 
@@ -35,9 +41,9 @@ class Footer extends React.PureComponent {
          <li className="MainLi">
            <ul>
             <li><b>Моя страница</b></li>
-             <li  onClick={this.change(5) } >Моя страница</li>
-             <li  onClick={this.change(2)} >Корзина</li>
-             <li  onClick={this.change(3)} >WishList</li>
+             <li  onClick={this.change5 } >Моя страница</li>
+             <li  onClick={this.change2} >Корзина</li>
+             <li  onClick={this.change3} >WishList</li>
              </ul>
          </li>
          <li className="MainLi">

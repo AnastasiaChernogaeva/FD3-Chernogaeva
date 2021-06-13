@@ -29,8 +29,8 @@ class WishListPage extends React.PureComponent {
     pageEvents.emit('Order',);
   }
 
-  changeBody=(number)=>{
-    pageEvents.emit('ChangeBody',number);
+  changeBody1=()=>{
+    pageEvents.emit('ChangeBody',1);
 
   }
   
@@ -53,7 +53,7 @@ if(this.state.wish!=null){
       return (
         <div>
             <h2>У вас нет товаров в WishList</h2>
-            <input type="button" onClick={this.changeBody(1)} value="Перейти на главную" />
+            <input type="button" onClick={this.changeBody1} value="Перейти на главную" />
         </div>
        );
     }

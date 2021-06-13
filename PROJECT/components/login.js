@@ -179,7 +179,7 @@ change=()=>{
 
 
   render() {
-
+/*
     let question=<div>
       <label htmlFor="pet">Введите имя первого домашнего питомца</label><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/><span className="error">{this.state.errorpet}</span>
       <label htmlFor="color">Введите ваш любимый цвет</label><br/><input type="text" id="color" onChange={this.color} value={this.state.color}/><span className="error">{this.state.errorcolor}</span>
@@ -187,7 +187,7 @@ change=()=>{
       <input type="button" value="Восстановить пароль" onClick={this.restore}/>
     </div>
 
-    let enter=(<div>
+    let enter=<div>
       <h1>Вход в аккаунт</h1>
        <label htmlFor="MailId">Электронная почта</label>
        <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span>
@@ -195,7 +195,7 @@ change=()=>{
        <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
       <input type="button" value="Войти" onClick={this.enter}/>
       <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
-    </div>);
+    </div>;
 
     let youCanNotChangeYourPassword=<p>К сожалению, Вы не можете изменить пароль. Такого пользователя не сущствует. Вы можете пройти регистрацию <a href="" onClick={this.change}>здесь</a></p>
     
@@ -204,9 +204,47 @@ change=()=>{
        <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
        <label htmlFor="RePassword">Подтвердите пароль</label>
        <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password} /><span className="error">{this.state.errorPasswordCheck}</span>
-    </div>
+    </div>*/
 
+    if(this.state.forgottenPassword==="false"){
+      
+    return (  <div>
+        <h1>Вход в аккаунт</h1>
+       <label htmlFor="MailId">Электронная почта</label>
+       <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span>
+       <label htmlFor="Password">Пароль</label>
+       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
+      <input type="button" value="Войти" onClick={this.enter}/>
+      <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
+    
+    </div>);
+    }
+    else if (this.state.forgottenPassword==="true"){
+      switch(this.state.passwordCanBeChanged){
+        case "false":
+          return(<p>К сожалению, Вы не можете изменить пароль. Такого пользователя не сущствует. Вы можете пройти регистрацию <a href="" onClick={this.change}>здесь</a></p>);
+        case "":
+          return "";
+        case "true":
+          return (<div>
+            <label htmlFor="Password">Введите новый пароль</label>
+            <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
+            <label htmlFor="RePassword">Подтвердите пароль</label>
+            <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password} /><span className="error">{this.state.errorPasswordCheck}</span>
+         </div>);
 
+      }
+      return(<div>
+        <label htmlFor="pet">Введите имя первого домашнего питомца</label><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/><span className="error">{this.state.errorpet}</span>
+        <label htmlFor="color">Введите ваш любимый цвет</label><br/><input type="text" id="color" onChange={this.color} value={this.state.color}/><span className="error">{this.state.errorcolor}</span>
+        <label htmlFor="year">Введите год регистрации на нашем сайте</label><input type="text" id="year" onChange={this.year} value={this.state.year}/><span className="error">{this.state.erroryear}</span>
+        <input type="button" value="Восстановить пароль" onClick={this.restore}/>
+      </div>);
+    }
+
+  
+
+/*
     return (
 
 
@@ -220,7 +258,7 @@ change=()=>{
        
      </div>
     );
-
+*/
   }
 
 }
