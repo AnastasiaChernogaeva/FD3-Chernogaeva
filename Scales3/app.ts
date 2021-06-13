@@ -22,24 +22,13 @@ class Scales <StorageEngine extends IStorageEngine>{
         return nameList;
     }
 
-    // products:Product[]=[];
+
     addItem(_newProduct:Product):void {
         this.storageEngine.addItem(_newProduct);
-        // this.products.push(_newProduct);
+      
     };
 
-    /*
-    getItem(index:number):Product {
-      let item=this.products[index];
-        return item;
-    }
 
-    getCount():number{
-        let counts=this.products.length;
-        return counts;
-    };
-  
-    */
     
 }
 
