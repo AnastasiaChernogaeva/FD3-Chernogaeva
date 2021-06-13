@@ -28,7 +28,7 @@ class BodyShop extends React.PureComponent {
   };*/
 
   render() {
-      let categoryList=this.props.categories.map(elem,i=>{
+      let categoryList=this.props.categories.map((elem ,i)=>{
         <li id={i} onClick={this.chooseCategory}>{elem}</li>
       });
 

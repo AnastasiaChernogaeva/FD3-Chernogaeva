@@ -28,9 +28,26 @@ class Top extends React.PureComponent {
  search=()=>{
     pageEvents.emit('Search', this.state.searchWord);
  };
- change=(EO)=>{
-    pageEvents.emit('ChangeBody',EO.target.id);
+ change1=()=>{
+    pageEvents.emit('ChangeBody',1);
  };
+
+ change2=()=>{
+  pageEvents.emit('ChangeBody',2);
+};
+
+change3=()=>{
+  pageEvents.emit('ChangeBody',3);
+};
+
+change4=()=>{
+  pageEvents.emit('ChangeBody',4);
+};
+
+change5=()=>{
+  pageEvents.emit('ChangeBody',5);
+};
+
 
  announce=()=>{
     console.log("Something has changed");
@@ -47,11 +64,11 @@ class Top extends React.PureComponent {
              <input type="text" onChange={this.remember}></input><input type="button" onClick={this.search}/>
          </div>
          <div>
-             <input type="button" onClick={this.change} value="Главная" id="1"/>
-             <input type="button" onClick={this.change} value="Корзина" id="2"/>
-             <input type="button" onClick={this.change} value="WishList" id="3"/>
-             <input type="button" onClick={this.change} value="Регистрация" id="4"/>
-             <input type="button" onClick={this.change} value="Войти" id="5"/>
+             <input type="button" onClick={this.change1} value="Главная" />
+             <input type="button" onClick={this.change2} value="Корзина" />
+             <input type="button" onClick={this.change3} value="WishList" />
+             <input type="button" onClick={this.change4} value="Регистрация" />
+             <input type="button" onClick={this.change5} value="Войти" />
          </div>
      </div>
     );

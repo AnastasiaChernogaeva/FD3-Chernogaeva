@@ -29,8 +29,14 @@ class WishListPage extends React.PureComponent {
     pageEvents.emit('Order',);
   }
 
+  changeBody=(number)=>{
+    pageEvents.emit('ChangeBody',number);
+
+  }
+  
   render() {
 
+if(this.state.wish!=null){
       let goodsInWisht=this.state.wish.map(elem=>{
         <WishGood info={elem}/>
       });
@@ -42,7 +48,15 @@ class WishListPage extends React.PureComponent {
          <input type="button" onClick={this.sendNewOrder} value="Заказать" />
      </div>
     );
-
+    }
+    else{
+      return (
+        <div>
+            <h2>У вас нет товаров в WishList</h2>
+            <input type="button" onClick={this.changeBody(1)} value="Перейти на главную" />
+        </div>
+       );
+    }
   }
 
 }

@@ -8,7 +8,7 @@ import {pageEvents} from './events';
 class Good extends React.PureComponent {
 
   static propTypes = {
-    info:PropTypes.array,
+    info:PropTypes.object,
   };
 
   state = {

@@ -29,8 +29,13 @@ class CartPage extends React.PureComponent {
     pageEvents.emit('Order',);
   }
 
-  render() {
+  changeBody=(number)=>{
+    pageEvents.emit('ChangeBody',number);
 
+  }
+
+  render() {
+     if(this.state.cart!=null){
       let goodsInCart=this.state.cart.map(elem=>{
         <CartGood info={elem}/>
       });
@@ -42,7 +47,15 @@ class CartPage extends React.PureComponent {
          <input type="button" onClick={this.sendNewOrder} value="Заказать" />
      </div>
     );
-
+    }
+    else{
+      return (
+        <div>
+            <h2>У вас нет товаров в корзине</h2>
+            <input type="button" onClick={this.changeBody(1)} value="Перейти на главную" />
+        </div>
+       );
+    }
   }
 
 }

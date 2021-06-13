@@ -167,20 +167,20 @@ cleanTheForm=()=>{
     return (
      <div>
        <h1>Регистрация</h1>
-       <label for="NameId">Имя</label>
+       <label htmlFor="NameId">Имя</label>
        <input type="text" id="NameId" onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span>
-       <label for="LastNameId">Фамилия</label>
+       <label htmlFor="LastNameId">Фамилия</label>
        <input type="text" id="LastNameId" onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span>
-       <label for="MailId">Электронная почта</label>
+       <label htmlFor="MailId">Электронная почта</label>
        <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span>
-       <label for="Password">Пароль</label>
+       <label htmlFor="Password">Пароль</label>
        <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
-       <label for="RePassword">Подтвердите пароль</label>
+       <label htmlFor="RePassword">Подтвердите пароль</label>
        <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password} /><span className="error">{this.state.errorPasswordCheck}</span>
        <h3>Дополнительная информация для восстановления доступа к аккаунту</h3>
 
-      <label for="pet">Введите имя первого домашнего питомца</label><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/><span className="error">{this.state.errorpet}</span>
-      <label for="color">Введите ваш любимый цвет</label><input type="text" id="color" onChange={this.color} value={this.state.color}/><span className="error">{this.state.errorcolor}</span>
+      <label htmlFor="pet">Введите имя первого домашнего питомца</label><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/><span className="error">{this.state.errorpet}</span>
+      <label htmlFor="color">Введите ваш любимый цвет</label><input type="text" id="color" onChange={this.color} value={this.state.color}/><span className="error">{this.state.errorcolor}</span>
       
 
        

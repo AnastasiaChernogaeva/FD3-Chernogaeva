@@ -38,7 +38,7 @@ class MainBody extends React.PureComponent {
     let cartPage=<CartPage cart={this.props.cart} />
     let wishListPage=<WishListPage wish={this.props.wishList} />
     let registration=<Registration/>
-    let login=<Login />
+    let login=<Login/>
 
     return (
      <div>
