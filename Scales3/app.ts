@@ -15,18 +15,20 @@ class Scales <StorageEngine extends IStorageEngine>{
     }
 
     getNameList():Array<string>{
-        let nameList:any[]=[];
+        let nameList:Array<string>=[];
         for(let i=0; i<this.storageEngine.getCount();i++ ){
             nameList.push(this.storageEngine.getItem(i).getName());
         }
         return nameList;
     }
 
-    products:Product[]=[];
+    // products:Product[]=[];
     addItem(_newProduct:Product):void {
-        this.products.push(_newProduct);
+        this.storageEngine.addItem(_newProduct);
+        // this.products.push(_newProduct);
     };
 
+    /*
     getItem(index:number):Product {
       let item=this.products[index];
         return item;
@@ -37,7 +39,7 @@ class Scales <StorageEngine extends IStorageEngine>{
         return counts;
     };
   
-    
+    */
     
 }
 
@@ -168,7 +170,7 @@ class Product {
  Scales1.addItem(Product3);
  Scales1.addItem(Product4);
  Scales1.getNameList();
- Scales1.getItem(3);
+
  
 
 
@@ -181,4 +183,3 @@ class Product {
  Scales1.addItem(Product3);
  Scales1.addItem(Product4);
  Scales1.getNameList();
- Scales1.getItem(2);
