@@ -1,8 +1,8 @@
 
 class Scales <StorageEngine extends IStorageEngine>{
     storageEngine:StorageEngine;
-    constructor(storageEngine:StorageEngine){
-        this.storageEngine=storageEngine;
+    constructor(_storageEngine:StorageEngine){
+        this.storageEngine=_storageEngine;
     };
 
 
@@ -88,7 +88,7 @@ class StorageEngineLocalStorage {
             let a=[];
             a.push(_newProduct);
             localStorage.products=JSON.stringify(a);
-            // localStorage.setItem(this.LocalStoragekey, localStorage.products);   
+        //   localStorage.setItem(this.LocalStoragekey, localStorage.products);   
          }
 
         
@@ -157,9 +157,9 @@ let StorageEngineArray1=new StorageEngineArray;
 
 
  
- let Scales1=new Scales(StorageEngineArray1);
-  Scales1.constructor(StorageEngineArray1);
-
+//  let Scales1=new Scales(StorageEngineArray1);
+//   Scales1.constructor(StorageEngineArray1);
+let Scales1=new Scales<StorageEngineArray>(StorageEngineArray1);
 
  Scales1.addItem(Product1);
  Scales1.addItem(Product2);
@@ -173,8 +173,9 @@ let StorageEngineArray1=new StorageEngineArray;
 
 
 
- let Scales2=new Scales(StorageEngineLocalStorage1);
- Scales2.constructor(StorageEngineLocalStorage1);
+//  let Scales2=new Scales(StorageEngineLocalStorage1);
+let Scales2=new Scales<StorageEngineLocalStorage>(StorageEngineLocalStorage1);
+//  Scales2.constructor(StorageEngineLocalStorage1);
  Scales2.addItem(Product1);
  Scales2.addItem(Product2);
  Scales2.addItem(Product3);
