@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 /*import './mobileClients.css';*/
 
-import Good from './good';
+import Good from './good.js';
 
 import {pageEvents} from './events';
 
@@ -28,13 +28,15 @@ class BodyShop extends React.PureComponent {
   };*/
 
   render() {
-      let categoryList=this.props.categories.map((elem ,i)=>{
-        <li id={i} onClick={this.chooseCategory}>{elem}</li>
-      });
+       let categoryList=this.props.categories.slice();
+       categoryList=categoryList.map((elem ,i)=>
+        <li id={i} onClick={this.chooseCategory} key={i}>{elem}</li>
+      );
 
-      let goods=this.state.goods.map(elem=>{
-        <Good info={elem}/>
-      });
+      let goods=this.state.goods.slice();
+      goods=goods.map(elem=>
+        <Good info={elem} key={elem.code} className='Good'></Good>
+      );
     
     return (
      <div>

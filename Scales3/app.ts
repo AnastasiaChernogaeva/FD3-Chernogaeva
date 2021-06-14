@@ -1,6 +1,7 @@
 
 class Scales <StorageEngine extends IStorageEngine>{
-    storageEngine:StorageEngine;
+     storageEngine:StorageEngine;
+
     constructor(_storageEngine:StorageEngine){
         this.storageEngine=_storageEngine;
     };
@@ -14,7 +15,7 @@ class Scales <StorageEngine extends IStorageEngine>{
             
         }
         return sumScale;
-    }
+    };
 
     getNameList():Array<string>{
         let nameList:Array<string>=[];
@@ -22,12 +23,10 @@ class Scales <StorageEngine extends IStorageEngine>{
             nameList.push(this.storageEngine.getItem(i).getName());
         }
         return nameList;
-    }
-
-
+    };
     addItem(_newProduct:Product):void {
         this.storageEngine.addItem(_newProduct);
-      
+      console.log(`Продукт ${_newProduct} добавлен`);
     };
 
 
@@ -72,11 +71,10 @@ class StorageEngineArray {
         return counts;
     };
 }
-
+/*
 
 class StorageEngineLocalStorage {
     LocalStoragekey:string="products";
-    products:Product[]=[];
     addItem(_newProduct:Product):void {
         if( localStorage.products!=undefined){
             let a:any[]=JSON.parse(localStorage.products);
@@ -107,10 +105,11 @@ class StorageEngineLocalStorage {
     }
 
     getCount():number{
-        let counts=localStorage.products.length;
+        // let counts=localStorage.products.length;
+         let counts=localStorage.products.length;
         return counts;
     };
-}
+}*/
 
 
 
@@ -158,7 +157,7 @@ class Product {
  
  
  
-let StorageEngineLocalStorage1=new StorageEngineLocalStorage;
+// let StorageEngineLocalStorage1=new StorageEngineLocalStorage;
 let StorageEngineArray1=new StorageEngineArray;
 
 
@@ -177,7 +176,7 @@ let Scales1=new Scales<StorageEngineArray>(StorageEngineArray1);
 
 
 
-
+/*
 
 //  let Scales2=new Scales(StorageEngineLocalStorage1);
 let Scales2=new Scales<StorageEngineLocalStorage>(StorageEngineLocalStorage1);
@@ -187,3 +186,4 @@ let Scales2=new Scales<StorageEngineLocalStorage>(StorageEngineLocalStorage1);
  Scales2.addItem(Product3);
  Scales2.addItem(Product4);
  Scales2.getNameList();
+*/
