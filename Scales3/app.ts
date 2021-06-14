@@ -71,7 +71,7 @@ class StorageEngineArray {
         return counts;
     };
 }
-/*
+
 
 class StorageEngineLocalStorage {
     LocalStoragekey:string="products";
@@ -109,7 +109,7 @@ class StorageEngineLocalStorage {
          let counts=localStorage.products.length;
         return counts;
     };
-}*/
+}
 
 
 
@@ -157,7 +157,7 @@ class Product {
  
  
  
-// let StorageEngineLocalStorage1=new StorageEngineLocalStorage;
+ let StorageEngineLocalStorage1=new StorageEngineLocalStorage;
 let StorageEngineArray1=new StorageEngineArray;
 
 
@@ -176,7 +176,7 @@ let Scales1=new Scales<StorageEngineArray>(StorageEngineArray1);
 
 
 
-/*
+
 
 //  let Scales2=new Scales(StorageEngineLocalStorage1);
 let Scales2=new Scales<StorageEngineLocalStorage>(StorageEngineLocalStorage1);
@@ -186,4 +186,3 @@ let Scales2=new Scales<StorageEngineLocalStorage>(StorageEngineLocalStorage1);
  Scales2.addItem(Product3);
  Scales2.addItem(Product4);
  Scales2.getNameList();
-*/

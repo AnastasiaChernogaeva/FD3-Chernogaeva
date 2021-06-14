@@ -1,7 +1,8 @@
 var Scales = /** @class */ (function () {
-    function Scales() {
-        this.storageEngine = null;
+    function Scales(_storageEngine) {
+        this.storageEngine = _storageEngine;
     }
+    ;
     Scales.prototype.getSumScale = function () {
         var sumScale = 0;
         for (var i = 0; i < this.storageEngine.getCount(); i++) {
@@ -9,6 +10,7 @@ var Scales = /** @class */ (function () {
         }
         return sumScale;
     };
+    ;
     Scales.prototype.getNameList = function () {
         var nameList = [];
         for (var i = 0; i < this.storageEngine.getCount(); i++) {
@@ -16,8 +18,10 @@ var Scales = /** @class */ (function () {
         }
         return nameList;
     };
+    ;
     Scales.prototype.addItem = function (_newProduct) {
         this.storageEngine.addItem(_newProduct);
+        console.log("\u041F\u0440\u043E\u0434\u0443\u043A\u0442 " + _newProduct + " \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D");
     };
     ;
     return Scales;
@@ -44,27 +48,36 @@ var StorageEngineArray = /** @class */ (function () {
 var StorageEngineLocalStorage = /** @class */ (function () {
     function StorageEngineLocalStorage() {
         this.LocalStoragekey = "products";
-        this.products = [];
     }
     StorageEngineLocalStorage.prototype.addItem = function (_newProduct) {
         if (localStorage.products != undefined) {
             var a = JSON.parse(localStorage.products);
             a.push(_newProduct);
             localStorage.products = JSON.stringify(a);
+            // localStorage.setItem(this.LocalStoragekey, localStorage.products);    
         }
         else {
             var a = [];
             a.push(_newProduct);
+            localStorage.products = JSON.stringify(a);
+            //   localStorage.setItem(this.LocalStoragekey, localStorage.products);   
         }
     };
     ;
     StorageEngineLocalStorage.prototype.getItem = function (i) {
-        var a = JSON.parse(localStorage.products);
-        //let item=this.products[index];
-        return new Product(a[i].name, a[i].scale);
+        if (localStorage.products != undefined) {
+            var a = JSON.parse(localStorage.products);
+            //let item=this.products[index];
+            return new Product(a[i].name, a[i].scale);
+        }
+        else {
+            var text = "Не существует такого элемента";
+            console.log(text);
+        }
     };
     StorageEngineLocalStorage.prototype.getCount = function () {
-        var counts = this.products.length;
+        // let counts=localStorage.products.length;
+        var counts = localStorage.products.length;
         return counts;
     };
     ;
@@ -97,16 +110,22 @@ Product3.getScale();
 var Product4 = new Product(300, "хлеб");
 Product4.getName();
 Product4.getScale();
-var Scales1 = new Scales();
+var StorageEngineLocalStorage1 = new StorageEngineLocalStorage;
+var StorageEngineArray1 = new StorageEngineArray;
+//  let Scales1=new Scales(StorageEngineArray1);
+//   Scales1.constructor(StorageEngineArray1);
+var Scales1 = new Scales(StorageEngineArray1);
 Scales1.addItem(Product1);
 Scales1.addItem(Product2);
 Scales1.addItem(Product3);
 Scales1.addItem(Product4);
 Scales1.getNameList();
-var Scales2 = new Scales();
-Scales1.addItem(Product1);
-Scales1.addItem(Product2);
-Scales1.addItem(Product3);
-Scales1.addItem(Product4);
-Scales1.getNameList();
+//  let Scales2=new Scales(StorageEngineLocalStorage1);
+var Scales2 = new Scales(StorageEngineLocalStorage1);
+//  Scales2.constructor(StorageEngineLocalStorage1);
+Scales2.addItem(Product1);
+Scales2.addItem(Product2);
+Scales2.addItem(Product3);
+Scales2.addItem(Product4);
+Scales2.getNameList();
 //# sourceMappingURL=app.js.map
