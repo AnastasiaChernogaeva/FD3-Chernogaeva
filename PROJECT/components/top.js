@@ -60,8 +60,8 @@ change5=()=>{
     return (
      <div className="Top">
          <div>
-             <span>{this.props.shopName}</span>
-             <input type="text" onChange={this.remember}></input><input type="button" onClick={this.search}/>
+             <span className="ShopName">{this.props.shopName}</span>
+             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input></div><input type="button" onClick={this.search}/>
          </div>
          <div>
              <input type="button" onClick={this.change1} value="Главная" />

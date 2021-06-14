@@ -36,7 +36,8 @@ class CartPage extends React.PureComponent {
 
   render() {
      if(this.state.cart!=null){
-      let goodsInCart=this.state.cart.map(elem=>{
+      let goodsInCart=this.state.cart.slice();
+      goodsInCart=goodsInCart.map(elem=>{
         <CartGood info={elem}/>
       });
     

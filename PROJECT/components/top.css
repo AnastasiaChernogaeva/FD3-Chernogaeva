@@ -1,3 +1,19 @@
 div.Top{
     width:100%;
 }
+.ShopName {
+ font-size: xxx-large;
+ font-family:cursive;
+ font-style: italic;
+}
+.SearchEngine{
+        border: none;
+        margin-left: 5vw;
+        width: 60vw;
+        height: 3vw;
+    
+}
+.Text{
+    border-radius: 15%;
+    border-color:azure;
+}

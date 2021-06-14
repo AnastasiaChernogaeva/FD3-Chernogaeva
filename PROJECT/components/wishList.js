@@ -37,7 +37,8 @@ class WishListPage extends React.PureComponent {
   render() {
 
 if(this.state.wish!=null){
-      let goodsInWisht=this.state.wish.map(elem=>{
+      let goodsInWisht=this.state.wish.slice();
+      goodsInWisht=goodsInWisht.map(elem=>{
         <WishGood info={elem}/>
       });
     

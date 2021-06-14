@@ -41,11 +41,11 @@ class Good extends React.PureComponent {
          </div>
          <div className="Cost">
             <p>{this.state.good.itemCost}</p> 
-            <p> Осталось: {this.state.good.itemCost}</p> 
+            <p> Осталось: {this.state.good.itemAmount}</p> 
          </div>
          <div className="Buttons">
-             <input type="button" onClick="this.addToWishList" value="WishList" />
-             <input type="button" onClick="this.addToCart" value="Корзина" />
+             <input type="button" onClick={this.addToWishList} value="WishList" />
+             <input type="button" onClick={this.addToCart} value="Корзина" />
          </div>
      </div>
     );
