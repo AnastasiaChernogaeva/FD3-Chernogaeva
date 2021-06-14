@@ -9,7 +9,7 @@ class Scales <StorageEngine extends IStorageEngine>{
     getSumScale():number {
     
         let sumScale:number=0;
-        for(let i=0; i<this.storageEngine.getCount();i++){
+        for(let i:number=0; i<this.storageEngine.getCount();i++){
             sumScale+=this.storageEngine.getItem(i).getScale();
             
         }
@@ -18,7 +18,7 @@ class Scales <StorageEngine extends IStorageEngine>{
 
     getNameList():Array<string>{
         let nameList:Array<string>=[];
-        for(let i=0; i<this.storageEngine.getCount();i++ ){
+        for(let i:number=0; i<this.storageEngine.getCount();i++ ){
             nameList.push(this.storageEngine.getItem(i).getName());
         }
         return nameList;
@@ -95,13 +95,19 @@ class StorageEngineLocalStorage {
     };
 
     getItem(i:number):Product {
+        if( localStorage.products!=undefined){
         let a:any[]=JSON.parse(localStorage.products);
       //let item=this.products[index];
         return new Product(a[i].name, a[i].scale);
+        }
+        else{
+            let text="Не существует такого элемента";
+            console.log(text);
+        }
     }
 
     getCount():number{
-        let counts=this.products.length;
+        let counts=localStorage.products.length;
         return counts;
     };
 }
