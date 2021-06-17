@@ -94,9 +94,10 @@ class StorageEngineLocalStorage {
 
     getItem(i:number):Product {
         if( localStorage.products!=undefined){
+            // console.log(JSON.parse(localStorage.products));
         let a:any[]=JSON.parse(localStorage.products);
       //let item=this.products[index];
-        return new Product(a[i].name, a[i].scale);
+        return new Product( a[i].scale,a[i].name);
         }
         else{
             let text="Не существует такого элемента";
@@ -106,7 +107,8 @@ class StorageEngineLocalStorage {
 
     getCount():number{
         // let counts=localStorage.products.length;
-         let counts=localStorage.products.length;
+        let a:any[]=JSON.parse(localStorage.products);
+        let counts=a.length;
         return counts;
     };
 }
@@ -186,3 +188,6 @@ let Scales2=new Scales<StorageEngineLocalStorage>(StorageEngineLocalStorage1);
  Scales2.addItem(Product3);
  Scales2.addItem(Product4);
  Scales2.getNameList();
+
+
+ Scales2.getSumScale();

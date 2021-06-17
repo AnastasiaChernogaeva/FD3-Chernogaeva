@@ -66,9 +66,10 @@ var StorageEngineLocalStorage = /** @class */ (function () {
     ;
     StorageEngineLocalStorage.prototype.getItem = function (i) {
         if (localStorage.products != undefined) {
+            // console.log(JSON.parse(localStorage.products));
             var a = JSON.parse(localStorage.products);
             //let item=this.products[index];
-            return new Product(a[i].name, a[i].scale);
+            return new Product(a[i].scale, a[i].name);
         }
         else {
             var text = "Не существует такого элемента";
@@ -77,7 +78,8 @@ var StorageEngineLocalStorage = /** @class */ (function () {
     };
     StorageEngineLocalStorage.prototype.getCount = function () {
         // let counts=localStorage.products.length;
-        var counts = localStorage.products.length;
+        var a = JSON.parse(localStorage.products);
+        var counts = a.length;
         return counts;
     };
     ;
@@ -128,4 +130,5 @@ Scales2.addItem(Product2);
 Scales2.addItem(Product3);
 Scales2.addItem(Product4);
 Scales2.getNameList();
+Scales2.getSumScale();
 //# sourceMappingURL=app.js.map
