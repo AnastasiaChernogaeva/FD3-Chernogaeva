@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isoFetch from 'isomorphic-fetch';
+
 
 // import { Provider } from 'react-redux';
 // import { createStore, applyMiddleware } from 'redux';
@@ -34,11 +36,18 @@ class Home extends React.PureComponent {
           passwordCanBeChanged:false,
           accountName:"",
           accountLastName:"",
+
+
+          SPAState:{},
         };
 
 
 
   componentDidMount = () => {
+
+    window.onhashchange=this.switchToStateFromURLHash;
+
+
     pageEvents.addListener('ChangeBody',this.changeBody);
     pageEvents.addListener('Search',this.search);
     pageEvents.addListener('AddToCart',this.addToCart);
@@ -70,6 +79,67 @@ class Home extends React.PureComponent {
   };
 
 
+  switchToStateFromURLHash=()=>{
+    var URLHash=window.location.hash;
+    var stateStr=URLHash.substr(1);
+
+    if ( stateStr!="" ) { // если закладка непустая, читаем из неё состояние и отображаем
+      var parts=stateStr.split("_")
+      this.setState({SPAState:{ pagename: this.state.toShowBodyMode, }}, this.announce); // первая часть закладки - номер страницы
+      if ( this.state.SPAState.pagename==1 )
+        this.state.SPAState.pagenumnavigation=parts[0]/*navigation[0]*/; // для фото нужна ещё вторая часть закладки - номер фото
+    }
+    else
+    this.setState({SPAState:{pagename:'Main'}}, this.announce); // первая часть закладки - номер страницы
+
+    console.log('Новое состояние приложения:');
+    console.log(this.state.SPAState);
+  };
+
+   switchToState=(newState)=>{
+    // устанавливаем закладку УРЛа
+    // нужно для правильной работы кнопок навигации браузера
+    // (т.к. записывается новый элемент истории просмотренных страниц)
+    // и для возможности передачи УРЛа другим лицам
+    var stateStr=newState.pagename;
+    if ( newState.pagename==1)
+      stateStr+="_"+newState.pagenumnavigation;
+    location.hash=stateStr;
+
+    // АВТОМАТИЧЕСКИ вызовется switchToStateFromURLHash()
+    // т.к. закладка УРЛа изменилась (ЕСЛИ она действительно изменилась)
+    this.switchToStateFromURLHash();
+  }
+
+
+ // меняет  на /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа */
+changeBody=(num)=>{
+  if(num!=this.state.toShowBodyMode){
+     this.setState({toShowBodyMode:num}, this.switchState);
+  }
+ };
+
+ switchState=()=>{
+  switch ( this.state.toShowBodyMode) {
+    case 1:
+      this.switchToState( { pagename:'Main' } );
+      break;
+    case 2:
+      this.switchToState( { pagename:'Cart' } );
+      break;
+    case 3:
+      this.switchToState( { pagename:'WishList' } );
+      break;
+    case 4:
+      this.switchToState( { pagename:'Registration' } );
+      break;
+    case 5:
+      this.switchToState( { pagename:'Login' } );
+      break;
+  };
+ }
+
+
   // работа  с заказом(когда он уже оформлен)
 
 restorePassword=(objAddInfoPerson)=>{
@@ -87,7 +157,7 @@ var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
     sp.append('f', 'READ');
     sp.append('n', stringName);
 
-    fetch(ajaxHandlerScript, { method: 'post', body: sp })
+    isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
         .then( response => response.json() )
         .then( data => {this.readReady(objAddInfoPerson, data) } )
         .catch( error => { console.error(error); } ); 
@@ -136,7 +206,7 @@ sp.append('v', JSON.stringify(personInfo));
 sp.append('p', updatePassword);
 
 
-fetch(ajaxHandlerScript, { method: 'post', body: sp })
+isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
     .then( response => response.json() )
     .then( () => this.announce())
     .catch( error => { console.error(error); } ); 
@@ -364,7 +434,7 @@ enter=(personName)=>{
   sp.append('n', stringName);
   
   
-  fetch(ajaxHandlerScript, { method: 'post', body: sp })
+  isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
       .then( response => response.json() )
       .then( data => this.checkPasswordsInOurSystem(data,personName))
       .catch( error => { console.error(error); } ); 
@@ -440,20 +510,17 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
 
 
 
-// меняет  на /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа */
-changeBody=(num)=>{
- if(num!=this.state.toShowBodyMode){
-    this.setState({toShowBodyMode:num}, this.announce);
- }
-};
+
 
 
 
 
 //занимается поиском товаров
 search=(word)=>{
+  let regWord=word;
+  var regexp = new RegExp(regWord);
     let needfulElem=this.props.goods.slice();
-    needfulElem=needfulElem.filter(item=> item.itemName==word|| item.indexOf(word)!=-1);
+    needfulElem=needfulElem.filter(item=> item.itemName.search(regexp)||item.indexOf(word)!=-1);
     this.setState( { goods:needfulElem }, this.announce );
   
 };
