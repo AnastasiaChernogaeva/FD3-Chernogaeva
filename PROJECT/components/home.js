@@ -123,11 +123,11 @@ registrate=(personInfo)=>{
 var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
 var updatePassword;
 var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
-/**$.ajax( {
-  url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
-  data : { f : 'UPDATE', n : stringName, v : JSON.stringify(personInfo), p : updatePassword },
-  success :this.announce,
-}*/
+// $.ajax( {
+//   url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+//   data : { f : 'UPDATE', n : stringName, v : JSON.stringify(personInfo), p : updatePassword },
+//   success :this.announce, error: console.log("congratulations!!!"),
+// })
 
 let sp = new URLSearchParams();
 sp.append('f', 'READ');
