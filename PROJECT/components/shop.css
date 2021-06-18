@@ -1,3 +1,17 @@
 .categories ul li{
     list-style-type: none;
+    cursor:pointer;
 }
+
+/* .categories ul li{
+    transform: rotate3d(1, 1, 1, 45deg  );  
+    
+} */
+
+button{
+    border:none;
+    background: transparent;
+    cursor: default;
+}
+
+button:hover{cursor: pointer;}

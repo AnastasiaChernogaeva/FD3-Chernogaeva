@@ -13,9 +13,9 @@ class WishListPage extends React.PureComponent {
     wish:PropTypes.array,
   };
 
-  state = {
-    wish:this.props.cart,
-  };
+  // state = {
+  //   wish:this.props.cart,
+  // };
 
 /*  componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
@@ -36,11 +36,9 @@ class WishListPage extends React.PureComponent {
   
   render() {
 
-if(this.state.wish!=null){
-      let goodsInWisht=this.state.wish.slice();
-      goodsInWisht=goodsInWisht.map(elem=>{
-        <WishGood info={elem}/>
-      });
+if(this.props.wish!=null){
+      let goodsInWisht=this.props.wish.slice();
+      goodsInWisht=goodsInWisht.map(elem=><WishGood info={elem} key={elem.code}/>);
     
     return (
      <div>

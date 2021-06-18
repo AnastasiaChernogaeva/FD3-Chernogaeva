@@ -8,7 +8,7 @@ import {pageEvents} from './events';
 class WishGood extends React.PureComponent {
 
   static propTypes = {
-    info:PropTypes.array,
+    info:PropTypes.object,
   };
 
   state = {
@@ -32,30 +32,61 @@ class WishGood extends React.PureComponent {
 
 
 
-  amount=(numb)=>{
-      if (this.state.amountToOrder<1){
-          if(numb===(-1)){
-            this.setState({disabledMinus:disabled}, this.announce);
-          }
-      }
-      else if(this.state.amountToOrder<this.state.wishgood.itemAmount){
-        if(numb===1){
-            this.setState({disabledPlus:disabled}, this.announce);
-         }
-      }
-      else{
-        if(numb===(-1)){
-            let newOne=this.state.amountToOrder--;
-            this.setState({amountToOrder:newOne, disabledMinus:null,}, this.announce);
-          }
-        else
-         if(numb===1){
-            let newOne=this.state.amountToOrder++;
-            this.setState({amountToOrder:newOne, disabledPlus:null,}, this.announce);
-         }
-      }
+  // amount=(numb)=>{
+  //     if (this.state.amountToOrder<1){
+  //         if(numb===(-1)){
+  //           this.setState({disabledMinus:disabled}, this.announce);
+  //         }
+  //     }
+  //     else if(this.state.amountToOrder<this.state.wishgood.itemAmount){
+  //       if(numb===1){
+  //           this.setState({disabledPlus:disabled}, this.announce);
+  //        }
+  //     }
+  //     else{
+  //       if(numb===(-1)){
+  //           let newOne=this.state.amountToOrder--;
+  //           this.setState({amountToOrder:newOne, disabledMinus:null,}, this.announce);
+  //         }
+  //       else
+  //        if(numb===1){
+  //           let newOne=this.state.amountToOrder++;
+  //           this.setState({amountToOrder:newOne, disabledPlus:null,}, this.announce);
+  //        }
+  //     }
 
+  // }
+
+  amountLess=()=>{
+    if (this.state.amountToOrder<1){
+        this.setState({disabledMinus:"disabled"}, this.announce);
+     
   }
+  else{
+    let newOne=this.state.amountToOrder-1;
+    this.setState({amountToOrder:newOne, disabledMinus:null,}, this.announce);
+    if(this.state.disabledPlus==="disabled")
+    this.setState({disabledPlus:null,}, this.announce);
+    if (this.state.amountToOrder===1)
+      this.setState({disabledMinus:"disabled"}, this.announce);
+  }
+  }
+
+  amountMore=()=>{
+    // if(this.state.amountToOrder===(this.state.wishgood.itemAmount*1)){
+    //       this.setState({disabledPlus:"disabled"}, this.announce);
+    // }
+    // else{
+      let newOne=this.state.amountToOrder+1;
+            this.setState({amountToOrder:newOne, disabledPlus:null,}, this.announce);
+            if(this.state.disabledMinus==="disabled")
+            this.setState({disabledMinus:null,}, this.announce);
+            if(this.state.amountToOrder===(this.state.wishgood.itemAmount-1))
+              this.setState({disabledPlus:"disabled"}, this.announce);
+        
+    // }
+  }
+
 
 
   announce=()=>{
@@ -71,13 +102,14 @@ class WishGood extends React.PureComponent {
              <img src={this.state.wishgood.itemPhotoURL} alt={this.state.wishgood.itemName}/>
          </td>
          <td className="Cost">
+         <p>{this.state.wishgood.itemName}</p> 
             <p>{this.state.wishgood.itemCost}</p> 
             <p> Осталось: {this.state.wishgood.itemAmount}</p> 
          </td>
          <td>
-             <input type="button" onClick={this.amount(-1)} className="Buttons_Plus_Minus" value="-" disabled={this.state.disabledMinus} />
+             <input type="button" onClick={this.amountLess/*(-1)*/} className="Buttons_Plus_Minus" value="-" disabled={this.state.disabledMinus} />
              <span>{this.state.amountToOrder}</span>
-             <input type="button" onClick={this.amount(1)} className="Buttons_Plus_Minus" value="+"  disabled={this.state.disabledPlus} />
+             <input type="button" onClick={this.amountMore/*(1)*/} className="Buttons_Plus_Minus" value="+"  disabled={this.state.disabledPlus} />
              <input type="button" onClick={this.deletefromWishList} value="Удалить" />
          </td>
      </tr>

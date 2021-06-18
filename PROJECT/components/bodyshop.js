@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/*import './shop.css';*/
+import './shop.css';
 
 import Good from './good.js';
 
@@ -26,11 +26,15 @@ class BodyShop extends React.PureComponent {
     }
     
   };*/
+  chooseCategory=(EO)=>{
+    pageEvents.emit('Search', EO.target.value);
+  }
+
 
   render() {
        let categoryList=this.props.categories.slice();
        categoryList=categoryList.map((elem ,i)=>
-        <li id={i}  key={i}><span onClick={this.chooseCategory}>{elem}</span></li>
+        <li id={i}  key={i}><button onClick={this.chooseCategory} value={elem}>{elem}</button></li>
       );
 
       let goods=this.props.goods.slice();

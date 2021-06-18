@@ -44,11 +44,10 @@ class Home extends React.PureComponent {
           categories:[],
         };
 
- 
 
   componentDidMount = () => {
 
-    this.makeCategories();
+  this.makeCategories();
 
     window.onhashchange=this.switchToStateFromURLHash;
 
@@ -478,7 +477,7 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
 
   // работа с корзиной
 
-   arrCart=[];
+  arrCart=[];
 
   addToCart=(id)=>{
     let goods=this.props.goods.slice();
@@ -497,10 +496,11 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
 
 
   // работа с wishlist(ом)
-  arrWishList=[];
+   arrWishList=[];
 
   addToWishList=(id)=>{
-    let goods=this.props.goods.slice();
+    
+    let goods=this.state.goods.slice();
     let elem=goods.find(item=>item.code===id);
     this.arrWishList.push(elem);
     this.setState({wishList:this.arrWishList}, this.announce);
