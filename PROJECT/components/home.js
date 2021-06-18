@@ -39,11 +39,16 @@ class Home extends React.PureComponent {
 
 
           SPAState:{},
+
+
+          categories:[],
         };
 
-
+ 
 
   componentDidMount = () => {
+
+    this.makeCategories();
 
     window.onhashchange=this.switchToStateFromURLHash;
 
@@ -517,16 +522,38 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
 
 //занимается поиском товаров
 search=(word)=>{
-  let regWord=word;
-  var regexp = new RegExp(regWord);
+  var regexp = new RegExp(word);
     let needfulElem=this.props.goods.slice();
-    needfulElem=needfulElem.filter(item=> item.itemName.search(regexp)||item.indexOf(word)!=-1);
-    this.setState( { goods:needfulElem }, this.announce );
+    let allApropriateElems=[];
+    needfulElem=needfulElem.filter(item=>{
+      if(item.itemName.search(regexp)!=-1){
+        allApropriateElems.push(item);
+        console.log(`${item.itemName}  подходит`);
+      }
+      else if(item.category.search(regexp)!=-1){
+              allApropriateElems.push(item);
+              console.log(`${item.itemName}  подходит`);
+            }
+      else{
+                console.log(`${item.itemName} не подходит`);
+            }
+    });
+    this.setState( { goods:allApropriateElems }, this.announce );
   
 };
 
-
-
+makeCategories=()=>{
+  let categoriesCheck=this.props.goods.slice();
+  let categories=[];
+  categoriesCheck.forEach(elem=> {
+   if (categories.indexOf(elem.category)===-1){
+    categories.push(elem.category);
+   }
+  });
+  if(categories!=[]){
+    this.setState({categories:categories},this.announce);
+  }
+}
 
 
 announce=()=>{
@@ -536,13 +563,6 @@ announce=()=>{
 
 
     render() {
-        let categoriesCheck=this.props.goods.slice();
-        let categories=[];
-        categoriesCheck.forEach(elem=> {
-         if (categories.indexOf(elem.category)===-1){
-          categories.push(elem.category);
-         }
-        });
         let infoAboutOrder=<div className="Oder"><p>Ваш заказ оформлен!</p><p>В ближайшее время с Вами свяжется оператор.</p></div>
        let finishOrder=this.finishOrderDemonstration;
 
@@ -550,7 +570,7 @@ announce=()=>{
       // <Provider>
       <div>
       <Top shopName={this.props.shopName}/>
-      <MainBody goods={this.props.goods} categories={categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
+      <MainBody goods={this.state.goods} categories={this.state.categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
       {this.state.toShowSentOrder==1 &&  setTimeout({infoAboutOrder}, 500) && setTimeout({finishOrder}, 2000)}
       </div>

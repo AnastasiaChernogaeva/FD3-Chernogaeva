@@ -15,9 +15,9 @@ class BodyShop extends React.PureComponent {
     categories:PropTypes.array,
   };
 
-  state = {
-    goods:this.props.goods,
-  };
+  // state = {
+  //   goods:this.props.goods,
+  // };
 
 /*  componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
@@ -33,7 +33,7 @@ class BodyShop extends React.PureComponent {
         <li id={i}  key={i}><span onClick={this.chooseCategory}>{elem}</span></li>
       );
 
-      let goods=this.state.goods.slice();
+      let goods=this.props.goods.slice();
       goods=goods.map(elem=>
         <Good info={elem} key={elem.code} className='Good'></Good>
       );

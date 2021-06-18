@@ -40,6 +40,7 @@ class Good extends React.PureComponent {
              <img src={this.state.good.itemPhotoURL} alt={this.state.good.itemName}/>
          </div>
          <div className="Cost">
+            <p>{this.state.good.itemName}</p> 
             <p>{this.state.good.itemCost}</p> 
             <p> Осталось: {this.state.good.itemAmount}</p> 
          </div>
