@@ -36,7 +36,15 @@ class WishListPage extends React.PureComponent {
   
   render() {
 
-if(this.props.wish!=null){
+if(this.props.wish==null){
+  return (
+    <div>
+        <h2>У вас нет товаров в WishList</h2>
+        <input type="button" onClick={this.changeBody1} value="Перейти на главную" />
+    </div>
+   );
+    }
+    else{
       let goodsInWisht=this.props.wish.slice();
       goodsInWisht=goodsInWisht.map(elem=><WishGood info={elem} key={elem.code}/>);
     
@@ -47,14 +55,7 @@ if(this.props.wish!=null){
          <input type="button" onClick={this.sendNewOrder} value="Заказать" />
      </div>
     );
-    }
-    else{
-      return (
-        <div>
-            <h2>У вас нет товаров в WishList</h2>
-            <input type="button" onClick={this.changeBody1} value="Перейти на главную" />
-        </div>
-       );
+      
     }
   }
 

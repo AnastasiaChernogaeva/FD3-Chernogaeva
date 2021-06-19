@@ -480,6 +480,9 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   arrCart=[];
 
   addToCart=(id)=>{
+    if(this.arrCart==null){
+      this.arrCart=[];
+    }
     let goods=this.props.goods.slice();
     let elem=goods.find(item=>item.code===id);
     if(this.arrCart.indexOf(elem)===-1){
@@ -489,9 +492,11 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   };
 
   deletefromCart=(id)=>{
-    let newCart=this.state.cart.slice();
-    newCart=newCart.filter(item=>item.code!=id);
-    this.setState({cart:newCart}, this.announce);
+    this.arrCart=this.arrCart.filter(item=>item.code!=id);
+    if(this.arrCart.length==0){
+      this.arrCart=null;
+    }
+    this.setState({cart:this.arrCart}, this.announce);
   };
 
 
@@ -501,7 +506,9 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
    arrWishList=[];
 
   addToWishList=(id)=>{
-    
+    if(this.arrWishList==null){
+      this.arrWishList=[];
+    }
     let goods=this.state.goods.slice();
     let elem=goods.find(item=>item.code===id);
     if(this.arrWishList.indexOf(elem)===-1){
@@ -511,9 +518,12 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   };
   
   deletefromWishList=(id)=>{
-    let newWishList=this.state.wishList.slice();
-    newWishList=newWishList.filter(item=>item.code!=id);
-    this.setState({wishList:newWishList}, this.announce);
+
+    this.arrWishList=this.arrWishList.filter(item=>item.code!=id);
+    if(this.arrWishList.length==0){
+      this.arrWishList=null;
+    }
+    this.setState({wishList:this.arrWishList}, this.announce);
   }
 
 
