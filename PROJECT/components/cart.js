@@ -25,6 +25,20 @@ class CartPage extends React.PureComponent {
     
   };*/
 
+  componentDidMount = () => {
+    pageEvents.addListener('CartElemToAnimate',this.animate);
+  }
+
+  componentWillUnmount = () => {
+    pageEvents.removeListener('CartElemToAnimate',this.animate);
+  }
+
+
+animate=(id)=>{
+  
+}
+
+
   sendNewOrder=()=>{
     pageEvents.emit('Order',);
   }

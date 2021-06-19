@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/*import './mobileClients.css';*/
+import './wishList.css';
 
 import {pageEvents} from './events';
 
@@ -26,36 +26,25 @@ class WishGood extends React.PureComponent {
     
   };*/
 
-  deletefromWishList=()=>{
-    pageEvents.emit('DeletefromWishList', this.state.wishgood.code);
-  };
+  // deletefromWishList=()=>{
+  //    this.setState({elemToDelete:elemToDelete,}, this.announce);
+  //   pageEvents.emit('DeletefromWishList', this.state.wishgood.code);
+  // };
 
+  animateToDelete=()=>{
+    var textElem=document.getElementById(`${this.state.wishgood.code}`);
+    // сначала померяем текущую высоту и явно её установим элементу
+    var currHeight=textElem.offsetHeight;
+    console.log(currHeight);
+    textElem.style.height=currHeight+"px";
+    // и в следующий Idle запустим анимацию
+    setTimeout(()=>textElem.style.height="0px", 0);
+    // let elemAnimated=document.getElementsByClassName("IsGoingToBeDeleted");
+    // elemAnimated[0].style.height='0px';
+     setTimeout(pageEvents.emit('DeletefromWishList', this.state.wishgood.code),8000);
+  }
+  
 
-
-  // amount=(numb)=>{
-  //     if (this.state.amountToOrder<1){
-  //         if(numb===(-1)){
-  //           this.setState({disabledMinus:disabled}, this.announce);
-  //         }
-  //     }
-  //     else if(this.state.amountToOrder<this.state.wishgood.itemAmount){
-  //       if(numb===1){
-  //           this.setState({disabledPlus:disabled}, this.announce);
-  //        }
-  //     }
-  //     else{
-  //       if(numb===(-1)){
-  //           let newOne=this.state.amountToOrder--;
-  //           this.setState({amountToOrder:newOne, disabledMinus:null,}, this.announce);
-  //         }
-  //       else
-  //        if(numb===1){
-  //           let newOne=this.state.amountToOrder++;
-  //           this.setState({amountToOrder:newOne, disabledPlus:null,}, this.announce);
-  //        }
-  //     }
-
-  // }
 
   amountLess=()=>{
     if (this.state.amountToOrder<1){
@@ -73,10 +62,6 @@ class WishGood extends React.PureComponent {
   }
 
   amountMore=()=>{
-    // if(this.state.amountToOrder===(this.state.wishgood.itemAmount*1)){
-    //       this.setState({disabledPlus:"disabled"}, this.announce);
-    // }
-    // else{
       let newOne=this.state.amountToOrder+1;
             this.setState({amountToOrder:newOne, disabledPlus:null,}, this.announce);
             if(this.state.disabledMinus==="disabled")
@@ -94,26 +79,29 @@ class WishGood extends React.PureComponent {
 }
 
   render() {
-
-    
+  
+   
     return (
-     <tr className="cartgood">
-         <td className="goodImg">
-             <img src={this.state.wishgood.itemPhotoURL} alt={this.state.wishgood.itemName}/>
-         </td>
-         <td className="Cost">
-         <p>{this.state.wishgood.itemName}</p> 
-            <p>{this.state.wishgood.itemCost}</p> 
-            <p> Осталось: {this.state.wishgood.itemAmount}</p> 
-         </td>
-         <td>
-             <input type="button" onClick={this.amountLess/*(-1)*/} className="Buttons_Plus_Minus" value="-" disabled={this.state.disabledMinus} />
-             <span>{this.state.amountToOrder}</span>
-             <input type="button" onClick={this.amountMore/*(1)*/} className="Buttons_Plus_Minus" value="+"  disabled={this.state.disabledPlus} />
-             <input type="button" onClick={this.deletefromWishList} value="Удалить" />
-         </td>
-     </tr>
-    );
+      <tr className="IsGoingToBeDeleted"  id={this.state.wishgood.code} >
+          <td className="goodImg">
+              <img src={this.state.wishgood.itemPhotoURL} alt={this.state.wishgood.itemName}/>
+          </td>
+          <td className="Cost">
+          <p>{this.state.wishgood.itemName}</p> 
+             <p>{this.state.wishgood.itemCost}</p> 
+             <p> Осталось: {this.state.wishgood.itemAmount}</p> 
+          </td>
+          <td>
+              <input type="button" onClick={this.amountLess} className="Buttons_Plus_Minus" value="-" disabled={this.state.disabledMinus} />
+              <span>{this.state.amountToOrder}</span>
+              <input type="button" onClick={this.amountMore} className="Buttons_Plus_Minus" value="+"  disabled={this.state.disabledPlus} />
+              {/* <input type="button" onClick={this.deletefromWishList} value="Удалить" /> */}
+              <input type="button" onClick={this.animateToDelete} value="Удалить" />
+          </td>
+      </tr>
+     );
+   
+   
 
   }
 

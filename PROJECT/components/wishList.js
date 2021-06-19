@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/*import './mobileClients.css';*/
+// import './wishList.css';
 
 import WishGood from './wishgood';
 
@@ -14,7 +14,7 @@ class WishListPage extends React.PureComponent {
   };
 
   // state = {
-  //   wish:this.props.cart,
+  //   elemToDelete:"",
   // };
 
 /*  componentWillReceiveProps = (newProps) => {
@@ -25,6 +25,24 @@ class WishListPage extends React.PureComponent {
     
   };*/
 
+//   componentDidMount = () => {
+//     pageEvents.addListener('WishListElemToAnimate',this.animate);
+//   }
+
+//   componentWillUnmount = () => {
+//     pageEvents.removeListener('WishListElemToAnimate',this.animate);
+//   }
+
+
+// animate=(id)=>{
+//  let wishList=this.props.wish.slice();
+//  let elemToDelete=wishList.find(item=>item.code==id);
+// this.setState({elemToDelete:elemToDelete,}, this.announce);
+  
+// }
+
+
+
   sendNewOrder=()=>{
     pageEvents.emit('Order',);
   }
@@ -34,6 +52,11 @@ class WishListPage extends React.PureComponent {
 
   }
   
+  announce=()=>{
+    console.log("Something has changed");
+}
+
+
   render() {
 
 if(this.props.wish==null){
@@ -46,7 +69,7 @@ if(this.props.wish==null){
     }
     else{
       let goodsInWisht=this.props.wish.slice();
-      goodsInWisht=goodsInWisht.map(elem=><WishGood info={elem} key={elem.code}/>);
+      goodsInWisht=goodsInWisht.map(elem=>/* this.state.elemToDelete===elem?<WishGood className="IsGoingToBeDeleted" info={elem} key={elem.code}/> :*/<WishGood info={elem} key={elem.code}/>);
     
     return (
      <div>

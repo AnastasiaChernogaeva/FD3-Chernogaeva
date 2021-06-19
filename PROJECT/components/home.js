@@ -492,6 +492,7 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   };
 
   deletefromCart=(id)=>{
+    this.animation(id, "cart");
     this.arrCart=this.arrCart.filter(item=>item.code!=id);
     if(this.arrCart.length==0){
       this.arrCart=null;
@@ -518,7 +519,7 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   };
   
   deletefromWishList=(id)=>{
-
+    // this.animation(id, "wishlist");
     this.arrWishList=this.arrWishList.filter(item=>item.code!=id);
     if(this.arrWishList.length==0){
       this.arrWishList=null;
@@ -527,7 +528,17 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   }
 
 
+// animation=(id, typeofdelete)=>{
+// if(typeofdelete==="cart"){
+//   // elemNeededToDelete=this.arrCart.find(item=>item.code==id);
+//   pageEvents.emit("CartElemToAnimate",id);
+// }
+// if(typeofdelete==="wishlist"){
+//   // elemNeededToDelete=this.arrWishList.find(item=>item.code==id);
+//   pageEvents.emit("WishListElemToAnimate",id);
+// }
 
+// }
 
 
 
