@@ -482,8 +482,10 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   addToCart=(id)=>{
     let goods=this.props.goods.slice();
     let elem=goods.find(item=>item.code===id);
-    this.arrCart.push(elem);
-    this.setState({cart:this.arrCart}, this.announce);
+    if(this.arrCart.indexOf(elem)===-1){
+      this.arrCart.push(elem);
+      this.setState({cart:this.arrCart}, this.announce);
+    }
   };
 
   deletefromCart=(id)=>{
@@ -502,8 +504,10 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
     
     let goods=this.state.goods.slice();
     let elem=goods.find(item=>item.code===id);
-    this.arrWishList.push(elem);
-    this.setState({wishList:this.arrWishList}, this.announce);
+    if(this.arrWishList.indexOf(elem)===-1){
+      this.arrWishList.push(elem);
+      this.setState({wishList:this.arrWishList}, this.announce);
+    }
   };
   
   deletefromWishList=(id)=>{
@@ -563,8 +567,8 @@ announce=()=>{
 
 
     render() {
-        let infoAboutOrder=<div className="Oder"><p>Ваш заказ оформлен!</p><p>В ближайшее время с Вами свяжется оператор.</p></div>
-       let finishOrder=this.finishOrderDemonstration;
+      let infoAboutOrder=<div className="Oder"><p>Ваш заказ оформлен!</p><p>В ближайшее время с Вами свяжется оператор.</p></div>
+      let finishOrder=this.finishOrderDemonstration;
 
       return(
       // <Provider>
@@ -572,7 +576,7 @@ announce=()=>{
       <Top shopName={this.props.shopName}/>
       <MainBody goods={this.state.goods} categories={this.state.categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
-      {this.state.toShowSentOrder==1 &&  setTimeout({infoAboutOrder}, 500) && setTimeout({finishOrder}, 2000)}
+      {this.state.toShowSentOrder===1 &&  setTimeout({infoAboutOrder}, 500) /*&& setTimeout({finishOrder}, 2000)*/}
       </div>
       // </Provider>
       

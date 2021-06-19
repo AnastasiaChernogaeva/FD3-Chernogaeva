@@ -13,9 +13,9 @@ class CartPage extends React.PureComponent {
     cart:PropTypes.array,
   };
 
-  state = {
-    cart:this.props.cart,
-  };
+  // state = {
+  //   cart:this.props.cart,
+  // };
 
 /*  componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
@@ -35,11 +35,9 @@ class CartPage extends React.PureComponent {
   }
 
   render() {
-     if(this.state.cart!=null){
-      let goodsInCart=this.state.cart.slice();
-      goodsInCart=goodsInCart.map(elem=>{
-        <CartGood info={elem}/>
-      });
+     if(this.props.cart!=null){
+      let goodsInCart=this.props.cart.slice();
+      goodsInCart=goodsInCart.map(elem=><CartGood info={elem} key={elem.code}/>);
     
     return (
      <div>

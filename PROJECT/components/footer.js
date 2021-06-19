@@ -37,8 +37,31 @@ change3=()=>{
     
     return (
         <div className="Footer">
-         <ul>
-         <li className="MainLi">
+         <table>
+           <tbody>
+             <tr>
+               <th>Моя страница</th>
+               <th>Наши контакты </th>
+             </tr>
+             <tr>
+                <td><button onClick={this.change5 } >Моя страница</button></td>
+                <td>г.Черас, проспект Марна,9</td>
+             </tr>
+             <tr>
+                <td><button onClick={this.change2} >Корзина</button></td>
+                <td>80336853937</td>
+             </tr>
+             <tr>
+                <td><button onClick={this.change3} >WishList</button></td>
+                <td>sergeychernogaev1979@gmail.com</td>
+             </tr>
+             <tr>
+                <td></td>
+                <td>7 дней в неделю с 08:00 до 20:30</td>
+             </tr>
+             
+           </tbody>
+         {/* <li className="MainLi">
            <ul>
             <li><b>Моя страница</b></li>
              <li  onClick={this.change5 } >Моя страница</li>
@@ -54,8 +77,8 @@ change3=()=>{
             <li>sergeychernogaev1979@gmail.com</li>
             <li>7 дней в неделю с 08:00 до 20:30</li>
             </ul>
-         </li>
-         </ul>
+         </li> */}
+         </table>
         </div>
     );
 
