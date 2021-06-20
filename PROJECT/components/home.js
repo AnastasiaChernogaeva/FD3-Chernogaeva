@@ -33,6 +33,7 @@ class Home extends React.PureComponent {
           cart:null,
           wishList:null,
           passwordCanBeChanged:false,
+          personWantToChangePassword:{},
           accountName:"",
           accountLastName:"",
 
@@ -166,32 +167,50 @@ var stringName='Chernogeva_Project_CherAS';
     isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
         .then( response => response.json() )
         .then( data => {this.readReady(objAddInfoPerson, data) } )
-        .catch( error => { console.error(error); } ); 
+        .catch( error => { console.log(error); } ); 
 
 }
 
-readReady(objAddInfoPerson, callresult) {
-if ( callresult.error!=undefined )
-    console.log(callresult.error);
-else if ( callresult.result!="" ) {
-    var info=JSON.parse(callresult.result);
-    let pet=info.find(elem=>elem.pet===objAddInfoPerson.pet);
-    let color=info.find(elem=>elem.color===objAddInfoPerson.color);
-    let year=info.find(elem=>elem.year===objAddInfoPerson.year);
-    this.equalAddInformationAboutPersonToRestorePassword(pet,color,year);
-}
+readReady(objAddInfoPerson, data) {
+    var info=JSON.parse(data.result);
+
+
+    let arrNames=Object.keys(info);
+    arrNames.forEach(elemKey=>{
+      if(elemKey.pet===objAddInfoPerson.pet){
+        if(elemKey.color===objAddInfoPerson.color){
+          if(elemKey.year==objAddInfoPerson.year/*||elemKey.year!=objAddInfoPerson.year*/){
+            let person=elemKey;
+            this.setState({passwordCanBeChanged:true, personWantToChangePassword:person,}, this.announce);
+          }
+        }
+        else{
+          this.setState({passwordCanBeChanged:false,}, this.announce);
+        }
+      }
+      else{
+        this.setState({passwordCanBeChanged:false,}, this.announce);
+      }
+      pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged, /*this.state.personWantToChangePassword*/ );
+   
+    }
+      )
+    // let pet=info.find(elem=>elem.pet===objAddInfoPerson.pet);
+    // let color=info.find(elem=>elem.color===objAddInfoPerson.color);
+    // let year=info.find(elem=>elem.year===objAddInfoPerson.year);
+    // this.equalAddInformationAboutPersonToRestorePassword(pet,color,year);
 };
 
 
-equalAddInformationAboutPersonToRestorePassword(pet,color,year){
-  if(pet||color||year!=undefined||null){
-    this.setState({passwordCanBeChanged:true,}, this.announce);
-  }
-  else{
-    this.setState({passwordCanBeChanged:false,}, this.announce);
-  }
-  pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged)
-}
+// equalAddInformationAboutPersonToRestorePassword(pet,color,year){
+//   if(pet||color||year!=undefined||null){
+//     this.setState({passwordCanBeChanged:true,}, this.announce);
+//   }
+//   else{
+//     this.setState({passwordCanBeChanged:false,}, this.announce);
+//   }
+//   pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged)
+// }
 
 clients={};
 
