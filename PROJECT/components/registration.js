@@ -29,7 +29,8 @@ class Registration extends React.PureComponent {
     Password2:"",
 
 
-    allPersonalInfo:{},
+    allPersonalInfoHash:{},
+    allPersonalInfoKey:"",
 
     errorpet:"",
     errorcolor:"",
@@ -65,7 +66,8 @@ cleanTheForm=()=>{
   Mail:"",
   Password:"",
   Password2:"",
-  allPersonalInfo:{},
+  allPersonalInfoHash:{},
+  allPersonalInfoKey:"",
   errorpet:"",
   errorcolor:"",
   pet:"",
@@ -163,7 +165,8 @@ cleanTheForm=()=>{
       let registerYear=bornTime.getFullYear();
       let personInfo=this.state.Mail+"_"+this.state.Password;
       let objMainInfo={name:this.state.Name, lastName:this.state.LastName, password:this.state.Password, mail:this.state.Mail, year:registerYear, color:this.state.color, pet:this.state.pet,}
-      this.setState({allPersonalInfo:{[personInfo]:objMainInfo,},}, this.newEvent);
+      // this.setState({allPersonalInfo:{[personInfo]:objMainInfo,},}, this.newEvent);
+      this.setState({allPersonalInfoKey:personInfo, allPersonalInfoHash:objMainInfo,}, this.newEvent);
     // }
     // else{
     //   this.setState({disabled:disabled,}, this.announce);
@@ -173,7 +176,7 @@ cleanTheForm=()=>{
 
 
   newEvent=()=>{
-    pageEvents.emit('newPersonWantsToBeAddedToOurBigFamily',this.state.allPersonalInfo);
+    pageEvents.emit('newPersonWantsToBeAddedToOurBigFamily',this.state.allPersonalInfoKey,this.state.allPersonalInfoHash);
     this.cleanTheForm();
     setTimeout(pageEvents.emit('ChangeBody',1), 3000);//переходим на главную
 

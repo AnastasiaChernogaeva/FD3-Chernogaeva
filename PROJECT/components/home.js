@@ -29,10 +29,9 @@ class Home extends React.PureComponent {
 
       state = {
           goods:this.props.goods,
-          toShowBodyMode:1, /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа */
+          toShowBodyMode:1, /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа, 6 -  заказ принят */
           cart:null,
           wishList:null,
-          toShowSentOrder:0,
           passwordCanBeChanged:false,
           accountName:"",
           accountLastName:"",
@@ -42,6 +41,7 @@ class Home extends React.PureComponent {
 
 
           categories:[],
+
         };
 
 
@@ -149,7 +149,7 @@ changeBody=(num)=>{
 restorePassword=(objAddInfoPerson)=>{
 
 var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
+var stringName='Chernogeva_Project_CherAS';
  /** $.ajax(
     {
         url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
@@ -191,32 +191,68 @@ equalAddInformationAboutPersonToRestorePassword(pet,color,year){
   pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged)
 }
 
+clients={};
 
-registrate=(personInfo)=>{
+registrate=(/*personInfo*/ key,value)=>{
 
 var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-var updatePassword;
-var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
+var updatePassword=Math.random();
+var stringName='Chernogeva_Project_CherAS';
+//     $.ajax( {
+  // url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+  // data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+  // success : lockGetReady, error : errorHandler
+// }
 // $.ajax( {
 //   url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
 //   data : { f : 'UPDATE', n : stringName, v : JSON.stringify(personInfo), p : updatePassword },
 //   success :this.announce, error: console.log("congratulations!!!"),
 // })
+this.clients[key]=value;
 
 let sp = new URLSearchParams();
-sp.append('f', 'READ');
+sp.append('f', 'LOCKGET');
 sp.append('n', stringName);
-sp.append('v', JSON.stringify(personInfo));
 sp.append('p', updatePassword);
+
+isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+    .then( response => response.json() )
+    .then( () => this.continuation(stringName,updatePassword))
+    .catch( error => { console.error(error); } ); 
+
+// let sp = new URLSearchParams();
+// sp.append('f', 'UPDATE');
+// sp.append('n', stringName);
+// sp.append('p', updatePassword);
+// // sp.append('v', JSON.stringify(personInfo));
+// sp.append('v', JSON.stringify(this.clients));
+
+
+// isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+//     .then( response => response.json() )
+//     .then( () => {console.log("congratulations!!!");})
+//     .catch( error => { console.error(error); } ); 
+
+  
+};
+
+continuation=(stringName, updatePassword )=>{
+  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+let sp = new URLSearchParams();
+sp.append('f', 'UPDATE');
+sp.append('n', stringName);
+sp.append('p', updatePassword);
+sp.append('v', JSON.stringify(this.clients));
 
 
 isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
     .then( response => response.json() )
-    .then( () => this.announce())
+    .then( () => {console.log("congratulations!!!");})
     .catch( error => { console.error(error); } ); 
 
-  
+
 };
+
 /*
 workWithAjax=(personInfo)=>{
   var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
@@ -425,7 +461,7 @@ restoreInfo();
 
 enter=(personName)=>{
  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-  var stringName='Chernogeva_Anastasia_FD3_Project_Shop_CherAS';
+  var stringName='Chernogeva_Project_CherAS';
  /*  $.ajax(
     {
         url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
@@ -465,12 +501,9 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
 
 
   order=()=>{
-   this.setState({toShowSentOrder:1, toShowBodyMode:1, cart:null,}, this.announce);
+   this.setState({ toShowBodyMode:6,}, this.announce);
   };
 
-  finishOrderDemonstration=()=>{
-    this.setState({toShowSentOrder:0,}, this.announce);
-  };
 
 
 
@@ -492,7 +525,7 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   };
 
   deletefromCart=(id)=>{
-    this.animation(id, "cart");
+    // this.animation(id, "cart");
     this.arrCart=this.arrCart.filter(item=>item.code!=id);
     if(this.arrCart.length==0){
       this.arrCart=null;
@@ -588,8 +621,7 @@ announce=()=>{
 
 
     render() {
-      let infoAboutOrder=<div className="Oder"><p>Ваш заказ оформлен!</p><p>В ближайшее время с Вами свяжется оператор.</p></div>
-      let finishOrder=this.finishOrderDemonstration;
+
 
       return(
       // <Provider>
@@ -597,7 +629,7 @@ announce=()=>{
       <Top shopName={this.props.shopName}/>
       <MainBody goods={this.state.goods} categories={this.state.categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
-      {this.state.toShowSentOrder===1 &&  setTimeout({infoAboutOrder}, 500) /*&& setTimeout({finishOrder}, 2000)*/}
+      
       </div>
       // </Provider>
       

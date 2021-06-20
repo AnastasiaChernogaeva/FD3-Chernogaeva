@@ -19,6 +19,7 @@ class MainBody extends React.PureComponent {
     bodyChange:PropTypes.number,
     cart:PropTypes.array,
     wishList:PropTypes.array,
+    toShowSentOrder:PropTypes.number,
   };
 
 /*  state = {
@@ -39,6 +40,8 @@ class MainBody extends React.PureComponent {
     let wishListPage=<WishListPage wish={this.props.wishList} />
     let registration=<Registration/>
     let login=<Login/>
+    let infoAboutOrder=<div className="Oder"><p>Ваш заказ оформлен!</p><p>В ближайшее время с Вами свяжется оператор.</p></div>
+
 
     return (
      <div>
@@ -47,6 +50,7 @@ class MainBody extends React.PureComponent {
          {this.props.bodyChange===3&&wishListPage}
          {this.props.bodyChange===4&&registration}
          {this.props.bodyChange===5&&login}
+         {this.props.bodyChange===6&&infoAboutOrder}
      </div>
     );
 
