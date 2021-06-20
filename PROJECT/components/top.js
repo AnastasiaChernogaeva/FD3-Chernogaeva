@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -61,7 +62,7 @@ logout=()=>{
 
 
   render() {
- let userCard=<div className="account">
+ let userCard=<div className="account"> 
  <p>{this.props.personName}</p>
  <p>{this.props.personLastName}</p>
  <input type="button" onClick={this.logout} value="Выйти" />
@@ -77,15 +78,15 @@ let buttonsToRegisterAndToLogin=<div>
      <div className="Top">
          <div>
              <span className="ShopName">{this.props.shopName}</span>
-             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input></div><input type="button" onClick={this.search}>Поиск</input>
+             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input></div><input type="button" onClick={this.search}/>
          </div>
-        {this.props.personName!=""&& userCard} 
+       <div>{this.props.personName!=="" && userCard} </div> 
          <div>
              <input type="button" onClick={this.change1} value="Главная" />
              <input type="button" onClick={this.change2} value="Корзина" />
              <input type="button" onClick={this.change3} value="WishList" />
          </div>
-         {this.props.personName==""&& buttonsToRegisterAndToLogin} 
+         <div>{this.props.personName==="" && buttonsToRegisterAndToLogin} </div>
          
      </div>
     );

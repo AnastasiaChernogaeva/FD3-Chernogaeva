@@ -98,3 +98,197 @@ const mapStateToProps = function (state) {
 export default connect(mapStateToProps)(Top);*/
 
 export default Top;
+
+
+
+
+
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import './top.css';
+
+import {pageEvents} from './events';
+
+class Top extends React.PureComponent {
+
+  static propTypes = {
+   shopName:PropTypes.string,
+  //  personName:PropTypes.string,
+  //  personLastName:PropTypes.string,
+  };
+
+  state = {
+    searchWord:"",
+    // personName:this.props.personName,
+    // personLastName:this.props.personLastName,
+  };
+/*
+  componentWillReceiveProps = (newProps) => {
+    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
+    if(this.state.info!=newProps.info){
+      this.setState({info:newProps.info});
+    }
+    
+  };*/
+ remember=(EO)=>{
+     this.setState({searchWord:EO.target.value,}, this.announce);
+ }
+ search=()=>{
+    pageEvents.emit('Search', this.state.searchWord);
+ };
+ change1=()=>{
+    pageEvents.emit('ChangeBody',1);
+ };
+
+ change2=()=>{
+  pageEvents.emit('ChangeBody',2);
+};
+
+change3=()=>{
+  pageEvents.emit('ChangeBody',3);
+};
+
+change4=()=>{
+  pageEvents.emit('ChangeBody',4);
+};
+
+change5=()=>{
+  pageEvents.emit('ChangeBody',5);
+};
+
+// logout=()=>{
+//   pageEvents.emit("WantToLogout",);
+// }
+
+
+ announce=()=>{
+    console.log("Something has changed");
+}
+
+
+  render() {
+//  let userCard=<div className="account"> 
+//  <p>{this.state.personName}</p>
+//  <p>{this.state.personLastName}</p>
+//  <input type="button" onClick={this.logout} value="Выйти" />
+// </div>
+
+// let buttonsToRegisterAndToLogin=<div>
+//              <input type="button" onClick={this.change4} value="Регистрация" />
+//              <input type="button" onClick={this.change5} value="Войти" />
+// </div>
+
+    
+    return (
+     <div className="Top">
+         <div>
+             <span className="ShopName">{this.props.shopName}</span>
+             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input></div><input type="button" onClick={this.search}>Поиск</input>
+         </div>
+       {/* <div>{this.state.personName!=="" && userCard} </div>  */}
+         <div>
+             <input type="button" onClick={this.change1} value="Главная" />
+             <input type="button" onClick={this.change2} value="Корзина" />
+             <input type="button" onClick={this.change3} value="WishList" />
+             <input type="button" onClick={this.change4} value="Регистрация" />
+             <input type="button" onClick={this.change5} value="Войти" />
+         </div>
+         {/* <div>{this.state.personName==="" && buttonsToRegisterAndToLogin} </div> */}
+         
+     </div>
+    );
+
+  }
+
+}
+
+export default Top;
+
+
+
+
+
+
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import './top.css';
+
+import {pageEvents} from './events';
+
+class Top extends React.PureComponent {
+
+  static propTypes = {
+   shopName:PropTypes.string,
+  };
+
+  state = {
+    searchWord:"",
+  };
+/*
+  componentWillReceiveProps = (newProps) => {
+    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
+    if(this.state.info!=newProps.info){
+      this.setState({info:newProps.info});
+    }
+    
+  };*/
+ remember=(EO)=>{
+     this.setState({searchWord:EO.target.value,}, this.announce);
+ }
+ search=()=>{
+    pageEvents.emit('Search', this.state.searchWord);
+ };
+ change1=()=>{
+    pageEvents.emit('ChangeBody',1);
+ };
+
+ change2=()=>{
+  pageEvents.emit('ChangeBody',2);
+};
+
+change3=()=>{
+  pageEvents.emit('ChangeBody',3);
+};
+
+change4=()=>{
+  pageEvents.emit('ChangeBody',4);
+};
+
+change5=()=>{
+  pageEvents.emit('ChangeBody',5);
+};
+
+
+ announce=()=>{
+    console.log("Something has changed");
+}
+
+
+  render() {
+
+    
+    return (
+     <div className="Top">
+         <div>
+             <span className="ShopName">{this.props.shopName}</span>
+             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input></div><input type="button" onClick={this.search}/>
+         </div>
+         <div>
+             <input type="button" onClick={this.change1} value="Главная" />
+             <input type="button" onClick={this.change2} value="Корзина" />
+             <input type="button" onClick={this.change3} value="WishList" />
+             <input type="button" onClick={this.change4} value="Регистрация" />
+             <input type="button" onClick={this.change5} value="Войти" />
+         </div>
+     </div>
+    );
+
+  }
+
+}
+
+export default Top;

@@ -393,7 +393,7 @@ announce=()=>{
       return(
       // <Provider>
       <div>
-      <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.accountLastName}/>
+      <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.authorizatedLastName}/>
       <MainBody goods={this.state.goods} categories={this.state.categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
       
