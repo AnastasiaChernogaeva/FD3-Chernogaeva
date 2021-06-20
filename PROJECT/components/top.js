@@ -9,6 +9,8 @@ class Top extends React.PureComponent {
 
   static propTypes = {
    shopName:PropTypes.string,
+   personName:PropTypes.string,
+   personLastName:PropTypes.string,
   };
 
   state = {
@@ -48,6 +50,10 @@ change5=()=>{
   pageEvents.emit('ChangeBody',5);
 };
 
+logout=()=>{
+  pageEvents.emit("WantToLogout",);
+}
+
 
  announce=()=>{
     console.log("Something has changed");
@@ -55,21 +61,32 @@ change5=()=>{
 
 
   render() {
+ let userCard=<div className="account">
+ <p>{this.props.personName}</p>
+ <p>{this.props.personLastName}</p>
+ <input type="button" onClick={this.logout} value="Выйти" />
+</div>
+
+let buttonsToRegisterAndToLogin=<div>
+             <input type="button" onClick={this.change4} value="Регистрация" />
+             <input type="button" onClick={this.change5} value="Войти" />
+</div>
 
     
     return (
      <div className="Top">
          <div>
              <span className="ShopName">{this.props.shopName}</span>
-             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input></div><input type="button" onClick={this.search}/>
+             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input></div><input type="button" onClick={this.search}>Поиск</input>
          </div>
+        {this.props.personName!=""&& userCard} 
          <div>
              <input type="button" onClick={this.change1} value="Главная" />
              <input type="button" onClick={this.change2} value="Корзина" />
              <input type="button" onClick={this.change3} value="WishList" />
-             <input type="button" onClick={this.change4} value="Регистрация" />
-             <input type="button" onClick={this.change5} value="Войти" />
          </div>
+         {this.props.personName==""&& buttonsToRegisterAndToLogin} 
+         
      </div>
     );
 
