@@ -1,3 +1,15 @@
+*{
+    font-family: 'Comfortaa', cursive;
+    font-size: 19px;
+}
+
+
+
+.MainBlock{
+    display:flex;
+}
+
+
 .categories ul li{
     list-style-type: none;
     cursor:pointer;
@@ -8,6 +20,11 @@
     
 } */
 
+.Goods{
+    display:flex;
+    padding: 4%;
+}
+
 button{
     border:none;
     background: transparent;
@@ -15,3 +32,18 @@ button{
 }
 
 button:hover{cursor: pointer;}
+
+.categories {
+    padding-right: 5%;
+    padding-top: 3%;
+    border-right: black 2px solid;
+}
+
+.categories ul li button {
+    height: 3vw;
+    width: 17vw;
+}
+
+.categories ul li h3 {
+    text-align: center;
+}

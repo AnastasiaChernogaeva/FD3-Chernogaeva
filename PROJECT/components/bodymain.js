@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/*import './mobileClients.css';*/
+import './MainBodyShow.css';
 
 import BodyShop from './bodyshop.js';
 import CartPage from './cart.js';
@@ -44,7 +44,7 @@ class MainBody extends React.PureComponent {
 
 
     return (
-     <div>
+     <div className="MainBodyShow">
          {this.props.bodyChange===1&&shop}
          {this.props.bodyChange===2&&cartPage}
          {this.props.bodyChange===3&&wishListPage}

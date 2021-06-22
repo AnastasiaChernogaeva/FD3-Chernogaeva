@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import isoFetch from 'isomorphic-fetch';
 
 
+import './home.css';
+
+
 // import { Provider } from 'react-redux';
 // import { createStore, applyMiddleware } from 'redux';
 // import thunk from 'redux-thunk';
@@ -376,7 +379,6 @@ search=(word)=>{
       }
       else if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
-              console.log(`${item.itemName}  подходит`);
             }
       else{
                 console.log(`${item.itemName} не подходит`);

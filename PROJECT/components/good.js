@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/*import './mobileClients.css';*/
+import './good.css';
 
 import {pageEvents} from './events';
 
@@ -36,7 +36,7 @@ class Good extends React.PureComponent {
     
     return (
      <div className="good">
-         <div className="goodImg">
+         <div className="goodImg" >
              <img src={this.state.good.itemPhotoURL} alt={this.state.good.itemName}/>
          </div>
          <div className="Cost">

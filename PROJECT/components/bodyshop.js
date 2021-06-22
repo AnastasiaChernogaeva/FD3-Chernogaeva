@@ -44,11 +44,15 @@ class BodyShop extends React.PureComponent {
     
     return (
      <div>
+       <div className="MainBlock">
          <div className="categories">
-             <ul>{categoryList}</ul>
+             <ul>
+               <li><h3>Категории:</h3></li>
+               {categoryList}</ul>
          </div>
          <div className="Goods">
              {goods}
+         </div>
          </div>
          <div className="Navigation">
 

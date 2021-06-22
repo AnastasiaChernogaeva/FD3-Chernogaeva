@@ -43,9 +43,10 @@ change3=()=>{
                <th>Моя страница</th>
                <th>Наши контакты </th>
              </tr>
+             <tr><td><br/></td></tr>
              <tr>
                 <td><button onClick={this.change5 } >Моя страница</button></td>
-                <td>г.Черас, проспект Марна,9</td>
+                <td> г.Черас, проспект Марна,9</td>
              </tr>
              <tr>
                 <td><button onClick={this.change2} >Корзина</button></td>

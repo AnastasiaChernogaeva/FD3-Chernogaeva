@@ -1,3 +1,31 @@
+*{
+    font-family: 'Comfortaa', cursive;
+    font-size: 19px;
+}
+
+
 div.Footer{
 width:100%;
 };
+
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+  }
+
+  th {
+    text-align: left;
+}
+
+.Footer{
+    padding:2%;
+}
+
+table{
+    width:100vw;
+}

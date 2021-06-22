@@ -1,19 +1,100 @@
+*{
+    font-family: 'Comfortaa', cursive;
+    font-size: 19px;
+}
+
+/* .Top div{
+    background-color: rgba(202, 252, 68, 0.6);
+} */
+
+
+.button_search{
+    background: white;
+    text-align: center;
+    border: rgba(202, 252, 68, 0.1);
+    /* margin-left: 1vw; */
+    width: 3vw;
+    border-left: black 2px solid;
+}
+
+.Top_Buttons input{
+    background: white;
+    padding: 1%;
+    text-align: center;
+    border: rgba(202, 252, 68, 0.1);
+}
+
+.First input{
+    width: 30vw;
+}
+
+.Second div input{
+    width: 45vw;
+}
+
+
+
 div.Top{
     width:100%;
 }
-.ShopName {
- font-size: xxx-large;
- font-family:cursive;
- font-style: italic;
+
+.TopNameAndSearch{
+   display:flex; 
 }
+
+p.ShopName {
+    width: 22vw;
+    font-size: 56px;
+    text-align: left;
+    letter-spacing: 6px;
+    font-style: oblique;
+    font-weight: 1000;
+}
+/* 
+@keyframes MyAnimation{
+from (color:purple;)
+to (color:)
+
+
+} */
+
 .SearchEngine{
         border: none;
-        margin-left: 5vw;
-        width: 60vw;
+        width: 45vw;
         height: 3vw;
     
 }
 .Text{
+    padding-top: 4%;
+    padding-bottom: 4%;
+    height: fit-content;
+    display: flex;
     border-radius: 15%;
-    border-color:azure;
+    border-color: azure;
+    width: 60vw;
+}
+
+.Top_Buttons.First {
+    border-bottom: black 2px solid;
+    width: 90vw;
+}
+
+
+.Top_Buttons.First input:first-child {
+    border-right: black 2px solid;
+}
+
+.Top_Buttons.First input:last-child {
+    border-left: black 2px solid;
+}
+
+.Top_Buttons.Second input:first-child {
+    border-right: black 2px solid;
+}
+
+
+.account {
+    background: white;
+    width: 20vw;
+    padding: 2%;
 }

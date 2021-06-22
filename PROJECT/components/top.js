@@ -76,17 +76,19 @@ let buttonsToRegisterAndToLogin=<div>
     
     return (
      <div className="Top">
-         <div>
-             <span className="ShopName">{this.props.shopName}</span>
-             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input></div><input type="button" onClick={this.search}/>
+         <div  className="TopNameAndSearch">
+             <p className="ShopName">{this.props.shopName}</p>
+             
+             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input> <input type="button" className="button_search" onClick={this.search}/></div>
          </div>
+        <br/>
        <div>{this.props.personName!=="" && userCard} </div> 
-         <div>
+         <div className="Top_Buttons First">
              <input type="button" onClick={this.change1} value="Главная" />
              <input type="button" onClick={this.change2} value="Корзина" />
              <input type="button" onClick={this.change3} value="WishList" />
          </div>
-         <div>{this.props.personName==="" && buttonsToRegisterAndToLogin} </div>
+         <div className="Top_Buttons Second">{this.props.personName==="" && buttonsToRegisterAndToLogin} </div>
          
      </div>
     );
