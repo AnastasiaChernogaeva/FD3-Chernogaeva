@@ -41,22 +41,61 @@ div.Top{
 .TopNameAndSearch{
    display:flex; 
 }
-
+/* 
 p.ShopName {
+    position:relative;
     width: 22vw;
     font-size: 56px;
     text-align: left;
     letter-spacing: 6px;
     font-style: oblique;
     font-weight: 1000;
-}
-/* 
-@keyframes MyAnimation{
-from (color:purple;)
-to (color:)
-
-
+    color:black;
+    animation:
+        MyAnimation3b 8s infinite;
 } */
+
+p.ShopName {
+    position: relative;
+    width: 22vw;
+    margin-left: -0.8vw;
+    font-size: 61px;
+    text-align: left;
+    letter-spacing: 6px;
+    font-style: oblique;
+    font-weight: 1000;
+    color: black;
+    animation: MyAnimation3b 8s infinite;
+}
+
+p.ShopNameBackGround {
+    opacity: 1.5;
+    z-index: -11;
+    position: absolute;
+    width: 32vw;
+    font-size: 59px;
+    text-align: left;
+    letter-spacing: 6px;
+    font-style: oblique;
+    font-weight: 1000;
+    color: white;
+}
+ 
+@keyframes MyAnimation3b{
+
+    from { color: black; }
+    17% {color:red;}
+    27% {color:orange;}
+    37% {color:yellow;}
+    47% {color:green;}
+    57% {color:rgba(2, 221, 236, 0.911);}
+    67% {color:blue;}
+    77% {color:purple;}
+    87% {color:fuchsia;}
+    97% {color:lime;}
+    to { color: maroon; }
+
+} 
 
 .SearchEngine{
         border: none;
@@ -65,6 +104,7 @@ to (color:)
     
 }
 .Text{
+    position:relative;
     padding-top: 4%;
     padding-bottom: 4%;
     height: fit-content;

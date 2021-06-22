@@ -78,7 +78,7 @@ let buttonsToRegisterAndToLogin=<div>
      <div className="Top">
          <div  className="TopNameAndSearch">
              <p className="ShopName">{this.props.shopName}</p>
-             
+             <p className="ShopNameBackGround">{this.props.shopName}</p>
              <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input> <input type="button" className="button_search" onClick={this.search}/></div>
          </div>
         <br/>

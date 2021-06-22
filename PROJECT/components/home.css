@@ -1,6 +1,10 @@
 .Top {
     padding: 2%;
 }
-body{
+/* body{
     background-color: rgba(202, 252, 68, 0.6);
+} */
+
+body {
+    background-color: rgba(242, 148, 255 , .8);
 }
