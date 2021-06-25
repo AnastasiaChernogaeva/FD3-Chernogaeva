@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import './shop.css';
@@ -38,8 +38,31 @@ class BodyShop extends React.PureComponent {
       );
 
       let goods=this.props.goods.slice();
-      goods=goods.map(elem=>
+      let goodsArr=goods.slice();
+      goodsArr=goodsArr.filter((elem,i)=>(i+1)%3==0);
+      goods=goods.map((elem,l,)=>{
+          let highTimeToGoToAnotherRow=goodsArr.find(goods[l]);
+        if(highTimeToGoToAnotherRow!=undefined){
+          <Fragment>
+         <Good info={elem} key={elem.code} className='Good'></Good><br/><br/>
+         </Fragment>
+        }
+        else
         <Good info={elem} key={elem.code} className='Good'></Good>
+        
+      }
+      //   for(let l=0;l<goods.length; l++){
+      //     let highTimeToGoToAnotherRow=goodsArr.find(goods[l]);
+      //   if(highTimeToGoToAnotherRow!=undefined){
+      //     <Fragment>
+      //    <Good info={elem} key={elem.code} className='Good'></Good><br/><br/>
+      //    </Fragment>
+      //   }
+      //   else
+      //   <Good info={elem} key={elem.code} className='Good'></Good>
+      //   }
+      // }
+    
       );
     
     return (

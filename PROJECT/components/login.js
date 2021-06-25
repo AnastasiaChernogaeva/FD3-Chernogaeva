@@ -195,22 +195,22 @@ disabilityForButton=()=>{
   render() {
 
     let question=<div className="Top_Buttons">
-      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/>
-      <input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/>
-      <label htmlFor="color">Введите ваш любимый цвет</label><br/>
-      <input type="text" id="color" onChange={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/>
-       <label htmlFor="year">Введите год регистрации на нашем сайте</label><br/>
-       <input type="text" id="year" onChange={this.year} value={this.state.year}/> <span className="error">{this.state.erroryear}</span><br/> 
-       <input type="button" value="Восстановить пароль" onClick={this.restore}/><br/>  
+      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/>
+      <input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
+      <label htmlFor="color">Введите ваш любимый цвет</label><br/><br/>
+      <input type="text" id="color" onChange={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
+       <label htmlFor="year">Введите год регистрации на нашем сайте</label><br/><br/>
+       <input type="text" id="year" onChange={this.year} value={this.state.year}/> <span className="error">{this.state.erroryear}</span><br/><br/>
+       <input type="button" value="Восстановить пароль" onClick={this.restore}/><br/><br/>
       </div>
 
     let enter=<div className="Top_Buttons">
                <form className="login" onChange={this.disabilityForButton}>
       <h1>Вход в аккаунт</h1>
-       <label htmlFor="MailId">Электронная почта</label><br/>
-       <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/>
-       <label htmlFor="Password">Пароль</label><br/>
-       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/>
+       <label htmlFor="MailId">Электронная почта</label><br/><br/>
+       <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
+       <label htmlFor="Password">Пароль</label><br/><br/>
+       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
       <input type="button" value="Войти" onClick={this.enter} disabled={this.state.disabled}/>
       <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
       </form> 
@@ -219,10 +219,10 @@ disabilityForButton=()=>{
     let youCanNotChangeYourPassword=<p>К сожалению, Вы не можете изменить пароль. Такого пользователя не сущствует. Вы можете пройти регистрацию <a href="" onClick={this.change}>здесь</a></p>
     
     let youCanChangeYourPassword=<div className="Top_Buttons">
-       <label htmlFor="Password">Введите новый пароль</label>
-       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
-       <label htmlFor="RePassword">Подтвердите пароль</label>
-       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password} /><span className="error">{this.state.errorPasswordCheck}</span>
+       <label htmlFor="Password">Введите новый пароль</label><br/><br/>
+       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
+       <label htmlFor="RePassword">Подтвердите пароль</label><br/><br/>
+       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
     </div>
 
     // if(this.state.forgottenPassword==="false"){

@@ -199,7 +199,7 @@ cleanTheForm=()=>{
      <div>
        <form className="register" onChange={this.disabilityForButtons}>
        <h1>Регистрация</h1>
-       <label htmlFor="NameId">Имя</label><br/>
+       <label htmlFor="NameId">Имя</label><br/><br/>
        <input type="text" id="NameId" onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span><br/><br/>
        <label htmlFor="LastNameId">Фамилия</label><br/><br/>
        <input type="text" id="LastNameId" onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/><br/>
@@ -211,8 +211,8 @@ cleanTheForm=()=>{
        <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password2} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        <h3>Дополнительная информация для восстановления доступа к аккаунту</h3>
 
-      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
-      <label htmlFor="color">Введите ваш любимый цвет</label><br/><input type="text" id="color" onChange={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
+      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
+      <label htmlFor="color">Введите ваш любимый цвет</label><br/><br/><input type="text" id="color" onChange={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
       
 
       </form>
