@@ -51,9 +51,9 @@ animate=(id)=>{
   render() {
      if(this.props.cart==null){
       return (
-        <div>
+        <div className="Top_Buttons">
             <h2>У вас нет товаров в корзине</h2>
-            <input type="button" onClick={this.changeBody1} value="Перейти на главную" />
+            <input type="button" className="Top_Buttons" onClick={this.changeBody1} value="Перейти на главную" />
         </div>
          );
       
@@ -63,10 +63,10 @@ animate=(id)=>{
       goodsInCart=goodsInCart.map(elem=><CartGood info={elem} key={elem.code}/>);
     
     return (
-     <div>
+      <div className="Top_Buttons">
          <h2>Товары в корзине:</h2>
          <table className="CartGood"><tbody>{goodsInCart}</tbody></table>
-         <input type="button" onClick={this.sendNewOrder} value="Заказать" />
+         <input type="button" className="Top_Buttons" onClick={this.sendNewOrder} value="Заказать" />
      </div>
     );
     }

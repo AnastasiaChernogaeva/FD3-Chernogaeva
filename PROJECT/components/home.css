@@ -1,5 +1,5 @@
 .Top {
-    padding: 2%;
+    padding-bottom: 2%;
 }
 /* body{
     background-color: rgba(202, 252, 68, 0.6);
@@ -7,4 +7,7 @@
 
 body {
     background-color: rgba(242, 148, 255 , .8);
+}
+.body_body {
+    padding-left: 4%;
 }

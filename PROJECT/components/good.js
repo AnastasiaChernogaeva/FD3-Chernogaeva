@@ -44,12 +44,15 @@ class Good extends React.PureComponent {
             <p>{this.state.good.itemCost}</p> 
             <p> Осталось: {this.state.good.itemAmount}</p> 
          </div>
-         <div className="Buttons">
-             <input type="button" onClick={this.addToWishList} value="WishList" />
-             <input type="button" onClick={this.addToCart} value="Корзина" />
-         </div>
-     </div>
-    );
+         <div className="Buttons Top_Buttons">
+           <button  onClick={this.addToWishList}><span className="material-icons">add_shopping_cart</span></button>
+           <button onClick={this.addToCart}><span className="material-icons">favorite_border</span></button> 
+       </div>
+       </div>
+      );
+              // <input type="button" onClick={this.addToWishList} value="WishList" />
+            //  <input type="button" onClick={this.addToCart} value="Корзина" /> 
+   
 
   }
 

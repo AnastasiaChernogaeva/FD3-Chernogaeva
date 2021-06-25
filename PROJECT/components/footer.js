@@ -45,20 +45,20 @@ change3=()=>{
              </tr>
              <tr><td><br/></td></tr>
              <tr>
-                <td><button onClick={this.change5 } >Моя страница</button></td>
-                <td> г.Черас, проспект Марна,9</td>
+                <td><button onClick={this.change5 } ><span className="material-icons"> person</span>Моя страница</button></td>
+                <td><span className="material-icons">room</span>  г.Черас, проспект Марна,9</td>
              </tr>
              <tr>
-                <td><button onClick={this.change2} >Корзина</button></td>
-                <td>80336853937</td>
+                <td><button onClick={this.change2} ><span className="material-icons"> shopping_cart</span>Корзина</button></td>
+                <td><span className="material-icons"> call</span>80336853937</td>
              </tr>
              <tr>
-                <td><button onClick={this.change3} >WishList</button></td>
-                <td>sergeychernogaev1979@gmail.com</td>
+                <td><button onClick={this.change3} ><span className="material-icons"> favorite</span>WishList</button></td>
+                <td><span className="material-icons"> email</span>sergeychernogaev1979@gmail.com</td>
              </tr>
              <tr>
                 <td></td>
-                <td>7 дней в неделю с 08:00 до 20:30</td>
+                <td><span className="material-icons"> schedule</span>7 дней в неделю с 08:00 до 20:30</td>
              </tr>
              
            </tbody>

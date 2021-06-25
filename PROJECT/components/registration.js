@@ -200,25 +200,26 @@ cleanTheForm=()=>{
        <form className="register" onChange={this.disabilityForButtons}>
        <h1>Регистрация</h1>
        <label htmlFor="NameId">Имя</label><br/>
-       <input type="text" id="NameId" onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span><br/>
-       <label htmlFor="LastNameId">Фамилия</label><br/>
-       <input type="text" id="LastNameId" onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/>
-       <label htmlFor="MailId">Электронная почта</label><br/>
-       <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/>
-       <label htmlFor="Password">Пароль</label><br/>
-       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><span className="error">{this.state.errorPasswordCheck}</span><br/>
-       <label htmlFor="RePassword">Подтвердите пароль</label><br/>
-       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password2} /><span className="error">{this.state.errorPasswordCheck}</span><br/>
+       <input type="text" id="NameId" onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span><br/><br/>
+       <label htmlFor="LastNameId">Фамилия</label><br/><br/>
+       <input type="text" id="LastNameId" onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/><br/>
+       <label htmlFor="MailId">Электронная почта</label><br/><br/>
+       <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
+       <label htmlFor="Password">Пароль</label><br/><br/>
+       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <label htmlFor="RePassword">Подтвердите пароль</label><br/><br/>
+       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password2} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        <h3>Дополнительная информация для восстановления доступа к аккаунту</h3>
 
-      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/>
-      <label htmlFor="color">Введите ваш любимый цвет</label><br/><input type="text" id="color" onChange={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/>
+      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
+      <label htmlFor="color">Введите ваш любимый цвет</label><br/><input type="text" id="color" onChange={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
       
 
       </form>
+      <div className="Top_Buttons">
        <input type="button" value="Зарегистрироваться" onClick={this.highTimetoAddNewPerson} disabled={this.state.disabled}/>
        <input type="button" value="Сбросить все" onClick={this.cleanTheForm}/>
-
+      </div>
       
      </div>
     );

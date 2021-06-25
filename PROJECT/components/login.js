@@ -194,7 +194,7 @@ disabilityForButton=()=>{
 
   render() {
 
-    let question=<div>
+    let question=<div className="Top_Buttons">
       <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/>
       <input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/>
       <label htmlFor="color">Введите ваш любимый цвет</label><br/>
@@ -204,7 +204,7 @@ disabilityForButton=()=>{
        <input type="button" value="Восстановить пароль" onClick={this.restore}/><br/>  
       </div>
 
-    let enter=<div>
+    let enter=<div className="Top_Buttons">
                <form className="login" onChange={this.disabilityForButton}>
       <h1>Вход в аккаунт</h1>
        <label htmlFor="MailId">Электронная почта</label><br/>
@@ -218,7 +218,7 @@ disabilityForButton=()=>{
 
     let youCanNotChangeYourPassword=<p>К сожалению, Вы не можете изменить пароль. Такого пользователя не сущствует. Вы можете пройти регистрацию <a href="" onClick={this.change}>здесь</a></p>
     
-    let youCanChangeYourPassword=<div>
+    let youCanChangeYourPassword=<div className="Top_Buttons">
        <label htmlFor="Password">Введите новый пароль</label>
        <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
        <label htmlFor="RePassword">Подтвердите пароль</label>

@@ -5,7 +5,7 @@
 
 
 div.Footer{
-width:100%;
+        width: 90vw;
 };
 
 
@@ -27,5 +27,5 @@ width:100%;
 }
 
 table{
-    width:100vw;
+    width: 90vw;
 }

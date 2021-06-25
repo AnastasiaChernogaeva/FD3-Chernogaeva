@@ -73,23 +73,29 @@ let buttonsToRegisterAndToLogin=<div>
              <input type="button" onClick={this.change5} value="Войти" />
 </div>
 
+/*<input type="button" className="button_search" onClick={this.search} value={searchIcon} />*/
+
+let searchIcon=<span className="material-icons-outlined"> search</span>
     
     return (
      <div className="Top">
          <div  className="TopNameAndSearch">
              <p className="ShopName">{this.props.shopName}</p>
              <p className="ShopNameBackGround">{this.props.shopName}</p>
-             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input> <input type="button" className="button_search" onClick={this.search}/></div>
+             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input><button className="button_search" onClick={this.search} ><span className="material-icons">search</span></button> 
+
+             </div>
          </div>
         <br/>
        <div>{this.props.personName!=="" && userCard} </div> 
+       <div className="Butt">
          <div className="Top_Buttons First">
              <input type="button" onClick={this.change1} value="Главная" />
              <input type="button" onClick={this.change2} value="Корзина" />
              <input type="button" onClick={this.change3} value="WishList" />
          </div>
          <div className="Top_Buttons Second">{this.props.personName==="" && buttonsToRegisterAndToLogin} </div>
-         
+         </div> 
      </div>
     );
 

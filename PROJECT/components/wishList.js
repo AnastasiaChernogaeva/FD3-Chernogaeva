@@ -61,7 +61,7 @@ class WishListPage extends React.PureComponent {
 
 if(this.props.wish==null){
   return (
-    <div>
+    <div className="Top_Buttons">
         <h2>У вас нет товаров в WishList</h2>
         <input type="button" onClick={this.changeBody1} value="Перейти на главную" />
     </div>
@@ -72,7 +72,7 @@ if(this.props.wish==null){
       goodsInWisht=goodsInWisht.map(elem=>/* this.state.elemToDelete===elem?<WishGood className="IsGoingToBeDeleted" info={elem} key={elem.code}/> :*/<WishGood info={elem} key={elem.code}/>);
     
     return (
-     <div>
+     <div className="Top_Buttons">
          <h2>Товары в корзине:</h2>
          <table className="CartGood"><tbody>{goodsInWisht}</tbody></table>
          <input type="button" onClick={this.sendNewOrder} value="Заказать" />

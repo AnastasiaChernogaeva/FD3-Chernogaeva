@@ -3,7 +3,7 @@
     font-size: 19px;
 }
 
-/* .Top div{
+/* . div{
     background-color: rgba(202, 252, 68, 0.6);
 } */
 
@@ -17,7 +17,7 @@
     border-left: black 2px solid;
 }
 
-.Top_Buttons input{
+.Top_Buttons  input[type=button]{
     background: white;
     padding: 1%;
     text-align: center;
@@ -35,7 +35,7 @@
 
 
 div.Top{
-    width:100%;
+    width:90vw;
 }
 
 .TopNameAndSearch{
@@ -137,4 +137,9 @@ p.ShopNameBackGround {
     background: white;
     width: 20vw;
     padding: 2%;
+}
+
+.Butt{
+    width:90vw;
+    background: white;
 }

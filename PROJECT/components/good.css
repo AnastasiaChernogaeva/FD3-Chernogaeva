@@ -1,7 +1,7 @@
 .good{
     position: relative;
-    border:azure;
-    border-radius:2%;
+    border-left: black 3px solid;
+    padding: 0.105%;
 }
 
 .goodImg{
@@ -14,4 +14,8 @@
 .goodImg img{
     width:250px;
     height:220px;
+}
+
+.Buttons button:first-child {
+    border-right: black 2px solid;
 }
