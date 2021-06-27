@@ -48,7 +48,8 @@ class Home extends React.PureComponent {
 
           authorizatedName:"",
           authorizatedLastName:"",
-
+          typeSearch:"",
+          pagenumnavigation:"",
         };
 
 
@@ -99,23 +100,23 @@ class Home extends React.PureComponent {
     var URLHash=window.location.hash;
     var stateStr=URLHash.substr(1);
 
-    if ( stateStr!="" ) { // если закладка непустая, читаем из неё состояние и отображаем
-      var parts=stateStr.split("_")
-      this.setState({SPAState:{ pagename: this.state.toShowBodyMode, }}, this.announce); // первая часть закладки - номер страницы
-      if ( this.state.SPAState.pagename==1 )
-        this.state.SPAState.pagenumnavigation=parts[0]/*navigation[0]*/; // для фото нужна ещё вторая часть закладки - номер фото
-    }
-    else
-    this.setState({SPAState:{pagename:'Main'}}, this.announce); 
+    // if ( stateStr!="" ) { // если закладка непустая, читаем из неё состояние и отображаем
+    //   var parts=stateStr.split("_")
+    //   this.setState({SPAState:{ pagename: this.state.toShowBodyMode, }}, this.announce); // первая часть закладки - номер страницы
+    //   if ( this.state.SPAState.pagename==1 )
+    //     this.state.SPAState.pagenumnavigation=parts[1]/*navigation[0]*/; // для фото нужна ещё вторая часть закладки - номер фото
+    // }
+    // else
+    // this.setState({SPAState:{pagename:'Main'}}, this.announce); 
 
-    console.log('Новое состояние приложения:');
-    console.log(this.state.SPAState);
   };
 
    switchToState=(newState)=>{
     var stateStr=newState.pagename;
-    if ( newState.pagename==1)
-      stateStr+="_"+newState.pagenumnavigation;
+    if ( newState.pagename=='Main'){
+      (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation):null;
+    }
+   
     location.hash=stateStr;
 
     this.switchToStateFromURLHash();
@@ -132,18 +133,42 @@ changeBody=(num)=>{
  switchState=()=>{
   switch ( this.state.toShowBodyMode) {
     case 1:
-      this.switchToState( { pagename:'Main' } );
+      switch(this.state.typeSearch){
+        case "category":
+          let typeSearchC=this.state.typeSearch;
+          if(this.state.pagenumnavigation!=""){
+            let word=this.state.pagenumnavigation;
+            this.switchToState( { pagename:'Main', pagenumnavigation:word, typeSearch:typeSearchC,} );
+          }
+          break;
+        case "item":
+          let typeSearchI=this.state.typeSearch;
+          if(this.state.pagenumnavigation!=""){
+            let word=this.state.pagenumnavigation;
+            this.switchToState( { pagename:'Main', pagenumnavigation:word, typeSearch:typeSearchI,} );
+          }
+          break;
+        default:
+          this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
+          this.switchToState( { pagename:'Main'} );
+          break;
+        
+      }
       break;
     case 2:
+      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
       this.switchToState( { pagename:'Cart' } );
       break;
     case 3:
+      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
       this.switchToState( { pagename:'WishList' } );
       break;
     case 4:
+      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
       this.switchToState( { pagename:'Registration' } );
       break;
     case 5:
+      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
       this.switchToState( { pagename:'Login' } );
       break;
   };
@@ -275,7 +300,7 @@ enter=(personName)=>{
 
 checkPasswordsInOurSystem=(serverData,userData)=>{
   let sData=JSON.parse(serverData.result);
-  console.log(sData);
+  // console.log(sData);
   let allKeys=Object.keys(sData);
   let personWeNeed=allKeys.find(client=>client==userData);
   if(personWeNeed!=undefined){
@@ -369,22 +394,33 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
 
 //занимается поиском товаров
 search=(word)=>{
+  if(word==="all"){
+    if(window.location.hash!="#Main"){
+      // let needfulElem=this.props.goods.slice();
+      this.setState( { goods:this.props.goods, typeSearch:"", pagenumnavigation:"", }, this.switchState );
+    }
+    return;
+  }
+  else{
   var regexp = new RegExp(word);
     let needfulElem=this.props.goods.slice();
     let allApropriateElems=[];
     needfulElem=needfulElem.filter(item=>{
       if(item.itemName.search(regexp)!=-1){
         allApropriateElems.push(item);
-        console.log(`${item.itemName}  подходит`);
+        this.setState( {  typeSearch:"item",  pagenumnavigation:word,}, this.switchState );
+        // console.log(`${item.itemName}  подходит`);
       }
       else if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
+              this.setState( {  typeSearch:"category", pagenumnavigation:word,}, this.switchState );
             }
-      else{
-                console.log(`${item.itemName} не подходит`);
-            }
+      // else{
+      //           console.log(`${item.itemName} не подходит`);
+      //       }
     });
-    this.setState( { goods:allApropriateElems }, this.announce );
+    this.setState( { goods:allApropriateElems, }, this.announce );
+  };
   
 };
 

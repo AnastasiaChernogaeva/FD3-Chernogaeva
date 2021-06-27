@@ -15,9 +15,10 @@ class BodyShop extends React.PureComponent {
     categories:PropTypes.array,
   };
 
-  // state = {
-  //   goods:this.props.goods,
-  // };
+   state = {
+     goodsLength:this.props.goods.length,
+     pageAmounts:this.props.goods.length/10,
+   };
 
 /*  componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
@@ -30,6 +31,11 @@ class BodyShop extends React.PureComponent {
     pageEvents.emit('Search', EO.target.value);
   }
 
+  changePageGoods=(EO)=>{
+   for()
+
+  };
+
 
   render() {
        let categoryList=this.props.categories.slice();
@@ -38,32 +44,32 @@ class BodyShop extends React.PureComponent {
       );
 
       let goods=this.props.goods.slice();
-      let goodsArr=goods.slice();
-      goodsArr=goodsArr.filter((elem,i)=>(i+1)%3==0);
-      goods=goods.map((elem,l,)=>{
-          let highTimeToGoToAnotherRow=goodsArr.find(goods[l]);
-        if(highTimeToGoToAnotherRow!=undefined){
-          <Fragment>
-         <Good info={elem} key={elem.code} className='Good'></Good><br/><br/>
-         </Fragment>
-        }
-        else
-        <Good info={elem} key={elem.code} className='Good'></Good>
-        
+      // let pageAmounts=goods.length/10;
+      let pageGoods=[];
+      for (let k=1; k<=this.state.pageAmounts; k++){
+        pageGoods.push(<li className="numbers" onClick={this.changePageGoods} value={k}>{k}</li>);
       }
-      //   for(let l=0;l<goods.length; l++){
-      //     let highTimeToGoToAnotherRow=goodsArr.find(goods[l]);
-      //   if(highTimeToGoToAnotherRow!=undefined){
-      //     <Fragment>
-      //    <Good info={elem} key={elem.code} className='Good'></Good><br/><br/>
-      //    </Fragment>
-      //   }
-      //   else
-      //   <Good info={elem} key={elem.code} className='Good'></Good>
-      //   }
+      // let goodsArr=goods.slice();
+      // goodsArr=goodsArr.filter((elem,i)=>(i+1)%3==0);
+      let goodsArr=goods.slice();
+      goodsArr=goodsArr.filter((elem,i)=>(i+1)%6!=0);
+      // goods=goods.map((elem,)=>{
+      //   //   let highTimeToGoToAnotherRow=goodsArr.find(obj=>obj===elem);
+      //   // if(highTimeToGoToAnotherRow!=undefined){
+      //   //  return( <Fragment>
+      //   //  <Good info={elem} key={elem.code} className=' BreakRow'></Good>
+      //   //  </Fragment>);
+      //   // }
+      //   // else
+    
+      //   // return (<Good info={elem} key={elem.code} className='Good'></Good>);
       // }
     
-      );
+      // );
+      goods=goods.map((elem, ind)=>
+        ind<6?<Good info={elem} key={elem.code} className='Good'></Good>:null
+        )
+      
     
     return (
      <div>
@@ -71,15 +77,19 @@ class BodyShop extends React.PureComponent {
          <div className="categories">
              <ul>
                <li><h3>Категории:</h3></li>
+               <li><button onClick={this.chooseCategory} value="all">все товары</button></li>
                {categoryList}</ul>
          </div>
          <div className="Goods">
              {goods}
+             <div className="Navigation">
+            <li><span className="material-icons"> arrow_back_ios</span></li>
+            {pageGoods}
+            <li><span className="material-icons"> arrow_forward_ios</span></li>
          </div>
          </div>
-         <div className="Navigation">
+         </div>
 
-         </div>
      </div>
     );
 

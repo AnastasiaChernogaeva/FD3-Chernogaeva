@@ -1,21 +1,37 @@
 .good{
-    position: relative;
-    border-left: black 3px solid;
-    padding: 0.105%;
+    display: inline-block;
+    margin-bottom: 5%;
+    margin-right: 5%;
 }
 
 .goodImg{
     position: relative;
-    width:25vw;
-    height:30vw;
-    text-align: center;
+    width: 180px;
+    height: 150px;
+    /* text-align: center; */
+    padding-left: 15%;
 }
 
 .goodImg img{
-    width:250px;
-    height:220px;
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    box-sizing: border-box;
 }
 
 .Buttons button:first-child {
     border-right: black 2px solid;
+}
+
+
+.good p {
+    width: 21vw;
+    text-align: center;
+}
+.good p:first-child {
+    font-weight: 700;
+}
+
+.Buttons.Top_Buttons {
+    text-align: center;
 }
