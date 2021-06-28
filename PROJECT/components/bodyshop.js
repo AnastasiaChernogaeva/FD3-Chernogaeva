@@ -13,11 +13,12 @@ class BodyShop extends React.PureComponent {
     goods:PropTypes.array,
     bodyChange:PropTypes.number,
     categories:PropTypes.array,
+    textKK:PropTypes.string,
   };
 
    state = {
      goodsLength:this.props.goods.length,
-     pageAmounts:this.props.goods.length/6,
+    //  pageAmounts:this.props.goods.length/6,
      openPage:1,
      pageBefore:0,
 
@@ -44,33 +45,37 @@ class BodyShop extends React.PureComponent {
 
 
   render() {
+    let hh=this.props.textKK;
        let categoryList=this.props.categories.slice();
        categoryList=categoryList.map((elem ,i)=>
         <li id={i}  key={i}><button onClick={this.chooseCategory} value={elem}>{elem}</button></li>
       );
 
-      let pageAmounts=ceil(this.state.pageAmounts);
+      let pageAmounts=Math.ceil(this.props.goods.length/6);
       let pageGoods=[];
       for (let k=1; k<=pageAmounts; k++){
-        pageGoods.push(<li className="numbers" onClick={this.changePageGoods} value={k}>{k}</li>);
+        pageGoods.push(<li className="numbers" key={k} onClick={this.changePageGoods} value={k}>{k}</li>);
       }
 
       let goods=this.props.goods.slice();
 
       let goodsArr=goods.slice();
       goodsArr=goodsArr.filter((elem,i)=>(i+1)%6==0);
-      let firstPageElem=goodsArr.find((obj,ind)=>ind==this.state.pageBefore);
-      let lastPageElem=goodsArr.find((obj,ind)=>ind==this.state.openPage);
+      let firstPageElem=goodsArr.find((obj,ind)=>(ind+1)==this.state.pageBefore);
+      let lastPageElem=goodsArr.find((obj,ind)=>(ind+1)==this.state.openPage);
       
-      let firstPageElemIndex=goods.findIndex(firstPageElem);
-      let lastPageElemIndex=goods.findIndex(lastPageElem);
+      let firstPageElemIndex=goods.findIndex(elem=>elem==firstPageElem);
+      let lastPageElemIndex=goods.findIndex(elem=>elem==lastPageElem);
 
 
       goods=goods.map((elem,ind)=>{
-        if(ind>firstPageElemIndex && ind<lastPageElemIndex){
-          <Good info={elem} key={elem.code} className='Good'></Good>
-        }
-      },
+        if(goods.length<6){
+          return (<Good info={elem} key={elem.code} className='Good'></Good>);
+        };
+        if(ind>firstPageElemIndex && ind<(lastPageElemIndex+1)){
+          return (<Good info={elem} key={elem.code} className='Good'></Good>);
+        };
+      });
           // let pageAmounts=goods.length/10;
     
       // let goodsArr=goods.slice();
@@ -96,20 +101,26 @@ class BodyShop extends React.PureComponent {
     return (
       <div>
        <div className="MainBlock">
+
          <div className="categories">
              <ul>
                <li><h3>Категории:</h3></li>
                <li><button onClick={this.chooseCategory} value="all">все товары</button></li>
                {categoryList}</ul>
          </div>
-         <div className="Goods">
-             {goods}
-             <div className="Navigation">
-            <li><span className="material-icons"> arrow_back_ios</span></li>
-            {pageGoods}
-            <li><span className="material-icons"> arrow_forward_ios</span></li>
+          
+          <div className="aboveGoods"> 
+              <div className="Goods">
+              {goods}
+              {this.props.text!=undefined?this.props.text:null}
+              </div>
+              <div className="Navigation">
+                 <li><span className="material-icons"> arrow_back_ios</span></li>
+                    {pageGoods}
+                  <li><span className="material-icons"> arrow_forward_ios</span></li>
+              </div>
          </div>
-         </div>
+
          </div>
 
      </div>

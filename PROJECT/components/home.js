@@ -48,8 +48,11 @@ class Home extends React.PureComponent {
 
           authorizatedName:"",
           authorizatedLastName:"",
+
           typeSearch:"",
           pagenumnavigation:"",
+
+          textToShowAbsecnceOfitem:"",
         };
 
 
@@ -415,10 +418,12 @@ search=(word)=>{
               allApropriateElems.push(item);
               this.setState( {  typeSearch:"category", pagenumnavigation:word,}, this.switchState );
             }
-      // else{
-      //           console.log(`${item.itemName} не подходит`);
-      //       }
+      else{
+        let textK=`Данный товар ${word} не был найден`;
+        this.setState( {  textToShowAbsecnceOfitem:textK, }, this.announce );
+            }
     });
+   
     this.setState( { goods:allApropriateElems, }, this.announce );
   };
   
@@ -445,13 +450,14 @@ announce=()=>{
 
 
     render() {
+console.log(this.state.textToShowAbsecnceOfitem);
 
-
+let nnn=this.state.textToShowAbsecnceOfitem;
       return(
       // <Provider>
       <div className="body_body"> 
       <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.authorizatedLastName}/>
-      <MainBody goods={this.state.goods} categories={this.state.categories} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
+      <MainBody goods={this.state.goods} categories={this.state.categories}  textKK={nnn} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
       
       </div>
