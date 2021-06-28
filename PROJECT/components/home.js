@@ -53,6 +53,7 @@ class Home extends React.PureComponent {
           pagenumnavigation:"",
 
           textToShowAbsecnceOfitem:"",
+
         };
 
 
@@ -73,6 +74,8 @@ class Home extends React.PureComponent {
     pageEvents.addListener('newPersonWantsToBeAddedToOurBigFamily',this.registrate);
     pageEvents.addListener('enter',this.enter);
     pageEvents.addListener('restore', this.restorePassword);
+    pageEvents.addListener('PageChange',  this.pageChange);
+
 
     };
 
@@ -89,6 +92,8 @@ class Home extends React.PureComponent {
     pageEvents.removeListener('newPersonWantsToBeAddedToOurBigFamily',this.registrate);
     pageEvents.removeListener('enter',this.enter);
     pageEvents.removeListener('restore', this.restorePassword);
+    pageEvents.removeListener('PageChange', this.pageChange);
+
 
 
 
@@ -103,14 +108,35 @@ class Home extends React.PureComponent {
     var URLHash=window.location.hash;
     var stateStr=URLHash.substr(1);
 
-    // if ( stateStr!="" ) { // если закладка непустая, читаем из неё состояние и отображаем
-    //   var parts=stateStr.split("_")
-    //   this.setState({SPAState:{ pagename: this.state.toShowBodyMode, }}, this.announce); // первая часть закладки - номер страницы
-    //   if ( this.state.SPAState.pagename==1 )
-    //     this.state.SPAState.pagenumnavigation=parts[1]/*navigation[0]*/; // для фото нужна ещё вторая часть закладки - номер фото
-    // }
-    // else
-    // this.setState({SPAState:{pagename:'Main'}}, this.announce); 
+    if ( stateStr!="" ) { // если закладка непустая, читаем из неё состояние и отображаем
+      var parts=stateStr.split("_")
+      this.setState({SPAState:{ pagename: parts[0],  }}, this.announce); // первая часть закладки - номер страницы
+      switch ( this.state.SPAState.pagename ){
+        case 'Main':
+          this.setState({SPAState:{  typeSearch:parts[1], pagenumnavigation:parts[2], toShowBodyMode:1,}}, this.announce);
+          break;
+        case 'Cart':
+          this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:2,}}, this.announce);
+          break;
+        case 'WishList':
+            this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:3,}}, this.announce);
+            break;
+        case 'Registration':
+            this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:4,}}, this.announce);
+            break;
+        case 'Login':
+            this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:5,}}, this.announce);
+             break;
+        case 'Order':
+            this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:6,}}, this.announce);
+            break;
+
+      }
+      this.setState({SPAState:{ num: this.state.toShowBodyMode, }}, this.announce);
+        this.state.SPAState.pagenumnavigation=parts[1]/*navigation[0]*/; // для фото нужна ещё вторая часть закладки - номер фото
+    }
+    else
+    this.setState({SPAState:{pagename:'Main'}}, this.announce); 
 
   };
 
@@ -133,6 +159,10 @@ changeBody=(num)=>{
   }
  };
 
+ pageChange=(numPage)=>{
+  this.setState({pagenumnavigation:numPage, typeSearch:"numPage"}, this.switchState);
+ }
+
  switchState=()=>{
   switch ( this.state.toShowBodyMode) {
     case 1:
@@ -149,6 +179,13 @@ changeBody=(num)=>{
           if(this.state.pagenumnavigation!=""){
             let word=this.state.pagenumnavigation;
             this.switchToState( { pagename:'Main', pagenumnavigation:word, typeSearch:typeSearchI,} );
+          }
+          break;
+        case "numPage":
+          let typeSearchN=this.state.typeSearch;
+          if(this.state.pagenumnavigation!=""){
+            let num=this.state.pagenumnavigation;
+            this.switchToState( { pagename:'Main', pagenumnavigation:num,  typeSearch:typeSearchN,} );
           }
           break;
         default:
@@ -173,6 +210,10 @@ changeBody=(num)=>{
     case 5:
       this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
       this.switchToState( { pagename:'Login' } );
+      break;
+    case 5:
+      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
+      this.switchToState( { pagename:'Order' } );
       break;
   };
  }
@@ -408,23 +449,27 @@ search=(word)=>{
   var regexp = new RegExp(word);
     let needfulElem=this.props.goods.slice();
     let allApropriateElems=[];
+    let textK;
+    let typeSearchMean;
     needfulElem=needfulElem.filter(item=>{
       if(item.itemName.search(regexp)!=-1){
         allApropriateElems.push(item);
-        this.setState( {  typeSearch:"item",  pagenumnavigation:word,}, this.switchState );
+        typeSearchMean="item";
+        // this.setState( {  typeSearch:"item",  pagenumnavigation:word,}, this.switchState );
         // console.log(`${item.itemName}  подходит`);
       }
       else if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
-              this.setState( {  typeSearch:"category", pagenumnavigation:word,}, this.switchState );
+              typeSearchMean="category";
+              // this.setState( {  typeSearch:"category", pagenumnavigation:word,}, this.switchState );
             }
-      else{
-        let textK=`Данный товар ${word} не был найден`;
-        this.setState( {  textToShowAbsecnceOfitem:textK, }, this.announce );
-            }
+      // else if(item.category.search(regexp)==-1&& item.itemName.search(regexp)==-1){
+      //    textK=`Данный товар ${word} не был найден`;
+      //   this.setState( {  textToShowAbsecnceOfitem:textK, }, this.announce );
+      //       }
     });
    
-    this.setState( { goods:allApropriateElems, }, this.announce );
+    this.setState( { goods:allApropriateElems, pagenumnavigation:word, }, this.announce );
   };
   
 };

@@ -40,9 +40,30 @@ class BodyShop extends React.PureComponent {
 
   changePageGoods=(EO)=>{
    this.setState({openPage: EO.target.value, pageBefore:EO.target.value-1,}, this.announce);
-
+   pageEvents.emit('PageChange', EO.target.value);
   };
 
+  // changePageGoodsWithArrows=(EO)=>{
+  //   let pageNum=this.state.openPage+EO.target.value;
+  //   this.setState({openPage: pageNum, pageBefore:pageNum-1,}, this.announce);
+  //   pageEvents.emit('PageChange', pageNum);
+  // }
+
+  changePageGoodsWithArrowsMines=()=>{
+    if(this.state.openPage!=1){
+      let pageNum=this.state.openPage-1;
+      this.setState({openPage: pageNum, pageBefore:pageNum-1,}, this.announce);
+      pageEvents.emit('PageChange', pageNum);
+    }
+  }
+
+  changePageGoodsWithArrowsPlus=()=>{
+    if(this.state.openPage!=this.state.goodsLength/6){
+    let pageNum=this.state.openPage+1;
+    this.setState({openPage: pageNum, pageBefore:pageNum-1,}, this.announce);
+    pageEvents.emit('PageChange', pageNum);
+    }
+  }
 
   render() {
     let hh=this.props.textKK;
@@ -112,12 +133,12 @@ class BodyShop extends React.PureComponent {
           <div className="aboveGoods"> 
               <div className="Goods">
               {goods}
-              {this.props.text!=undefined?this.props.text:null}
+              {hh!=undefined?hh:null}
               </div>
               <div className="Navigation">
-                 <li><span className="material-icons"> arrow_back_ios</span></li>
+                 <li onClick={this.changePageGoodsWithArrowsMines} ><span className="material-icons" > arrow_back_ios</span></li>
                     {pageGoods}
-                  <li><span className="material-icons"> arrow_forward_ios</span></li>
+                  <li onClick={this.changePageGoodsWithArrowsPlus} ><span className="material-icons"> arrow_forward_ios</span></li>
               </div>
          </div>
 
