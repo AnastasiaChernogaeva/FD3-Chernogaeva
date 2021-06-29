@@ -41,7 +41,7 @@ class Home extends React.PureComponent {
           accountLastName:"",
 
 
-          SPAState:{},
+          // SPAState:{},
 
 
           categories:[],
@@ -116,33 +116,33 @@ class Home extends React.PureComponent {
       switch ( parts[0] ){
         case 'Main': 
          if (parts.length!=1)
-          this.setState({SPAState:{ pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], toShowBodyMode:1,}}, this.newPage);
+          this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], toShowBodyMode:1,}, this.newPage);
          else
-          this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:1,}}, this.announce);
+          this.setState({ pagename: parts[0], toShowBodyMode:1,}, this.announce);
 
           break;
         case 'Cart':
-          this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:2,}}, this.announce);
+          this.setState({ pagename: parts[0], toShowBodyMode:2,}, this.announce);
           break;
         case 'WishList':
-            this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:3,}}, this.announce);
+            this.setState({ pagename: parts[0], toShowBodyMode:3,}, this.announce);
             break;
         case 'Registration':
-            this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:4,}}, this.announce);
+            this.setState({pagename: parts[0], toShowBodyMode:4,}, this.announce);
             break;
         case 'Login':
-            this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:5,}}, this.announce);
+            this.setState({pagename: parts[0], toShowBodyMode:5,}, this.announce);
              break;
         case 'Order':
-            this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:6,}}, this.announce);
+            this.setState({ pagename: parts[0], toShowBodyMode:6,}, this.announce);
             break;
 
       }
-      this.setState({SPAState:{ num: this.state.toShowBodyMode, }}, this.announce);
-        this.state.SPAState.pagenumnavigation=parts[1]/*navigation[0]*/; // для фото нужна ещё вторая часть закладки - номер фото
+      this.setState({ num: this.state.toShowBodyMode, }, this.announce);
+        this.state.pagenumnavigation=parts[1]/*navigation[0]*/; // для фото нужна ещё вторая часть закладки - номер фото
     }
     else
-    this.setState({SPAState:{pagename:'Main'}}, this.announce); 
+    this.setState({pagename:'Main'}, this.announce); 
 
   };
 
@@ -347,14 +347,14 @@ enter=(personName)=>{
   isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
       .then( response => response.json() )
       .then( data => this.checkPasswordsInOurSystem(data,personName))
-      .catch( error => this.wrongPassword() ); 
+      .catch( error => {console.log(error)}/*this.wrongPassword() */); 
 
 
 };
 
-wrongPassword=()=>{
-this.setState({textAboutWrongPassword:"Неверный логин или пароль! Попробуйте еще раз!"}, this.emitWrongPassword);
-}
+// wrongPassword=()=>{
+// this.setState({textAboutWrongPassword:"Неверный логин или пароль! Попробуйте еще раз!"}, this.emitWrongPassword);
+// }
 
 emitWrongPassword=()=>{
   pageEvents.emit("wrongPage", this.state.textAboutWrongPassword);
@@ -473,13 +473,13 @@ search=(word)=>{
       if(item.itemName.search(regexp)!=-1){
         allApropriateElems.push(item);
         typeSearchMean="item";
-        // this.setState( {  typeSearch:"item",  pagenumnavigation:word,}, this.switchState );
+        this.setState( {  typeSearch:"item",  pagenumnavigation:word,}, this.switchState );
         // console.log(`${item.itemName}  подходит`);
       }
       else if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
-              typeSearchMean="category";
-              // this.setState( {  typeSearch:"category", pagenumnavigation:word,}, this.switchState );
+              typeSearchMean="category";              
+              this.setState( {  typeSearch:"category", pagenumnavigation:word,}, this.switchState );
             }
       // else if(item.category.search(regexp)==-1&& item.itemName.search(regexp)==-1){
       //    textK=`Данный товар ${word} не был найден`;
@@ -523,7 +523,7 @@ let nnn=this.state.textToShowAbsecnceOfitem;
       <MainBody goods={this.state.goods} categories={this.state.categories}  textKK={nnn} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
 
-      <div className="WrongPassword"></div>
+      <div className="WrongPassword">{this.state.textAboutWrongPassword!=""?this.state.textAboutWrongPassword:null}</div>
       
       </div>
       // </Provider>

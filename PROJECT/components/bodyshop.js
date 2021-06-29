@@ -49,6 +49,7 @@ class BodyShop extends React.PureComponent {
 
   chooseCategory=(EO)=>{
     pageEvents.emit('Search', EO.target.value);
+    this.setState({openPage:1, pageBefore:0,},this.announce);
   }
 
   changePageGoods=(EO)=>{

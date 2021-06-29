@@ -144,7 +144,7 @@ year=(EO)=>{
     let personInfo=this.state.Mail+"_"+this.state.Password;
     pageEvents.emit('enter',personInfo);
     this.cleanTheForm();
-    // setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
+    setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
   }
 
   restore=()=>{
