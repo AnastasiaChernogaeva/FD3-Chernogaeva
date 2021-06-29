@@ -63,9 +63,10 @@ logout=()=>{
 
   render() {
  let userCard=<div className="account"> 
+ <p><span class="material-icons Light">account_circle</span></p>
  <p>{this.props.personName}</p>
  <p>{this.props.personLastName}</p>
- <input type="button" onClick={this.logout} value="Выйти" />
+ <input type="button" onClick={this.logout} className="Here" value="Выйти" />
 </div>
 
 let buttonsToRegisterAndToLogin=<div>
@@ -87,7 +88,7 @@ let searchIcon=<span className="material-icons-outlined"> search</span>
              </div>
          </div>
         <br/>
-       <div>{this.props.personName!=="" && userCard} </div> 
+       <div className="JustLikeThat">{this.props.personName!=="" && userCard} </div> 
        <div className="Butt">
          <div className="Top_Buttons First">
              <input type="button" onClick={this.change1} value="Главная" />

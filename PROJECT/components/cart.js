@@ -60,12 +60,13 @@ animate=(id)=>{
     }
     else{
       let goodsInCart=this.props.cart.slice();
-      goodsInCart=goodsInCart.map(elem=><CartGood info={elem} key={elem.code}/>);
+      goodsInCart=goodsInCart.map(elem=><CartGood info={elem} key={elem.code} num={elem.code}/>);
     
     return (
       <div className="Top_Buttons">
          <h2>Товары в корзине:</h2>
-         <table className="CartGood"><tbody>{goodsInCart}</tbody></table>
+         {/* <table className="CartGood"><tbody>{goodsInCart}</tbody></table> */}
+         <div className="CartGood">{goodsInCart}</div>
          <input type="button" className="Top_Buttons" onClick={this.sendNewOrder} value="Заказать" />
      </div>
     );

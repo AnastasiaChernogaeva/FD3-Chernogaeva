@@ -36,6 +36,8 @@ class Login extends React.PureComponent {
     passwordCanBeChanged:"",
     disabled:null,
 
+    errorText:"",
+
   };
 
 /*   componentWillReceiveProps = (newProps) => {
@@ -48,14 +50,19 @@ class Login extends React.PureComponent {
 
   componentDidMount = () => {
     pageEvents.addListener('PasswordChanged',this.passwordChanged);
-
+    pageEvents.addListener('wrongPage',this.errorSmthWrong);
     };
 
     
   componentWillUnmount = () => {
     pageEvents.removeListener('PasswordChanged',this.passwordChanged);
+    pageEvents.removeListener('wrongPage',this.errorSmthWrong);
 
   };
+
+  errorSmthWrong=(text)=>{
+  this.setState({errorText:text,}, this.announce);
+  }
 
   passwordChanged=(mean)=>{
     this.setState({passwordCanBeChanged:mean,}, this.announce);
@@ -137,7 +144,7 @@ year=(EO)=>{
     let personInfo=this.state.Mail+"_"+this.state.Password;
     pageEvents.emit('enter',personInfo);
     this.cleanTheForm();
-    setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
+    // setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
   }
 
   restore=()=>{
@@ -170,6 +177,7 @@ cleanTheForm=()=>{
   color:"",
   passwordCanBeChanged:"",
   disabled:null,
+  errorText:"",
 }, this.announce);
 };
 
@@ -262,8 +270,11 @@ disabilityForButton=()=>{
     // };
 
   
-
-
+if (this.state.errorText!=""){
+  let textErr=this.state.errorText;
+return(<p>{textErr}</p>);
+}
+else{
     return (
 
 
@@ -287,7 +298,7 @@ disabilityForButton=()=>{
        
      </div>
     );
-
+  }
   }
 
 }

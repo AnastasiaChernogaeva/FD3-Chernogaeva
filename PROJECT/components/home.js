@@ -54,12 +54,15 @@ class Home extends React.PureComponent {
 
           textToShowAbsecnceOfitem:"",
 
+          textAboutWrongPassword:"",
         };
 
 
   componentDidMount = () => {
 
   this.makeCategories();
+  this.switchToStateFromURLHash();
+
 
     window.onhashchange=this.switchToStateFromURLHash;
 
@@ -110,10 +113,13 @@ class Home extends React.PureComponent {
 
     if ( stateStr!="" ) { // если закладка непустая, читаем из неё состояние и отображаем
       var parts=stateStr.split("_")
-      this.setState({SPAState:{ pagename: parts[0],  }}, this.announce); // первая часть закладки - номер страницы
-      switch ( this.state.SPAState.pagename ){
-        case 'Main':
-          this.setState({SPAState:{  typeSearch:parts[1], pagenumnavigation:parts[2], toShowBodyMode:1,}}, this.announce);
+      switch ( parts[0] ){
+        case 'Main': 
+         if (parts.length!=1)
+          this.setState({SPAState:{ pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], toShowBodyMode:1,}}, this.newPage);
+         else
+          this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:1,}}, this.announce);
+
           break;
         case 'Cart':
           this.setState({SPAState:{ pagename: parts[0], toShowBodyMode:2,}}, this.announce);
@@ -139,6 +145,10 @@ class Home extends React.PureComponent {
     this.setState({SPAState:{pagename:'Main'}}, this.announce); 
 
   };
+
+  newPage=()=>{
+    pageEvents.emit("GiveUPageNum",this.state.pagenumnavigation);
+  }
 
    switchToState=(newState)=>{
     var stateStr=newState.pagename;
@@ -211,7 +221,7 @@ changeBody=(num)=>{
       this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
       this.switchToState( { pagename:'Login' } );
       break;
-    case 5:
+    case 6:
       this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
       this.switchToState( { pagename:'Order' } );
       break;
@@ -337,10 +347,18 @@ enter=(personName)=>{
   isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
       .then( response => response.json() )
       .then( data => this.checkPasswordsInOurSystem(data,personName))
-      .catch( error => { console.log(error); } ); 
+      .catch( error => this.wrongPassword() ); 
 
 
 };
+
+wrongPassword=()=>{
+this.setState({textAboutWrongPassword:"Неверный логин или пароль! Попробуйте еще раз!"}, this.emitWrongPassword);
+}
+
+emitWrongPassword=()=>{
+  pageEvents.emit("wrongPage", this.state.textAboutWrongPassword);
+}
 
 checkPasswordsInOurSystem=(serverData,userData)=>{
   let sData=JSON.parse(serverData.result);
@@ -495,15 +513,17 @@ announce=()=>{
 
 
     render() {
-console.log(this.state.textToShowAbsecnceOfitem);
 
 let nnn=this.state.textToShowAbsecnceOfitem;
+
       return(
       // <Provider>
       <div className="body_body"> 
       <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.authorizatedLastName}/>
       <MainBody goods={this.state.goods} categories={this.state.categories}  textKK={nnn} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
       <Footer/>
+
+      <div className="WrongPassword"></div>
       
       </div>
       // </Provider>

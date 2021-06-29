@@ -26,6 +26,14 @@ class BodyShop extends React.PureComponent {
    };
 
 
+   componentDidMount = () => {
+      pageEvents.addListener("GiveUPageNum", this.setPage);
+    };
+  
+      
+    componentWillUnmount = () => {
+      pageEvents.removeListener("GiveUPageNum", this.setPage);
+    };
 
 /*  componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
@@ -34,6 +42,11 @@ class BodyShop extends React.PureComponent {
     }
     
   };*/
+
+  setPage=(num)=>{
+    this.setState({openPage:num, pageBefore:num-1, }, this.announce);
+  }
+
   chooseCategory=(EO)=>{
     pageEvents.emit('Search', EO.target.value);
   }
@@ -64,6 +77,10 @@ class BodyShop extends React.PureComponent {
     pageEvents.emit('PageChange', pageNum);
     }
   }
+
+  announce=()=>{
+    console.log("Something has changed");
+}
 
   render() {
     let hh=this.props.textKK;

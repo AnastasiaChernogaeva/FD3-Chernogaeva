@@ -1,0 +1,50 @@
+.cartgood {
+    transition-property: height;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    overflow: hidden;
+    border-top:black 3px solid;
+}
+
+.cartgood:first-child{
+    border:none;
+}
+
+.cartgood .goodImg {
+    position: relative;
+    padding: 0;
+    /* width: 174px; */
+    /* height: 150px; */
+    /* text-align: center; */
+    /* padding-left: 9%; */
+    display: inline-block;
+}
+
+.cartgood .Cost {
+    display: inline-block;
+    width: 250px;
+    /* padding-top: 3px; */
+    bottom: 8px;
+    position: relative;
+}
+
+.cartgood .bbuttons {
+    display: inline-block;
+    width: 200px;
+    bottom: 73px;
+    left: 45%;
+    position: relative;
+}
+
+
+
+.deleteIt{
+    height:0px;
+    animation: MyAnimation;
+}
+
+@keyframes  MyAnimation{
+    from {height:150px;}
+    to {top: 0px;}
+  }

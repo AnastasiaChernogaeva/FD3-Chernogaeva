@@ -9,6 +9,7 @@
 
 
 .button_search{
+    border-radius: 0px 20px 20px 0px;
     background: white;
     text-align: center;
     border: rgba(202, 252, 68, 0.1);
@@ -17,8 +18,9 @@
     border-left: black 2px solid;
 }
 
-.Top_Buttons  input[type=button]{
-    background: white;
+.Top_Buttons  input[type=button], .Here{
+    /* background: white; */
+    background: transparent;
     padding: 1%;
     text-align: center;
     border: rgba(202, 252, 68, 0.1);
@@ -40,6 +42,7 @@ div.Top{
 
 .TopNameAndSearch{
    display:flex; 
+   margin-left: -1%;
 }
 /* 
 p.ShopName {
@@ -72,7 +75,7 @@ p.ShopNameBackGround {
     opacity: 1.5;
     z-index: -11;
     position: absolute;
-    width: 32vw;
+    /* width: 32vw; */
     font-size: 59px;
     text-align: left;
     letter-spacing: 6px;
@@ -98,20 +101,22 @@ p.ShopNameBackGround {
 } 
 
 .SearchEngine{
+        border-radius: 20px 0px 0px 20px;
         border: none;
         width: 45vw;
         height: 3vw;
     
 }
 .Text{
-    position:relative;
-    padding-top: 4%;
+    left: -17px;
+    position: relative;
+    padding-top: 6%;
     padding-bottom: 4%;
     height: fit-content;
     display: flex;
     border-radius: 15%;
     border-color: azure;
-    width: 60vw;
+    width: 58vw;
 }
 
 .Top_Buttons.First {
@@ -134,12 +139,39 @@ p.ShopNameBackGround {
 
 
 .account {
+    border-radius: 20px;
     background: white;
     width: 20vw;
+    position: relative;
     padding: 2%;
 }
 
 .Butt{
+    border-radius: 32px;
     width:90vw;
     background: white;
+}
+
+
+.JustLikeThat {
+    /* width: 110vw; */
+    position: absolute;
+    top: 4%;
+    left: 74.5%;
+}
+
+.account p {
+    text-align: center;
+}
+
+span.material-icons.Light {
+    /* text-align: center; */
+    font-size: 50px;
+}
+
+input.Here {
+    font-size: 17px;
+    top: 5%;
+    left: 69%;
+    position: absolute;
 }
