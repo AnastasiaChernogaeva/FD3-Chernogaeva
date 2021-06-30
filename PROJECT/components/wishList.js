@@ -74,11 +74,10 @@ if(this.props.wish==null){
     return (
      <div className="Top_Buttons">
          <h2>Товары в корзине:</h2>
-         <table className="CartGood"><tbody>{goodsInWisht}</tbody></table>
-         <input type="button" onClick={this.sendNewOrder} value="Заказать" />
+           <div className="CartGood">{goodsInWisht}</div>
+           <input type="button" className="Top_Buttons" onClick={this.sendNewOrder} value="Заказать" />
      </div>
     );
-      
     }
   }
 
