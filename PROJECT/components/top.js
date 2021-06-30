@@ -29,7 +29,7 @@ class Top extends React.PureComponent {
      this.setState({searchWord:EO.target.value,}, this.announce);
  }
  search=()=>{
-    pageEvents.emit('Search', this.state.searchWord);
+    pageEvents.emit('Search', this.state.searchWord, "newWord");
  };
  change1=()=>{
     pageEvents.emit('ChangeBody',1);

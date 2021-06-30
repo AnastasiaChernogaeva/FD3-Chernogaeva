@@ -17,6 +17,7 @@ class BodyShop extends React.PureComponent {
   };
 
    state = {
+    goods:this.props.goods,
      goodsLength:this.props.goods.length,
     //  pageAmounts:this.props.goods.length/6,
      openPage:1,
@@ -28,27 +29,33 @@ class BodyShop extends React.PureComponent {
 
    componentDidMount = () => {
       pageEvents.addListener("GiveUPageNum", this.setPage);
+      // pageEvents.addListener("GiveUPageCatNum", this.setCatPage);
     };
   
       
     componentWillUnmount = () => {
       pageEvents.removeListener("GiveUPageNum", this.setPage);
+      // pageEvents.removeListener("GiveUPageCatNum", this.setCatPage);
     };
 
-/*  componentWillReceiveProps = (newProps) => {
-    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
-    if(this.state.info!=newProps.info){
-      this.setState({info:newProps.info});
+ componentWillReceiveProps = (newProps) => {
+    if(this.props.goods!=newProps.goods){
+      this.setState({goods:newProps.goods});
     }
     
-  };*/
+  };
 
   setPage=(num)=>{
     this.setState({openPage:num, pageBefore:num-1, }, this.announce);
   }
 
+  // setCatPage=(num, word)=>{
+  //   pageEvents.emit('SearchAdd', word);
+  //   this.setState({openPage:num, pageBefore:num-1,},this.announce);
+  // }
+
   chooseCategory=(EO)=>{
-    pageEvents.emit('Search', EO.target.value);
+    pageEvents.emit('Search', EO.target.value, "newCategory");
     this.setState({openPage:1, pageBefore:0,},this.announce);
   }
 
@@ -90,13 +97,13 @@ class BodyShop extends React.PureComponent {
         <li id={i}  key={i}><button onClick={this.chooseCategory} value={elem}>{elem}</button></li>
       );
 
-      let pageAmounts=Math.ceil(this.props.goods.length/6);
+      let pageAmounts=Math.ceil(this.state.goods.length/6);
       let pageGoods=[];
       for (let k=1; k<=pageAmounts; k++){
         pageGoods.push(<li className="numbers" key={k} onClick={this.changePageGoods} value={k}>{k}</li>);
       }
 
-      let goods=this.props.goods.slice();
+      let goods=this.state.goods.slice();
 
       let goodsArr=goods.slice();
       goodsArr=goodsArr.filter((elem,i)=>(i+1)%6==0);
@@ -114,6 +121,11 @@ class BodyShop extends React.PureComponent {
         if(ind>firstPageElemIndex && ind<(lastPageElemIndex+1)){
           return (<Good info={elem} key={elem.code} className='Good'></Good>);
         };
+        if(lastPageElemIndex==-1){
+          if(ind>firstPageElemIndex){
+            return (<Good info={elem} key={elem.code} className='Good'></Good>);
+          }
+        }
       });
           // let pageAmounts=goods.length/10;
     

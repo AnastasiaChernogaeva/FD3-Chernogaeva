@@ -21,7 +21,7 @@
 } */
 
 .aboveGoods{
-
+    width: 70vw;
     border-left: black 3px solid;
     border-right: black 3px solid;
 }

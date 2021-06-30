@@ -55,15 +55,15 @@ class Home extends React.PureComponent {
           textToShowAbsecnceOfitem:"",
 
           textAboutWrongPassword:"",
+          pagesnum:"",
         };
 
 
   componentDidMount = () => {
 
   this.makeCategories();
-  this.switchToStateFromURLHash();
 
-
+    window.onload=this.switchToStateFromURLHash;
     window.onhashchange=this.switchToStateFromURLHash;
 
     pageEvents.addListener("WantToLogout", this.logout);
@@ -115,31 +115,39 @@ class Home extends React.PureComponent {
       var parts=stateStr.split("_")
       switch ( parts[0] ){
         case 'Main': 
-         if (parts.length!=1)
-          this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], toShowBodyMode:1,}, this.newPage);
-         else
-          this.setState({ pagename: parts[0], toShowBodyMode:1,}, this.announce);
+         if (parts.length!=1){
+          //  switch(parts[1]){
+          //    case "numPage":
+          //     this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newPage);
+          //     break;
+          //    case "category":
+          //     this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newCategoryPage);
+          //     break;
+          //   }
+                    this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newPage);
 
+         }
+         else{
+          this.setState({ pagename: parts[0], toShowBodyMode:1,}, this.announce);
+         }
           break;
         case 'Cart':
-          this.setState({ pagename: parts[0], toShowBodyMode:2,}, this.announce);
+          this.setState({ pagename: parts[0], typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:2,}, this.announce);
           break;
         case 'WishList':
-            this.setState({ pagename: parts[0], toShowBodyMode:3,}, this.announce);
+            this.setState({ pagename: parts[0],typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:3,}, this.announce);
             break;
         case 'Registration':
-            this.setState({pagename: parts[0], toShowBodyMode:4,}, this.announce);
+            this.setState({pagename: parts[0],typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:4,}, this.announce);
             break;
         case 'Login':
-            this.setState({pagename: parts[0], toShowBodyMode:5,}, this.announce);
+            this.setState({pagename: parts[0], typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:5,}, this.announce);
              break;
         case 'Order':
-            this.setState({ pagename: parts[0], toShowBodyMode:6,}, this.announce);
+            this.setState({ pagename: parts[0], typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:6,}, this.announce);
             break;
 
       }
-      this.setState({ num: this.state.toShowBodyMode, }, this.announce);
-        this.state.pagenumnavigation=parts[1]/*navigation[0]*/; // для фото нужна ещё вторая часть закладки - номер фото
     }
     else
     this.setState({pagename:'Main'}, this.announce); 
@@ -147,18 +155,26 @@ class Home extends React.PureComponent {
   };
 
   newPage=()=>{
-    pageEvents.emit("GiveUPageNum",this.state.pagenumnavigation);
+    pageEvents.emit("GiveUPageNum",this.state.pagesnum);
+    if(this.state.typeSearch=="category")
+      this.search(this.state.pagenumnavigation,"loadPeriod")
   }
+
+  newCategoryPage=()=>{
+    this.search(this.state.pagenumnavigation);
+    this.newPage(this.state.pagesnum);
+  }
+  
 
    switchToState=(newState)=>{
     var stateStr=newState.pagename;
     if ( newState.pagename=='Main'){
-      (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation):null;
+      (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum):null;
     }
    
     location.hash=stateStr;
 
-    this.switchToStateFromURLHash();
+    // this.switchToStateFromURLHash();
   }
 
 
@@ -170,7 +186,10 @@ changeBody=(num)=>{
  };
 
  pageChange=(numPage)=>{
-  this.setState({pagenumnavigation:numPage, typeSearch:"numPage"}, this.switchState);
+   if(this.state.typeSearch!="")
+  this.setState({/*pagenumnavigation:numPage, typeSearch:"numPage",*/ pagesnum:numPage,}, this.switchState);
+  else
+  this.setState({pagenumnavigation:numPage, typeSearch:"numPage", pagesnum:numPage,}, this.switchState);
  }
 
  switchState=()=>{
@@ -179,9 +198,10 @@ changeBody=(num)=>{
       switch(this.state.typeSearch){
         case "category":
           let typeSearchC=this.state.typeSearch;
-          if(this.state.pagenumnavigation!=""){
+          if(this.state.pagenumnavigation!="" &&this.state.pagesnum!=""){
             let word=this.state.pagenumnavigation;
-            this.switchToState( { pagename:'Main', pagenumnavigation:word, typeSearch:typeSearchC,} );
+            let num=this.state.pagesnum;
+            this.switchToState( { pagename:'Main', pagenumnavigation:word, typeSearch:typeSearchC, pagesnum:num,} );
           }
           break;
         case "item":
@@ -194,35 +214,35 @@ changeBody=(num)=>{
         case "numPage":
           let typeSearchN=this.state.typeSearch;
           if(this.state.pagenumnavigation!=""){
-            let num=this.state.pagenumnavigation;
-            this.switchToState( { pagename:'Main', pagenumnavigation:num,  typeSearch:typeSearchN,} );
+            let num=this.state.pagesnum;
+            this.switchToState( { pagename:'Main', pagenumnavigation:num,  typeSearch:typeSearchN, pagesnum:num,} );
           }
           break;
         default:
-          this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
+          this.setState({typeSearch:"", pagenumnavigation:"", pagesnum:""}, this.announce);
           this.switchToState( { pagename:'Main'} );
           break;
         
       }
       break;
     case 2:
-      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
+      this.setState({typeSearch:"", pagenumnavigation:"", pagesnum:""}, this.announce);
       this.switchToState( { pagename:'Cart' } );
       break;
     case 3:
-      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
+      this.setState({typeSearch:"", pagenumnavigation:"", pagesnum:""}, this.announce);
       this.switchToState( { pagename:'WishList' } );
       break;
     case 4:
-      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
+      this.setState({typeSearch:"", pagenumnavigation:"", pagesnum:""}, this.announce);
       this.switchToState( { pagename:'Registration' } );
       break;
     case 5:
-      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
+      this.setState({typeSearch:"", pagenumnavigation:"", pagesnum:""}, this.announce);
       this.switchToState( { pagename:'Login' } );
       break;
     case 6:
-      this.setState({typeSearch:"", pagenumnavigation:"",}, this.announce);
+      this.setState({typeSearch:"", pagenumnavigation:"", pagesnum:""}, this.announce);
       this.switchToState( { pagename:'Order' } );
       break;
   };
@@ -455,40 +475,54 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
 
 
 //занимается поиском товаров
-search=(word)=>{
-  if(word==="all"){
+search=(word, typeSearchImportant)=>{
+  let newWordHere=decodeURI(word);
+  if(newWordHere==="all"){
     if(window.location.hash!="#Main"){
       // let needfulElem=this.props.goods.slice();
       this.setState( { goods:this.props.goods, typeSearch:"", pagenumnavigation:"", }, this.switchState );
     }
-    return;
+  return;
   }
   else{
-  var regexp = new RegExp(word);
+    var regexp = new RegExp(newWordHere);
     let needfulElem=this.props.goods.slice();
     let allApropriateElems=[];
     let textK;
     let typeSearchMean;
-    needfulElem=needfulElem.filter(item=>{
-      if(item.itemName.search(regexp)!=-1){
-        allApropriateElems.push(item);
-        typeSearchMean="item";
-        this.setState( {  typeSearch:"item",  pagenumnavigation:word,}, this.switchState );
-        // console.log(`${item.itemName}  подходит`);
-      }
-      else if(item.category.search(regexp)!=-1){
+
+    if (typeSearchImportant=="newCategory"||typeSearchImportant=="newWord"){
+      needfulElem=needfulElem.filter(item=>{
+        if(item.itemName.search(regexp)!=-1){
+          allApropriateElems.push(item);
+          typeSearchMean="item";
+          this.setState( {  typeSearch:typeSearchMean,  pagenumnavigation:word,}, this.switchState );
+          // console.log(`${item.itemName}  подходит`);
+       }
+        else if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
-              typeSearchMean="category";              
-              this.setState( {  typeSearch:"category", pagenumnavigation:word,}, this.switchState );
+              typeSearchMean="category";         
+              // let num=this.state.pagesnum;     
+              this.setState( {  typeSearch:typeSearchMean, pagenumnavigation:newWordHere, pagesnum:1,}, this.switchState );
             }
-      // else if(item.category.search(regexp)==-1&& item.itemName.search(regexp)==-1){
+        // else if(item.category.search(regexp)==-1&& item.itemName.search(regexp)==-1){
       //    textK=`Данный товар ${word} не был найден`;
       //   this.setState( {  textToShowAbsecnceOfitem:textK, }, this.announce );
       //       }
-    });
+        });
    
-    this.setState( { goods:allApropriateElems, pagenumnavigation:word, }, this.announce );
-  };
+    this.setState( { goods:allApropriateElems,pagenumnavigation:newWordHere, }, this.announce );
+   }
+   else if(typeSearchImportant=="loadPeriod"){
+    needfulElem=needfulElem.filter(item=>{
+      if(item.category.search(regexp)!=-1){
+              allApropriateElems.push(item);
+            }
+        });
+   
+    this.setState( { goods:allApropriateElems, }, this.announce );
+   }
+   }
   
 };
 
@@ -515,20 +549,37 @@ announce=()=>{
     render() {
 
 let nnn=this.state.textToShowAbsecnceOfitem;
-
+    if(this.state.typeSearch!=""){
       return(
-      // <Provider>
-      <div className="body_body"> 
-      <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.authorizatedLastName}/>
-      <MainBody goods={this.state.goods} categories={this.state.categories}  textKK={nnn} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
-      <Footer/>
-
-      <div className="WrongPassword">{this.state.textAboutWrongPassword!=""?this.state.textAboutWrongPassword:null}</div>
+        // <Provider>
+        <div className="body_body"> 
+        <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.authorizatedLastName}/>
+        <MainBody goods={this.state.goods} categories={this.state.categories}  textKK={nnn} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
+        <Footer/>
+  
+        <div className="WrongPassword">{this.state.textAboutWrongPassword!=""?this.state.textAboutWrongPassword:null}</div>
+        
+        </div>
+        // </Provider>
+        
+        )
+    }
+    else{
+      return(
+        // <Provider>
+        <div className="body_body"> 
+        <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.authorizatedLastName}/>
+        <MainBody goods={this.props.goods} categories={this.state.categories}  textKK={nnn} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
+        <Footer/>
+  
+        <div className="WrongPassword">{this.state.textAboutWrongPassword!=""?this.state.textAboutWrongPassword:null}</div>
+        
+        </div>
+        // </Provider>
+        
+        )
+    }
       
-      </div>
-      // </Provider>
-      
-      )
     };
 
   };
