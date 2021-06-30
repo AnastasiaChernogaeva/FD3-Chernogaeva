@@ -36,7 +36,7 @@ class Login extends React.PureComponent {
     passwordCanBeChanged:"",
     disabled:null,
 
-    errorText:"",
+    errorTextPassword:"",
 
   };
 
@@ -50,18 +50,18 @@ class Login extends React.PureComponent {
 
   componentDidMount = () => {
     pageEvents.addListener('PasswordChanged',this.passwordChanged);
-    pageEvents.addListener('wrongPage',this.errorSmthWrong);
+    pageEvents.addListener("wrongPage",this.errorSmthWrong);
     };
 
     
   componentWillUnmount = () => {
     pageEvents.removeListener('PasswordChanged',this.passwordChanged);
-    pageEvents.removeListener('wrongPage',this.errorSmthWrong);
+    pageEvents.removeListener("wrongPage",this.errorSmthWrong);
 
   };
 
   errorSmthWrong=(text)=>{
-  this.setState({errorText:text,}, this.announce);
+  this.setState({errorTextPassword:text,}, this.announce);
   }
 
   passwordChanged=(mean)=>{
@@ -137,14 +137,14 @@ year=(EO)=>{
 
 
   haveForgottenEverythingInTheirLives=()=>{
-    this.setState({forgottenPassword:true},this.announce)
+    this.setState({forgottenPassword:true,errorTextPassword:"",},this.announce)
   }
 
   enter=()=>{
     let personInfo=this.state.Mail+"_"+this.state.Password;
     pageEvents.emit('enter',personInfo);
-    this.cleanTheForm();
-    setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
+    // this.cleanTheForm();
+    // setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
   }
 
   restore=()=>{
@@ -177,7 +177,7 @@ cleanTheForm=()=>{
   color:"",
   passwordCanBeChanged:"",
   disabled:null,
-  errorText:"",
+  errorTextPassword:"",
 }, this.announce);
 };
 
@@ -268,16 +268,9 @@ disabilityForButton=()=>{
     //     <input type="button" value="Восстановить пароль" onClick={this.restore}/>
     //   </div>);
     // };
+    let textErr=<p className="error">Неверный логин или пароль! Попробуйте еще раз!</p>
 
-  
-if (this.state.errorText!=""){
-  let textErr=this.state.errorText;
-return(<p>{textErr}</p>);
-}
-else{
     return (
-
-
      <div>
        {/* <div>
          <form className="login" onChange={this.disabilityForButton}>
@@ -290,6 +283,11 @@ else{
       <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
       </form> 
     </div>*/}
+    
+ 
+
+    {this.state.errorTextPassword=="1" && textErr}     
+
        {this.state.forgottenPassword===false && enter}    
        {this.state.forgottenPassword===true && question}
 
@@ -299,7 +297,7 @@ else{
      </div>
     );
   }
-  }
+  
 
 }
 

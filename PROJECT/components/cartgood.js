@@ -29,7 +29,8 @@ class CartGood extends React.PureComponent {
   };*/
 
   deletefromCart=()=>{
-    setTimeout(pageEvents.emit('DeletefromCart', this.state.cartgood.code),5000);
+    // setTimeout(pageEvents.emit('DeletefromCart', this.state.cartgood.code),1000);
+    pageEvents.emit('DeletefromCart', this.state.cartgood.code);
   };
 
   // emission=()=>{
@@ -44,7 +45,7 @@ class CartGood extends React.PureComponent {
     // textElem.style.height=currHeight+"px";
     // // и в следующий Idle запустим анимацию
     // setTimeout(function() { textElem.style.height="0px"; }, 0);  
-    this.setState({height:"0px",}, this.deletefromCart)
+    this.setState({height:"0px",}, this.announce);
   }
 
 
@@ -107,6 +108,8 @@ amountMore=()=>{
 
 announce=()=>{
   console.log("Something has changed");
+  if( this.state.height!='' )
+    setTimeout(this.deletefromCart, 1000);
 }
 
   render() {
@@ -114,7 +117,7 @@ announce=()=>{
     if ( this.state.height!='' ){
 
       return (
-        <div className="deleteIt cartgood" id={this.props.num} >
+        <div className=" cartgood" id="deleteIt" >
         <div className="goodImg">
             <img src={this.state.cartgood.itemPhotoURL} alt={this.state.cartgood.itemName}/>
         </div>
@@ -150,7 +153,7 @@ announce=()=>{
     //          <input type="button" onClick={this.deletefromCart} value="Удалить" />
     //      </td>
     //  </tr>
-    <div className="cartgood" id={this.props.num} >
+    <div className="cartgood"  >
     <div className="goodImg">
         <img src={this.state.cartgood.itemPhotoURL} alt={this.state.cartgood.itemName}/>
     </div>

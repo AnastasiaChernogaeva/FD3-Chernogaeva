@@ -4,6 +4,7 @@ import isoFetch from 'isomorphic-fetch';
 
 
 import './home.css';
+import './error.css';
 
 
 // import { Provider } from 'react-redux';
@@ -367,14 +368,15 @@ enter=(personName)=>{
   isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
       .then( response => response.json() )
       .then( data => this.checkPasswordsInOurSystem(data,personName))
-      .catch( error => {console.log(error)}/*this.wrongPassword() */); 
+      .catch( error => /*{console.log(error)}*/this.wrongPassword(error)); 
 
 
 };
 
-// wrongPassword=()=>{
-// this.setState({textAboutWrongPassword:"Неверный логин или пароль! Попробуйте еще раз!"}, this.emitWrongPassword);
-// }
+wrongPassword=(error)=>{
+  console.log(error);
+this.setState({textAboutWrongPassword:"1",}, this.emitWrongPassword);
+}
 
 emitWrongPassword=()=>{
   pageEvents.emit("wrongPage", this.state.textAboutWrongPassword);
@@ -505,13 +507,17 @@ search=(word, typeSearchImportant)=>{
               // let num=this.state.pagesnum;     
               this.setState( {  typeSearch:typeSearchMean, pagenumnavigation:newWordHere, pagesnum:1,}, this.switchState );
             }
-        // else if(item.category.search(regexp)==-1&& item.itemName.search(regexp)==-1){
-      //    textK=`Данный товар ${word} не был найден`;
-      //   this.setState( {  textToShowAbsecnceOfitem:textK, }, this.announce );
-      //       }
+        else if(item.category.search(regexp)===-1 && item.itemName.search(regexp)===-1){
+         textK=`Данный товар '${word}' не был найден.`;
+         this.setState( {  textToShowAbsecnceOfitem:textK, }, this.announce );
+            }
         });
-   
-    this.setState( { goods:allApropriateElems,pagenumnavigation:newWordHere, }, this.announce );
+        // if (allApropriateElems===[]){
+        //   textK=`Данный товар '${word}' не был найден.`;
+        //   this.setState( {  textToShowAbsecnceOfitem:textK,  goods:allApropriateElems, }, this.sayIt );
+        // }
+        // else
+            this.setState( { goods:allApropriateElems,pagenumnavigation:newWordHere, }, this.announce );
    }
    else if(typeSearchImportant=="loadPeriod"){
     needfulElem=needfulElem.filter(item=>{
@@ -525,6 +531,10 @@ search=(word, typeSearchImportant)=>{
    }
   
 };
+
+sayIt=()=>{
+  pageEvents.emit("NoSuchItems", this.state.textToShowAbsecnceOfitem );
+}
 
 makeCategories=()=>{
   let categoriesCheck=this.props.goods.slice();
@@ -548,16 +558,16 @@ announce=()=>{
 
     render() {
 
-let nnn=this.state.textToShowAbsecnceOfitem;
+
     if(this.state.typeSearch!=""){
       return(
         // <Provider>
         <div className="body_body"> 
         <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.authorizatedLastName}/>
-        <MainBody goods={this.state.goods} categories={this.state.categories}  textKK={nnn} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
+        <MainBody goods={this.state.goods} categories={this.state.categories}   bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
         <Footer/>
   
-        <div className="WrongPassword">{this.state.textAboutWrongPassword!=""?this.state.textAboutWrongPassword:null}</div>
+        {/* <div className="N_T">{nnn!=""?this.state.textAboutWrongPassword:null}</div> */}
         
         </div>
         // </Provider>
@@ -569,10 +579,10 @@ let nnn=this.state.textToShowAbsecnceOfitem;
         // <Provider>
         <div className="body_body"> 
         <Top shopName={this.props.shopName} personName={this.state.authorizatedName} personLastName={this.state.authorizatedLastName}/>
-        <MainBody goods={this.props.goods} categories={this.state.categories}  textKK={nnn} bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
+        <MainBody goods={this.props.goods} categories={this.state.categories}   bodyChange={this.state.toShowBodyMode} cart={this.state.cart} wishList={this.state.wishList} />
         <Footer/>
   
-        <div className="WrongPassword">{this.state.textAboutWrongPassword!=""?this.state.textAboutWrongPassword:null}</div>
+        {/* <div className="N_T">{this.state.textAboutWrongPassword!=""&&this.state.textAboutWrongPassword}</div> */}
         
         </div>
         // </Provider>

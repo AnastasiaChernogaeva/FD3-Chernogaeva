@@ -5,6 +5,7 @@
     transition-timing-function: linear;
     overflow: hidden;
     border-top:black 3px solid;
+    height: 165px;
 }
 
 .cartgood:first-child{
@@ -39,7 +40,7 @@
 
 
 
-.deleteIt{
+#deleteIt{
     height:0px;
     animation: MyAnimation;
 }

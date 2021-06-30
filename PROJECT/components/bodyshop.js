@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import './shop.css';
+import './error.css';
 
 import Good from './good.js';
 
@@ -13,28 +14,31 @@ class BodyShop extends React.PureComponent {
     goods:PropTypes.array,
     bodyChange:PropTypes.number,
     categories:PropTypes.array,
-    textKK:PropTypes.string,
   };
 
    state = {
-    goods:this.props.goods,
+     goods:this.props.goods,
      goodsLength:this.props.goods.length,
     //  pageAmounts:this.props.goods.length/6,
      openPage:1,
      pageBefore:0,
-
+     textKK:"",
 
    };
 
 
    componentDidMount = () => {
       pageEvents.addListener("GiveUPageNum", this.setPage);
+      pageEvents.addListener("NoSuchItems", this.textToShowAbsecnceOfitem );
+
       // pageEvents.addListener("GiveUPageCatNum", this.setCatPage);
     };
   
       
     componentWillUnmount = () => {
       pageEvents.removeListener("GiveUPageNum", this.setPage);
+      pageEvents.removeListener("NoSuchItems", this.textToShowAbsecnceOfitem );
+
       // pageEvents.removeListener("GiveUPageCatNum", this.setCatPage);
     };
 
@@ -45,8 +49,13 @@ class BodyShop extends React.PureComponent {
     
   };
 
+  textToShowAbsecnceOfitem=(text)=>{
+  this.setState({textKK:text,}, this.announce);
+  }
+
+
   setPage=(num)=>{
-    this.setState({openPage:num, pageBefore:num-1, }, this.announce);
+    this.setState({openPage:num, pageBefore:num-1,textKK:"", }, this.announce);
   }
 
   // setCatPage=(num, word)=>{
@@ -56,11 +65,11 @@ class BodyShop extends React.PureComponent {
 
   chooseCategory=(EO)=>{
     pageEvents.emit('Search', EO.target.value, "newCategory");
-    this.setState({openPage:1, pageBefore:0,},this.announce);
+    this.setState({openPage:1, pageBefore:0, textKK:"",},this.announce);
   }
 
   changePageGoods=(EO)=>{
-   this.setState({openPage: EO.target.value, pageBefore:EO.target.value-1,}, this.announce);
+   this.setState({openPage: EO.target.value, pageBefore:EO.target.value-1,textKK:"",}, this.announce);
    pageEvents.emit('PageChange', EO.target.value);
   };
 
@@ -91,7 +100,7 @@ class BodyShop extends React.PureComponent {
 }
 
   render() {
-    let hh=this.props.textKK;
+    let hh=<p className="error">{this.state.textKK!="" &&this.state.textKK }</p>;
        let categoryList=this.props.categories.slice();
        categoryList=categoryList.map((elem ,i)=>
         <li id={i}  key={i}><button onClick={this.chooseCategory} value={elem}>{elem}</button></li>
@@ -149,6 +158,7 @@ class BodyShop extends React.PureComponent {
       //   ind<6?<Good info={elem} key={elem.code} className='Good'></Good>:null
       //   );
     
+    
     return (
       <div>
        <div className="MainBlock">
@@ -162,8 +172,9 @@ class BodyShop extends React.PureComponent {
           
           <div className="aboveGoods"> 
               <div className="Goods">
+              {hh}
               {goods}
-              {hh!=undefined?hh:null}
+              
               </div>
               <div className="Navigation">
                  <li onClick={this.changePageGoodsWithArrowsMines} ><span className="material-icons" > arrow_back_ios</span></li>

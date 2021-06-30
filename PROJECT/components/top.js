@@ -27,6 +27,7 @@ class Top extends React.PureComponent {
   };*/
  remember=(EO)=>{
      this.setState({searchWord:EO.target.value,}, this.announce);
+     pageEvents.emit("NoSuchItems", );
  }
  search=()=>{
     pageEvents.emit('Search', this.state.searchWord, "newWord");
