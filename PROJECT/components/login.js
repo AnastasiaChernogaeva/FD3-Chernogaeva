@@ -144,18 +144,18 @@ year=(EO)=>{
   enter=()=>{
     let personInfo=this.state.Mail+"_"+this.state.Password;
     pageEvents.emit('enter',personInfo);
-    this.cleanTheForm();
     // setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
   }
 
   restore=()=>{
     let additionalPersonalInfo={pet:this.state.pet, year:this.state.year, color:this.state.color, disabled:null,};
     pageEvents.emit('restore', additionalPersonalInfo);
-    this.cleanTheForm();
+    
   }
 
   saveNewPassword=()=>{
     pageEvents.emit('saveNewPassword', this.state.PasswordForCheckup);
+    this.cleanTheForm();
   }
 
   announce=()=>{
@@ -183,6 +183,8 @@ cleanTheForm=()=>{
   passwordCanBeChanged:"",
   disabled:null,
   errorTextPassword:"",
+  forgottenPassword:false,
+  year:"",
 }, this.announce);
 };
 

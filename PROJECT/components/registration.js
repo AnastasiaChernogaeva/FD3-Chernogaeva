@@ -38,6 +38,8 @@ class Registration extends React.PureComponent {
     color:"",
 
     disabled:null,
+
+    errorVV:null,
   };
 
  /* componentWillReceiveProps = (newProps) => {
@@ -110,6 +112,7 @@ cleanTheForm=()=>{
 
 
   changePassword=(EO)=>{
+    this.validation(EO.target.value);
     if(EO.target.value.length<8){
       let textError="Введите не менее 8 символов!";
       this.setState({errorPassword:textError,errorPasswordCheck:"", Password:EO.target.value, disabled:"disabled",}, this.announce);
@@ -123,8 +126,18 @@ cleanTheForm=()=>{
     }
   }
 
+  validation=(passWord)=>{
+    // let lenP=/[^_,!=-<>@&?|*+$#]+/;
+    // lenP.test(passWord);
+    // if(lenP.test(passWord)==false){
+    //   this.setState({errorVV:1, errorPasswordCheck:"", Password:passWord, disabled:"disabled",}, this.announce);
+    // }
+   
+  }
+
 
   toequalPasswords=(EO)=>{
+    this.validation(EO.target.value);
     let textError="Пароли не совпадают!"
     this.setState({Password2:EO.target.value,disabled:"disabled",}, this.announce);
     if(EO.target.value!=this.state.Password){
@@ -194,7 +207,7 @@ cleanTheForm=()=>{
   }
 
   render() {
-
+    let valid=<p>Нельзя использовать следующие символы:"&#95;&#94;&#44;&#33;&#45;&#64;&#61;&#60;&#62;&#47;&#42;&#43;&#36;&#38;&#35;</p>;
     return (
      <div>
        <form className="register" onChange={this.disabilityForButtons}>
@@ -205,10 +218,13 @@ cleanTheForm=()=>{
        <input type="text" id="LastNameId" onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/><br/>
        <label htmlFor="MailId">Электронная почта</label><br/><br/>
        <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
+       <p>При создании пароля нельзя использовать следующие символы:"!№;%:?*()_-+=".</p>
        <label htmlFor="Password">Пароль</label><br/><br/>
        <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       {this.state.errorVV==1&&valid}
        <label htmlFor="RePassword">Подтвердите пароль</label><br/><br/>
        <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password2} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       {this.state.errorVV==1&&valid}
        <h3>Дополнительная информация для восстановления доступа к аккаунту</h3>
 
       <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>

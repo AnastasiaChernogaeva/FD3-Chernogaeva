@@ -296,14 +296,6 @@ readReady(objAddInfoPerson, data) {
                person=elemKey;
               this.setState({passwordCanBeChanged:true, personWantToChangePassword:person,}, this.announce);
             }
-        //   }
-        //   else{
-        //     this.setState({passwordCanBeChanged:false,}, this.announce);
-        //    }
-        // }
-        // else{
-        //   this.setState({passwordCanBeChanged:false,}, this.announce);
-        // }
       }
     }
   }
@@ -316,21 +308,6 @@ readReady(objAddInfoPerson, data) {
    
     }
       )
-    // arrNames.forEach(elemKey=>{ 
-    // let person=info.find(()=>{
-    //   info[elemKey].pet===objAddInfoPerson.pet&&info[elemKey].color===objAddInfoPerson.color
-    // })
-    // if(person!=undefined)
-    // this.setState({passwordCanBeChanged:true, personWantToChangePassword:person,}, this.announce);
-    // else
-    // this.setState({passwordCanBeChanged:false,}, this.announce);
-
-    // pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged, /*this.state.personWantToChangePassword*/ );
-    // let pet=info.find(elem=>elem.pet===objAddInfoPerson.pet);
-    // let color=info.find(elem=>elem.color===objAddInfoPerson.color);
-    // let year=info.find(elem=>elem.year===objAddInfoPerson.year);
-    // this.equalAddInformationAboutPersonToRestorePassword(pet,color,year);
-// });
 };
 
 // equalAddInformationAboutPersonToRestorePassword(pet,color,year){
@@ -348,9 +325,16 @@ saveNewPassword=(password)=>{
   var updatePassword=Math.random();
   var stringName='Chernogeva_Project_CherAS';
   let personDivided=this.state.personWantToChangePassword.split("_");
-  personDivided[1]=password;
+  personDivided[personDivided.length-1]=password;
   let personKey=personDivided.join("_");
+  let rememberValue=this.state.clients[this.state.personWantToChangePassword];
+  delete this.state.clients[this.state.personWantToChangePassword];
+  this.state.clients[personKey]=rememberValue;
   this.state.clients[personKey].password=password;
+
+
+  this.setState({personWantToChangePassword:personKey, /*clients:newClients,*/}, this.announce);
+
   
   let sp = new URLSearchParams();
   sp.append('f', 'LOCKGET');
@@ -387,13 +371,7 @@ saveNewPassword=(password)=>{
 
     var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
     var stringName='Chernogeva_Project_CherAS';
-     /** $.ajax(
-        {
-            url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
-            data : { f : 'READ', n : stringName },
-            success : this.readReady(objAddInfoPerson),
-        }
-    */
+
       let sp = new URLSearchParams();
         sp.append('f', 'READ');
         sp.append('n', stringName);
@@ -471,7 +449,7 @@ enter=(personName)=>{
   isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
       .then( response => response.json() )
       .then( data => this.checkPasswordsInOurSystem(data,personName))
-      .catch( error => /*{console.log(error)}*/this.wrongPassword(error)); 
+      .catch( error => {console.log(error)}); 
 
 
 };
@@ -495,6 +473,9 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
     let name=allInfoAboutPersonWeNeed.name;
     let lastName=allInfoAboutPersonWeNeed.lastName;
     this.setState({authorizatedName:name, authorizatedLastName:lastName,  toShowBodyMode:1,}, this.announce);
+  }
+  else{
+    this.wrongPassword();
   }
 };
 
