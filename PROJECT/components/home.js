@@ -112,7 +112,7 @@ class Home extends React.PureComponent {
   };
 
   logout=()=>{
-  this.setState({authorizatedName:"",   authorizatedLastName:"",},this.announce);
+  this.setState({authorizatedName:"",   authorizatedLastName:"",  orderList:"",},this.announce);
   }
 
 
@@ -155,7 +155,7 @@ class Home extends React.PureComponent {
             this.setState({pagename: parts[0], typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:5,}, this.announce);
              break;
         case 'Order':
-            this.setState({ pagename: parts[0], typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:6,}, this.announce);
+            this.setState({ pagename: parts[0], typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:7,}, this.announce);
             break;
 
       }
@@ -164,13 +164,50 @@ class Home extends React.PureComponent {
       if(partsName.length>1){
         let name=decodeURI(partsName[1]);
         let lastName=decodeURI(partsName[2]);
-        this.setState({  authorizatedName:name, authorizatedLastName:lastName,}, this.announce);
+        this.setState({  authorizatedName:name, authorizatedLastName:lastName,}, this.setOrderList);
       }
     }
     else
     this.setState({pagename:'Main'}, this.announce); 
 
   };
+
+  setOrderList=()=>{
+
+    var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+    var stringName='Chernogeva_Project_CherAS';
+    
+      let sp = new URLSearchParams();
+        sp.append('f', 'READ');
+        sp.append('n', stringName);
+    
+        isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+            .then( response => response.json() )
+            .then( data => {this.set( data) } )
+            .catch( error => { console.log(error); } ); 
+    
+    }
+    
+    set(data) {
+        var info=JSON.parse(data.result);
+    
+    
+        let arrNames=Object.keys(info);
+        arrNames.forEach(elemKey=>{
+          for (elemKey in info){
+            if(info[elemKey].name===this.state.authorizatedName){
+              if(info[elemKey].lastName===this.state.authorizatedLastName){
+                info[elemKey].myOrders
+                this.setState({orderList:info[elemKey].myOrders,}, this.sayToOrderPage);
+              }
+        }
+      }
+    })
+  }
+
+  sayToOrderPage=()=>{
+    pageEvents.emit('NewOrderList', this.state.orderList);
+  }
 
   newPage=()=>{
     pageEvents.emit("GiveUPageNum",this.state.pagesnum);
@@ -277,13 +314,7 @@ restorePassword=(objAddInfoPerson)=>{
 
 var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
 var stringName='Chernogeva_Project_CherAS';
- /** $.ajax(
-    {
-        url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
-        data : { f : 'READ', n : stringName },
-        success : this.readReady(objAddInfoPerson),
-    }
-*/
+
   let sp = new URLSearchParams();
     sp.append('f', 'READ');
     sp.append('n', stringName);
@@ -405,8 +436,7 @@ checkMeaningOfClients=(callresult)=>{
               
     }
     else{
-      this.setState({clients:{},}, this.announce);
-                  
+      this.setState({clients:{},}, this.announce);           
     }
 
 }
@@ -426,14 +456,16 @@ sp.append('p', updatePassword);
 
 isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
     .then( response => response.json() )
-    .then( () => this.continuation(stringName,updatePassword))
+    .then( () => this.continuation)
     .catch( error => { console.error(error); } ); 
 
   
 };
 
-continuation=(stringName, updatePassword )=>{
+continuation=()=>{
   var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  var updatePassword=Math.random();
+var stringName='Chernogeva_Project_CherAS';
 let sp = new URLSearchParams();
 sp.append('f', 'UPDATE');
 sp.append('n', stringName);
@@ -443,13 +475,15 @@ sp.append('v', JSON.stringify(this.state.clients));
 
 isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
     .then( response => response.json() )
-    .then( () => {console.log("congratulations!!!");})
+    .then( () => this.timeHi())
     .catch( error => { console.error(error); } ); 
 
 
 };
 
-
+timeHi=()=>{
+  console.log("congratulations!!!");
+}
 
 
 enter=(personName)=>{
@@ -517,6 +551,7 @@ changeTime(orderList, data) {
     for (elemKey in info){
       if(info[elemKey].name===this.state.authorizatedName){
         if(info[elemKey].lastName===this.state.authorizatedLastName){
+          // orderList.forEach(elem=>info[elemKey].myOrders.push(elem));
           info[elemKey].myOrders=orderList;
         }
   }
