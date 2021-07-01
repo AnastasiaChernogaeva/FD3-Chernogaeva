@@ -61,11 +61,13 @@ class Home extends React.PureComponent {
           orderList:"",
 
           clients:{},
+
+          typeOrder:"",
         };
 
 
   componentDidMount = () => {
-
+// this.continuation1();
   this.makeCategories();
   this.checkMeaningOfClientsStart();
 
@@ -157,6 +159,13 @@ class Home extends React.PureComponent {
             break;
 
       }
+
+      var partsName=stateStr.split("?")
+      if(partsName.length>1){
+        let name=decodeURI(partsName[1]);
+        let lastName=decodeURI(partsName[2]);
+        this.setState({  authorizatedName:name, authorizatedLastName:lastName,}, this.announce);
+      }
     }
     else
     this.setState({pagename:'Main'}, this.announce); 
@@ -179,8 +188,12 @@ class Home extends React.PureComponent {
     var stateStr=newState.pagename;
     if ( newState.pagename=='Main'){
       (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum):null;
-    }
+
+    };
    
+    if(this.state.authorizatedName!=""|| this.state.authorizatedLastName!="")
+      stateStr+="_?"+this.state.authorizatedName+"?"+this.state.authorizatedLastName;
+
     location.hash=stateStr;
 
     // this.switchToStateFromURLHash();
@@ -349,13 +362,16 @@ saveNewPassword=(password)=>{
     
   };
   
-  // continuation=(stringName, updatePassword )=>{
+  // continuation1=(stringName, updatePassword )=>{
+  //   var stringName='Chernogeva_Project_CherAS';
+  //   var updatePassword=Math.random();
+
   //   var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
   // let sp = new URLSearchParams();
   // sp.append('f', 'UPDATE');
   // sp.append('n', stringName);
   // sp.append('p', updatePassword);
-  // sp.append('v', JSON.stringify(this.clients));
+  // sp.append('v', JSON.stringify({}));
   
   
   // isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
@@ -386,14 +402,12 @@ saveNewPassword=(password)=>{
 checkMeaningOfClients=(callresult)=>{            
     if (callresult){
       this.setState({clients:JSON.parse(callresult.result),}, this.announce);
-                  //  playersStorage=JSON.parse(callresult.result); 
+              
     }
     else{
       this.setState({clients:{},}, this.announce);
-
-                  //  playersStorage={};
+                  
     }
-  //  return playersStorage;
 
 }
 
@@ -472,22 +486,69 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   let allInfoAboutPersonWeNeed=sData[personWeNeed];
     let name=allInfoAboutPersonWeNeed.name;
     let lastName=allInfoAboutPersonWeNeed.lastName;
-    this.setState({authorizatedName:name, authorizatedLastName:lastName,  toShowBodyMode:1,}, this.announce);
+    this.setState({authorizatedName:name, authorizatedLastName:lastName, toShowBodyMode:1,}, this.switchState);
   }
   else{
     this.wrongPassword();
   }
 };
 
+findandchange=(orderList)=>{
+  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  var stringName='Chernogeva_Project_CherAS';
+
+let sp = new URLSearchParams();
+  sp.append('f', 'READ');
+  sp.append('n', stringName);
+
+  isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+      .then( response => response.json() )
+      .then( data => {this.changeTime(orderList, data) } )
+      .catch( error => { console.log(error); } ); 
+
+}
+
+changeTime(orderList, data) {
+  var info=JSON.parse(data.result);
 
 
+  let arrNames=Object.keys(info);
+  arrNames.forEach(elemKey=>{
+    for (elemKey in info){
+      if(info[elemKey].name===this.state.authorizatedName){
+        if(info[elemKey].lastName===this.state.authorizatedLastName){
+          info[elemKey].myOrders=orderList;
+        }
+  }
+}
+  
+      this.setState({clients:info,}, this.continuation);
 
-  order=(orderList)=>{
-  if(this.state.authorizatedName!="")
-   this.setState({ toShowBodyMode:6,  orderList:orderList,}, this.announce);
+   
+ 
+  }
+    )
+};
+
+
+  order=(orderList, typeOrder)=>{
+  if(this.state.authorizatedName!=""){
+    this.findandchange(orderList);
+   
+
+
+    this.setState({ toShowBodyMode:6,  orderList:orderList, typeOrder:typeOrder,}, this.clearList);
+  }
   else
    pageEvents.emit('ShouldLoginOrSignup',);
   };
+
+  clearList=()=>{
+    if(this.state.typeOrder=="wish")
+      this.setState({wishList:null,},this.announce);
+    else if(this.state.typeOrder=="cart")
+    this.setState({cart:null,},this.announce);
+  }
 
 
 

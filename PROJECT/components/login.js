@@ -62,7 +62,7 @@ class Login extends React.PureComponent {
   };
 
   errorSmthWrong=(text)=>{
-  this.setState({errorTextPassword:text,}, this.announce);
+  this.setState({errorTextPassword:text,PasswordForCheckup:"",  Password:"",}, this.announce);
   }
 
   passwordChanged=(mean)=>{
@@ -262,7 +262,7 @@ disabilityForButton=()=>{
     
  
 
-    {this.state.errorTextPassword=="1" && textErr}     
+      {this.state.errorTextPassword=="1" && textErr}     
 
        {this.state.forgottenPassword===false && enter}    
       

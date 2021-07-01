@@ -69,7 +69,7 @@ logout=()=>{
 
   render() {
  let userCard=<div className="account"> 
- <p><span class="material-icons Light">account_circle</span></p>
+ <p><span className="material-icons Light">account_circle</span></p>
  <p>{this.props.personName}</p>
  <p>{this.props.personLastName}</p>
  <input type="button" onClick={this.logout} className="Here" value="Выйти" />

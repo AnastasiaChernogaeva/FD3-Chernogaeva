@@ -46,7 +46,7 @@ showButtons=()=>{
 }
 
   sendNewOrder=()=>{
-    pageEvents.emit('Order', this.props.wish);
+    pageEvents.emit('Order', this.props.wish, "wish");
   }
 
   changeBody1=()=>{

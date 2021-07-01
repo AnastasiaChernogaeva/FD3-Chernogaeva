@@ -40,7 +40,8 @@ animate=(id)=>{
 
 
   sendNewOrder=()=>{
-    pageEvents.emit('Order',);
+      pageEvents.emit('Order', this.props.cart, "cart");
+    
   }
 
   changeBody1=()=>{

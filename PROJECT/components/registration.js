@@ -177,7 +177,7 @@ cleanTheForm=()=>{
       let bornTime=new Date();
       let registerYear=bornTime.getFullYear();
       let personInfo=this.state.Mail+"_"+this.state.Password;
-      let objMainInfo={name:this.state.Name, lastName:this.state.LastName, password:this.state.Password, mail:this.state.Mail, year:registerYear, color:this.state.color, pet:this.state.pet,}
+      let objMainInfo={name:this.state.Name, lastName:this.state.LastName, password:this.state.Password, mail:this.state.Mail, year:registerYear, color:this.state.color, pet:this.state.pet, myOrders:[],}
       // this.setState({allPersonalInfo:{[personInfo]:objMainInfo,},}, this.newEvent);
       this.setState({allPersonalInfoKey:personInfo, allPersonalInfoHash:objMainInfo,}, this.newEvent);
     // }
