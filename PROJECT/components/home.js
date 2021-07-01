@@ -33,7 +33,7 @@ class Home extends React.PureComponent {
 
       state = {
           goods:this.props.goods,
-          toShowBodyMode:1, /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа, 6 -  заказ принят */
+          toShowBodyMode:1, /** 1-Главная страница, 2 - Корзина, 3 - WishList, 4 - Страница регистрации, 5 - Страница входа, 6 -  заказ принят, 7 - мои заказы */
           cart:null,
           wishList:null,
           passwordCanBeChanged:false,
@@ -57,12 +57,17 @@ class Home extends React.PureComponent {
 
           textAboutWrongPassword:"",
           pagesnum:"",
+
+          orderList:"",
+
+          clients:{},
         };
 
 
   componentDidMount = () => {
 
   this.makeCategories();
+  this.checkMeaningOfClientsStart();
 
     window.onload=this.switchToStateFromURLHash;
     window.onhashchange=this.switchToStateFromURLHash;
@@ -79,7 +84,7 @@ class Home extends React.PureComponent {
     pageEvents.addListener('enter',this.enter);
     pageEvents.addListener('restore', this.restorePassword);
     pageEvents.addListener('PageChange',  this.pageChange);
-
+    pageEvents.addListener('saveNewPassword',  this.saveNewPassword);
 
     };
 
@@ -97,6 +102,7 @@ class Home extends React.PureComponent {
     pageEvents.removeListener('enter',this.enter);
     pageEvents.removeListener('restore', this.restorePassword);
     pageEvents.removeListener('PageChange', this.pageChange);
+    pageEvents.addListener('saveNewPassword',  this.saveNewPassword);
 
 
 
@@ -106,6 +112,8 @@ class Home extends React.PureComponent {
   logout=()=>{
   this.setState({authorizatedName:"",   authorizatedLastName:"",},this.announce);
   }
+
+
 
 
   switchToStateFromURLHash=()=>{
@@ -280,30 +288,50 @@ readReady(objAddInfoPerson, data) {
 
     let arrNames=Object.keys(info);
     arrNames.forEach(elemKey=>{
-      if(elemKey.pet===objAddInfoPerson.pet){
-        if(elemKey.color===objAddInfoPerson.color){
-          if(elemKey.year==objAddInfoPerson.year/*||elemKey.year!=objAddInfoPerson.year*/){
-            let person=elemKey;
-            this.setState({passwordCanBeChanged:true, personWantToChangePassword:person,}, this.announce);
-          }
-        }
-        else{
-          this.setState({passwordCanBeChanged:false,}, this.announce);
-        }
+      let person;
+      for (elemKey in info){
+        if(info[elemKey].pet===objAddInfoPerson.pet){
+          if(info[elemKey].color===objAddInfoPerson.color){
+            if(info[elemKey].year==objAddInfoPerson.year/*||elemKey.year!=objAddInfoPerson.year*/){
+               person=elemKey;
+              this.setState({passwordCanBeChanged:true, personWantToChangePassword:person,}, this.announce);
+            }
+        //   }
+        //   else{
+        //     this.setState({passwordCanBeChanged:false,}, this.announce);
+        //    }
+        // }
+        // else{
+        //   this.setState({passwordCanBeChanged:false,}, this.announce);
+        // }
       }
-      else{
+    }
+  }
+      if(person!=undefined)
+        this.setState({passwordCanBeChanged:true,  personWantToChangePassword:person,}, this.announce);
+      else
         this.setState({passwordCanBeChanged:false,}, this.announce);
-      }
+
       pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged, /*this.state.personWantToChangePassword*/ );
    
     }
       )
+    // arrNames.forEach(elemKey=>{ 
+    // let person=info.find(()=>{
+    //   info[elemKey].pet===objAddInfoPerson.pet&&info[elemKey].color===objAddInfoPerson.color
+    // })
+    // if(person!=undefined)
+    // this.setState({passwordCanBeChanged:true, personWantToChangePassword:person,}, this.announce);
+    // else
+    // this.setState({passwordCanBeChanged:false,}, this.announce);
+
+    // pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged, /*this.state.personWantToChangePassword*/ );
     // let pet=info.find(elem=>elem.pet===objAddInfoPerson.pet);
     // let color=info.find(elem=>elem.color===objAddInfoPerson.color);
     // let year=info.find(elem=>elem.year===objAddInfoPerson.year);
     // this.equalAddInformationAboutPersonToRestorePassword(pet,color,year);
+// });
 };
-
 
 // equalAddInformationAboutPersonToRestorePassword(pet,color,year){
 //   if(pet||color||year!=undefined||null){
@@ -315,14 +343,89 @@ readReady(objAddInfoPerson, data) {
 //   pageEvents.emit('PasswordChanged', this.state.passwordCanBeChanged)
 // }
 
-clients={};
+saveNewPassword=(password)=>{
+  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  var updatePassword=Math.random();
+  var stringName='Chernogeva_Project_CherAS';
+  let personDivided=this.state.personWantToChangePassword.split("_");
+  personDivided[1]=password;
+  let personKey=personDivided.join("_");
+  this.state.clients[personKey].password=password;
+  
+  let sp = new URLSearchParams();
+  sp.append('f', 'LOCKGET');
+  sp.append('n', stringName);
+  sp.append('p', updatePassword);
+  
+  isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+      .then( response => response.json() )
+      .then( () => this.continuation(stringName,updatePassword))
+      .catch( error => { console.error(error); } ); 
+  
+    
+  };
+  
+  // continuation=(stringName, updatePassword )=>{
+  //   var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  // let sp = new URLSearchParams();
+  // sp.append('f', 'UPDATE');
+  // sp.append('n', stringName);
+  // sp.append('p', updatePassword);
+  // sp.append('v', JSON.stringify(this.clients));
+  
+  
+  // isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+  //     .then( response => response.json() )
+  //     .then( () => {console.log("congratulations!!!");})
+  //     .catch( error => { console.error(error); } ); 
+  
+  
+  // };
+
+
+  checkMeaningOfClientsStart=()=>{
+
+    var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+    var stringName='Chernogeva_Project_CherAS';
+     /** $.ajax(
+        {
+            url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+            data : { f : 'READ', n : stringName },
+            success : this.readReady(objAddInfoPerson),
+        }
+    */
+      let sp = new URLSearchParams();
+        sp.append('f', 'READ');
+        sp.append('n', stringName);
+    
+        isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+            .then( response => response.json() )
+            .then( data => {this.checkMeaningOfClients(data) } )
+            .catch( error => { console.log(error); } ); 
+    
+    }
+  
+checkMeaningOfClients=(callresult)=>{            
+    if (callresult){
+      this.setState({clients:JSON.parse(callresult.result),}, this.announce);
+                  //  playersStorage=JSON.parse(callresult.result); 
+    }
+    else{
+      this.setState({clients:{},}, this.announce);
+
+                  //  playersStorage={};
+    }
+  //  return playersStorage;
+
+}
 
 registrate=(/*personInfo*/ key,value)=>{
 
 var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
 var updatePassword=Math.random();
 var stringName='Chernogeva_Project_CherAS';
-this.clients[key]=value;
+// this.clients[key]=value;
+this.state.clients[key]=value;
 
 let sp = new URLSearchParams();
 sp.append('f', 'LOCKGET');
@@ -343,7 +446,7 @@ let sp = new URLSearchParams();
 sp.append('f', 'UPDATE');
 sp.append('n', stringName);
 sp.append('p', updatePassword);
-sp.append('v', JSON.stringify(this.clients));
+sp.append('v', JSON.stringify(this.state.clients));
 
 
 isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
@@ -391,15 +494,18 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   let allInfoAboutPersonWeNeed=sData[personWeNeed];
     let name=allInfoAboutPersonWeNeed.name;
     let lastName=allInfoAboutPersonWeNeed.lastName;
-    this.setState({authorizatedName:name, authorizatedLastName:lastName,}, this.announce);
+    this.setState({authorizatedName:name, authorizatedLastName:lastName,  toShowBodyMode:1,}, this.announce);
   }
 };
 
 
 
 
-  order=()=>{
-   this.setState({ toShowBodyMode:6,}, this.announce);
+  order=(orderList)=>{
+  if(this.state.authorizatedName!="")
+   this.setState({ toShowBodyMode:6,  orderList:orderList,}, this.announce);
+  else
+   pageEvents.emit('ShouldLoginOrSignup',);
   };
 
 

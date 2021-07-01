@@ -52,6 +52,11 @@ change5=()=>{
   pageEvents.emit('ChangeBody',5);
 };
 
+change7=()=>{
+  pageEvents.emit('ChangeBody',7);
+};
+
+
 logout=()=>{
   pageEvents.emit("WantToLogout",);
 }
@@ -75,9 +80,11 @@ let buttonsToRegisterAndToLogin=<div>
              <input type="button" onClick={this.change5} value="Войти" />
 </div>
 
+let MyOrders= <input type="button" onClick={this.change7} value="Mои заказы" />
+
 /*<input type="button" className="button_search" onClick={this.search} value={searchIcon} />*/
 
-let searchIcon=<span className="material-icons-outlined"> search</span>
+
     
     return (
      <div className="Top">
@@ -97,6 +104,7 @@ let searchIcon=<span className="material-icons-outlined"> search</span>
              <input type="button" onClick={this.change3} value="WishList" />
          </div>
          <div className="Top_Buttons Second">{this.props.personName==="" && buttonsToRegisterAndToLogin} </div>
+         <div className="Top_Buttons Third">{this.props.personName!="" && MyOrders} </div>
          </div> 
      </div>
     );

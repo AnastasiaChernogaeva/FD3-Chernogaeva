@@ -53,3 +53,10 @@
   }:first-child{
     border:none;
 }
+
+
+.Buttons.Top_Buttons .List input:first-child {
+    border-right: black 2px solid;
+}.Buttons.Top_Buttons input:first-child {
+    border-right: black 2px solid;
+}

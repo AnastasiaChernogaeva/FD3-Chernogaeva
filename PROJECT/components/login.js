@@ -37,6 +37,7 @@ class Login extends React.PureComponent {
     disabled:null,
 
     errorTextPassword:"",
+    PasswordForCheckup:"",
 
   };
 
@@ -93,10 +94,10 @@ class Login extends React.PureComponent {
   toequalPasswords=(EO)=>{
     let textError="Пароли не совпадают!"
     if(EO.target.value!=this.state.Password){
-      this.setState({errorPasswordCheck:textError,}, this.announce);
+      this.setState({errorPasswordCheck:textError, PasswordForCheckup:EO.target.value,}, this.announce);
     }
     else{
-      this.setState({errorPasswordCheck:"",}, this.announce);
+      this.setState({errorPasswordCheck:"", PasswordForCheckup:EO.target.value,}, this.announce);
     }
   };
 
@@ -137,20 +138,24 @@ year=(EO)=>{
 
 
   haveForgottenEverythingInTheirLives=()=>{
-    this.setState({forgottenPassword:true,errorTextPassword:"",},this.announce)
+    this.setState({forgottenPassword:true,errorTextPassword:"", disabled:null,},this.announce)
   }
 
   enter=()=>{
     let personInfo=this.state.Mail+"_"+this.state.Password;
     pageEvents.emit('enter',personInfo);
-    // this.cleanTheForm();
+    this.cleanTheForm();
     // setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
   }
 
   restore=()=>{
-    let additionalPersonalInfo={pet:this.state.pet, year:this.state.year, color:this.state.color,};
+    let additionalPersonalInfo={pet:this.state.pet, year:this.state.year, color:this.state.color, disabled:null,};
     pageEvents.emit('restore', additionalPersonalInfo);
     this.cleanTheForm();
+  }
+
+  saveNewPassword=()=>{
+    pageEvents.emit('saveNewPassword', this.state.PasswordForCheckup);
   }
 
   announce=()=>{
@@ -190,19 +195,29 @@ change=()=>{
 
 
 disabilityForButton=()=>{
-  if (this.state.errorMail===""&&this.state.errorPassword===""){
-   this.setState({disabled:null,}, this.announce);
+  if (this.state.forgottenPassword===false){
+    if (this.state.errorMail===""&&this.state.errorPassword==="")
+    this.setState({disabled:null,}, this.announce);
   }
- else {
+  else if( this.state.passwordCanBeChanged=="" && this.state.forgottenPassword===true){
+     if(this.state.errorpet==="" ||this.state.errorcolor==="" || this.state.erroryear==="")
+    this.setState({disabled:null,}, this.announce);
+  }
+  else if(this.state.passwordCanBeChanged===true){
+    if(this.state.errorPasswordCheck===""||this.state.errorPassword==="")
+        this.setState({disabled:null,}, this.announce);
+  }
+  else 
    this.setState({disabled:"disabled",}, this.announce);
 
- }
+ 
 }
 
 
   render() {
 
     let question=<div className="Top_Buttons">
+      <form onChange={this.disabilityForButton}>
       <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/>
       <input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
       <label htmlFor="color">Введите ваш любимый цвет</label><br/><br/>
@@ -210,7 +225,8 @@ disabilityForButton=()=>{
        <label htmlFor="year">Введите год регистрации на нашем сайте</label><br/><br/>
        <input type="text" id="year" onChange={this.year} value={this.state.year}/> <span className="error">{this.state.erroryear}</span><br/><br/>
        <input type="button" value="Восстановить пароль" onClick={this.restore}/><br/><br/>
-      </div>
+       </form>
+       </div>
 
     let enter=<div className="Top_Buttons">
                <form className="login" onChange={this.disabilityForButton}>
@@ -227,69 +243,28 @@ disabilityForButton=()=>{
     let youCanNotChangeYourPassword=<p>К сожалению, Вы не можете изменить пароль. Такого пользователя не сущствует. Вы можете пройти регистрацию <a href="" onClick={this.change}>здесь</a></p>
     
     let youCanChangeYourPassword=<div className="Top_Buttons">
+      <form  onChange={this.disabilityForButton}>
        <label htmlFor="Password">Введите новый пароль</label><br/><br/>
        <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
        <label htmlFor="RePassword">Подтвердите пароль</label><br/><br/>
-       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.PasswordForCheckup} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <input type="button" value="Изменить пароль" onClick={this.saveNewPassword} disabled={this.state.disabled}/>
+       </form>
     </div>
 
-    // if(this.state.forgottenPassword==="false"){
-      
-    // return (  <div>
-    //     <h1>Вход в аккаунт</h1>
-    //    <label htmlFor="MailId">Электронная почта</label>
-    //    <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span>
-    //    <label htmlFor="Password">Пароль</label>
-    //    <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
-    //   <input type="button" value="Войти" onClick={this.enter}/>
-    //   <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
     
-    // </div>);
-    // }
-    // else if (this.state.forgottenPassword==="true"){
-    //   switch(this.state.passwordCanBeChanged){
-    //     case "false":
-    //       return(<p>К сожалению, Вы не можете изменить пароль. Такого пользователя не сущствует. Вы можете пройти регистрацию <a href="" onClick={this.change}>здесь</a></p>);
-    //     case "":
-    //       return "";
-    //     case "true":
-    //       return (<div>
-    //         <label htmlFor="Password">Введите новый пароль</label>
-    //         <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span>
-    //         <label htmlFor="RePassword">Подтвердите пароль</label>
-    //         <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password} /><span className="error">{this.state.errorPasswordCheck}</span>
-    //      </div>);
-
-    //   }
-    //   return(<div>
-    //     <label htmlFor="pet">Введите имя первого домашнего питомца</label><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/><span className="error">{this.state.errorpet}</span>
-    //     <label htmlFor="color">Введите ваш любимый цвет</label><br/><input type="text" id="color" onChange={this.color} value={this.state.color}/><span className="error">{this.state.errorcolor}</span>
-    //     <label htmlFor="year">Введите год регистрации на нашем сайте</label><input type="text" id="year" onChange={this.year} value={this.state.year}/><span className="error">{this.state.erroryear}</span>
-    //     <input type="button" value="Восстановить пароль" onClick={this.restore}/>
-    //   </div>);
-    // };
     let textErr=<p className="error">Неверный логин или пароль! Попробуйте еще раз!</p>
 
     return (
      <div>
-       {/* <div>
-         <form className="login" onChange={this.disabilityForButton}>
-      <h1>Вход в аккаунт</h1>
-       <label htmlFor="MailId">Электронная почта</label><br/>
-       <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/>
-       <label htmlFor="Password">Пароль</label><br/>
-       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/>
-      <input type="button" value="Войти" onClick={this.enter} disabled={this.state.disabled}/>
-      <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
-      </form> 
-    </div>*/}
     
  
 
     {this.state.errorTextPassword=="1" && textErr}     
 
        {this.state.forgottenPassword===false && enter}    
-       {this.state.forgottenPassword===true && question}
+      
+       { this.state.passwordCanBeChanged=="" && this.state.forgottenPassword===true && question}
 
        {this.state.passwordCanBeChanged===true && youCanChangeYourPassword}
        {this.state.passwordCanBeChanged===false && youCanNotChangeYourPassword}

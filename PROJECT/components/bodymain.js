@@ -8,6 +8,7 @@ import CartPage from './cart.js';
 import WishListPage from './wishList.js';
 import Registration from './registration.js';
 import Login from './login.js';
+import MyOrder from './myOrder.js';
 
 import {pageEvents} from './events';
 
@@ -41,7 +42,7 @@ class MainBody extends React.PureComponent {
     let registration=<Registration/>
     let login=<Login/>
     let infoAboutOrder=<div className="Oder"><p>Ваш заказ оформлен!</p><p>В ближайшее время с Вами свяжется оператор.</p></div>
-
+    let myOrders=<MyOrder/>
 
     return (
      <div className="MainBodyShow">
@@ -51,6 +52,7 @@ class MainBody extends React.PureComponent {
          {this.props.bodyChange===4&&registration}
          {this.props.bodyChange===5&&login}
          {this.props.bodyChange===6&&infoAboutOrder}
+         {this.props.bodyChange===7&&myOrders}
      </div>
     );
 
