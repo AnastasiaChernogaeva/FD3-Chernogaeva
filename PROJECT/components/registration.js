@@ -230,9 +230,18 @@ cleanTheForm=()=>{
 
   newEvent=()=>{
     pageEvents.emit('newPersonWantsToBeAddedToOurBigFamily',this.state.allPersonalInfoKey,this.state.allPersonalInfoHash);
-    this.cleanTheForm();
-    setTimeout(pageEvents.emit('ChangeBody',1), 3000);//переходим на главную
+    // this.cleanTheForm();
+    // setTimeout(pageEvents.emit('ChangeBody',1), 3000);//переходим на главную
 
+  }
+
+  timetoAct=()=>{
+    if( this.state.suchPerson==null){
+      this.cleanTheForm();
+      setTimeout(pageEvents.emit('ChangeBody',1), 3000);//переходим на главную
+    }
+    else
+    this.setState({  Password:"",     Password2:"",},this.announce);
   }
 
 
@@ -246,8 +255,8 @@ cleanTheForm=()=>{
         }
   }
 
-  changeEmailOrPassWord=()=>{
-    this.setState({suchPerson:1,}, this.announce);
+  changeEmailOrPassWord=(num)=>{
+    this.setState({suchPerson:num,}, this.timetoAct);
   }
 
   render() {
@@ -262,9 +271,10 @@ cleanTheForm=()=>{
        <input type="text" id="NameId" onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span><br/><br/>
        <label htmlFor="LastNameId">Фамилия</label><br/><br/>
        <input type="text" id="LastNameId" onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/><br/>
+       <p><b>При создании пароля и почты нельзя использовать следующие символы:"!№;%:?*()_-+=".</b></p>
+
        <label htmlFor="MailId">Электронная почта</label><br/><br/>
        <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
-       <p>При создании пароля нельзя использовать следующие символы:"!№;%:?*()_-+=".</p>
        <label htmlFor="Password">Пароль</label><br/><br/>
        <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        {this.state.errorVV==1&&valid}

@@ -105,3 +105,10 @@ button:hover{cursor: pointer;}
     cursor:pointer;
 
 }
+
+input.Back {
+    background: transparent;
+    padding: 1%;
+    text-align: center;
+    border: rgba(202, 252, 68, 0.1);
+}

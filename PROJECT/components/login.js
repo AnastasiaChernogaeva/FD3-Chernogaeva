@@ -82,7 +82,7 @@ class Login extends React.PureComponent {
 
   changePassword=(EO)=>{
     let textError="Введите не менее 8 символов!"
-    if(EO.target.value.length<8){
+    if(EO.target.value.length<7){
       this.setState({errorPassword:textError,Password:EO.target.value, disabled:"disabled",}, this.announce);
     }
     else{

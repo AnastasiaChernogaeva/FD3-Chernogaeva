@@ -66,6 +66,7 @@ class BodyShop extends React.PureComponent {
   chooseCategory=(EO)=>{
     pageEvents.emit('Search', EO.target.value, "newCategory");
     this.setState({openPage:1, pageBefore:0, textKK:"",},this.announce);
+    pageEvents.emit("FinishSearch", );
   }
 
   changePageGoods=(EO)=>{
@@ -95,12 +96,20 @@ class BodyShop extends React.PureComponent {
     }
   }
 
+  changeBody1=()=>{
+    this.setState({textKK:"",},this.announce);
+    pageEvents.emit("FinishSearch", );
+  }
+
   announce=()=>{
     console.log("Something has changed");
 }
 
   render() {
-    let hh=<p className="error">{this.state.textKK!="" &&this.state.textKK }</p>;
+    let hh=<div >
+       <p className="error">{this.state.textKK}</p>
+       <input type="button" className="Back" onClick={this.changeBody1} value="Вернуться" />
+      </div>
        let categoryList=this.props.categories.slice();
        categoryList=categoryList.map((elem ,i)=>
         <li id={i}  key={i}><button onClick={this.chooseCategory} value={elem}>{elem}</button></li>
@@ -144,27 +153,6 @@ class BodyShop extends React.PureComponent {
           }
         }
       });
-          // let pageAmounts=goods.length/10;
-    
-      // let goodsArr=goods.slice();
-      // goodsArr=goodsArr.filter((elem,i)=>(i+1)%3==0);
-    
-      // goods=goods.map((elem,)=>{
-      //   //   let highTimeToGoToAnotherRow=goodsArr.find(obj=>obj===elem);
-      //   // if(highTimeToGoToAnotherRow!=undefined){
-      //   //  return( <Fragment>
-      //   //  <Good info={elem} key={elem.code} className=' BreakRow'></Good>
-      //   //  </Fragment>);
-      //   // }
-      //   // else
-    
-      //   // return (<Good info={elem} key={elem.code} className='Good'></Good>);
-      // }
-    
-      // );
-      // goods=goods.map((elem, ind)=>
-      //   ind<6?<Good info={elem} key={elem.code} className='Good'></Good>:null
-      //   );
     
     
     return (
@@ -180,8 +168,8 @@ class BodyShop extends React.PureComponent {
           
           <div className="aboveGoods"> 
               <div className="Goods">
-              {hh}
-              {goods}
+              {this.state.textKK!="" &&hh} 
+              {this.state.textKK==""&&goods}
               
               </div>
               <div className="Navigation">

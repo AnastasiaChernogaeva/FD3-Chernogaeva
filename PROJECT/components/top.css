@@ -101,6 +101,7 @@ p.ShopNameBackGround {
 } 
 
 .SearchEngine{
+        padding-left: 2%;
         border-radius: 20px 0px 0px 20px;
         border: none;
         width: 45vw;

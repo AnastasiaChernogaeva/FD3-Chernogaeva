@@ -80,7 +80,7 @@ class Home extends React.PureComponent {
     pageEvents.addListener('DeletefromCart',this.deletefromCart);
     pageEvents.addListener('DeletefromWishList',this.deletefromWishList);
     pageEvents.addListener('Order',this.order);
-    pageEvents.addListener('newPersonWantsToBeAddedToOurBigFamily',this.registrate);
+    pageEvents.addListener('newPersonWantsToBeAddedToOurBigFamily',this.checkifwehavesuchpersonalready);
     pageEvents.addListener('enter',this.enter);
     pageEvents.addListener('restore', this.restorePassword);
     pageEvents.addListener('PageChange',  this.pageChange);
@@ -232,9 +232,16 @@ class Home extends React.PureComponent {
    switchToState=(newState)=>{
       var stateStr=newState.pagename;
       if ( newState.pagename=='Main'){
-        (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum):null;
+        if(newState.typeSearch!=undefined){
+          if(newState.typeSearch=="item")
+             stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum
+          else
+              stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum
+        }
+      }
+        // (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum):null;
   
-      };
+      
      
       if(this.state.authorizatedName!=""|| this.state.authorizatedLastName!="")
         stateStr+="_"+this.state.authorizatedName+"?"+this.state.authorizatedLastName;
@@ -273,8 +280,9 @@ changeBody=(num)=>{
         case "item":
           let typeSearchI=this.state.typeSearch;
           if(this.state.pagenumnavigation!=""){
+            let num=this.state.pagesnum;
             let word=this.state.pagenumnavigation;
-            this.switchToState( { pagename:'Main', pagenumnavigation:word, typeSearch:typeSearchI,} );
+            this.switchToState( { pagename:'Main', pagenumnavigation:word, typeSearch:typeSearchI, pagesnum:num,} );
           }
           break;
         case "numPage":
@@ -450,12 +458,15 @@ checkMeaningOfClients=(callresult)=>{
 
 checkifwehavesuchpersonalready=(key,value)=>{
   if(key in this.state.clients){
-    pageEvents.emit("WehavealreadyhadsuchPerson");
-    if( this.state.clients.key==value)
-    pageEvents.emit("WehavealreadyhadsuchPerson");
+    pageEvents.emit("WehavealreadyhadsuchPerson",1);
+    // if( this.state.clients.key==value)
+    // pageEvents.emit("WehavealreadyhadsuchPerson");
   }
-  else
-  this.registrate(key,value);
+  else{
+    pageEvents.emit("WehavealreadyhadsuchPerson",null);
+    this.registrate(key,value);
+  }
+
 }
 
 registrate=( key,value)=>{
@@ -725,21 +736,23 @@ search=(word, typeSearchImportant)=>{
 
     if (typeSearchImportant=="newCategory"||typeSearchImportant=="newWord"){
       needfulElem=needfulElem.filter(item=>{
-        if(item.itemName.search(regexp)!=-1){
+        let itsItemName=item.itemName.toLowerCase();
+        if(itsItemName.search(regexp)!=-1){
           allApropriateElems.push(item);
           typeSearchMean="item";
-          this.setState( {  typeSearch:typeSearchMean,  pagenumnavigation:word,}, this.switchState );
+          textK="";  
+          this.setState( {  typeSearch:typeSearchMean,  pagenumnavigation:word, pagesnum:1,}, this.switchState );
           // console.log(`${item.itemName}  подходит`);
        }
         else if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
               typeSearchMean="category";         
-              // let num=this.state.pagesnum;     
+              // let num=this.state.pagesnum;   
+              textK="";  
               this.setState( {  typeSearch:typeSearchMean, pagenumnavigation:newWordHere, pagesnum:1,}, this.switchState );
             }
-        else if(item.category.search(regexp)===-1 && item.itemName.search(regexp)===-1){
+        else if(item.category.search(regexp)===-1 && itsItemName.search(regexp)===-1){
          textK=`Данный товар '${word}' не был найден.`;
-         this.setState( {  textToShowAbsecnceOfitem:textK, }, this.announce );
             }
         });
         // if (allApropriateElems===[]){
@@ -747,6 +760,7 @@ search=(word, typeSearchImportant)=>{
         //   this.setState( {  textToShowAbsecnceOfitem:textK,  goods:allApropriateElems, }, this.sayIt );
         // }
         // else
+            this.setState( {  textToShowAbsecnceOfitem:textK, }, this.sayIt );
             this.setState( { goods:allApropriateElems,pagenumnavigation:newWordHere, }, this.announce );
    }
    else if(typeSearchImportant=="loadPeriod"){
