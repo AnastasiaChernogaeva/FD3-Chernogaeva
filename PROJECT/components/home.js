@@ -760,17 +760,17 @@ search=(word, typeSearchImportant)=>{
               textK="";  
               this.setState( {  typeSearch:typeSearchMean, pagenumnavigation:newWordHere, pagesnum:1,}, this.switchState );
             }
-        else if(item.category.search(regexp)===-1 && itsItemName.search(regexp)===-1){
-         textK=`Данный товар '${word}' не был найден.`;
-            }
+        // else if(item.category.search(regexp)===-1 && itsItemName.search(regexp)===-1){
+        //  textK=`Данный товар '${word}' не был найден.`;
+        //     }
         });
-        // if (allApropriateElems===[]){
-        //   textK=`Данный товар '${word}' не был найден.`;
-        //   this.setState( {  textToShowAbsecnceOfitem:textK,  goods:allApropriateElems, }, this.sayIt );
-        // }
-        // else
-            this.setState( {  textToShowAbsecnceOfitem:textK, }, this.sayIt );
-            this.setState( { goods:allApropriateElems,pagenumnavigation:newWordHere, }, this.announce );
+        if (allApropriateElems.length==0){
+          textK=`Данный товар '${word}' не был найден.`;
+          this.setState( {  textToShowAbsecnceOfitem:textK,  goods:allApropriateElems, pagenumnavigation:newWordHere, }, this.sayIt );
+        }
+        else
+            // this.setState( {  textToShowAbsecnceOfitem:textK, }, this.sayIt );
+            this.setState( { goods:allApropriateElems, pagenumnavigation:newWordHere, }, this.announce );
    }
    else if(typeSearchImportant=="loadPeriodCat"){
     needfulElem=needfulElem.filter(item=>{

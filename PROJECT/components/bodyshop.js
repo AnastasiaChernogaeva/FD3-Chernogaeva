@@ -97,8 +97,9 @@ class BodyShop extends React.PureComponent {
   }
 
   changeBody1=()=>{
-    // this.setState({textKK:"",},this.announce);
-    // pageEvents.emit("FinishSearch", "");
+    pageEvents.emit('Search', "all", "newCategory");
+    this.setState({openPage:1, pageBefore:0, textKK:"",},this.announce);
+    pageEvents.emit("FinishSearch", "" );
   }
 
   announce=()=>{
@@ -168,9 +169,8 @@ class BodyShop extends React.PureComponent {
           
           <div className="aboveGoods"> 
               <div className="Goods">
-              {/* {this.state.textKK!="" &&hh}  */}
-              {/*this.state.textKK==""&&*/goods}
-              
+              {this.state.textKK!="" &&hh} 
+              { this.state.textKK==""&&goods}
               </div>
               <div className="Navigation">
                  <li onClick={this.changePageGoodsWithArrowsMines} ><span className="material-icons" > arrow_back_ios</span></li>
