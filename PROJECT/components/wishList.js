@@ -15,6 +15,7 @@ class WishListPage extends React.PureComponent {
 
   state = {
     showButtons:"",
+    amount:{},
   };
 
 /*  componentWillReceiveProps = (newProps) => {
@@ -27,26 +28,39 @@ class WishListPage extends React.PureComponent {
 
   componentDidMount = () => {
     pageEvents.addListener('ShouldLoginOrSignup',this.showButtons);
+    pageEvents.addListener('amountToOrder',this.amountToOrder);
+
   }
 
   componentWillUnmount = () => {
     pageEvents.removeListener('ShouldLoginOrSignup',this.showButtons);
+    pageEvents.removeListener('amountToOrder',this.amountToOrder);
+
   }
 
 
-// animate=(id)=>{
-//  let wishList=this.props.wish.slice();
-//  let elemToDelete=wishList.find(item=>item.code==id);
-// this.setState({elemToDelete:elemToDelete,}, this.announce);
-  
-// }
+
+amountToOrder=(quantity, code)=>{
+this.state.amount[code]=quantity;
+}
 
 showButtons=()=>{
   this.setState({showButtons:"1",},this.announce);
 }
 
   sendNewOrder=()=>{
-    pageEvents.emit('Order', this.props.wish, "wish");
+    var orderTosend=[];
+    let goodsToOrder=this.props.wish.slice();
+    goodsToOrder=goodsToOrder.map((elem,i)=>{
+      let orderProduct=goodsToOrder[i];
+      if (elem.code in this.state.amount){
+        orderProduct['orderAmoount']=this.state.amount[elem.code]+1;
+      }
+      else
+      orderProduct['orderAmoount']=1;
+      orderTosend.push(elem);
+    })
+    pageEvents.emit('Order', /*this.props.wish*/ orderTosend, "wish");
   }
 
   changeBody1=()=>{
@@ -93,9 +107,9 @@ if(this.props.wish==null){
       <Fragment>
       {this.state.showButtons=="1" && shButton}
      <div className="Top_Buttons">
-         <h2>Товары в корзине:</h2>
+         <h2>Товары в WishList:</h2>
            <div className="CartGood">{goodsInWisht}</div>
-           <input type="button" className="Top_Buttons" onClick={this.sendNewOrder} value="Заказать" />
+           <input type="button" className="Top_Buttons" onClick={this.sendNewOrder}	 value="Заказать" />
      </div>
      </Fragment>
     );

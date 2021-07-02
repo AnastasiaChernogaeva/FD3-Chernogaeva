@@ -142,18 +142,25 @@ year=(EO)=>{
   }
 
   enter=()=>{
-    let personInfo=this.state.Mail+"_"+this.state.Password;
+    // let personInfo=this.state.Mail+"_"+this.state.Password;
+    let wordMail=this.state.Mail.trim();
+    let wordPass=this.state.Password.trim();
+    let personInfo=wordMail+"_"+wordPass;
     pageEvents.emit('enter',personInfo);
     // setTimeout(pageEvents.emit('ChangeBody',1), 4000);//переходим на главную
   }
 
   restore=()=>{
-    let additionalPersonalInfo={pet:this.state.pet, year:this.state.year, color:this.state.color, disabled:null,};
+    let wordColor=this.state.color.trim();
+    let wordPet=this.state.pet.trim();
+    let wordYear=this.state.year.trim();
+    let additionalPersonalInfo={color:wordColor, pet:wordPet, year:wordYear, /* disabled:null,*/};
     pageEvents.emit('restore', additionalPersonalInfo);
     
   }
 
   saveNewPassword=()=>{
+
     pageEvents.emit('saveNewPassword', this.state.PasswordForCheckup);
     this.cleanTheForm();
   }

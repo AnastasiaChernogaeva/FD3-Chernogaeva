@@ -91,7 +91,7 @@ let MyOrders= <input type="button" onClick={this.change7} value="Mои зака�
          <div  className="TopNameAndSearch">
              <p className="ShopName">{this.props.shopName}</p>
              <p className="ShopNameBackGround">{this.props.shopName}</p>
-             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input><button className="button_search" onClick={this.search} ><span className="material-icons">search</span></button> 
+             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember}></input><button className="button_search" onClick={this.search}  ><span className="material-icons">search</span></button> 
 
              </div>
          </div>

@@ -38,8 +38,6 @@ class Home extends React.PureComponent {
           wishList:null,
           passwordCanBeChanged:false,
           personWantToChangePassword:{},
-          accountName:"",
-          accountLastName:"",
 
 
           // SPAState:{},
@@ -100,7 +98,7 @@ class Home extends React.PureComponent {
     pageEvents.removeListener('DeletefromCart',this.deletefromCart);
     pageEvents.removeListener('DeletefromWishList',this.deletefromWishList);
     pageEvents.removeListener('Order',this.order);
-    pageEvents.removeListener('newPersonWantsToBeAddedToOurBigFamily',this.registrate);
+    pageEvents.removeListener('newPersonWantsToBeAddedToOurBigFamily',this.checkifwehavesuchpersonalready);
     pageEvents.removeListener('enter',this.enter);
     pageEvents.removeListener('restore', this.restorePassword);
     pageEvents.removeListener('PageChange', this.pageChange);
@@ -112,7 +110,7 @@ class Home extends React.PureComponent {
   };
 
   logout=()=>{
-  this.setState({authorizatedName:"",   authorizatedLastName:"",  orderList:"",},this.announce);
+  this.setState({authorizatedName:"",   authorizatedLastName:"",  orderList:"",},this.switchState);
   }
 
 
@@ -124,23 +122,38 @@ class Home extends React.PureComponent {
 
     if ( stateStr!="" ) { // если закладка непустая, читаем из неё состояние и отображаем
       var parts=stateStr.split("_")
+    
+      if(parts.length>1){
+        var partsName=parts[parts.length-1].split("?")
+        if(partsName.length>1){
+          let name=decodeURI(partsName[0]);
+          let lastName=decodeURI(partsName[1]);
+          this.setState({  authorizatedName:name, authorizatedLastName:lastName,}, this.setOrderList);
+        }
+      }
+
       switch ( parts[0] ){
         case 'Main': 
-         if (parts.length!=1){
-          //  switch(parts[1]){
-          //    case "numPage":
-          //     this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newPage);
-          //     break;
-          //    case "category":
-          //     this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newCategoryPage);
-          //     break;
-          //   }
-                    this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newPage);
+        if(this.state.authorizatedName!=""){
+          if (parts.length!=2){
+            this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newPage);
 
-         }
-         else{
-          this.setState({ pagename: parts[0], toShowBodyMode:1,}, this.announce);
-         }
+       }
+       else{
+        this.setState({ pagename: parts[0], toShowBodyMode:1,}, this.announce);
+       }
+        }
+        else{
+          if (parts.length!=1){
+            this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newPage);
+
+       }
+       else{
+        this.setState({ pagename: parts[0], toShowBodyMode:1,}, this.announce);
+       }
+        }
+
+        
           break;
         case 'Cart':
           this.setState({ pagename: parts[0], typeSearch:"", pagenumnavigation:"", pagesnum:"", toShowBodyMode:2,}, this.announce);
@@ -160,12 +173,7 @@ class Home extends React.PureComponent {
 
       }
 
-      var partsName=stateStr.split("?")
-      if(partsName.length>1){
-        let name=decodeURI(partsName[1]);
-        let lastName=decodeURI(partsName[2]);
-        this.setState({  authorizatedName:name, authorizatedLastName:lastName,}, this.setOrderList);
-      }
+  
     }
     else
     this.setState({pagename:'Main'}, this.announce); 
@@ -222,18 +230,17 @@ class Home extends React.PureComponent {
   
 
    switchToState=(newState)=>{
-    var stateStr=newState.pagename;
-    if ( newState.pagename=='Main'){
-      (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum):null;
-
-    };
-   
-    if(this.state.authorizatedName!=""|| this.state.authorizatedLastName!="")
-      stateStr+="_?"+this.state.authorizatedName+"?"+this.state.authorizatedLastName;
-
-    location.hash=stateStr;
-
-    // this.switchToStateFromURLHash();
+      var stateStr=newState.pagename;
+      if ( newState.pagename=='Main'){
+        (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum):null;
+  
+      };
+     
+      if(this.state.authorizatedName!=""|| this.state.authorizatedLastName!="")
+        stateStr+="_"+this.state.authorizatedName+"?"+this.state.authorizatedLastName;
+    
+  
+      location.hash=stateStr;
   }
 
 
@@ -300,7 +307,7 @@ changeBody=(num)=>{
       this.setState({typeSearch:"", pagenumnavigation:"", pagesnum:""}, this.announce);
       this.switchToState( { pagename:'Login' } );
       break;
-    case 6:
+    case 7:
       this.setState({typeSearch:"", pagenumnavigation:"", pagesnum:""}, this.announce);
       this.switchToState( { pagename:'Order' } );
       break;
@@ -441,7 +448,17 @@ checkMeaningOfClients=(callresult)=>{
 
 }
 
-registrate=(/*personInfo*/ key,value)=>{
+checkifwehavesuchpersonalready=(key,value)=>{
+  if(key in this.state.clients){
+    pageEvents.emit("WehavealreadyhadsuchPerson");
+    if( this.state.clients.key==value)
+    pageEvents.emit("WehavealreadyhadsuchPerson");
+  }
+  else
+  this.registrate(key,value);
+}
+
+registrate=( key,value)=>{
 
 var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
 var updatePassword=Math.random();
@@ -456,16 +473,14 @@ sp.append('p', updatePassword);
 
 isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
     .then( response => response.json() )
-    .then( () => this.continuation)
+    .then( () => this.continuation(stringName,updatePassword))
     .catch( error => { console.error(error); } ); 
 
   
 };
 
-continuation=()=>{
-  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-  var updatePassword=Math.random();
-var stringName='Chernogeva_Project_CherAS';
+continuation=(stringName,updatePassword)=>{
+var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
 let sp = new URLSearchParams();
 sp.append('f', 'UPDATE');
 sp.append('n', stringName);
@@ -527,56 +542,88 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   }
 };
 
-findandchange=(orderList)=>{
-  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-  var stringName='Chernogeva_Project_CherAS';
-
-let sp = new URLSearchParams();
-  sp.append('f', 'READ');
-  sp.append('n', stringName);
-
-  isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
-      .then( response => response.json() )
-      .then( data => {this.changeTime(orderList, data) } )
-      .catch( error => { console.log(error); } ); 
-
-}
-
-changeTime(orderList, data) {
-  var info=JSON.parse(data.result);
 
 
-  let arrNames=Object.keys(info);
-  arrNames.forEach(elemKey=>{
-    for (elemKey in info){
-      if(info[elemKey].name===this.state.authorizatedName){
-        if(info[elemKey].lastName===this.state.authorizatedLastName){
-          // orderList.forEach(elem=>info[elemKey].myOrders.push(elem));
-          info[elemKey].myOrders=orderList;
-        }
-  }
-}
-  
-      this.setState({clients:info,}, this.continuation);
 
-   
- 
-  }
-    )
-};
 
 
   order=(orderList, typeOrder)=>{
   if(this.state.authorizatedName!=""){
     this.findandchange(orderList);
-   
-
-
     this.setState({ toShowBodyMode:6,  orderList:orderList, typeOrder:typeOrder,}, this.clearList);
   }
   else
    pageEvents.emit('ShouldLoginOrSignup',);
   };
+
+  
+  findandchange=(orderList)=>{
+
+    let arrNames=Object.keys(this.state.clients);
+      arrNames.forEach(elemKey=>{
+        if (elemKey in this.state.clients){
+          if(this.state.clients[elemKey].name===this.state.authorizatedName){
+            if(this.state.clients[elemKey].lastName===this.state.authorizatedLastName){
+              orderList.forEach(elem=>this.state.clients[elemKey].myOrders.push(elem));
+              // this.state.clients[elemKey].myOrders=orderList;
+            }
+              }
+            }
+          })
+              
+            //       this.setState({clients:info,}, this.continuation1);
+  //   var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  //   var stringName='Chernogeva_Project_CherAS';
+  
+  // let sp = new URLSearchParams();
+  //   sp.append('f', 'READ');
+  //   sp.append('n', stringName);
+  
+  //   isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+  //       .then( response => response.json() )
+  //       .then( data => {this.changeTime(orderList, data) } )
+  //       .catch( error => { console.log(error); } ); 
+  
+  // }
+
+  // changeTime(orderList, data) {
+  //   var info=JSON.parse(data.result);
+  
+  
+  //  let arrNames=Object.keys(info);
+  //   arrNames.forEach(elemKey=>{
+  //     for (elemKey in info){
+  //       if(info[elemKey].name===this.state.authorizatedName){
+  //         if(info[elemKey].lastName===this.state.authorizatedLastName){
+  //           // orderList.forEach(elem=>info[elemKey].myOrders.push(elem));
+  //           info[elemKey].myOrders=orderList;
+  //         }
+  //   }
+  // }
+    
+  //       this.setState({clients:info,}, this.continuation1);
+  
+     
+   
+  //   }
+  //     )
+  // };
+  
+  // continuation1=()=>{
+  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  var updatePassword=Math.random();
+  var stringName='Chernogeva_Project_CherAS';
+  
+  let sp = new URLSearchParams();
+  sp.append('f', 'LOCKGET');
+  sp.append('n', stringName);
+  sp.append('p', updatePassword);
+  
+  isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+      .then( response => response.json() )
+      .then( () => this.continuation(stringName,updatePassword))
+      .catch( error => { console.error(error); } ); 
+  }
 
   clearList=()=>{
     if(this.state.typeOrder=="wish")

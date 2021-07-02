@@ -42,7 +42,7 @@ class BodyShop extends React.PureComponent {
       // pageEvents.removeListener("GiveUPageCatNum", this.setCatPage);
     };
 
- componentWillReceiveProps = (newProps) => {
+ UNSAFE_componentWillReceiveProps = (newProps) => {
     if(this.props.goods!=newProps.goods){
       this.setState({goods:newProps.goods});
     }
@@ -122,14 +122,22 @@ class BodyShop extends React.PureComponent {
       let firstPageElemIndex=goods.findIndex(elem=>elem==firstPageElem);
       let lastPageElemIndex=goods.findIndex(elem=>elem==lastPageElem);
 
+   
 
       goods=goods.map((elem,ind)=>{
         if(goods.length<6){
           return (<Good info={elem} key={elem.code} className='Good'></Good>);
         };
+        if(firstPageElemIndex==-1){
+          if(ind<(lastPageElemIndex+1)){
+            return (<Good info={elem} key={elem.code} className='Good'></Good>);
+          }
+        }
+        if(firstPageElemIndex!=-1){
         if(ind>firstPageElemIndex && ind<(lastPageElemIndex+1)){
           return (<Good info={elem} key={elem.code} className='Good'></Good>);
         };
+      };
         if(lastPageElemIndex==-1){
           if(ind>firstPageElemIndex){
             return (<Good info={elem} key={elem.code} className='Good'></Good>);

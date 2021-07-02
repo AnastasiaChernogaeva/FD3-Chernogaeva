@@ -74,7 +74,7 @@ class MyOrder extends React.PureComponent {
 
   render() {
 
-if(this.state.orderList==null){
+if(this.state.orderList==""){
   return (
     <div className="Top_Buttons">
         <h2>У вас нет оформленных заказов</h2>

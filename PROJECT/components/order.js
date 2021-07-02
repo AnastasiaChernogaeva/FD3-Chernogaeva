@@ -40,8 +40,8 @@ class Order extends React.PureComponent {
         </div>
         <div className="Cost">
           <p><b>{this.state.order.itemName}</b></p> 
-          <p>{this.state.order.itemCost}</p> 
-          {/* <p> Осталось: {this.state.wishgood.itemAmount}</p> */}
+          <p>Цена за один экземпляр:{this.state.order.itemCost}</p> 
+          <p> Количество : {this.state.order.orderAmoount}</p>
         </div>
         
     </div>

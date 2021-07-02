@@ -40,7 +40,22 @@ class Registration extends React.PureComponent {
     disabled:null,
 
     errorVV:null,
+
+    suchPerson:null,
   };
+
+
+
+  componentDidMount = () => {
+    pageEvents.addListener("WehavealreadyhadsuchPerson", this.changeEmailOrPassWord);
+  };
+
+    
+  componentWillUnmount = () => {
+    pageEvents.removeListener("WehavealreadyhadsuchPerson", this.changeEmailOrPassWord);
+  };
+
+
 
  /* componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
@@ -74,6 +89,10 @@ cleanTheForm=()=>{
   errorcolor:"",
   pet:"",
   color:"",
+  
+  errorVV:null,
+
+  suchPerson:null,
 }, this.announce);
 }
 
@@ -101,8 +120,12 @@ cleanTheForm=()=>{
 
 
   changeMail=(EO)=>{
-    let textError="Введите почту!"
+    let textError="Введите корректно почту!"
+    let parts=EO.target.value.split("_");
     if(EO.target.value===""){
+      this.setState({errorMail:textError, Mail:EO.target.value, disabled:"disabled",}, this.announce);
+    }
+    else if (parts.length>1){
       this.setState({errorMail:textError, Mail:EO.target.value, disabled:"disabled",}, this.announce);
     }
     else{
@@ -113,6 +136,7 @@ cleanTheForm=()=>{
 
   changePassword=(EO)=>{
     this.validation(EO.target.value);
+    let parts=EO.target.value.split("_");
     if(EO.target.value.length<8){
       let textError="Введите не менее 8 символов!";
       this.setState({errorPassword:textError,errorPasswordCheck:"", Password:EO.target.value, disabled:"disabled",}, this.announce);
@@ -120,6 +144,14 @@ cleanTheForm=()=>{
     else if(EO.target.value!=this.state.Password2){
       let textError="Пароли не совпадают!";
       this.setState({errorPasswordCheck:textError, errorPassword:"", Password:EO.target.value, disabled:"disabled", }, this.announce);
+    }
+    else if(EO.target.value!=this.state.Password2){
+      let textError="Пароли не совпадают!";
+      this.setState({errorPasswordCheck:textError, errorPassword:"", Password:EO.target.value, disabled:"disabled", }, this.announce);
+    }
+    else if (parts.length>1){
+      let textError="Введите пароль корректно!";
+      this.setState({errorMail:textError, Mail:EO.target.value, disabled:"disabled",}, this.announce);
     }
     else{
       this.setState({errorPassword:"", errorPasswordCheck:"", Password:EO.target.value,}, this.announce);
@@ -160,7 +192,7 @@ cleanTheForm=()=>{
 
   color=(EO)=>{
     let textError="Не оставлять поле пустым в ваших интересах!"
-    if(EO.target.value===""){
+    if(EO.target.value==""){
       this.setState({errorcolor:textError, color:EO.target.value, disabled:"disabled",}, this.announce);
     }
     else{
@@ -176,8 +208,16 @@ cleanTheForm=()=>{
     // if (this.state.errorName===""&&this.state.errorLastName===""&&this.state.errorMail===""&&this.state.errorPassword===""&&this.state.errorPasswordCheck===""){
       let bornTime=new Date();
       let registerYear=bornTime.getFullYear();
-      let personInfo=this.state.Mail+"_"+this.state.Password;
-      let objMainInfo={name:this.state.Name, lastName:this.state.LastName, password:this.state.Password, mail:this.state.Mail, year:registerYear, color:this.state.color, pet:this.state.pet, myOrders:[],}
+      let wordColor=this.state.color.trim();
+      let wordPet=this.state.pet.trim();
+      let wordName=this.state.Name.trim();
+      let wordLName=this.state.LastName.trim();
+      let wordMail=this.state.Mail.trim();
+      let wordPass=this.state.Password.trim();
+      let personInfo=wordMail+"_"+wordPass;
+      let objMainInfo={name:wordName, lastName:wordLName, password:wordPass, mail:wordMail, year:registerYear, color:wordColor, pet:wordPet, myOrders:[],}
+      // let personInfo=this.state.Mail+"_"+this.state.Password;
+      // let objMainInfo={name:this.state.Name, lastName:this.state.LastName, password:this.state.Password, mail:this.state.Mail, year:registerYear, color:this.state.color, pet:this.state.pet, myOrders:[],}
       // this.setState({allPersonalInfo:{[personInfo]:objMainInfo,},}, this.newEvent);
       this.setState({allPersonalInfoKey:personInfo, allPersonalInfoHash:objMainInfo,}, this.newEvent);
     // }
@@ -206,10 +246,16 @@ cleanTheForm=()=>{
         }
   }
 
+  changeEmailOrPassWord=()=>{
+    this.setState({suchPerson:1,}, this.announce);
+  }
+
   render() {
     let valid=<p>Нельзя использовать следующие символы:"&#95;&#94;&#44;&#33;&#45;&#64;&#61;&#60;&#62;&#47;&#42;&#43;&#36;&#38;&#35;</p>;
+    let textSPerson=<p  className="error">Такой пользователь уже существует. Попробуйте изменить логин.</p>
     return (
      <div>
+       {this.state.suchPerson==1&& textSPerson}
        <form className="register" onChange={this.disabilityForButtons}>
        <h1>Регистрация</h1>
        <label htmlFor="NameId">Имя</label><br/><br/>
@@ -233,7 +279,7 @@ cleanTheForm=()=>{
 
       </form>
       <div className="Top_Buttons">
-       <input type="button" value="Зарегистрироваться" onClick={this.highTimetoAddNewPerson} disabled={this.state.disabled}/>
+       <input type="button" value="Зарегистрироваться" onClick={this.highTimetoAddNewPerson}  disabled={this.state.disabled}/>
        <input type="button" value="Сбросить все" onClick={this.cleanTheForm}/>
       </div>
       
