@@ -35,8 +35,9 @@ class Top extends React.PureComponent {
     pageEvents.removeListener("FinishSearch", this.finishSearch);
   };
 
-  finishSearch=()=>{
-    this.setState({searchWord:"",}, this.announce);
+  finishSearch=(word)=>{
+    // let wWord=decodeURI(word);
+    // this.setState({searchWord:wWord,}, this.announce);
   }
 
  remember=(EO)=>{

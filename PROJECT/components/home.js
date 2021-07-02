@@ -134,7 +134,7 @@ class Home extends React.PureComponent {
 
       switch ( parts[0] ){
         case 'Main': 
-        if(this.state.authorizatedName!=""){
+  if(this.state.authorizatedName!=""){
           if (parts.length!=2){
             this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newPage);
 
@@ -143,7 +143,7 @@ class Home extends React.PureComponent {
         this.setState({ pagename: parts[0], toShowBodyMode:1,}, this.announce);
        }
         }
-        else{
+  else{
           if (parts.length!=1){
             this.setState({pagename: parts[0], typeSearch:parts[1], pagenumnavigation:parts[2], pagesnum:parts[3], toShowBodyMode:1,}, this.newPage);
 
@@ -218,9 +218,14 @@ class Home extends React.PureComponent {
   }
 
   newPage=()=>{
-    pageEvents.emit("GiveUPageNum",this.state.pagesnum);
+    // pageEvents.emit("GiveUPageNum",this.state.pagesnum);
     if(this.state.typeSearch=="category")
-      this.search(this.state.pagenumnavigation,"loadPeriod")
+      this.search(this.state.pagenumnavigation,"loadPeriodCat")
+    // if(this.state.typeSearch=="item"){
+    //   pageEvents.emit("FinishSearch",this.state.pagenumnavigation );
+    //   this.search(this.state.pagenumnavigation,"loadPeriodWord")
+    // }
+
   }
 
   newCategoryPage=()=>{
@@ -232,14 +237,15 @@ class Home extends React.PureComponent {
    switchToState=(newState)=>{
       var stateStr=newState.pagename;
       if ( newState.pagename=='Main'){
-        if(newState.typeSearch!=undefined){
-          if(newState.typeSearch=="item")
-             stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum
-          else
-              stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum
-        }
+        // if(newState.typeSearch!=undefined){
+        //   if(newState.typeSearch=="item")
+        //      stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum
+        //   else
+        //       stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum
+        // }
+        (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum):null;
+
       }
-        // (newState.typeSearch!=undefined)?(stateStr+="_"+newState.typeSearch+"_"+newState.pagenumnavigation+"_"+newState.pagesnum):null;
   
       
      
@@ -747,7 +753,7 @@ search=(word, typeSearchImportant)=>{
         else if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
               typeSearchMean="category";         
-              // let num=this.state.pagesnum;   
+              let num=this.state.pagesnum;   
               textK="";  
               this.setState( {  typeSearch:typeSearchMean, pagenumnavigation:newWordHere, pagesnum:1,}, this.switchState );
             }
@@ -763,7 +769,7 @@ search=(word, typeSearchImportant)=>{
             this.setState( {  textToShowAbsecnceOfitem:textK, }, this.sayIt );
             this.setState( { goods:allApropriateElems,pagenumnavigation:newWordHere, }, this.announce );
    }
-   else if(typeSearchImportant=="loadPeriod"){
+   else if(typeSearchImportant=="loadPeriodCat"){
     needfulElem=needfulElem.filter(item=>{
       if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
@@ -772,8 +778,18 @@ search=(word, typeSearchImportant)=>{
    
     this.setState( { goods:allApropriateElems, }, this.announce );
    }
-   }
+  //  else if(typeSearchImportant=="loadPeriodWord"){
+  //   needfulElem=needfulElem.filter(item=>{
+  //     let itsItemName=item.itemName.toLowerCase();
+  //     if(itsItemName.search(regexp)!=-1){
+  //       allApropriateElems.push(item);
+  //  }
+  //  });
+  //  this.setState( { goods:allApropriateElems, }, this.announce );
+  // }
+   
   
+}
 };
 
 sayIt=()=>{

@@ -66,7 +66,7 @@ class BodyShop extends React.PureComponent {
   chooseCategory=(EO)=>{
     pageEvents.emit('Search', EO.target.value, "newCategory");
     this.setState({openPage:1, pageBefore:0, textKK:"",},this.announce);
-    pageEvents.emit("FinishSearch", );
+    // pageEvents.emit("FinishSearch", "" );
   }
 
   changePageGoods=(EO)=>{
@@ -97,8 +97,8 @@ class BodyShop extends React.PureComponent {
   }
 
   changeBody1=()=>{
-    this.setState({textKK:"",},this.announce);
-    pageEvents.emit("FinishSearch", );
+    // this.setState({textKK:"",},this.announce);
+    // pageEvents.emit("FinishSearch", "");
   }
 
   announce=()=>{
@@ -168,8 +168,8 @@ class BodyShop extends React.PureComponent {
           
           <div className="aboveGoods"> 
               <div className="Goods">
-              {this.state.textKK!="" &&hh} 
-              {this.state.textKK==""&&goods}
+              {/* {this.state.textKK!="" &&hh}  */}
+              {/*this.state.textKK==""&&*/goods}
               
               </div>
               <div className="Navigation">
