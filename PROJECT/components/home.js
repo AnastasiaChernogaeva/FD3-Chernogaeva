@@ -218,20 +218,20 @@ class Home extends React.PureComponent {
   }
 
   newPage=()=>{
-    // pageEvents.emit("GiveUPageNum",this.state.pagesnum);
+    pageEvents.emit("GiveUPageNum",this.state.pagesnum);
     if(this.state.typeSearch=="category")
       this.search(this.state.pagenumnavigation,"loadPeriodCat")
-    // if(this.state.typeSearch=="item"){
-    //   pageEvents.emit("FinishSearch",this.state.pagenumnavigation );
-    //   this.search(this.state.pagenumnavigation,"loadPeriodWord")
-    // }
+    if(this.state.typeSearch=="item"){;
+      this.search(this.state.pagenumnavigation,"loadPeriodWord");
+      pageEvents.emit("FinishSearch",this.state.pagenumnavigation )
+    }
 
   }
 
-  newCategoryPage=()=>{
-    this.search(this.state.pagenumnavigation);
-    this.newPage(this.state.pagesnum);
-  }
+  // newCategoryPage=()=>{
+  //   this.search(this.state.pagenumnavigation);
+  //   this.newPage(this.state.pagesnum);
+  // }
   
 
    switchToState=(newState)=>{
@@ -267,6 +267,8 @@ changeBody=(num)=>{
  pageChange=(numPage)=>{
    if(this.state.typeSearch!="")
   this.setState({/*pagenumnavigation:numPage, typeSearch:"numPage",*/ pagesnum:numPage,}, this.switchState);
+  else if(this.state.typeSearch=="item")
+  this.setState({ pagesnum:numPage,}, this.switchState);
   else
   this.setState({pagenumnavigation:numPage, typeSearch:"numPage", pagesnum:numPage,}, this.switchState);
  }
@@ -287,6 +289,8 @@ changeBody=(num)=>{
           let typeSearchI=this.state.typeSearch;
           if(this.state.pagenumnavigation!=""){
             let num=this.state.pagesnum;
+            if(num==undefined)
+               num=1;
             let word=this.state.pagenumnavigation;
             this.switchToState( { pagename:'Main', pagenumnavigation:word, typeSearch:typeSearchI, pagesnum:num,} );
           }
@@ -748,12 +752,11 @@ search=(word, typeSearchImportant)=>{
           typeSearchMean="item";
           textK="";  
           this.setState( {  typeSearch:typeSearchMean,  pagenumnavigation:word, pagesnum:1,}, this.switchState );
-          // console.log(`${item.itemName}  подходит`);
        }
         else if(item.category.search(regexp)!=-1){
               allApropriateElems.push(item);
               typeSearchMean="category";         
-              let num=this.state.pagesnum;   
+              // let num=this.state.pagesnum;   
               textK="";  
               this.setState( {  typeSearch:typeSearchMean, pagenumnavigation:newWordHere, pagesnum:1,}, this.switchState );
             }
@@ -778,15 +781,15 @@ search=(word, typeSearchImportant)=>{
    
     this.setState( { goods:allApropriateElems, }, this.announce );
    }
-  //  else if(typeSearchImportant=="loadPeriodWord"){
-  //   needfulElem=needfulElem.filter(item=>{
-  //     let itsItemName=item.itemName.toLowerCase();
-  //     if(itsItemName.search(regexp)!=-1){
-  //       allApropriateElems.push(item);
-  //  }
-  //  });
-  //  this.setState( { goods:allApropriateElems, }, this.announce );
-  // }
+   else if(typeSearchImportant=="loadPeriodWord"){
+    needfulElem=needfulElem.filter(item=>{
+      let itsItemName=item.itemName.toLowerCase();
+      if(itsItemName.search(regexp)!=-1){
+        allApropriateElems.push(item);
+   }
+   });
+   this.setState( { goods:allApropriateElems, }, this.announce );
+  }
    
   
 }

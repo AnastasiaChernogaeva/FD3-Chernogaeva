@@ -36,8 +36,8 @@ class Top extends React.PureComponent {
   };
 
   finishSearch=(word)=>{
-    // let wWord=decodeURI(word);
-    // this.setState({searchWord:wWord,}, this.announce);
+    let wWord=decodeURI(word);
+    this.setState({searchWord:wWord,}, this.announce);
   }
 
  remember=(EO)=>{
