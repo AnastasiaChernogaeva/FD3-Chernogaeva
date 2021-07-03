@@ -119,7 +119,7 @@ class BodyShop extends React.PureComponent {
       let pageAmounts=Math.ceil(this.state.goods.length/6);
       let pageGoods=[];
       for (let k=1; k<=pageAmounts; k++){
-        pageGoods.push(<li className="numbers" key={k} onClick={this.changePageGoods} value={k}>{k}</li>);
+        pageGoods.push(<li className="numbers" key={k}  onClick={this.changePageGoods} value={k}>{k}</li>);
       }
 
       let goods=this.state.goods.slice();

@@ -1,15 +1,14 @@
-"use strict";
- 
 import React from 'react';
 import renderer from 'react-test-renderer';
  
-import Top from '../components/top';
- 
-test('работа Top', () => {
+import Login from '../components/login';
+
+
+test('работа Login', () => {
  
   // создаём тестовую версию компонента
   const component = renderer.create(
-    <Top />
+    <Login />
   );
  
   // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
@@ -19,11 +18,13 @@ test('работа Top', () => {
   // найдём в вёрстке компонента сами кнопки
  
  
-  
-  const buttonElems = component.root.find( el => el.type =='input'); 
+  const buttonEleme1 = component.root.find( el =>(el.props.testPrL1=="buttOn")); 
+//   const buttonEleme2 = component.root.find( el =>(el.props.testPrR2=="buttOn"));  
+
+  const buttonElems=[buttonEleme1, /*buttonEleme2,*/];
   // находим все кнопки
  
-  buttonElems.props.forEach(elem=>{elem.props.onClick(); // по очереди нажимаем на кнопки и делаем снимк(так два раза)
+  buttonElems.forEach(elem=>{elem.props.onClick(); // по очереди нажимаем на кнопки и делаем снимк(так два раза)
   
   // получаем уже изменённый снэпшот
   componentTree=component.toJSON();
@@ -38,6 +39,3 @@ test('работа Top', () => {
  
 })
 })  
- 
-  
- 

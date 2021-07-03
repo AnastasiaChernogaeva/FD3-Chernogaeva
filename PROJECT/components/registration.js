@@ -42,6 +42,7 @@ class Registration extends React.PureComponent {
     errorVV:null,
 
     suchPerson:null,
+    typeTestB:"buttOn",
   };
 
 
@@ -402,8 +403,8 @@ cleanTheForm=()=>{
 
       </form>
       <div className="Top_Buttons">
-       <input type="button" value="Зарегистрироваться" onClick={this.highTimetoAddNewPerson}  disabled={this.state.disabled}/>
-       <input type="button" value="Сбросить все" onClick={this.cleanTheForm}/>
+       <input type="button" value="Зарегистрироваться" testPrR1={this.state.typeTestB} onClick={this.highTimetoAddNewPerson}  disabled={this.state.disabled}/>
+       <input type="button" value="Сбросить все" testPrR2={this.state.typeTestB} onClick={this.cleanTheForm}/>
       </div>
       
      </div>

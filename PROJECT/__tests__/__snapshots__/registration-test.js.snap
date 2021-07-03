@@ -1,0 +1,976 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа Registration 1`] = `
+<div>
+  <div />
+  <form
+    className="register"
+    onChange={[Function]}
+  >
+    <h1>
+      Регистрация
+    </h1>
+    <label
+      htmlFor="NameId"
+    >
+      Имя
+    </label>
+    <br />
+    <br />
+    <input
+      id="NameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Валентина"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="LastNameId"
+    >
+      Фамилия
+    </label>
+    <br />
+    <br />
+    <input
+      id="LastNameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Домаринская"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <p>
+      <b>
+        При создании пароля и почты нельзя использовать следующие символы:"!№;%:?*()_-+=".
+      </b>
+    </p>
+    <label
+      htmlFor="MailId"
+    >
+      Электронная почта
+    </label>
+    <br />
+    <br />
+    <input
+      id="MailId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="Password"
+    >
+      Пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="Password"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="RePassword"
+    >
+      Подтвердите пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="RePassword"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <h3>
+      Дополнительная информация для восстановления доступа к аккаунту
+    </h3>
+    <label
+      htmlFor="pet"
+    >
+      Введите имя первого домашнего питомца
+    </label>
+    <br />
+    <br />
+    <input
+      id="pet"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="color"
+    >
+      Введите ваш любимый цвет
+    </label>
+    <br />
+    <br />
+    <input
+      id="color"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+  </form>
+  <div
+    className="Top_Buttons"
+  >
+    <input
+      disabled="disabled"
+      onClick={[Function]}
+      testPrR1="buttOn"
+      type="button"
+      value="Зарегистрироваться"
+    />
+    <input
+      onClick={[Function]}
+      testPrR2="buttOn"
+      type="button"
+      value="Сбросить все"
+    />
+  </div>
+</div>
+`;
+
+exports[`работа Registration 2`] = `
+<div>
+  <div />
+  <form
+    className="register"
+    onChange={[Function]}
+  >
+    <h1>
+      Регистрация
+    </h1>
+    <label
+      htmlFor="NameId"
+    >
+      Имя
+    </label>
+    <br />
+    <br />
+    <input
+      id="NameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Валентина"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="LastNameId"
+    >
+      Фамилия
+    </label>
+    <br />
+    <br />
+    <input
+      id="LastNameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Домаринская"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <p>
+      <b>
+        При создании пароля и почты нельзя использовать следующие символы:"!№;%:?*()_-+=".
+      </b>
+    </p>
+    <label
+      htmlFor="MailId"
+    >
+      Электронная почта
+    </label>
+    <br />
+    <br />
+    <input
+      id="MailId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="Password"
+    >
+      Пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="Password"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="RePassword"
+    >
+      Подтвердите пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="RePassword"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <h3>
+      Дополнительная информация для восстановления доступа к аккаунту
+    </h3>
+    <label
+      htmlFor="pet"
+    >
+      Введите имя первого домашнего питомца
+    </label>
+    <br />
+    <br />
+    <input
+      id="pet"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="color"
+    >
+      Введите ваш любимый цвет
+    </label>
+    <br />
+    <br />
+    <input
+      id="color"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+  </form>
+  <div
+    className="Top_Buttons"
+  >
+    <input
+      disabled="disabled"
+      onClick={[Function]}
+      testPrR1="buttOn"
+      type="button"
+      value="Зарегистрироваться"
+    />
+    <input
+      onClick={[Function]}
+      testPrR2="buttOn"
+      type="button"
+      value="Сбросить все"
+    />
+  </div>
+</div>
+`;
+
+exports[`работа Registration 3`] = `
+<div>
+  <div />
+  <form
+    className="register"
+    onChange={[Function]}
+  >
+    <h1>
+      Регистрация
+    </h1>
+    <label
+      htmlFor="NameId"
+    >
+      Имя
+    </label>
+    <br />
+    <br />
+    <input
+      id="NameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Валентина"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="LastNameId"
+    >
+      Фамилия
+    </label>
+    <br />
+    <br />
+    <input
+      id="LastNameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Домаринская"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <p>
+      <b>
+        При создании пароля и почты нельзя использовать следующие символы:"!№;%:?*()_-+=".
+      </b>
+    </p>
+    <label
+      htmlFor="MailId"
+    >
+      Электронная почта
+    </label>
+    <br />
+    <br />
+    <input
+      id="MailId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="Password"
+    >
+      Пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="Password"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="RePassword"
+    >
+      Подтвердите пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="RePassword"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <h3>
+      Дополнительная информация для восстановления доступа к аккаунту
+    </h3>
+    <label
+      htmlFor="pet"
+    >
+      Введите имя первого домашнего питомца
+    </label>
+    <br />
+    <br />
+    <input
+      id="pet"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="color"
+    >
+      Введите ваш любимый цвет
+    </label>
+    <br />
+    <br />
+    <input
+      id="color"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+  </form>
+  <div
+    className="Top_Buttons"
+  >
+    <input
+      disabled="disabled"
+      onClick={[Function]}
+      testPrR1="buttOn"
+      type="button"
+      value="Зарегистрироваться"
+    />
+    <input
+      onClick={[Function]}
+      testPrR2="buttOn"
+      type="button"
+      value="Сбросить все"
+    />
+  </div>
+</div>
+`;
+
+exports[`работа Registration 4`] = `
+<div>
+  <div />
+  <form
+    className="register"
+    onChange={[Function]}
+  >
+    <h1>
+      Регистрация
+    </h1>
+    <label
+      htmlFor="NameId"
+    >
+      Имя
+    </label>
+    <br />
+    <br />
+    <input
+      id="NameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Валентина"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="LastNameId"
+    >
+      Фамилия
+    </label>
+    <br />
+    <br />
+    <input
+      id="LastNameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Домаринская"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <p>
+      <b>
+        При создании пароля и почты нельзя использовать следующие символы:"!№;%:?*()_-+=".
+      </b>
+    </p>
+    <label
+      htmlFor="MailId"
+    >
+      Электронная почта
+    </label>
+    <br />
+    <br />
+    <input
+      id="MailId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="Password"
+    >
+      Пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="Password"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="RePassword"
+    >
+      Подтвердите пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="RePassword"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <h3>
+      Дополнительная информация для восстановления доступа к аккаунту
+    </h3>
+    <label
+      htmlFor="pet"
+    >
+      Введите имя первого домашнего питомца
+    </label>
+    <br />
+    <br />
+    <input
+      id="pet"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="color"
+    >
+      Введите ваш любимый цвет
+    </label>
+    <br />
+    <br />
+    <input
+      id="color"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+  </form>
+  <div
+    className="Top_Buttons"
+  >
+    <input
+      disabled="disabled"
+      onClick={[Function]}
+      testPrR1="buttOn"
+      type="button"
+      value="Зарегистрироваться"
+    />
+    <input
+      onClick={[Function]}
+      testPrR2="buttOn"
+      type="button"
+      value="Сбросить все"
+    />
+  </div>
+</div>
+`;
+
+exports[`работа Registration 5`] = `
+<div>
+  <div />
+  <form
+    className="register"
+    onChange={[Function]}
+  >
+    <h1>
+      Регистрация
+    </h1>
+    <label
+      htmlFor="NameId"
+    >
+      Имя
+    </label>
+    <br />
+    <br />
+    <input
+      id="NameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Валентина"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="LastNameId"
+    >
+      Фамилия
+    </label>
+    <br />
+    <br />
+    <input
+      id="LastNameId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Домаринская"
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <p>
+      <b>
+        При создании пароля и почты нельзя использовать следующие символы:"!№;%:?*()_-+=".
+      </b>
+    </p>
+    <label
+      htmlFor="MailId"
+    >
+      Электронная почта
+    </label>
+    <br />
+    <br />
+    <input
+      id="MailId"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="Password"
+    >
+      Пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="Password"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="RePassword"
+    >
+      Подтвердите пароль
+    </label>
+    <br />
+    <br />
+    <input
+      id="RePassword"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="password"
+      value=""
+    />
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <h3>
+      Дополнительная информация для восстановления доступа к аккаунту
+    </h3>
+    <label
+      htmlFor="pet"
+    >
+      Введите имя первого домашнего питомца
+    </label>
+    <br />
+    <br />
+    <input
+      id="pet"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+    <label
+      htmlFor="color"
+    >
+      Введите ваш любимый цвет
+    </label>
+    <br />
+    <br />
+    <input
+      id="color"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      type="text"
+      value=""
+    />
+     
+    <span
+      className="error"
+    >
+      
+    </span>
+    <br />
+    <br />
+  </form>
+  <div
+    className="Top_Buttons"
+  >
+    <input
+      disabled="disabled"
+      onClick={[Function]}
+      testPrR1="buttOn"
+      type="button"
+      value="Зарегистрироваться"
+    />
+    <input
+      onClick={[Function]}
+      testPrR2="buttOn"
+      type="button"
+      value="Сбросить все"
+    />
+  </div>
+</div>
+`;

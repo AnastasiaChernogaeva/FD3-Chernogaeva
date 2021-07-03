@@ -1,0 +1,729 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа Top 1`] = `
+<div
+  className="Top"
+>
+  <div
+    className="TopNameAndSearch"
+  >
+    <p
+      className="ShopName"
+    />
+    <p
+      className="ShopNameBackGround"
+    />
+    <div
+      className="Text"
+    >
+      <input
+        className="SearchEngine"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        className="button_search"
+        onClick={[Function]}
+      >
+        <span
+          className="material-icons"
+        >
+          search
+        </span>
+      </button>
+    </div>
+  </div>
+  <br />
+  <div
+    className="JustLikeThat"
+  >
+    <div
+      className="account"
+    >
+      <p>
+        <span
+          className="material-icons Light"
+        >
+          account_circle
+        </span>
+      </p>
+      <p />
+      <p />
+      <input
+        className="Here"
+        onClick={[Function]}
+        type="button"
+        value="Выйти"
+      />
+    </div>
+     
+  </div>
+  <div
+    className="Butt"
+  >
+    <div
+      className="Top_Buttons First"
+    >
+      <input
+        onClick={[Function]}
+        testPrT1="buttOn"
+        type="button"
+        value="Главная"
+      />
+      <input
+        onClick={[Function]}
+        testPrT2="buttOn"
+        type="button"
+        value="Корзина"
+      />
+      <input
+        onClick={[Function]}
+        testPrT3="buttOn"
+        type="button"
+        value="WishList"
+      />
+    </div>
+    <div
+      className="Top_Buttons Second"
+    >
+       
+    </div>
+    <div
+      className="Top_Buttons Third"
+    >
+      <input
+        onClick={[Function]}
+        type="button"
+        value="Mои заказы"
+      />
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`работа Top 2`] = `
+<div
+  className="Top"
+>
+  <div
+    className="TopNameAndSearch"
+  >
+    <p
+      className="ShopName"
+    />
+    <p
+      className="ShopNameBackGround"
+    />
+    <div
+      className="Text"
+    >
+      <input
+        className="SearchEngine"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        className="button_search"
+        onClick={[Function]}
+      >
+        <span
+          className="material-icons"
+        >
+          search
+        </span>
+      </button>
+    </div>
+  </div>
+  <br />
+  <div
+    className="JustLikeThat"
+  >
+    <div
+      className="account"
+    >
+      <p>
+        <span
+          className="material-icons Light"
+        >
+          account_circle
+        </span>
+      </p>
+      <p />
+      <p />
+      <input
+        className="Here"
+        onClick={[Function]}
+        type="button"
+        value="Выйти"
+      />
+    </div>
+     
+  </div>
+  <div
+    className="Butt"
+  >
+    <div
+      className="Top_Buttons First"
+    >
+      <input
+        onClick={[Function]}
+        testPrT1="buttOn"
+        type="button"
+        value="Главная"
+      />
+      <input
+        onClick={[Function]}
+        testPrT2="buttOn"
+        type="button"
+        value="Корзина"
+      />
+      <input
+        onClick={[Function]}
+        testPrT3="buttOn"
+        type="button"
+        value="WishList"
+      />
+    </div>
+    <div
+      className="Top_Buttons Second"
+    >
+       
+    </div>
+    <div
+      className="Top_Buttons Third"
+    >
+      <input
+        onClick={[Function]}
+        type="button"
+        value="Mои заказы"
+      />
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`работа Top 3`] = `
+<div
+  className="Top"
+>
+  <div
+    className="TopNameAndSearch"
+  >
+    <p
+      className="ShopName"
+    />
+    <p
+      className="ShopNameBackGround"
+    />
+    <div
+      className="Text"
+    >
+      <input
+        className="SearchEngine"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        className="button_search"
+        onClick={[Function]}
+      >
+        <span
+          className="material-icons"
+        >
+          search
+        </span>
+      </button>
+    </div>
+  </div>
+  <br />
+  <div
+    className="JustLikeThat"
+  >
+    <div
+      className="account"
+    >
+      <p>
+        <span
+          className="material-icons Light"
+        >
+          account_circle
+        </span>
+      </p>
+      <p />
+      <p />
+      <input
+        className="Here"
+        onClick={[Function]}
+        type="button"
+        value="Выйти"
+      />
+    </div>
+     
+  </div>
+  <div
+    className="Butt"
+  >
+    <div
+      className="Top_Buttons First"
+    >
+      <input
+        onClick={[Function]}
+        testPrT1="buttOn"
+        type="button"
+        value="Главная"
+      />
+      <input
+        onClick={[Function]}
+        testPrT2="buttOn"
+        type="button"
+        value="Корзина"
+      />
+      <input
+        onClick={[Function]}
+        testPrT3="buttOn"
+        type="button"
+        value="WishList"
+      />
+    </div>
+    <div
+      className="Top_Buttons Second"
+    >
+       
+    </div>
+    <div
+      className="Top_Buttons Third"
+    >
+      <input
+        onClick={[Function]}
+        type="button"
+        value="Mои заказы"
+      />
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`работа Top 4`] = `
+<div
+  className="Top"
+>
+  <div
+    className="TopNameAndSearch"
+  >
+    <p
+      className="ShopName"
+    />
+    <p
+      className="ShopNameBackGround"
+    />
+    <div
+      className="Text"
+    >
+      <input
+        className="SearchEngine"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        className="button_search"
+        onClick={[Function]}
+      >
+        <span
+          className="material-icons"
+        >
+          search
+        </span>
+      </button>
+    </div>
+  </div>
+  <br />
+  <div
+    className="JustLikeThat"
+  >
+    <div
+      className="account"
+    >
+      <p>
+        <span
+          className="material-icons Light"
+        >
+          account_circle
+        </span>
+      </p>
+      <p />
+      <p />
+      <input
+        className="Here"
+        onClick={[Function]}
+        type="button"
+        value="Выйти"
+      />
+    </div>
+     
+  </div>
+  <div
+    className="Butt"
+  >
+    <div
+      className="Top_Buttons First"
+    >
+      <input
+        onClick={[Function]}
+        testPrT1="buttOn"
+        type="button"
+        value="Главная"
+      />
+      <input
+        onClick={[Function]}
+        testPrT2="buttOn"
+        type="button"
+        value="Корзина"
+      />
+      <input
+        onClick={[Function]}
+        testPrT3="buttOn"
+        type="button"
+        value="WishList"
+      />
+    </div>
+    <div
+      className="Top_Buttons Second"
+    >
+       
+    </div>
+    <div
+      className="Top_Buttons Third"
+    >
+      <input
+        onClick={[Function]}
+        type="button"
+        value="Mои заказы"
+      />
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`работа Top 5`] = `
+<div
+  className="Top"
+>
+  <div
+    className="TopNameAndSearch"
+  >
+    <p
+      className="ShopName"
+    />
+    <p
+      className="ShopNameBackGround"
+    />
+    <div
+      className="Text"
+    >
+      <input
+        className="SearchEngine"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        className="button_search"
+        onClick={[Function]}
+      >
+        <span
+          className="material-icons"
+        >
+          search
+        </span>
+      </button>
+    </div>
+  </div>
+  <br />
+  <div
+    className="JustLikeThat"
+  >
+    <div
+      className="account"
+    >
+      <p>
+        <span
+          className="material-icons Light"
+        >
+          account_circle
+        </span>
+      </p>
+      <p />
+      <p />
+      <input
+        className="Here"
+        onClick={[Function]}
+        type="button"
+        value="Выйти"
+      />
+    </div>
+     
+  </div>
+  <div
+    className="Butt"
+  >
+    <div
+      className="Top_Buttons First"
+    >
+      <input
+        onClick={[Function]}
+        testPrT1="buttOn"
+        type="button"
+        value="Главная"
+      />
+      <input
+        onClick={[Function]}
+        testPrT2="buttOn"
+        type="button"
+        value="Корзина"
+      />
+      <input
+        onClick={[Function]}
+        testPrT3="buttOn"
+        type="button"
+        value="WishList"
+      />
+    </div>
+    <div
+      className="Top_Buttons Second"
+    >
+       
+    </div>
+    <div
+      className="Top_Buttons Third"
+    >
+      <input
+        onClick={[Function]}
+        type="button"
+        value="Mои заказы"
+      />
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`работа Top 6`] = `
+<div
+  className="Top"
+>
+  <div
+    className="TopNameAndSearch"
+  >
+    <p
+      className="ShopName"
+    />
+    <p
+      className="ShopNameBackGround"
+    />
+    <div
+      className="Text"
+    >
+      <input
+        className="SearchEngine"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        className="button_search"
+        onClick={[Function]}
+      >
+        <span
+          className="material-icons"
+        >
+          search
+        </span>
+      </button>
+    </div>
+  </div>
+  <br />
+  <div
+    className="JustLikeThat"
+  >
+    <div
+      className="account"
+    >
+      <p>
+        <span
+          className="material-icons Light"
+        >
+          account_circle
+        </span>
+      </p>
+      <p />
+      <p />
+      <input
+        className="Here"
+        onClick={[Function]}
+        type="button"
+        value="Выйти"
+      />
+    </div>
+     
+  </div>
+  <div
+    className="Butt"
+  >
+    <div
+      className="Top_Buttons First"
+    >
+      <input
+        onClick={[Function]}
+        testPrT1="buttOn"
+        type="button"
+        value="Главная"
+      />
+      <input
+        onClick={[Function]}
+        testPrT2="buttOn"
+        type="button"
+        value="Корзина"
+      />
+      <input
+        onClick={[Function]}
+        testPrT3="buttOn"
+        type="button"
+        value="WishList"
+      />
+    </div>
+    <div
+      className="Top_Buttons Second"
+    >
+       
+    </div>
+    <div
+      className="Top_Buttons Third"
+    >
+      <input
+        onClick={[Function]}
+        type="button"
+        value="Mои заказы"
+      />
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`работа Top 7`] = `
+<div
+  className="Top"
+>
+  <div
+    className="TopNameAndSearch"
+  >
+    <p
+      className="ShopName"
+    />
+    <p
+      className="ShopNameBackGround"
+    />
+    <div
+      className="Text"
+    >
+      <input
+        className="SearchEngine"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        className="button_search"
+        onClick={[Function]}
+      >
+        <span
+          className="material-icons"
+        >
+          search
+        </span>
+      </button>
+    </div>
+  </div>
+  <br />
+  <div
+    className="JustLikeThat"
+  >
+    <div
+      className="account"
+    >
+      <p>
+        <span
+          className="material-icons Light"
+        >
+          account_circle
+        </span>
+      </p>
+      <p />
+      <p />
+      <input
+        className="Here"
+        onClick={[Function]}
+        type="button"
+        value="Выйти"
+      />
+    </div>
+     
+  </div>
+  <div
+    className="Butt"
+  >
+    <div
+      className="Top_Buttons First"
+    >
+      <input
+        onClick={[Function]}
+        testPrT1="buttOn"
+        type="button"
+        value="Главная"
+      />
+      <input
+        onClick={[Function]}
+        testPrT2="buttOn"
+        type="button"
+        value="Корзина"
+      />
+      <input
+        onClick={[Function]}
+        testPrT3="buttOn"
+        type="button"
+        value="WishList"
+      />
+    </div>
+    <div
+      className="Top_Buttons Second"
+    >
+       
+    </div>
+    <div
+      className="Top_Buttons Third"
+    >
+      <input
+        onClick={[Function]}
+        type="button"
+        value="Mои заказы"
+      />
+       
+    </div>
+  </div>
+</div>
+`;

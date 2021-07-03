@@ -93,7 +93,7 @@ if(this.state.orderList==""){
      <div className="Top_Buttons">
          <h2>Заказанные товары:</h2>
            <div className="CartGood">{completedHereOrders}</div>
-           <input type="button" onClick={this.changeBody1} value="Перейти на главную" />
+           <input type="button"  onClick={this.changeBody1} value="Перейти на главную" />
      </div>
     );
     }

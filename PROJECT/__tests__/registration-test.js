@@ -1,14 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
  
-import Footer from '../components/footer';
+import Registration from '../components/registration';
 
 
-test('работа Footer', () => {
+test('работа Registration', () => {
  
   // создаём тестовую версию компонента
   const component = renderer.create(
-    <Footer />
+    <Registration />
   );
  
   // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
@@ -18,12 +18,10 @@ test('работа Footer', () => {
   // найдём в вёрстке компонента сами кнопки
  
  
-  
-  const buttonEleme1 = component.root.find( el =>(el.props.testPr1=="buttOn")); 
-  const buttonEleme2 = component.root.find( el =>(el.props.testPr2=="buttOn")); 
-  const buttonEleme3 = component.root.find( el =>(el.props.testPr3=="buttOn")); 
+  const buttonEleme1 = component.root.find( el =>(el.props.testPrR1=="buttOn")); 
+  const buttonEleme2 = component.root.find( el =>(el.props.testPrR2=="buttOn"));  
 
-  const buttonElems=[buttonEleme1, buttonEleme2, buttonEleme3,];
+  const buttonElems=[buttonEleme1, buttonEleme2,];
   // находим все кнопки
  
   buttonElems.forEach(elem=>{elem.props.onClick(); // по очереди нажимаем на кнопки и делаем снимк(так два раза)
@@ -41,4 +39,3 @@ test('работа Footer', () => {
  
 })
 })  
- 
