@@ -18,14 +18,7 @@ class Top extends React.PureComponent {
     searchWord:"",
     // typeTestB:"buttOn",
   };
-/*
-  componentWillReceiveProps = (newProps) => {
-    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
-    if(this.state.info!=newProps.info){
-      this.setState({info:newProps.info});
-    }
-    
-  };*/
+
 
   componentDidMount = () => {
     pageEvents.addListener("FinishSearch", this.finishSearch);

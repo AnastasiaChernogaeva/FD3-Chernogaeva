@@ -45,7 +45,7 @@ class MainBody extends React.PureComponent {
     let myOrders=<MyOrder/>
 
     return (
-     <div className="MainBodyShow">
+     <div className="MainBodyShow" >
          {this.props.bodyChange===1&&shop}
          {this.props.bodyChange===2&&cartPage}
          {this.props.bodyChange===3&&wishListPage}
