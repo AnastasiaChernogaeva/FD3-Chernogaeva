@@ -38,6 +38,7 @@ class Login extends React.PureComponent {
 
     errorTextPassword:"",
     PasswordForCheckup:"",
+    changed:"",
 
   };
 
@@ -162,7 +163,8 @@ year=(EO)=>{
   saveNewPassword=()=>{
 
     pageEvents.emit('saveNewPassword', this.state.PasswordForCheckup);
-    this.cleanTheForm();
+    this.setState({changed:"Пароль изменен успешно."},this.announce);
+   setTimeout(this.cleanTheForm,2500);
   }
 
   announce=()=>{
@@ -173,6 +175,7 @@ year=(EO)=>{
 
 cleanTheForm=()=>{
   this.setState( {  
+    changed:"",
   errorName:"",
   errorLastName:"",
   errorMail:"",
@@ -344,11 +347,13 @@ time=(EO)=>{
 
     
     let textErr=<p className="error">Неверный логин или пароль! Попробуйте еще раз!</p>
+    
+    let textPassManagedTochange=<p>{this.state.changed}</p>
 
     return (
      <div>
     
- 
+      {this.state.changed!="" && textPassManagedTochange}
 
       {this.state.errorTextPassword=="1" && textErr}     
 
@@ -356,7 +361,7 @@ time=(EO)=>{
       
        { this.state.passwordCanBeChanged=="" && this.state.forgottenPassword===true && question}
 
-       {this.state.passwordCanBeChanged===true && youCanChangeYourPassword}
+       {this.state.changed=="" &&this.state.passwordCanBeChanged===true && youCanChangeYourPassword}
        {this.state.passwordCanBeChanged===false && youCanNotChangeYourPassword}
        
      </div>
