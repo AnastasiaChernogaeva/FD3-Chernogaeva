@@ -87,7 +87,7 @@ if(this.props.wish==null){
     }
     else{
       let goodsInWisht=this.props.wish.slice();
-      goodsInWisht=goodsInWisht.map(elem=>/* this.state.elemToDelete===elem?<WishGood className="IsGoingToBeDeleted" info={elem} key={elem.code}/> :*/<WishGood info={elem} key={elem.code}/>);
+      goodsInWisht=goodsInWisht.map(elem=>/* this.state.elemToDelete===elem?<WishGood className="IsGoingToBeDeleted" info={elem} key={elem.code}/> :*/<WishGood info={elem} />);
     
        let shButton=<Fragment>
          <p>Зарегестрируйтесь и войдите, прежде чем заказать!</p>
