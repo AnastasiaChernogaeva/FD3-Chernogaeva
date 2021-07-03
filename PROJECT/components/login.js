@@ -34,7 +34,7 @@ class Login extends React.PureComponent {
 
 
     passwordCanBeChanged:"",
-    disabled:null,
+    disabled:"disabled",
 
     errorTextPassword:"",
     PasswordForCheckup:"",
@@ -62,31 +62,31 @@ class Login extends React.PureComponent {
   };
 
   errorSmthWrong=(text)=>{
-  this.setState({errorTextPassword:text,PasswordForCheckup:"",  Password:"",}, this.announce);
+  this.setState({errorTextPassword:text,PasswordForCheckup:"",  Password:"",}, this.disabilityForButton);
   }
 
   passwordChanged=(mean)=>{
-    this.setState({passwordCanBeChanged:mean,}, this.announce);
+    this.setState({passwordCanBeChanged:mean,}, this.disabilityForButton);
   }
 
 
   changeMail=(EO)=>{
     let textError="Введите почту!"
     if(EO.target.value===""){
-      this.setState({errorMail:textError,  Mail:EO.target.value, disabled:"disabled",}, this.announce);
+      this.setState({errorMail:textError,  Mail:EO.target.value, disabled:"disabled",}, this.disabilityForButton);
     }
     else{
-      this.setState({errorMail:"", Mail:EO.target.value,}, this.announce);
+      this.setState({errorMail:"", Mail:EO.target.value,}, this.disabilityForButton);
     }
   };
 
   changePassword=(EO)=>{
     let textError="Введите не менее 8 символов!"
     if(EO.target.value.length<7){
-      this.setState({errorPassword:textError,Password:EO.target.value, disabled:"disabled",}, this.announce);
+      this.setState({errorPassword:textError,Password:EO.target.value, disabled:"disabled",}, this.disabilityForButton);
     }
     else{
-      this.setState({errorPassword:"", Password:EO.target.value,}, this.announce);
+      this.setState({errorPassword:"", Password:EO.target.value,}, this.disabilityForButton);
     }
   };
 
@@ -94,10 +94,10 @@ class Login extends React.PureComponent {
   toequalPasswords=(EO)=>{
     let textError="Пароли не совпадают!"
     if(EO.target.value!=this.state.Password){
-      this.setState({errorPasswordCheck:textError, PasswordForCheckup:EO.target.value,}, this.announce);
+      this.setState({errorPasswordCheck:textError, PasswordForCheckup:EO.target.value,}, this.disabilityForButton);
     }
     else{
-      this.setState({errorPasswordCheck:"", PasswordForCheckup:EO.target.value,}, this.announce);
+      this.setState({errorPasswordCheck:"", PasswordForCheckup:EO.target.value,}, this.disabilityForButton);
     }
   };
 
@@ -106,20 +106,20 @@ class Login extends React.PureComponent {
 pet=(EO)=>{
   let textError="Не оставлять поле пустым в ваших интересах!"
   if(EO.target.value===""){
-    this.setState({errorpet:textError, pet:EO.target.value,}, this.announce);
+    this.setState({errorpet:textError, pet:EO.target.value,}, this.disabilityForButton);
   }
   else{
-    this.setState({errorpet:"",  pet:EO.target.value,}, this.announce);
+    this.setState({errorpet:"",  pet:EO.target.value,}, this.disabilityForButton);
   }
 };
 
 color=(EO)=>{
   let textError="Не оставлять поле пустым в ваших интересах!"
   if(EO.target.value===""){
-    this.setState({errorcolor:textError, color:EO.target.value,}, this.announce);
+    this.setState({errorcolor:textError, color:EO.target.value,}, this.disabilityForButton);
   }
   else{
-    this.setState({errorcolor:"",  color:EO.target.value,}, this.announce);
+    this.setState({errorcolor:"",  color:EO.target.value,}, this.disabilityForButton);
   }
 };
 
@@ -128,17 +128,17 @@ color=(EO)=>{
 year=(EO)=>{
   let textError="Не оставлять поле пустым в ваших интересах!"
   if(EO.target.value===""){
-    this.setState({erroryear:textError,  year:EO.target.value,}, this.announce);
+    this.setState({erroryear:textError,  year:EO.target.value,}, this.disabilityForButton);
   }
   else{
-    this.setState({erroryear:"",  year:EO.target.value,}, this.announce);
+    this.setState({erroryear:"",  year:EO.target.value,}, this.disabilityForButton);
   }
 };
 
 
 
   haveForgottenEverythingInTheirLives=()=>{
-    this.setState({forgottenPassword:true,errorTextPassword:"", disabled:null,},this.announce)
+    this.setState({forgottenPassword:true,errorTextPassword:"", disabled:null,},this.disabilityForButton)
   }
 
   enter=()=>{
@@ -188,7 +188,7 @@ cleanTheForm=()=>{
   pet:"",
   color:"",
   passwordCanBeChanged:"",
-  disabled:null,
+  disabled:"disabled",
   errorTextPassword:"",
   forgottenPassword:false,
   year:"",
@@ -205,17 +205,55 @@ change=()=>{
 
 disabilityForButton=()=>{
   if (this.state.forgottenPassword===false){
-    if (this.state.errorMail===""&&this.state.errorPassword==="")
-    this.setState({disabled:null,}, this.announce);
-  }
-  else if( this.state.passwordCanBeChanged=="" && this.state.forgottenPassword===true){
-     if(this.state.errorpet==="" ||this.state.errorcolor==="" || this.state.erroryear==="")
-    this.setState({disabled:null,}, this.announce);
-  }
-  else if(this.state.passwordCanBeChanged===true){
-    if(this.state.errorPasswordCheck===""||this.state.errorPassword==="")
+    if (this.state.Mail!=""){
+      if (this.state.Password!=""){
+    if (this.state.errorMail===""){
+      if(this.state.errorPassword===""){
         this.setState({disabled:null,}, this.announce);
+
+      }
+      else 
+   this.setState({disabled:"disabled",}, this.announce);
+    }
+    else 
+   this.setState({disabled:"disabled",}, this.announce);
   }
+  else 
+this.setState({disabled:"disabled",}, this.announce);
+}
+else 
+this.setState({disabled:"disabled",}, this.announce);
+  }
+  else if( this.state.passwordCanBeChanged==""){
+      if(this.state.forgottenPassword===true){
+        if (this.state.erroerrorpetrMail===""){
+          if(this.state.erroryear===""){
+            if(this.state.errorcolor==="")
+            this.setState({disabled:null,}, this.announce);
+          }}
+      }
+  } 
+  else if(this.state.passwordCanBeChanged===true){
+      if (this.state.PasswordForCheckup!=""){
+        if (this.state.Password!=""){
+      if (this.state.errorPasswordCheck===""){
+        if(this.state.errorPassword===""){
+          this.setState({disabled:null,}, this.announce);
+  
+        }
+        else 
+     this.setState({disabled:"disabled",}, this.announce);
+      }
+      else 
+     this.setState({disabled:"disabled",}, this.announce);
+    }
+    else 
+  this.setState({disabled:"disabled",}, this.announce);
+  }
+  else 
+this.setState({disabled:"disabled",}, this.announce);
+  
+}
   else 
    this.setState({disabled:"disabled",}, this.announce);
 
@@ -284,9 +322,9 @@ time=(EO)=>{
                <form className="login" onChange={this.disabilityForButton}>
       <h1>Вход в аккаунт</h1>
        <label htmlFor="MailId">Электронная почта</label><br/><br/>
-       <input type="text" id="MailId" onChange={this.changeMail} onBlur={this.changeMail} value={this.state.Mail}  onKeyPress={this.time} /><span className="error">{this.state.errorMail}</span><br/><br/>
+       <input type="text" id="MailId" onChange={this.changeMail}  value={this.state.Mail}  onKeyPress={this.time} /><span className="error">{this.state.errorMail}</span><br/><br/>
        <label htmlFor="Password">Пароль</label><br/><br/>
-       <input type="password" id="Password" onChange={this.changePassword} onBlur={this.changePassword} onKeyPress={this.time} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
+       <input type="password" id="Password" onChange={this.changePassword}  onKeyPress={this.time} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
       <input type="button" value="Войти" onClick={this.enter} disabled={this.state.disabled}/>
       <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
       </form> 
@@ -297,9 +335,9 @@ time=(EO)=>{
     let youCanChangeYourPassword=<div className="Top_Buttons">
       <form  onChange={this.disabilityForButton}>
        <label htmlFor="Password">Введите новый пароль</label><br/><br/>
-       <input type="password" id="Password" onKeyPress={this.time} onBlur={this.changePassword} onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
+       <input type="password" id="Password" onKeyPress={this.time}  onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
        <label htmlFor="RePassword">Подтвердите пароль</label><br/><br/>
-       <input type="password" id="RePassword" onChange={this.toequalPasswords}  onBlur={this.toequalPasswords} value={this.state.PasswordForCheckup} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <input type="password" id="RePassword" onKeyPress={this.time} onChange={this.toequalPasswords}   value={this.state.PasswordForCheckup} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        <input type="button" value="Изменить пароль" onClick={this.saveNewPassword} disabled={this.state.disabled}/>
        </form>
     </div>

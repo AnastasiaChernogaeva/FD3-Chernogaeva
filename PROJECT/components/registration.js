@@ -37,7 +37,7 @@ class Registration extends React.PureComponent {
     pet:"",
     color:"",
 
-    disabled:null,
+    disabled:"disabled",
 
     errorVV:null,
 
@@ -102,10 +102,10 @@ cleanTheForm=()=>{
   changeName=(EO)=>{
     let textError="Введите имя!"
     if(EO.target.value===""){
-      this.setState({errorName:textError, Name:EO.target.value, disabled:"disabled",}, this.announce);
+      this.setState({errorName:textError, Name:EO.target.value, disabled:"disabled",}, this.disabilityForButtons);
     }
     else{
-      this.setState({errorName:"", Name:EO.target.value,}, this.announce);
+      this.setState({errorName:"", Name:EO.target.value,}, this.disabilityForButtons);
     }
   }
 
@@ -113,10 +113,11 @@ cleanTheForm=()=>{
   changeLastName=(EO)=>{
     let textError="Введите фамилию!"
     if(EO.target.value===""){
-      this.setState({errorLastName:textError, LastName:EO.target.value, disabled:"disabled",}, this.announce);
+      this.disabilityForButtons();
+      this.setState({errorLastName:textError, LastName:EO.target.value, disabled:"disabled",}, this.disabilityForButtons);
     }
     else{
-      this.setState({errorLastName:"", LastName:EO.target.value, }, this.announce);
+      this.setState({errorLastName:"", LastName:EO.target.value, }, this.disabilityForButtons);
     }
   }
 
@@ -124,40 +125,43 @@ cleanTheForm=()=>{
   changeMail=(EO)=>{
     let textError="Введите корректно почту!"
     let parts=EO.target.value.split("_");
-    if(EO.target.value===""){
-      this.setState({errorMail:textError, Mail:EO.target.value, disabled:"disabled",}, this.announce);
+    if(EO.target.value<3){
+      this.setState({errorMail:textError, Mail:EO.target.value, disabled:"disabled",}, this.disabilityForButtons);
     }
     else if (parts.length>1){
-      this.setState({errorMail:textError, Mail:EO.target.value, disabled:"disabled",}, this.announce);
+      this.setState({errorMail:textError, Mail:EO.target.value, disabled:"disabled",}, this.disabilityForButtons);
     }
     else{
-      this.setState({errorMail:"", Mail:EO.target.value,}, this.announce);
+      this.setState({errorMail:"", Mail:EO.target.value,}, this.disabilityForButtons);
     }
+   
+
   }
 
 
   changePassword=(EO)=>{
-    this.validation(EO.target.value);
+    // this.validation(EO.target.value);
     let parts=EO.target.value.split("_");
-    if(EO.target.value.length<8){
+    if(EO.target.value.length<7){
       let textError="Введите не менее 8 символов!";
-      this.setState({errorPassword:textError,errorPasswordCheck:"", Password:EO.target.value, disabled:"disabled",}, this.announce);
+      this.setState({errorPassword:textError,errorPasswordCheck:"", Password:EO.target.value,disabled:"disabled", }, this.disabilityForButtons);
     }
     else if(EO.target.value!=this.state.Password2){
       let textError="Пароли не совпадают!";
-      this.setState({errorPasswordCheck:textError, errorPassword:"", Password:EO.target.value, disabled:"disabled", }, this.announce);
+      this.setState({errorPasswordCheck:textError, errorPassword:"", Password:EO.target.value,disabled:"disabled", }, this.disabilityForButtons);
     }
     else if(EO.target.value!=this.state.Password2){
       let textError="Пароли не совпадают!";
-      this.setState({errorPasswordCheck:textError, errorPassword:"", Password:EO.target.value, disabled:"disabled", }, this.announce);
+      this.setState({errorPasswordCheck:textError, errorPassword:"", Password:EO.target.value, disabled:"disabled", }, this.disabilityForButtons);
     }
     else if (parts.length>1){
       let textError="Введите пароль корректно!";
-      this.setState({errorMail:textError, Mail:EO.target.value, disabled:"disabled",}, this.announce);
+      this.setState({errorMail:textError, Mail:EO.target.value,disabled:"disabled", }, this.disabilityForButtons);
     }
     else{
-      this.setState({errorPassword:"", errorPasswordCheck:"", Password:EO.target.value,}, this.announce);
+      this.setState({errorPassword:"", errorPasswordCheck:"", Password:EO.target.value,}, this.disabilityForButtons);
     }
+
   }
 
   validation=(passWord)=>{
@@ -173,33 +177,34 @@ cleanTheForm=()=>{
   toequalPasswords=(EO)=>{
     this.validation(EO.target.value);
     let textError="Пароли не совпадают!"
-    this.setState({Password2:EO.target.value,disabled:"disabled",}, this.announce);
+    this.setState({Password2:EO.target.value, disabled:"disabled",}, this.disabilityForButtons);
     if(EO.target.value!=this.state.Password){
-      this.setState({errorPasswordCheck:textError,}, this.announce);
+      this.setState({errorPasswordCheck:textError, disabled:"disabled",}, this.disabilityForButtons);
     }
     else{
-      this.setState({errorPasswordCheck:"",}, this.announce);
+      this.setState({errorPasswordCheck:"",}, this.disabilityForButtons);
     }
   };
 
   pet=(EO)=>{
     let textError="Не оставлять поле пустым в ваших интересах!"
     if(EO.target.value===""){
-      this.setState({errorpet:textError,  pet:EO.target.value, disabled:"disabled",}, this.announce);
+      this.setState({errorpet:textError,  pet:EO.target.value, }, this.disabilityForButtons);
     }
     else{
-      this.setState({errorpet:"",  pet:EO.target.value,}, this.announce);
+      this.setState({errorpet:"",  pet:EO.target.value,}, this.disabilityForButtons);
     }
   };
 
   color=(EO)=>{
     let textError="Не оставлять поле пустым в ваших интересах!"
     if(EO.target.value==""){
-      this.setState({errorcolor:textError, color:EO.target.value, disabled:"disabled",}, this.announce);
+      this.setState({errorcolor:textError, color:EO.target.value, }, this.disabilityForButtons);
     }
     else{
-      this.setState({errorcolor:"",  color:EO.target.value,}, this.announce);
+      this.setState({errorcolor:"",  color:EO.target.value,}, this.disabilityForButtons);
     }
+
   };
 
 
@@ -248,21 +253,75 @@ cleanTheForm=()=>{
 
 
   disabilityForButtons=()=>{
-         if (this.state.errorName===""){
-          if(this.state.errorLastName===""){
-            if(this.state.errorMail===""){
-              if(this.state.errorPassword===""){
-               if(this.state.errorPasswordCheck===""){
-            this.setState({disabled:null,}, this.announce);
+
+    if(this.state.Name!=""){
+      if(this.state.LastName!=""){
+        if(this.state.Mail!=""){
+          if(this.state.Password!=""){
+            if(this.state.Password2!=""){
+              if (this.state.errorName===""){
+                if(this.state.errorLastName===""){
+                  if(this.state.errorMail===""){
+                    if(this.state.errorPassword===""){
+                     if(this.state.errorPasswordCheck===""){
+      
+                         this.setState({disabled:null,}, this.announce);
+                    
+                    }
+                    else {
+                      this.setState({disabled:"disabled",}, this.announce);
+            
+                  }
+              
+                  }
+                  else {
+                    this.setState({disabled:"disabled",}, this.announce);
+          
+                }
+      
+                }
+                else {
+                  this.setState({disabled:"disabled",}, this.announce);
+        
               }
-         }
-         }
+             
+              }
+              else {
+                this.setState({disabled:"disabled",}, this.announce);
+      
+            }
+      
+            }
+            else {
+              this.setState({disabled:"disabled",}, this.announce);
+    
+          }
+            }
+            else {
+              this.setState({disabled:"disabled",}, this.announce);
+    
+          }
+          }
+          else {
+            this.setState({disabled:"disabled",}, this.announce);
+  
         }
-      }
+        }
         else {
           this.setState({disabled:"disabled",}, this.announce);
 
-        }
+      }
+      }
+      else {
+        this.setState({disabled:"disabled",}, this.announce);
+
+    }
+    }
+       
+    else {
+          this.setState({disabled:"disabled",}, this.announce);
+
+      }
   }
 
   changeEmailOrPassWord=(num)=>{
@@ -315,30 +374,30 @@ cleanTheForm=()=>{
 
   render() {
     let valid=<p>Нельзя использовать следующие символы:"&#95;&#94;&#44;&#33;&#45;&#64;&#61;&#60;&#62;&#47;&#42;&#43;&#36;&#38;&#35;</p>;
-    let textSPerson=<p  className="error">Такой пользователь уже существует. Попробуйте изменить логин.</p>
+    let textSPerson=<p  className="error">Такой пользователь уже существует. Попробуйте изменить логин или пароль.</p>
     return (
      <div>
-       {this.state.suchPerson==1&& textSPerson}
+      <div>{this.state.suchPerson==1&& textSPerson}</div>
        <form className="register" onChange={this.disabilityForButtons}>
        <h1>Регистрация</h1>
        <label htmlFor="NameId">Имя</label><br/><br/>
-       <input type="text" id="NameId" onKeyPress={this.time}  onBlur={this.changeName} onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span><br/><br/>
+       <input type="text" id="NameId" onKeyPress={this.time}   onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span><br/><br/>
        <label htmlFor="LastNameId">Фамилия</label><br/><br/>
-       <input type="text" id="LastNameId" onKeyPress={this.time}  onBlur={this.changeLastName}  onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/><br/>
+       <input type="text" id="LastNameId" onKeyPress={this.time}  onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/><br/>
        <p><b>При создании пароля и почты нельзя использовать следующие символы:"!№;%:?*()_-+=".</b></p>
 
        <label htmlFor="MailId">Электронная почта</label><br/><br/>
-       <input type="text" id="MailId" onKeyPress={this.time} onBlur={this.changeMail} onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
+       <input type="text" id="MailId" onKeyPress={this.time}  onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
        <label htmlFor="Password">Пароль</label><br/><br/>
-       <input type="password" id="Password"  onKeyPress={this.time} onBlur={this.changePassword} onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <input type="password" id="Password"  onKeyPress={this.time}  onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        {this.state.errorVV==1&&valid}
        <label htmlFor="RePassword">Подтвердите пароль</label><br/><br/>
-       <input type="password" id="RePassword" onKeyPress={this.time} onBlur={this.toequalPasswords}  onChange={this.toequalPasswords} value={this.state.Password2} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <input type="password" id="RePassword" onKeyPress={this.time}   onChange={this.toequalPasswords} value={this.state.Password2} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        {this.state.errorVV==1&&valid}
        <h3>Дополнительная информация для восстановления доступа к аккаунту</h3>
 
-      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/><input type="text" id="pet" onKeyPress={this.time}  onBlur={this.pet} onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
-      <label htmlFor="color">Введите ваш любимый цвет</label><br/><br/><input type="text" id="color" onKeyPress={this.time} onChange={this.color}   onBlur={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
+      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/><input type="text" id="pet" onKeyPress={this.time}   onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
+      <label htmlFor="color">Введите ваш любимый цвет</label><br/><br/><input type="text" id="color" onKeyPress={this.time} onChange={this.color}   value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
       
 
       </form>
