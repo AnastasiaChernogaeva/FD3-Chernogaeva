@@ -22,8 +22,8 @@ exports[`работа Footer 1`] = `
       <tr>
         <td>
           <button
+            id="FirstF"
             onClick={[Function]}
-            testPr1="buttOn"
           >
             <span
               className="material-icons"
@@ -45,8 +45,8 @@ exports[`работа Footer 1`] = `
       <tr>
         <td>
           <button
+            id="SecF"
             onClick={[Function]}
-            testPr2="buttOn"
           >
             <span
               className="material-icons"
@@ -68,8 +68,8 @@ exports[`работа Footer 1`] = `
       <tr>
         <td>
           <button
+            id="ThF"
             onClick={[Function]}
-            testPr3="buttOn"
           >
             <span
               className="material-icons"
@@ -126,8 +126,8 @@ exports[`работа Footer 2`] = `
       <tr>
         <td>
           <button
+            id="FirstF"
             onClick={[Function]}
-            testPr1="buttOn"
           >
             <span
               className="material-icons"
@@ -149,8 +149,8 @@ exports[`работа Footer 2`] = `
       <tr>
         <td>
           <button
+            id="SecF"
             onClick={[Function]}
-            testPr2="buttOn"
           >
             <span
               className="material-icons"
@@ -172,8 +172,8 @@ exports[`работа Footer 2`] = `
       <tr>
         <td>
           <button
+            id="ThF"
             onClick={[Function]}
-            testPr3="buttOn"
           >
             <span
               className="material-icons"
@@ -230,8 +230,8 @@ exports[`работа Footer 3`] = `
       <tr>
         <td>
           <button
+            id="FirstF"
             onClick={[Function]}
-            testPr1="buttOn"
           >
             <span
               className="material-icons"
@@ -253,8 +253,8 @@ exports[`работа Footer 3`] = `
       <tr>
         <td>
           <button
+            id="SecF"
             onClick={[Function]}
-            testPr2="buttOn"
           >
             <span
               className="material-icons"
@@ -276,8 +276,8 @@ exports[`работа Footer 3`] = `
       <tr>
         <td>
           <button
+            id="ThF"
             onClick={[Function]}
-            testPr3="buttOn"
           >
             <span
               className="material-icons"
@@ -334,8 +334,8 @@ exports[`работа Footer 4`] = `
       <tr>
         <td>
           <button
+            id="FirstF"
             onClick={[Function]}
-            testPr1="buttOn"
           >
             <span
               className="material-icons"
@@ -357,8 +357,8 @@ exports[`работа Footer 4`] = `
       <tr>
         <td>
           <button
+            id="SecF"
             onClick={[Function]}
-            testPr2="buttOn"
           >
             <span
               className="material-icons"
@@ -380,8 +380,8 @@ exports[`работа Footer 4`] = `
       <tr>
         <td>
           <button
+            id="ThF"
             onClick={[Function]}
-            testPr3="buttOn"
           >
             <span
               className="material-icons"
@@ -438,8 +438,8 @@ exports[`работа Footer 5`] = `
       <tr>
         <td>
           <button
+            id="FirstF"
             onClick={[Function]}
-            testPr1="buttOn"
           >
             <span
               className="material-icons"
@@ -461,8 +461,8 @@ exports[`работа Footer 5`] = `
       <tr>
         <td>
           <button
+            id="SecF"
             onClick={[Function]}
-            testPr2="buttOn"
           >
             <span
               className="material-icons"
@@ -484,8 +484,8 @@ exports[`работа Footer 5`] = `
       <tr>
         <td>
           <button
+            id="ThF"
             onClick={[Function]}
-            testPr3="buttOn"
           >
             <span
               className="material-icons"
@@ -542,8 +542,8 @@ exports[`работа Footer 6`] = `
       <tr>
         <td>
           <button
+            id="FirstF"
             onClick={[Function]}
-            testPr1="buttOn"
           >
             <span
               className="material-icons"
@@ -565,8 +565,8 @@ exports[`работа Footer 6`] = `
       <tr>
         <td>
           <button
+            id="SecF"
             onClick={[Function]}
-            testPr2="buttOn"
           >
             <span
               className="material-icons"
@@ -588,8 +588,8 @@ exports[`работа Footer 6`] = `
       <tr>
         <td>
           <button
+            id="ThF"
             onClick={[Function]}
-            testPr3="buttOn"
           >
             <span
               className="material-icons"
@@ -646,8 +646,8 @@ exports[`работа Footer 7`] = `
       <tr>
         <td>
           <button
+            id="FirstF"
             onClick={[Function]}
-            testPr1="buttOn"
           >
             <span
               className="material-icons"
@@ -669,8 +669,8 @@ exports[`работа Footer 7`] = `
       <tr>
         <td>
           <button
+            id="SecF"
             onClick={[Function]}
-            testPr2="buttOn"
           >
             <span
               className="material-icons"
@@ -692,8 +692,8 @@ exports[`работа Footer 7`] = `
       <tr>
         <td>
           <button
+            id="ThF"
             onClick={[Function]}
-            testPr3="buttOn"
           >
             <span
               className="material-icons"

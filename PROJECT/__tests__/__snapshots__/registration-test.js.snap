@@ -180,14 +180,14 @@ exports[`работа Registration 1`] = `
   >
     <input
       disabled="disabled"
+      id="FirstR"
       onClick={[Function]}
-      testPrR1="buttOn"
       type="button"
       value="Зарегистрироваться"
     />
     <input
+      id="SecR"
       onClick={[Function]}
-      testPrR2="buttOn"
       type="button"
       value="Сбросить все"
     />
@@ -375,14 +375,14 @@ exports[`работа Registration 2`] = `
   >
     <input
       disabled="disabled"
+      id="FirstR"
       onClick={[Function]}
-      testPrR1="buttOn"
       type="button"
       value="Зарегистрироваться"
     />
     <input
+      id="SecR"
       onClick={[Function]}
-      testPrR2="buttOn"
       type="button"
       value="Сбросить все"
     />
@@ -570,14 +570,14 @@ exports[`работа Registration 3`] = `
   >
     <input
       disabled="disabled"
+      id="FirstR"
       onClick={[Function]}
-      testPrR1="buttOn"
       type="button"
       value="Зарегистрироваться"
     />
     <input
+      id="SecR"
       onClick={[Function]}
-      testPrR2="buttOn"
       type="button"
       value="Сбросить все"
     />
@@ -765,14 +765,14 @@ exports[`работа Registration 4`] = `
   >
     <input
       disabled="disabled"
+      id="FirstR"
       onClick={[Function]}
-      testPrR1="buttOn"
       type="button"
       value="Зарегистрироваться"
     />
     <input
+      id="SecR"
       onClick={[Function]}
-      testPrR2="buttOn"
       type="button"
       value="Сбросить все"
     />
@@ -960,14 +960,14 @@ exports[`работа Registration 5`] = `
   >
     <input
       disabled="disabled"
+      id="FirstR"
       onClick={[Function]}
-      testPrR1="buttOn"
       type="button"
       value="Зарегистрироваться"
     />
     <input
+      id="SecR"
       onClick={[Function]}
-      testPrR2="buttOn"
       type="button"
       value="Сбросить все"
     />

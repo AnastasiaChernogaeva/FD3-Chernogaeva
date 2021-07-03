@@ -1,14 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
  
-import Footer from '../components/footer';
+import Good from '../components/good';
 
 
-test('работа Footer', () => {
+test('работа Good', () => {
  
   // создаём тестовую версию компонента
   const component = renderer.create(
-    <Footer />
+    <Good />
   );
  
   // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
@@ -18,9 +18,8 @@ test('работа Footer', () => {
   // найдём в вёрстке компонента сами кнопки
  
 
-  const buttonEleme1 = component.root.find( el =>(el.props.id=="FirstF")); 
-  const buttonEleme2 = component.root.find( el =>(el.props.id=="SecF")); 
-  const buttonEleme3 = component.root.find( el =>(el.props.id=="ThF")); 
+  const buttonEleme1 = component.root.find( el =>(el.props.id=="FirstC")); 
+  const buttonEleme2 = component.root.find( el =>(el.props.id=="SecC")); 
   
   // const buttonEleme1 = component.root.find( el =>(el.props.testPr1=="buttOn")); 
   // const buttonEleme2 = component.root.find( el =>(el.props.testPr2=="buttOn")); 

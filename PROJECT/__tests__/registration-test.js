@@ -17,9 +17,11 @@ test('работа Registration', () => {
  
   // найдём в вёрстке компонента сами кнопки
  
+  const buttonEleme1 = component.root.find( el =>(el.props.id=="FirstR")); 
+  const buttonEleme2 = component.root.find( el =>(el.props.id=="SecR")); 
  
-  const buttonEleme1 = component.root.find( el =>(el.props.testPrR1=="buttOn")); 
-  const buttonEleme2 = component.root.find( el =>(el.props.testPrR2=="buttOn"));  
+  // const buttonEleme1 = component.root.find( el =>(el.props.testPrR1=="buttOn")); 
+  // const buttonEleme2 = component.root.find( el =>(el.props.testPrR2=="buttOn"));  
 
   const buttonElems=[buttonEleme1, buttonEleme2,];
   // находим все кнопки

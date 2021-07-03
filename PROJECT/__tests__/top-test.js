@@ -17,15 +17,15 @@ test('работа Top', () => {
  
   // найдём в вёрстке компонента сами кнопки
  
- 
+  const buttonEleme1 = component.root.find( el =>(el.props.id=="FirstT")); 
+  const buttonEleme2 = component.root.find( el =>(el.props.id=="SecT")); 
+  const buttonEleme3 = component.root.find( el =>(el.props.id=="ThT")); 
   
-  const buttonEleme1 = component.root.find( el =>(el.props.testPrT1=="buttOn")); 
-  const buttonEleme2 = component.root.find( el =>(el.props.testPrT2=="buttOn")); 
-  const buttonEleme3 = component.root.find( el =>(el.props.testPrT3=="buttOn")); 
-  // const buttonEleme4 = component.root.find( el =>(el.props.testPrT4=="buttOn")); 
-  // const buttonEleme5 = component.root.find( el =>(el.props.testPrT5=="buttOn")); 
+  // const buttonEleme1 = component.root.find( el =>(el.props.testPrT1=="buttOn")); 
+  // const buttonEleme2 = component.root.find( el =>(el.props.testPrT2=="buttOn")); 
+  // const buttonEleme3 = component.root.find( el =>(el.props.testPrT3=="buttOn")); 
 
-  const buttonElems=[buttonEleme1, buttonEleme2, buttonEleme3,/*buttonEleme4, buttonEleme5*/];
+  const buttonElems=[buttonEleme1, buttonEleme2, buttonEleme3,];
   // находим все кнопки
  
   buttonElems.forEach(elem=>{elem.props.onClick(); // по очереди нажимаем на кнопки и делаем снимк(так два раза)

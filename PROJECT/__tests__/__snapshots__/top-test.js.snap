@@ -67,20 +67,20 @@ exports[`работа Top 1`] = `
       className="Top_Buttons First"
     >
       <input
+        id="FirstT"
         onClick={[Function]}
-        testPrT1="buttOn"
         type="button"
         value="Главная"
       />
       <input
+        id="SecT"
         onClick={[Function]}
-        testPrT2="buttOn"
         type="button"
         value="Корзина"
       />
       <input
+        id="ThT"
         onClick={[Function]}
-        testPrT3="buttOn"
         type="button"
         value="WishList"
       />
@@ -171,20 +171,20 @@ exports[`работа Top 2`] = `
       className="Top_Buttons First"
     >
       <input
+        id="FirstT"
         onClick={[Function]}
-        testPrT1="buttOn"
         type="button"
         value="Главная"
       />
       <input
+        id="SecT"
         onClick={[Function]}
-        testPrT2="buttOn"
         type="button"
         value="Корзина"
       />
       <input
+        id="ThT"
         onClick={[Function]}
-        testPrT3="buttOn"
         type="button"
         value="WishList"
       />
@@ -275,20 +275,20 @@ exports[`работа Top 3`] = `
       className="Top_Buttons First"
     >
       <input
+        id="FirstT"
         onClick={[Function]}
-        testPrT1="buttOn"
         type="button"
         value="Главная"
       />
       <input
+        id="SecT"
         onClick={[Function]}
-        testPrT2="buttOn"
         type="button"
         value="Корзина"
       />
       <input
+        id="ThT"
         onClick={[Function]}
-        testPrT3="buttOn"
         type="button"
         value="WishList"
       />
@@ -379,20 +379,20 @@ exports[`работа Top 4`] = `
       className="Top_Buttons First"
     >
       <input
+        id="FirstT"
         onClick={[Function]}
-        testPrT1="buttOn"
         type="button"
         value="Главная"
       />
       <input
+        id="SecT"
         onClick={[Function]}
-        testPrT2="buttOn"
         type="button"
         value="Корзина"
       />
       <input
+        id="ThT"
         onClick={[Function]}
-        testPrT3="buttOn"
         type="button"
         value="WishList"
       />
@@ -483,20 +483,20 @@ exports[`работа Top 5`] = `
       className="Top_Buttons First"
     >
       <input
+        id="FirstT"
         onClick={[Function]}
-        testPrT1="buttOn"
         type="button"
         value="Главная"
       />
       <input
+        id="SecT"
         onClick={[Function]}
-        testPrT2="buttOn"
         type="button"
         value="Корзина"
       />
       <input
+        id="ThT"
         onClick={[Function]}
-        testPrT3="buttOn"
         type="button"
         value="WishList"
       />
@@ -587,20 +587,20 @@ exports[`работа Top 6`] = `
       className="Top_Buttons First"
     >
       <input
+        id="FirstT"
         onClick={[Function]}
-        testPrT1="buttOn"
         type="button"
         value="Главная"
       />
       <input
+        id="SecT"
         onClick={[Function]}
-        testPrT2="buttOn"
         type="button"
         value="Корзина"
       />
       <input
+        id="ThT"
         onClick={[Function]}
-        testPrT3="buttOn"
         type="button"
         value="WishList"
       />
@@ -691,20 +691,20 @@ exports[`работа Top 7`] = `
       className="Top_Buttons First"
     >
       <input
+        id="FirstT"
         onClick={[Function]}
-        testPrT1="buttOn"
         type="button"
         value="Главная"
       />
       <input
+        id="SecT"
         onClick={[Function]}
-        testPrT2="buttOn"
         type="button"
         value="Корзина"
       />
       <input
+        id="ThT"
         onClick={[Function]}
-        testPrT3="buttOn"
         type="button"
         value="WishList"
       />
