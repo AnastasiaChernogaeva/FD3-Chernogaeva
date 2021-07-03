@@ -11,10 +11,10 @@ class Footer extends React.PureComponent {
    shopName:PropTypes.string,
   };
 
-  /*state = {
-    
+  state = {
+    typeTestB:"buttOn",
   };
-
+/*
   componentWillReceiveProps = (newProps) => {
     console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
     if(this.state.info!=newProps.info){
@@ -45,15 +45,15 @@ change3=()=>{
              </tr>
              <tr><td><br/></td></tr>
              <tr>
-                <td><button testPr1="buttOn" onClick={this.change5 } ><span className="material-icons"> person</span>Моя страница</button></td>
+                <td><button testPr1={this.state.typeTestB} onClick={this.change5 } ><span className="material-icons"> person</span>Моя страница</button></td>
                 <td><span className="material-icons">room</span>  г.Черас, проспект Марна,9</td>
              </tr>
              <tr>
-                <td><button testPr2="buttOn" onClick={this.change2} ><span className="material-icons"> shopping_cart</span>Корзина</button></td>
+                <td><button testPr2={this.state.typeTestB} onClick={this.change2} ><span className="material-icons"> shopping_cart</span>Корзина</button></td>
                 <td><span className="material-icons"> call</span>80336853937</td>
              </tr>
              <tr>
-                <td><button  testPr3="buttOn" onClick={this.change3} ><span className="material-icons"> favorite</span>WishList</button></td>
+                <td><button  testPr3={this.state.typeTestB} onClick={this.change3} ><span className="material-icons"> favorite</span>WishList</button></td>
                 <td><span className="material-icons"> email</span>sergeychernogaev1979@gmail.com</td>
              </tr>
              <tr>
