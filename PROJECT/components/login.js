@@ -51,6 +51,10 @@ class Login extends React.PureComponent {
   };*/
 
   componentDidMount = () => {
+    
+  window.onbeforeunload=this.befUnload;
+
+
     pageEvents.addListener('PasswordChanged',this.passwordChanged);
     pageEvents.addListener("wrongPage",this.errorSmthWrong);
     };
@@ -60,6 +64,21 @@ class Login extends React.PureComponent {
     pageEvents.removeListener('PasswordChanged',this.passwordChanged);
     pageEvents.removeListener("wrongPage",this.errorSmthWrong);
 
+  };
+
+befUnload=(EO)=>{
+    EO=EO||window.event;
+    // если текст изменён, попросим браузер задать вопрос пользователю
+    if ( this.state.Mail!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.Password!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.color!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.year!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.pet!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
   };
 
   errorSmthWrong=(text)=>{

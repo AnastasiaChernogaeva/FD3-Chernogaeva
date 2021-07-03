@@ -20,6 +20,8 @@ class CartPage extends React.PureComponent {
 
 
   componentDidMount = () => {
+    window.onbeforeunload=this.befUnload;
+
     pageEvents.addListener('ShouldLoginOrSignup',this.showButtons);
     pageEvents.addListener('amountToOrder',this.amountToOrder);
 
@@ -30,6 +32,15 @@ class CartPage extends React.PureComponent {
     pageEvents.removeListener('amountToOrder',this.amountToOrder);
 
   }
+
+
+  befUnload=(EO)=>{
+    EO=EO||window.event;
+    // если текст изменён, попросим браузер задать вопрос пользователю
+    if ( this.props.cart!=null)
+      EO.returnValue='А у вас есть несохранённые изменения!';
+  };
+
 
 
 

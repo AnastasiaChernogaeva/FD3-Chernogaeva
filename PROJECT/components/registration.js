@@ -48,6 +48,7 @@ class Registration extends React.PureComponent {
 
 
   componentDidMount = () => {
+    window.onbeforeunload=this.befUnload;
     pageEvents.addListener("WehavealreadyhadsuchPerson", this.changeEmailOrPassWord);
   };
 
@@ -56,6 +57,22 @@ class Registration extends React.PureComponent {
     pageEvents.removeListener("WehavealreadyhadsuchPerson", this.changeEmailOrPassWord);
   };
 
+  befUnload=(EO)=>{
+    EO=EO||window.event;
+    // если текст изменён, попросим браузер задать вопрос пользователю
+    if ( this.state.Mail!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.Password!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.color!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.Name!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.LastName!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+    if ( this.state.pet!="")
+      EO.returnValue='А у вас есть несохранённые изменения!';
+  };
 
 
  /* componentWillReceiveProps = (newProps) => {

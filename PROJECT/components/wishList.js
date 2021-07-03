@@ -20,6 +20,7 @@ class WishListPage extends React.PureComponent {
 
 
   componentDidMount = () => {
+    window.onbeforeunload=this.befUnload;
     pageEvents.addListener('ShouldLoginOrSignup',this.showButtons);
     pageEvents.addListener('amountToOrder',this.amountToOrder);
 
@@ -31,6 +32,12 @@ class WishListPage extends React.PureComponent {
 
   }
 
+  befUnload=(EO)=>{
+    EO=EO||window.event;
+    // если текст изменён, попросим браузер задать вопрос пользователю
+    if ( this.props.wish!=null)
+      EO.returnValue='А у вас есть несохранённые изменения!';
+  };
 
 
 amountToOrder=(quantity, code)=>{
