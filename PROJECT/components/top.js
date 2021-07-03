@@ -109,8 +109,8 @@ logout=()=>{
 </div>
 
 let buttonsToRegisterAndToLogin=<div>
-             <input type="button" testPrT4={this.state.typeTestB} onClick={this.change4} value="Регистрация" />
-             <input type="button" testPrT5={this.state.typeTestB} onClick={this.change5} value="Войти" />
+             <input type="button"  onClick={this.change4} value="Регистрация" />
+             <input type="button"  onClick={this.change5} value="Войти" />
 </div>
 
 let MyOrders= <input type="button" onClick={this.change7} value="Mои заказы" />
