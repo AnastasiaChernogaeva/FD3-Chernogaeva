@@ -21,8 +21,8 @@ test('работа Footer', () => {
  
   
   const buttonEleme1 = component.root.find( el =>(el.props.testPr1=="buttOn")); 
-  const buttonEleme2 = component.root.find( el =>(el.props.testPr2="buttOn")); 
-  const buttonEleme3 = component.root.find( el =>(el.props.testPr3="buttOn")); 
+  const buttonEleme2 = component.root.find( el =>(el.props.testPr2=="buttOn")); 
+  const buttonEleme3 = component.root.find( el =>(el.props.testPr3=="buttOn")); 
 
   const buttonElems=[buttonEleme1, buttonEleme2, buttonEleme3,];
   // находим все кнопки

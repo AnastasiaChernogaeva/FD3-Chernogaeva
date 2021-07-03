@@ -103,3 +103,627 @@ exports[`работа Footer 1`] = `
   </table>
 </div>
 `;
+
+exports[`работа Footer 2`] = `
+<div
+  className="Footer"
+>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          Моя страница
+        </th>
+        <th>
+          Наши контакты 
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr1="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               person
+            </span>
+            Моя страница
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+            room
+          </span>
+            г.Черас, проспект Марна,9
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr2="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               shopping_cart
+            </span>
+            Корзина
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             call
+          </span>
+          80336853937
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr3="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               favorite
+            </span>
+            WishList
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             email
+          </span>
+          sergeychernogaev1979@gmail.com
+        </td>
+      </tr>
+      <tr>
+        <td />
+        <td>
+          <span
+            className="material-icons"
+          >
+             schedule
+          </span>
+          7 дней в неделю с 08:00 до 20:30
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`работа Footer 3`] = `
+<div
+  className="Footer"
+>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          Моя страница
+        </th>
+        <th>
+          Наши контакты 
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr1="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               person
+            </span>
+            Моя страница
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+            room
+          </span>
+            г.Черас, проспект Марна,9
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr2="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               shopping_cart
+            </span>
+            Корзина
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             call
+          </span>
+          80336853937
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr3="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               favorite
+            </span>
+            WishList
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             email
+          </span>
+          sergeychernogaev1979@gmail.com
+        </td>
+      </tr>
+      <tr>
+        <td />
+        <td>
+          <span
+            className="material-icons"
+          >
+             schedule
+          </span>
+          7 дней в неделю с 08:00 до 20:30
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`работа Footer 4`] = `
+<div
+  className="Footer"
+>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          Моя страница
+        </th>
+        <th>
+          Наши контакты 
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr1="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               person
+            </span>
+            Моя страница
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+            room
+          </span>
+            г.Черас, проспект Марна,9
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr2="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               shopping_cart
+            </span>
+            Корзина
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             call
+          </span>
+          80336853937
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr3="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               favorite
+            </span>
+            WishList
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             email
+          </span>
+          sergeychernogaev1979@gmail.com
+        </td>
+      </tr>
+      <tr>
+        <td />
+        <td>
+          <span
+            className="material-icons"
+          >
+             schedule
+          </span>
+          7 дней в неделю с 08:00 до 20:30
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`работа Footer 5`] = `
+<div
+  className="Footer"
+>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          Моя страница
+        </th>
+        <th>
+          Наши контакты 
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr1="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               person
+            </span>
+            Моя страница
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+            room
+          </span>
+            г.Черас, проспект Марна,9
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr2="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               shopping_cart
+            </span>
+            Корзина
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             call
+          </span>
+          80336853937
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr3="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               favorite
+            </span>
+            WishList
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             email
+          </span>
+          sergeychernogaev1979@gmail.com
+        </td>
+      </tr>
+      <tr>
+        <td />
+        <td>
+          <span
+            className="material-icons"
+          >
+             schedule
+          </span>
+          7 дней в неделю с 08:00 до 20:30
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`работа Footer 6`] = `
+<div
+  className="Footer"
+>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          Моя страница
+        </th>
+        <th>
+          Наши контакты 
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr1="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               person
+            </span>
+            Моя страница
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+            room
+          </span>
+            г.Черас, проспект Марна,9
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr2="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               shopping_cart
+            </span>
+            Корзина
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             call
+          </span>
+          80336853937
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr3="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               favorite
+            </span>
+            WishList
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             email
+          </span>
+          sergeychernogaev1979@gmail.com
+        </td>
+      </tr>
+      <tr>
+        <td />
+        <td>
+          <span
+            className="material-icons"
+          >
+             schedule
+          </span>
+          7 дней в неделю с 08:00 до 20:30
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`работа Footer 7`] = `
+<div
+  className="Footer"
+>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          Моя страница
+        </th>
+        <th>
+          Наши контакты 
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr1="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               person
+            </span>
+            Моя страница
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+            room
+          </span>
+            г.Черас, проспект Марна,9
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr2="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               shopping_cart
+            </span>
+            Корзина
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             call
+          </span>
+          80336853937
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            onClick={[Function]}
+            testPr3="buttOn"
+          >
+            <span
+              className="material-icons"
+            >
+               favorite
+            </span>
+            WishList
+          </button>
+        </td>
+        <td>
+          <span
+            className="material-icons"
+          >
+             email
+          </span>
+          sergeychernogaev1979@gmail.com
+        </td>
+      </tr>
+      <tr>
+        <td />
+        <td>
+          <span
+            className="material-icons"
+          >
+             schedule
+          </span>
+          7 дней в неделю с 08:00 до 20:30
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
