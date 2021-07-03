@@ -1,0 +1,496 @@
+.Top {
+    padding-bottom: 2%;
+}
+/* body{
+    background-color: rgba(202, 252, 68, 0.6);
+} */
+
+body {
+    background-color: rgba(242, 148, 255 , .8);
+}
+.body_body {
+    padding-left: 4%;
+}.error{
+    color:red;
+    font-style: italic;
+}*{
+    font-family: 'Comfortaa', cursive;
+    font-size: 19px;
+}
+
+/* . div{
+    background-color: rgba(202, 252, 68, 0.6);
+} */
+
+
+.button_search{
+    border-radius: 0px 20px 20px 0px;
+    background: white;
+    text-align: center;
+    border: rgba(202, 252, 68, 0.1);
+    /* margin-left: 1vw; */
+    width: 3vw;
+    border-left: black 2px solid;
+}
+
+.Top_Buttons  input[type=button], .Here{
+    /* background: white; */
+    background: transparent;
+    padding: 1%;
+    text-align: center;
+    border: rgba(202, 252, 68, 0.1);
+}
+
+.First input{
+    width: 30vw;
+}
+
+.Second div input{
+    width: 45vw;
+}
+
+
+
+div.Top{
+    width:90vw;
+}
+
+.TopNameAndSearch{
+   display:flex; 
+   margin-left: -1%;
+}
+/* 
+p.ShopName {
+    position:relative;
+    width: 22vw;
+    font-size: 56px;
+    text-align: left;
+    letter-spacing: 6px;
+    font-style: oblique;
+    font-weight: 1000;
+    color:black;
+    animation:
+        MyAnimation3b 8s infinite;
+} */
+
+p.ShopName {
+    position: relative;
+    width: 22vw;
+    margin-left: -0.8vw;
+    font-size: 61px;
+    text-align: left;
+    letter-spacing: 6px;
+    font-style: oblique;
+    font-weight: 1000;
+    color: black;
+    animation: MyAnimation3b 8s infinite;
+}
+
+p.ShopNameBackGround {
+    opacity: 1.5;
+    z-index: -11;
+    position: absolute;
+    /* width: 32vw; */
+    font-size: 59px;
+    text-align: left;
+    letter-spacing: 6px;
+    font-style: oblique;
+    font-weight: 1000;
+    color: white;
+}
+ 
+@keyframes MyAnimation3b{
+
+    from { color: black; }
+    17% {color:red;}
+    27% {color:orange;}
+    37% {color:yellow;}
+    47% {color:green;}
+    57% {color:rgba(2, 221, 236, 0.911);}
+    67% {color:blue;}
+    77% {color:purple;}
+    87% {color:fuchsia;}
+    97% {color:lime;}
+    to { color: maroon; }
+
+} 
+
+.SearchEngine{
+        padding-left: 2%;
+        border-radius: 20px 0px 0px 20px;
+        border: none;
+        width: 45vw;
+        height: 3vw;
+    
+}
+.Text{
+    left: -17px;
+    position: relative;
+    padding-top: 6%;
+    padding-bottom: 4%;
+    height: fit-content;
+    display: flex;
+    border-radius: 15%;
+    border-color: azure;
+    width: 58vw;
+}
+
+.Top_Buttons.First {
+    border-bottom: black 2px solid;
+    width: 90vw;
+}
+
+
+.Top_Buttons.First input:first-child {
+    border-right: black 2px solid;
+}
+
+.Top_Buttons.First input:last-child {
+    border-left: black 2px solid;
+}
+
+.Top_Buttons.Second input:first-child {
+    border-right: black 2px solid;
+}
+
+
+.account {
+    border-radius: 20px;
+    background: white;
+    width: 20vw;
+    position: relative;
+    padding: 2%;
+}
+
+.Butt{
+    border-radius: 32px;
+    width:90vw;
+    background: white;
+}
+
+
+.JustLikeThat {
+    /* width: 110vw; */
+    position: absolute;
+    top: 4%;
+    left: 74.5%;
+}
+
+.account p {
+    text-align: center;
+}
+
+span.material-icons.Light {
+    /* text-align: center; */
+    font-size: 50px;
+}
+
+input.Here {
+    font-size: 17px;
+    top: 5%;
+    left: 69%;
+    position: absolute;
+}
+
+
+.Top_Buttons.Third {
+    text-align: center;
+}.MainBodyShow{
+    border-radius: 32px;
+    background:white;
+    padding: 4%;
+    width: 82.5vw;
+}
+*{
+    font-family: 'Comfortaa', cursive;
+    font-size: 19px;
+}
+
+
+
+.MainBlock{
+    display:flex;
+}
+
+
+.categories ul li{
+    list-style-type: none;
+    cursor:pointer;
+}
+
+/* .categories ul li{
+    transform: rotate3d(1, 1, 1, 45deg  );  
+    
+} */
+
+.aboveGoods{
+    width: 70vw;
+    border-left: black 3px solid;
+    border-right: black 3px solid;
+}
+
+.Goods{
+    /* display:flex; */
+    padding-left:  7.5%;
+
+}
+/* 
+.Goods .BreakRow{
+    display: block;
+} */
+
+button{
+    border:none;
+    background: transparent;
+    cursor: default;
+}
+
+button:hover{cursor: pointer;}
+
+.categories {
+    padding-right: 5%;
+    padding-top: 3%;
+    /* border-right: black 2px solid; */
+}
+
+.categories ul li button {
+    height: 3vw;
+    width: 17vw;
+}
+
+.categories ul li h3 {
+    text-align: center;
+}
+
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+
+
+  .Navigation {
+    position: relative;
+    text-align: center;
+    /* padding-left: 15%; */
+    margin-top: 11%;
+}
+
+.Navigation li {
+    display: inline-block;
+    width: 5.5%;
+    cursor:pointer;
+}
+
+.Navigation span.material-icons {
+    position: absolute;
+    bottom: 2%;
+    cursor:pointer;
+
+}
+
+input.Back {
+    background: transparent;
+    padding: 1%;
+    text-align: center;
+    border: rgba(202, 252, 68, 0.1);
+}.good{
+    display: inline-block;
+    margin-bottom: 5%;
+    margin-right: 5%;
+}
+
+.goodImg{
+    position: relative;
+    width: 180px;
+    height: 150px;
+    /* text-align: center; */
+    padding-left: 15%;
+}
+
+.goodImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    box-sizing: border-box;
+}
+
+.Buttons button:first-child {
+    border-right: black 2px solid;
+}
+
+
+.good p {
+    width: 21vw;
+    text-align: center;
+}
+.good p:first-child {
+    font-weight: 700;
+}
+
+.Buttons.Top_Buttons {
+    text-align: center;
+}.IsGoingToBeDeleted{
+    transition-property: height;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    overflow: hidden;
+    border-top:black 3px solid;
+    height: 186px;
+}
+
+
+
+.IsGoingToBeDeleted:first-child{
+    border:none;
+}
+
+.IsGoingToBeDeleted .goodImg {
+    position: relative;
+    padding: 0;
+    /* width: 174px; */
+    /* height: 150px; */
+    /* text-align: center; */
+    /* padding-left: 9%; */
+    display: inline-block;
+}
+
+.IsGoingToBeDeleted .Cost {
+    display: inline-block;
+    width: 250px;
+    /* padding-top: 3px; */
+    bottom: 8px;
+    position: relative;
+}
+
+.IsGoingToBeDeleted .bbuttons {
+    display: inline-block;
+    width: 200px;
+    bottom: 73px;
+    left: 45%;
+    position: relative;
+}
+
+
+
+#deleteItWish{
+    height:0px;
+    animation: MyAnimation;
+}
+
+@keyframes  MyAnimation{
+    from {height:150px;}
+    to {top: 0px;}
+  }:first-child{
+    border:none;
+}
+
+
+.Buttons.Top_Buttons .List input:first-child {
+    border-right: black 2px solid;
+}.Buttons.Top_Buttons input:first-child {
+    border-right: black 2px solid;
+}.cartgood {
+    transition-property: height;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    overflow: hidden;
+    border-top:black 3px solid;
+    height: 186px;
+}
+
+.cartgood:first-child{
+    border:none;
+}
+
+.cartgood .goodImg {
+    position: relative;
+    padding: 0;
+    /* width: 174px; */
+    /* height: 150px; */
+    /* text-align: center; */
+    /* padding-left: 9%; */
+    display: inline-block;
+}
+
+.cartgood .Cost {
+    display: inline-block;
+    width: 250px;
+    /* padding-top: 3px; */
+    bottom: 8px;
+    position: relative;
+}
+
+.cartgood .bbuttons {
+    display: inline-block;
+    width: 200px;
+    bottom: 73px;
+    left: 45%;
+    position: relative;
+}
+
+
+
+#deleteIt{
+    height:0px;
+    animation: MyAnimation;
+}
+
+@keyframes  MyAnimation{
+    from {height:150px;}
+    to {top: 0px;}
+  }*{
+    font-family: 'Comfortaa', cursive;
+    font-size: 19px;
+}
+
+
+div.Footer{
+        width: 90vw;
+};
+
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+  }
+
+  th {
+    text-align: left;
+}
+
+.Footer{
+    padding:2%;
+}
+
+table{
+    width: 90vw;
+}
+
+/*# sourceMappingURL=main.bundle.8de8c8f423bc8166cc64.css.map*/
