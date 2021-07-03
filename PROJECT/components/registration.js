@@ -97,6 +97,8 @@ cleanTheForm=()=>{
 }
 
 
+
+
   changeName=(EO)=>{
     let textError="Введите имя!"
     if(EO.target.value===""){
@@ -246,9 +248,17 @@ cleanTheForm=()=>{
 
 
   disabilityForButtons=()=>{
-         if (this.state.errorName===""&&this.state.errorLastName===""&&this.state.errorMail===""&&this.state.errorPassword===""&&this.state.errorPasswordCheck===""){
-          this.setState({disabled:null,}, this.announce);
+         if (this.state.errorName===""){
+          if(this.state.errorLastName===""){
+            if(this.state.errorMail===""){
+              if(this.state.errorPassword===""){
+               if(this.state.errorPasswordCheck===""){
+            this.setState({disabled:null,}, this.announce);
+              }
          }
+         }
+        }
+      }
         else {
           this.setState({disabled:"disabled",}, this.announce);
 
@@ -259,6 +269,50 @@ cleanTheForm=()=>{
     this.setState({suchPerson:num,}, this.timetoAct);
   }
 
+
+
+  time=(EO)=>{
+    if(EO.charCode==13){
+      this.ffocus(EO.target.id);
+     }
+   }
+  
+   ffocus=(num)=>{
+    let focNextElem;
+  
+     if(num=="NameId"){
+      focNextElem=document.getElementById("LastNameId");
+      focNextElem.focus();
+     }
+     if(num=="LastNameId"){
+      focNextElem=document.getElementById("MailId");
+      focNextElem.focus();
+    }
+    if(num=="MailId"){
+      focNextElem=document.getElementById("Password");
+      focNextElem.focus();
+    }
+    if(num=="Password"){
+      focNextElem=document.getElementById("RePassword");
+      focNextElem.focus();
+    }
+    if(num=="RePassword"){
+      focNextElem=document.getElementById("pet");
+      focNextElem.focus();
+    }
+    if(num=="pet"){
+      focNextElem=document.getElementById("color");
+      focNextElem.focus();
+    }
+    if(num=="color"){
+      if(this.state.disabled==null)
+      this.highTimetoAddNewPerson(); 
+     }
+     
+     
+    
+   }
+
   render() {
     let valid=<p>Нельзя использовать следующие символы:"&#95;&#94;&#44;&#33;&#45;&#64;&#61;&#60;&#62;&#47;&#42;&#43;&#36;&#38;&#35;</p>;
     let textSPerson=<p  className="error">Такой пользователь уже существует. Попробуйте изменить логин.</p>
@@ -268,23 +322,23 @@ cleanTheForm=()=>{
        <form className="register" onChange={this.disabilityForButtons}>
        <h1>Регистрация</h1>
        <label htmlFor="NameId">Имя</label><br/><br/>
-       <input type="text" id="NameId" onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span><br/><br/>
+       <input type="text" id="NameId" onKeyPress={this.time}  onBlur={this.changeName} onChange={this.changeName} value={this.state.Name} placeholder="Валентина"/><span className="error">{this.state.errorName}</span><br/><br/>
        <label htmlFor="LastNameId">Фамилия</label><br/><br/>
-       <input type="text" id="LastNameId" onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/><br/>
+       <input type="text" id="LastNameId" onKeyPress={this.time}  onBlur={this.changeLastName}  onChange={this.changeLastName} value={this.state.LastName} placeholder="Домаринская"/><span className="error">{this.state.errorLastName}</span><br/><br/>
        <p><b>При создании пароля и почты нельзя использовать следующие символы:"!№;%:?*()_-+=".</b></p>
 
        <label htmlFor="MailId">Электронная почта</label><br/><br/>
-       <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
+       <input type="text" id="MailId" onKeyPress={this.time} onBlur={this.changeMail} onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
        <label htmlFor="Password">Пароль</label><br/><br/>
-       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <input type="password" id="Password"  onKeyPress={this.time} onBlur={this.changePassword} onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        {this.state.errorVV==1&&valid}
        <label htmlFor="RePassword">Подтвердите пароль</label><br/><br/>
-       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.Password2} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <input type="password" id="RePassword" onKeyPress={this.time} onBlur={this.toequalPasswords}  onChange={this.toequalPasswords} value={this.state.Password2} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        {this.state.errorVV==1&&valid}
        <h3>Дополнительная информация для восстановления доступа к аккаунту</h3>
 
-      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/><input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
-      <label htmlFor="color">Введите ваш любимый цвет</label><br/><br/><input type="text" id="color" onChange={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
+      <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/><input type="text" id="pet" onKeyPress={this.time}  onBlur={this.pet} onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
+      <label htmlFor="color">Введите ваш любимый цвет</label><br/><br/><input type="text" id="color" onKeyPress={this.time} onChange={this.color}   onBlur={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
       
 
       </form>

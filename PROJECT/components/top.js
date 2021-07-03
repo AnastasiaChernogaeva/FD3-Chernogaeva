@@ -41,15 +41,29 @@ class Top extends React.PureComponent {
   }
 
  remember=(EO)=>{
+
    let word=EO.target.value.trim();
    word=word.toLowerCase();
 
      this.setState({searchWord:word,}, this.announce);
      pageEvents.emit("NoSuchItems", "" );
+
+  
+       
+     
  }
+
+ time=(EO)=>{
+  if(EO.charCode==13){
+    this.search();
+   }
+ }
+
  search=()=>{
+   
     pageEvents.emit('Search', this.state.searchWord, "newWord");
  };
+
  change1=()=>{
     pageEvents.emit('ChangeBody',1);
  };
@@ -100,7 +114,6 @@ let buttonsToRegisterAndToLogin=<div>
 
 let MyOrders= <input type="button" onClick={this.change7} value="Mои заказы" />
 
-/*<input type="button" className="button_search" onClick={this.search} value={searchIcon} />*/
 
 
     
@@ -109,7 +122,7 @@ let MyOrders= <input type="button" onClick={this.change7} value="Mои зака�
          <div  className="TopNameAndSearch">
              <p className="ShopName">{this.props.shopName}</p>
              <p className="ShopNameBackGround">{this.props.shopName}</p>
-             <div className="Text"><input type="text" className="SearchEngine" onChange={this.remember} value={this.state.searchWord}></input><button className="button_search" onClick={this.search}  ><span className="material-icons">search</span></button> 
+             <div className="Text"><input type="text" className="SearchEngine" onKeyPress={this.time} onChange={this.remember} value={this.state.searchWord}></input><button className="button_search" onClick={this.search}  ><span className="material-icons">search</span></button> 
 
              </div>
          </div>

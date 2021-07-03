@@ -222,18 +222,61 @@ disabilityForButton=()=>{
  
 }
 
+time=(EO)=>{
+  if(EO.charCode==13){
+    this.ffocus(EO.target.id);
+   }
+ }
+
+ ffocus=(num)=>{
+  let focNextElem;
+   if(this.state.forgottenPassword===false){
+    focNextElem=document.getElementById("Password");
+    focNextElem.focus();
+   }
+
+   if(num=="Password"){
+    if(this.state.disabled==null)
+    this.enter();
+   }
+   if(num=="pet"){
+    focNextElem=document.getElementById("color");
+    focNextElem.focus();
+  }
+  if(num=="color"){
+    focNextElem=document.getElementById("year");
+    focNextElem.focus();
+  }
+  if(num=="year"){
+    if(this.state.disabled==null)
+    this.restore(); 
+   }
+   if( this.state.passwordCanBeChanged===true){
+    focNextElem=document.getElementById("RePassword");
+    focNextElem.focus();
+   }
+
+   if(num=="RePassword"){
+    if(this.state.disabled==null)
+    this.saveNewPassword(); 
+   }
+   
+   
+   
+ }
+
 
   render() {
 
     let question=<div className="Top_Buttons">
       <form onChange={this.disabilityForButton}>
       <label htmlFor="pet">Введите имя первого домашнего питомца</label><br/><br/>
-      <input type="text" id="pet" onChange={this.pet} value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
+      <input type="text" id="pet"  onKeyPress={this.time} onChange={this.pet}  value={this.state.pet}/> <span className="error">{this.state.errorpet}</span><br/><br/>
       <label htmlFor="color">Введите ваш любимый цвет</label><br/><br/>
-      <input type="text" id="color" onChange={this.color} value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
+      <input type="text" id="color"  onKeyPress={this.time}  onChange={this.color}  value={this.state.color}/> <span className="error">{this.state.errorcolor}</span><br/><br/>
        <label htmlFor="year">Введите год регистрации на нашем сайте</label><br/><br/>
-       <input type="text" id="year" onChange={this.year} value={this.state.year}/> <span className="error">{this.state.erroryear}</span><br/><br/>
-       <input type="button" value="Восстановить пароль" onClick={this.restore}/><br/><br/>
+       <input type="text" id="year"  onKeyPress={this.time} onChange={this.year}  value={this.state.year}/> <span className="error">{this.state.erroryear}</span><br/><br/>
+       <input type="button" value="Восстановить пароль"  onClick={this.restore}/><br/><br/>
        </form>
        </div>
 
@@ -241,9 +284,9 @@ disabilityForButton=()=>{
                <form className="login" onChange={this.disabilityForButton}>
       <h1>Вход в аккаунт</h1>
        <label htmlFor="MailId">Электронная почта</label><br/><br/>
-       <input type="text" id="MailId" onChange={this.changeMail} value={this.state.Mail} /><span className="error">{this.state.errorMail}</span><br/><br/>
+       <input type="text" id="MailId" onChange={this.changeMail} onBlur={this.changeMail} value={this.state.Mail}  onKeyPress={this.time} /><span className="error">{this.state.errorMail}</span><br/><br/>
        <label htmlFor="Password">Пароль</label><br/><br/>
-       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
+       <input type="password" id="Password" onChange={this.changePassword} onBlur={this.changePassword} onKeyPress={this.time} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
       <input type="button" value="Войти" onClick={this.enter} disabled={this.state.disabled}/>
       <input type="button" value="Забыли пароль" onClick={this.haveForgottenEverythingInTheirLives}/>
       </form> 
@@ -254,9 +297,9 @@ disabilityForButton=()=>{
     let youCanChangeYourPassword=<div className="Top_Buttons">
       <form  onChange={this.disabilityForButton}>
        <label htmlFor="Password">Введите новый пароль</label><br/><br/>
-       <input type="password" id="Password" onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
+       <input type="password" id="Password" onKeyPress={this.time} onBlur={this.changePassword} onChange={this.changePassword} value={this.state.Password}/><span className="error">{this.state.errorPassword}</span><br/><br/>
        <label htmlFor="RePassword">Подтвердите пароль</label><br/><br/>
-       <input type="password" id="RePassword" onChange={this.toequalPasswords} value={this.state.PasswordForCheckup} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
+       <input type="password" id="RePassword" onChange={this.toequalPasswords}  onBlur={this.toequalPasswords} value={this.state.PasswordForCheckup} /><span className="error">{this.state.errorPasswordCheck}</span><br/><br/>
        <input type="button" value="Изменить пароль" onClick={this.saveNewPassword} disabled={this.state.disabled}/>
        </form>
     </div>
