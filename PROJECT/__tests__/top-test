@@ -3,13 +3,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
  
-import MobileCompany from '../components/mobile';
+import Top from '../components/top';
  
-test('работа MobileCompany', () => {
+test('работа Top', () => {
  
   // создаём тестовую версию компонента
   const component = renderer.create(
-    <MobileCompany />
+    <Top />
   );
  
   // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
