@@ -9,7 +9,6 @@ class CartGood extends React.PureComponent {
 
   static propTypes = {
     info:PropTypes.object,
-    num:PropTypes.number,
   };
 
   state = {
@@ -20,60 +19,17 @@ class CartGood extends React.PureComponent {
     height:'',
   };
 
-/*  componentWillReceiveProps = (newProps) => {
-    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
-    if(this.state.info!=newProps.info){
-      this.setState({info:newProps.info});
-    }
-    
-  };*/
 
   deletefromCart=()=>{
-    // setTimeout(pageEvents.emit('DeletefromCart', this.state.cartgood.code),1000);
     pageEvents.emit('DeletefromCart', this.state.cartgood.code);
   };
 
-  // emission=()=>{
-  //   pageEvents.emit('DeletefromCart', this.state.cartgood.code
-  // }
 
   anim=()=>{
-    // let idNum=this.props.num;
-    // var textElem=document.getElementById(`${idNum}`);
-    // var currHeight=textElem.offsetHeight;
-    // console.log(currHeight);
-    // textElem.style.height=currHeight+"px";
-    // // и в следующий Idle запустим анимацию
-    // setTimeout(function() { textElem.style.height="0px"; }, 0);  
     this.setState({height:"0px",}, this.announce);
   }
 
 
-  
-//   amount=(numb)=>{
-//     if (this.state.amountToOrder<1){
-//         if(numb===(-1)){
-//           this.setState({disabledMinus:disabled}, this.announce);
-//         }
-//     }
-//     else if(this.state.amountToOrder<this.state.cartgood.itemAmount){
-//       if(numb===1){
-//           this.setState({disabledPlus:disabled}, this.announce);
-//        }
-//     }
-//     else{
-//       if(numb===(-1)){
-//           let newOne=this.state.amountToOrder--;
-//           this.setState({amountToOrder:newOne, disabledMinus:null,}, this.announce);
-//         }
-//       else
-//        if(numb===1){
-//           let newOne=this.state.amountToOrder++;
-//           this.setState({amountToOrder:newOne, disabledPlus:null,}, this.announce);
-//        }
-//     }
-
-// }
 
 amountLess=()=>{
   if (this.state.amountToOrder<1){
@@ -88,20 +44,19 @@ else{
   if (this.state.amountToOrder===1)
     this.setState({disabledMinus:"disabled"}, this.announce);
 }
+pageEvents.emit("amountToOrder", this.state.amountToOrder, this.props.info.code);
+
 }
 
 amountMore=()=>{
-  // if(this.state.amountToOrder===(this.state.cartgood.itemAmount*1)){
-  //       this.setState({disabledPlus:"disabled"}, this.announce);
-  // }
-  // else{
     let newOne=this.state.amountToOrder+1;
           this.setState({amountToOrder:newOne, disabledPlus:null,}, this.announce);
           if(this.state.disabledMinus==="disabled")
           this.setState({disabledMinus:null,}, this.announce);
           if(this.state.amountToOrder===(this.state.cartgood.itemAmount-1))
             this.setState({disabledPlus:"disabled"}, this.announce);
-      
+            pageEvents.emit("amountToOrder", this.state.amountToOrder, this.props.info.code);
+
   // }
 }
 
@@ -138,21 +93,6 @@ announce=()=>{
     else{
     
     return (
-    //  <tr className="cartgood" id={this.props.num}>
-    //      <td className="goodImg">
-    //          <img src={this.state.cartgood.itemPhotoURL} alt={this.state.cartgood.itemName}/>
-    //      </td>
-    //      <td className="Cost">
-    //         <p>{this.state.cartgood.itemCost}</p> 
-    //         <p> Осталось: {this.state.cartgood.itemAmount}</p> 
-    //      </td>
-    //      <td>
-    //      <input type="button" onClick={this.amountLess} className="Buttons_Plus_Minus" value="-" disabled={this.state.disabledMinus} />
-    //          <span>{this.state.amountToOrder}</span>
-    //          <input type="button" onClick={this.amountMore} className="Buttons_Plus_Minus" value="+"  disabled={this.state.disabledPlus} />
-    //          <input type="button" onClick={this.deletefromCart} value="Удалить" />
-    //      </td>
-    //  </tr>
     <div className="cartgood"  >
     <div className="goodImg">
         <img src={this.state.cartgood.itemPhotoURL} alt={this.state.cartgood.itemName}/>

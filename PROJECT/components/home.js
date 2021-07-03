@@ -567,102 +567,12 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
 
 
 
-
-  order=(orderList, typeOrder)=>{
-  if(this.state.authorizatedName!=""){
-    this.findandchange(orderList);
-    this.setState({ toShowBodyMode:6,  orderList:orderList, typeOrder:typeOrder,}, this.clearList);
-  }
-  else
-   pageEvents.emit('ShouldLoginOrSignup',);
-  };
-
-  
-  findandchange=(orderList)=>{
-
-    let arrNames=Object.keys(this.state.clients);
-      arrNames.forEach(elemKey=>{
-        if (elemKey in this.state.clients){
-          if(this.state.clients[elemKey].name===this.state.authorizatedName){
-            if(this.state.clients[elemKey].lastName===this.state.authorizatedLastName){
-              orderList.forEach(elem=>this.state.clients[elemKey].myOrders.push(elem));
-              // this.state.clients[elemKey].myOrders=orderList;
-            }
-              }
-            }
-          })
-              
-            //       this.setState({clients:info,}, this.continuation1);
-  //   var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-  //   var stringName='Chernogeva_Project_CherAS';
-  
-  // let sp = new URLSearchParams();
-  //   sp.append('f', 'READ');
-  //   sp.append('n', stringName);
-  
-  //   isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
-  //       .then( response => response.json() )
-  //       .then( data => {this.changeTime(orderList, data) } )
-  //       .catch( error => { console.log(error); } ); 
-  
-  // }
-
-  // changeTime(orderList, data) {
-  //   var info=JSON.parse(data.result);
-  
-  
-  //  let arrNames=Object.keys(info);
-  //   arrNames.forEach(elemKey=>{
-  //     for (elemKey in info){
-  //       if(info[elemKey].name===this.state.authorizatedName){
-  //         if(info[elemKey].lastName===this.state.authorizatedLastName){
-  //           // orderList.forEach(elem=>info[elemKey].myOrders.push(elem));
-  //           info[elemKey].myOrders=orderList;
-  //         }
-  //   }
-  // }
-    
-  //       this.setState({clients:info,}, this.continuation1);
-  
-     
-   
-  //   }
-  //     )
-  // };
-  
-  // continuation1=()=>{
-  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-  var updatePassword=Math.random();
-  var stringName='Chernogeva_Project_CherAS';
-  
-  let sp = new URLSearchParams();
-  sp.append('f', 'LOCKGET');
-  sp.append('n', stringName);
-  sp.append('p', updatePassword);
-  
-  isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
-      .then( response => response.json() )
-      .then( () => this.continuation(stringName,updatePassword))
-      .catch( error => { console.error(error); } ); 
-  }
-
-  clearList=()=>{
-    if(this.state.typeOrder=="wish")
-      this.setState({wishList:null,},this.announce);
-    else if(this.state.typeOrder=="cart")
-    this.setState({cart:null,},this.announce);
-  }
-
-
-
-
-
   // работа с корзиной
 
   arrCart=[];
 
   addToCart=(id)=>{
-    if(this.arrCart==null){
+    if(this.state.cart==null){
       this.arrCart=[];
     }
     let goods=this.props.goods.slice();
@@ -689,7 +599,7 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
    arrWishList=[];
 
   addToWishList=(id)=>{
-    if(this.arrWishList==null){
+    if(this.state.wishList==null){
       this.arrWishList=[];
     }
     let goods=this.state.goods.slice();
@@ -710,17 +620,72 @@ checkPasswordsInOurSystem=(serverData,userData)=>{
   }
 
 
-// animation=(id, typeofdelete)=>{
-// if(typeofdelete==="cart"){
-//   // elemNeededToDelete=this.arrCart.find(item=>item.code==id);
-//   pageEvents.emit("CartElemToAnimate",id);
-// }
-// if(typeofdelete==="wishlist"){
-//   // elemNeededToDelete=this.arrWishList.find(item=>item.code==id);
-//   pageEvents.emit("WishListElemToAnimate",id);
-// }
 
-// }
+
+  order=(orderList, typeOrder)=>{
+  if(this.state.authorizatedName!=""){
+    this.findandchange(orderList);
+    this.setState({ toShowBodyMode:6,  orderList:orderList, typeOrder:typeOrder,}, this.clearList);
+  }
+  else
+   pageEvents.emit('ShouldLoginOrSignup',);
+  };
+
+  
+  findandchange=(orderList)=>{
+
+    let arrNames=Object.keys(this.state.clients);
+      arrNames.forEach(elemKey=>{
+        if (elemKey in this.state.clients){
+          if(this.state.clients[elemKey].name===this.state.authorizatedName){
+            if(this.state.clients[elemKey].lastName===this.state.authorizatedLastName){
+              orderList.forEach(elem=>{
+                let resultSearch=this.state.clients[elemKey].myOrders.find(elemHere=>elemHere.code==elem.code);
+                    if (resultSearch!=undefined){
+                      let i=this.state.clients[elemKey].myOrders.findIndex(el=>el==resultSearch);
+                      this.state.clients[elemKey].myOrders[i].orderAmoount+=elem.orderAmoount;
+                    }
+                    else
+                        this.state.clients[elemKey].myOrders.push(elem);
+                                  // this.state.clients[elemKey].myOrders=orderList;
+
+              });
+
+              // orderList.forEach(elem=>this.state.clients[elemKey].myOrders.push(elem));
+
+              // this.state.clients[elemKey].myOrders=orderList;
+            }
+              }
+            }
+          })
+              
+
+  var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+  var updatePassword=Math.random();
+  var stringName='Chernogeva_Project_CherAS';
+  
+  let sp = new URLSearchParams();
+  sp.append('f', 'LOCKGET');
+  sp.append('n', stringName);
+  sp.append('p', updatePassword);
+  
+  isoFetch(ajaxHandlerScript, { method: 'post', body: sp })
+      .then( response => response.json() )
+      .then( () => this.continuation(stringName,updatePassword))
+      .catch( error => { console.error(error); } ); 
+  }
+
+  clearList=()=>{
+    if(this.state.typeOrder=="wish"){
+      this.setState({wishList:null,},this.announce);
+    }
+    else if(this.state.typeOrder=="cart"){
+      this.setState({cart:null,},this.announce);
+
+    }
+  }
+
+
 
 
 

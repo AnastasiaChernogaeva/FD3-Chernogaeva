@@ -19,16 +19,9 @@ class WishGood extends React.PureComponent {
     height:'',
   };
 
-/*  componentWillReceiveProps = (newProps) => {
-    console.log("MobileClient info="+this.props.info+" componentWillReceiveProps");
-    if(this.state.info!=newProps.info){
-      this.setState({info:newProps.info});
-    }
-    
-  };*/
+
 
   deletefromWishList=()=>{
-  //    this.setState({elemToDelete:elemToDelete,}, this.announce);
     pageEvents.emit('DeletefromWishList', this.state.wishgood.code);
   };
   anim=()=>{
