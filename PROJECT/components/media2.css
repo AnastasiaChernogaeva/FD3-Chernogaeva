@@ -1,0 +1,234 @@
+
+@media screen and (max-width: 829px)and (min-width: 788px){
+    .CartGood .cartgood .bbuttons {
+        width: 181px;
+        left: 1%;
+        position: relative;
+        margin-bottom: 5%;
+        }
+    
+        .CartGood  .cartgood {
+            height: 26vw;
+        }
+}
+
+@media screen and (max-width: 787px)and (min-width: 700px){
+    .CartGood .cartgood .bbuttons {
+        width: 181px;
+        bottom:0;
+        left: 1%;
+        position: relative;
+        margin-bottom: 5%;
+        }
+    
+        .CartGood  .cartgood {
+            height: 33vw;
+        }
+}
+@media screen and (max-width: 699px)and (min-width: 600px){
+    .CartGood *{
+        font-size: 17px;
+    }
+    .CartGood .cartgood .bbuttons {
+        width: 181px;
+        bottom:0;
+        left: 1%;
+        position: relative;
+        margin-bottom: 5%;
+        }
+    
+        .CartGood  .cartgood {
+            height: 33vw;
+        }
+}
+
+@media screen and (max-width: 559px)and (min-width: 436px){
+  
+    .CartGood .cartgood .bbuttons {
+        width: 181px;
+        bottom: 0;
+        left: 45%;
+        position: relative;
+        margin-bottom: 5%;
+    }
+    
+        .CartGood  .cartgood {
+            height: 45vw;
+        }
+        .CartGood .cartgood .Cost {
+            display: inline-block;
+            width: 200px;
+            /* padding-top: 3px; */
+            bottom: 20px;
+            position: relative;
+        }
+        .cartgood .goodImg {
+            position: relative;
+            padding: 0;
+            margin-right: 6%;
+            display: inline-block;
+            width: 137px;
+        }
+}
+
+@media screen and (max-width: 435px) and (min-width: 310px) {
+  
+    .CartGood .cartgood .bbuttons {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        position: relative;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    
+    .CartGood .cartgood {
+        height: 74vw;
+    }
+    
+        .CartGood .cartgood .Cost {
+              display: block;
+              width: 100%;
+              text-align: center;
+              bottom: 0px;
+        }
+        .cartgood .goodImg {
+            position: relative;
+            padding: 0;
+            margin-right: 0%;
+            display: block;
+            width: 100%;
+        }
+}
+
+@media screen and (max-width: 309px) {
+  
+    .CartGood .cartgood .bbuttons {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        position: relative;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    
+    .CartGood .cartgood {
+        height: 100vw;
+    }
+    
+        .CartGood .cartgood .Cost {
+              display: block;
+              width: 100%;
+              text-align: center;
+              bottom: 0px;
+        }
+        .cartgood .goodImg {
+            position: relative;
+            padding: 0;
+            margin-right: 0%;
+            display: block;
+            width: 100%;
+        }
+}
+
+@media screen and (max-width: 779px)and (min-width: 650px){
+    .aboveGoods.Goods {
+        /* text-align: center; */
+        display: block;
+        padding-left: 0%;
+    }
+
+    .Goods.good {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        /* text-align: center; */
+        display: block;
+        margin-bottom: 5%;
+        margin-right: 5%;
+    }
+
+    .Goods .good .goodImg {
+        position: relative;
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        padding-left: 0%;
+    }
+    .Goods .good p {
+        width: inherit;
+        text-align: center;
+    }
+
+    .Buttons.Top_Buttons {
+        text-align: center;
+    }
+
+    .categories {
+        padding-right: 11%;
+        padding-top: 3%;
+    }
+
+    .body_body div.Footer {
+        width: 85vw;
+    }
+
+    .Text {
+        left: 51px;
+        top: 16%;
+        position: absolute;
+        /* padding-top: 6%; */
+        /* padding-bottom: 4%; */
+        height: fit-content;
+        display: flex;
+        /* border-radius: 15%; */
+        border-color: azure;
+        width: 90%;
+    }
+
+     
+    .SearchEngine {
+        padding-left: 2%;
+        border-radius: 20px 0px 0px 20px;
+        border: none;
+        width: 81vw;
+        height: 4vw;
+    }
+    
+    
+    
+    
+    .button_search {
+        border-radius: 0px 20px 20px 0px;
+        background: white;
+        text-align: center;
+        border: rgba(202, 252, 68, 0.1);
+        /* margin-left: 1vw; */
+        width: 4vw;
+        border-left: black 2px solid;
+    }
+    
+    button.button_search span {
+        font-size: 19px;
+        left: -3px;
+        position: relative;
+    }
+
+    /* .CartGood .cartgood .bbuttons {
+    width: 181px;
+    bottom: 0;
+    left: 1%;
+    position: relative;
+    margin-bottom: 5%;
+    }
+
+    .CartGood  .cartgood {
+        height: 34vw;
+    } */
+
+    .body_body div.Footer *{
+        text-align: left;
+        font-size: 16px;
+    };
+
+}

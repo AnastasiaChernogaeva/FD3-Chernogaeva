@@ -51,7 +51,8 @@ button:hover{cursor: pointer;}
 }
 
 .categories ul li button {
-    height: 3vw;
+    margin-bottom: 5%;
+    height: fit-content;
     width: 17vw;
 }
 

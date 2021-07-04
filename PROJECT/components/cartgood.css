@@ -5,7 +5,15 @@
     transition-timing-function: linear;
     overflow: hidden;
     border-top:black 3px solid;
-    height: 186px;
+    height: 14vw;
+}
+
+.bbuttons input[type="button"]:last-child {
+    /*width: 81vw; */
+    margin-left: 9px;
+    padding-left: 7px;
+    /* height: 4vw; */
+    border-left: black 2px solid;
 }
 
 .cartgood:first-child{
@@ -15,12 +23,10 @@
 .cartgood .goodImg {
     position: relative;
     padding: 0;
-    /* width: 174px; */
-    /* height: 150px; */
-    /* text-align: center; */
-    /* padding-left: 9%; */
+    margin-right: 6%;
     display: inline-block;
 }
+
 
 .cartgood .Cost {
     display: inline-block;
@@ -34,7 +40,7 @@
     display: inline-block;
     width: 200px;
     bottom: 73px;
-    left: 45%;
+    left: 39%;
     position: relative;
 }
 

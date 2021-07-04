@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 import './shop.css';
 import './error.css';
+import './media1.css';
+import './media2.css';
+import './media3.css';
+
+
 
 import Good from './good.js';
 

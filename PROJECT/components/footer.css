@@ -5,7 +5,8 @@
 
 
 div.Footer{
-        width: 90vw;
+    display: flex;
+    width: 85vw;
 };
 
 
@@ -17,15 +18,21 @@ div.Footer{
     stroke: currentColor;
     fill: currentColor;
   }
-
+/* 
   th {
     text-align: left;
-}
+} */
 
 .Footer{
-    padding:2%;
+    padding: 2%;
+    padding-left: 5%;
 }
-
+/* 
 table{
     width: 90vw;
+} */
+
+
+.F {
+    margin-right: 15%;
 }

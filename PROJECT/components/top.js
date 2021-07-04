@@ -3,6 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './top.css';
+import './media1.css';
+import './media2.css';
+import './media3.css';
+
+
 
 import {pageEvents} from './events';
 

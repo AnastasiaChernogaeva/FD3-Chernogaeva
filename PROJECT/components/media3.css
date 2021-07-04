@@ -1,0 +1,463 @@
+@media screen and (max-width: 650px){
+
+ 
+
+    .aboveGoods.Goods {
+        /* text-align: center; */
+        display: block;
+        padding-left: 0%;
+    }
+
+    .Goods.good {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        /* text-align: center; */
+        display: block;
+        margin-bottom: 5%;
+        margin-right: 5%;
+    }
+
+    .Goods .good .goodImg {
+        position: relative;
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        padding-left: 0%;
+    }
+    .Goods .good p {
+        width: inherit;
+        text-align: center;
+    }
+
+    .Buttons.Top_Buttons {
+        text-align: center;
+    }
+
+
+
+
+    
+    
+    .button_search {
+        border-radius: 0px 20px 20px 0px;
+        background: white;
+        text-align: center;
+        border: rgba(202, 252, 68, 0.1);
+        /* margin-left: 1vw; */
+        width: 8vw;
+        border-left: black 2px solid;
+    }
+
+    button.button_search span {
+        font-size: 15px;
+        left: -3px;
+        position: relative;
+    }
+
+    /* .CartGood .cartgood .bbuttons {
+    width: 181px;
+    bottom: 0;
+    left: 1%;
+    position: relative;
+    margin-bottom: 5%;
+    }
+
+    .CartGood  .cartgood {
+        height: 34vw;
+    } */
+
+    /* .body_body .JustLikeThat {
+        /* width: 110vw; */
+        /* position: absolute;
+        top: 4%;
+        left: 65.5%;
+    } */
+/* 
+    .JustLikeThat .account {
+        border-radius: 20px;
+        background: white;
+        width: 26vw;
+        position: relative;
+        /* padding: 2%; */
+        /* padding-top: 12%;
+        height: 32vw;
+    } */ 
+
+   
+
+}
+
+@media screen and (max-width: 650px) and (min-width:350px){
+
+    .CartGood .IsGoingToBeDeleted {
+        transition-property: height;
+        transition-duration: 1s;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        overflow: hidden;
+        border-top: black 3px solid;
+        height: 60vw;
+    }
+    .CartGood .IsGoingToBeDeleted .Cost {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding-top: 0;
+        bottom: 8px;
+        position: relative;
+    }
+    .CartGood  .IsGoingToBeDeleted .goodImg {
+        position: relative;
+        padding: 0;
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        padding-left: 0;
+        display: block;
+    }
+
+    .body_body div.Footer{
+        display: block;
+        width: 80vw;
+        text-align: left;
+
+    };
+    
+
+    .MainBlock .categories {
+        padding-right: 11%;
+        padding-top: 3%;
+    }
+
+
+    .account p {
+        text-align: center;
+    }
+
+ 
+
+    input.Here {
+        font-size: 12px;
+        top: 3%;
+        left: 30%;
+        position: absolute;
+    }
+
+    .Text {
+        left: 36px;
+        top: 18%;
+        position: absolute;
+        padding-top: 6%;
+        padding-bottom: 4%;
+        height: fit-content;
+        display: flex;
+        border-radius: 15%;
+        border-color: azure;
+        width: 58vw;
+    }
+
+     
+.SearchEngine {
+    padding-left: 2%;
+    border-radius: 20px 0px 0px 20px;
+    border: none;
+    width: 45vw;
+    height: 5vw;
+
+}
+
+body * {
+    font-size: 14px;
+}
+}
+
+@media screen and (max-width: 349px){
+
+    .CartGood .IsGoingToBeDeleted {
+        transition-property: height;
+        transition-duration: 1s;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        overflow: hidden;
+        border-top: black 3px solid;
+        height: 100vw;
+    }
+    .CartGood  .IsGoingToBeDeleted .Cost {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding-top: 0;
+        bottom: 8px;
+        position: relative;
+    }
+    .CartGood  .IsGoingToBeDeleted .goodImg {
+        position: relative;
+        padding: 0;
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        padding-left: 0;
+        display: block;
+    }
+
+    .body_body div.Footer{
+        display: block;
+        width: 80vw;
+        text-align: left;
+
+    };
+
+    body .body_body .JustLikeThat {
+        /* width: 110vw; */
+        position: absolute;
+        top: 1%;
+        left: 71.5%;
+    }
+
+    .JustLikeThat .account {
+        border-radius: 20px;
+        background: white;
+        height: fit-content;
+        width: 20vw;
+        position: relative;
+        padding: 2%;
+    }
+
+    .account span.material-icons.Light {
+        /* text-align: center; */
+        font-size: 42px;
+    }
+
+    input.Here {
+        font-size: 9px;
+        top: 3%;
+        left: 25%;
+        position: absolute;
+    }
+
+    .MainBlock .categories {
+        padding-right: 11%;
+        padding-top: 3%;
+        margin-left: -11%;
+    }
+
+    .Text {
+        left: 16px;
+        top: 13%;
+        position: absolute;
+        padding-top: 6%;
+        padding-bottom: 4%;
+        height: fit-content;
+        display: flex;
+        border-radius: 15%;
+        border-color: azure;
+        width: 58vw;
+    }
+     
+    .SearchEngine {
+        padding-left: 2%;
+        border-radius: 20px 0px 0px 20px;
+        border: none;
+        width: 45vw;
+        height: 8vw;
+    
+    }
+    body * {
+        font-size: 9px;
+    }
+
+     body .material-icons {
+        font-size: 10px;
+    }
+
+    
+    p.ShopName {
+        font-size: 39px;
+    }
+
+    p.ShopNameBackGround {
+        font-size: 40px;
+    }
+    .body_body {
+        padding-left: 0%;
+    }
+    }
+
+
+    @media screen and (max-width: 1099px)and (min-width: 1020px){
+       body .JustLikeThat {
+            position: absolute;
+            top: 0.25%;
+            left: 72.5%;
+        }
+
+        .JustLikeThat  .account {
+            border-radius: 20px;
+            background: white;
+            width: 20vw;
+            height: fit-content;
+            position: relative;
+            padding: 2%;
+        }
+
+        .account input.Here {
+            font-size: 15px;
+            top: 5%;
+            left: 65%;
+            height: fit-content;
+            position: absolute;
+        }
+    }
+
+
+    @media screen and (max-width: 1019px)and (min-width: 860px){
+        body .JustLikeThat {
+            /* width: 110vw; */
+            position: absolute;
+            top: 0.25%;
+            left: 58.5%;
+        }
+ 
+         .JustLikeThat  .account {
+            border-radius: 20px;
+            background: white;
+            width: 34vw;
+            position: relative;
+            padding: 2%;
+        }
+
+        .account p {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+ 
+         .account input.Here {
+             font-size: 15px;
+             top: 5%;
+             left: 65%;
+             height: fit-content;
+             position: absolute;
+         }
+     }
+
+
+     
+    @media screen and (max-width: 859px)and (min-width: 780px){
+        body .JustLikeThat {
+            /* width: 110vw; */
+            position: absolute;
+            top: 0.25%;
+            left: 58.5%;
+        }
+ 
+         .JustLikeThat  .account {
+            border-radius: 20px;
+            background: white;
+            width: 34vw;
+            position: relative;
+            padding: 2%;
+        }
+
+        .account p {
+            margin-bottom: 0px;
+            text-align: center;
+        }
+ 
+         .account input.Here {
+             font-size: 15px;
+             top: 5%;
+             left: 65%;
+             height: fit-content;
+             position: absolute;
+         }
+     }
+
+
+     @media screen and (max-width: 779px)and (min-width: 650px){
+
+        .JustLikeThat *{
+            font-size: 16px;
+        }
+
+
+        .JustLikeThat span.material-icons.Light {
+            /* text-align: center; */
+            font-size: 45px;
+        }
+        body .JustLikeThat {
+            /* width: 110vw; */
+            position: absolute;
+            top: 0.25%;
+            left: 58.5%;
+        }
+ 
+         .JustLikeThat  .account {
+            border-radius: 20px;
+            background: white;
+            width: 34vw;
+            position: relative;
+            padding: 2%;
+        }
+
+        .account p {
+            margin-bottom: 0px;
+            text-align: center;
+        }
+ 
+         .account input.Here {
+             font-size: 15px;
+             top: 5%;
+             left: 65%;
+             height: fit-content;
+             position: absolute;
+         }
+     }
+
+
+     @media screen and (max-width: 649px)and (min-width: 600px){
+
+        .JustLikeThat *{
+            font-size: 16px;
+        }
+
+        .body_body .JustLikeThat {
+            /* width: 110vw; */
+            position: absolute;
+            top: 8%;
+            left: 65.5%;
+        }
+
+        .JustLikeThat span.material-icons.Light {
+            /* text-align: center; */
+            font-size: 45px;
+        }
+        body .JustLikeThat {
+            /* width: 110vw; */
+            position: absolute;
+            top: 0.25%;
+            left: 58.5%;
+        }
+ 
+        .JustLikeThat .account {
+            border-radius: 20px;
+            height: fit-content;
+            background: white;
+            width: 26vw;
+            position: relative;
+            padding: 2%;
+        }
+
+        .account p {
+            margin-bottom: 6px;
+            text-align: center;
+        }
+ 
+         .account input.Here {
+             font-size: 15px;
+             top: 5%;
+             left: 63%;
+             height: fit-content;
+             position: absolute;
+         }
+     }

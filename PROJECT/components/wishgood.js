@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './wishList.css';
+import './media1.css';
+import './media2.css';
+import './media3.css';
+import './cartgood.css';
 
 import {pageEvents} from './events';
 
@@ -74,7 +78,7 @@ class WishGood extends React.PureComponent {
      if ( this.state.height!='' ){
 
       return (
-        <div className=" IsGoingToBeDeleted" id="deleteItWish" >
+        <div className="cartgood" id="deleteItWish" >
         <div className="goodImg">
           <img src={this.state.wishgood.itemPhotoURL} alt={this.state.wishgood.itemName}/>
         </div>
@@ -95,7 +99,7 @@ class WishGood extends React.PureComponent {
     else{
     
       return (
-        <div className=" IsGoingToBeDeleted" >
+        <div className="cartgood" >
         <div className="goodImg">
           <img src={this.state.wishgood.itemPhotoURL} alt={this.state.wishgood.itemName}/>
         </div>

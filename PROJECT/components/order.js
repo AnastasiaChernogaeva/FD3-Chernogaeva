@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './wishList.css';
+import './media1.css';
+import './media2.css';
+import './media3.css';
+
+
 
 import {pageEvents} from './events';
 
@@ -34,13 +39,13 @@ class Order extends React.PureComponent {
   
     
       return (
-        <div className=" IsGoingToBeDeleted" >
+        <div className=" IsGoingToBeDeleted AnotherName" >
         <div className="goodImg">
           <img src={this.state.order.itemPhotoURL} alt={this.state.order.itemName}/>
         </div>
         <div className="Cost">
           <p><b>{this.state.order.itemName}</b></p> 
-          <p>Цена за один экземпляр:{this.state.order.itemCost}</p> 
+          <p>Цена за один экземпляр: {this.state.order.itemCost}</p> 
           <p> Количество : {this.state.order.orderAmoount}</p>
         </div>
         
