@@ -70,7 +70,7 @@ change3=()=>{
            <p><button /*testPr1={this.state.typeTestB}*/ id="FirstF" onClick={this.change5 } ><span className="material-icons"> person</span>  Моя страница</button></p>
             <p><button /*testPr2={this.state.typeTestB}*/ id="SecF" onClick={this.change2} ><span className="material-icons"> shopping_cart</span>  Корзина</button></p>
 
-              <p><button  /*testPr3={this.state.typeTestB}*/ id="ThF" onClick={this.change3} ><span className="material-icons"> favorite</span>  WishList</button></p>
+              <p><button  /*testPr3={this.state.typeTestB}*/ id="ThF" onClick={this.change3} ><span className="material-icons"> favorite</span>  Мои Желания</button></p>
          
            
        </div>

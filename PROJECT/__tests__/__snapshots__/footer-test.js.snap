@@ -46,7 +46,7 @@ exports[`работа Footer 1`] = `
         >
            favorite
         </span>
-          WishList
+          Мои Желания
       </button>
     </p>
   </div>
@@ -138,7 +138,7 @@ exports[`работа Footer 2`] = `
         >
            favorite
         </span>
-          WishList
+          Мои Желания
       </button>
     </p>
   </div>
@@ -230,7 +230,7 @@ exports[`работа Footer 3`] = `
         >
            favorite
         </span>
-          WishList
+          Мои Желания
       </button>
     </p>
   </div>
@@ -322,7 +322,7 @@ exports[`работа Footer 4`] = `
         >
            favorite
         </span>
-          WishList
+          Мои Желания
       </button>
     </p>
   </div>
@@ -414,7 +414,7 @@ exports[`работа Footer 5`] = `
         >
            favorite
         </span>
-          WishList
+          Мои Желания
       </button>
     </p>
   </div>
@@ -506,7 +506,7 @@ exports[`работа Footer 6`] = `
         >
            favorite
         </span>
-          WishList
+          Мои Желания
       </button>
     </p>
   </div>
@@ -598,7 +598,7 @@ exports[`работа Footer 7`] = `
         >
            favorite
         </span>
-          WishList
+          Мои Желания
       </button>
     </p>
   </div>

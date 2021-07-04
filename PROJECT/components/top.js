@@ -132,7 +132,7 @@ let MyOrders= <input type="button" onClick={this.change7} value="Mои зака�
          <div className="Top_Buttons First">
              <input type="button" /*testPrT1={this.state.typeTestB}*/id="FirstT" onClick={this.change1} value="Главная" />
              <input type="button" /*testPrT2={this.state.typeTestB}*/ id="SecT" onClick={this.change2} value="Корзина" />
-             <input type="button" /*testPrT3={this.state.typeTestB}*/  id="ThT" onClick={this.change3} value="WishList" />
+             <input type="button" /*testPrT3={this.state.typeTestB}*/  id="ThT" onClick={this.change3} value="Мои Желания" />
          </div>
          <div className="Top_Buttons Second">{this.props.personName==="" && buttonsToRegisterAndToLogin} </div>
          <div className="Top_Buttons Third">{this.props.personName!="" && MyOrders} </div>

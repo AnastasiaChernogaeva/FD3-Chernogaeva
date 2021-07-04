@@ -92,7 +92,7 @@ showButtons=()=>{
 if(this.props.wish==null){
   return (
     <div className="Top_Buttons">
-        <h2>У вас нет товаров в WishList</h2>
+        <h2>У вас нет товаров в списке "Мои Желания"</h2>
         <input type="button" onClick={this.changeBody1} value="Перейти на главную" />
     </div>
    );
@@ -112,7 +112,7 @@ if(this.props.wish==null){
       <Fragment>
       {this.state.showButtons=="1" && shButton}
      <div className="Top_Buttons">
-         <h2>Товары в WishList:</h2>
+         <h2>Товары в списке "Мои Желания":</h2>
            <div className="CartGood">{goodsInWisht}</div>
            <input type="button" className="Top_Buttons" onClick={this.sendNewOrder}	 value="Заказать" />
      </div>

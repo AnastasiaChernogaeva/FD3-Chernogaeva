@@ -82,7 +82,7 @@ exports[`работа Top 1`] = `
         id="ThT"
         onClick={[Function]}
         type="button"
-        value="WishList"
+        value="Мои Желания"
       />
     </div>
     <div
@@ -186,7 +186,7 @@ exports[`работа Top 2`] = `
         id="ThT"
         onClick={[Function]}
         type="button"
-        value="WishList"
+        value="Мои Желания"
       />
     </div>
     <div
@@ -290,7 +290,7 @@ exports[`работа Top 3`] = `
         id="ThT"
         onClick={[Function]}
         type="button"
-        value="WishList"
+        value="Мои Желания"
       />
     </div>
     <div
@@ -394,7 +394,7 @@ exports[`работа Top 4`] = `
         id="ThT"
         onClick={[Function]}
         type="button"
-        value="WishList"
+        value="Мои Желания"
       />
     </div>
     <div
@@ -498,7 +498,7 @@ exports[`работа Top 5`] = `
         id="ThT"
         onClick={[Function]}
         type="button"
-        value="WishList"
+        value="Мои Желания"
       />
     </div>
     <div
@@ -602,7 +602,7 @@ exports[`работа Top 6`] = `
         id="ThT"
         onClick={[Function]}
         type="button"
-        value="WishList"
+        value="Мои Желания"
       />
     </div>
     <div
@@ -706,7 +706,7 @@ exports[`работа Top 7`] = `
         id="ThT"
         onClick={[Function]}
         type="button"
-        value="WishList"
+        value="Мои Желания"
       />
     </div>
     <div
