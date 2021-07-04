@@ -41,8 +41,13 @@ button{
     background: transparent;
     cursor: default;
 }
+.Top_Buttons  input[type=button]:hover, .Here:hover, .numbers:hover{
+    color:red;
+    cursor: pointer;
+    }
+    
 
-button:hover{cursor: pointer;}
+button:hover{cursor: pointer; color:red;}
 
 .categories {
     padding-right: 5%;

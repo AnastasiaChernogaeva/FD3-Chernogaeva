@@ -6,6 +6,8 @@ import './media1.css';
 import './media2.css';
 import './media3.css';
 import './cartgood.css';
+import './shop.css';
+
 
 import {pageEvents} from './events';
 
