@@ -41,13 +41,23 @@ button{
     background: transparent;
     cursor: default;
 }
-.Top_Buttons  input[type=button]:hover, .Here:hover, .numbers:hover{
+.Top_Buttons  input[type=button]:hover, .Here:hover, .numbers:hover, button:hover{
     color:red;
     cursor: pointer;
-    }
+}
+
+.Here:hover, .numbers:hover{
+
+    transform: rotate(360deg);
+    transition-duration: 1s;
+}
     
 
-button:hover{cursor: pointer; color:red;}
+
+    .goodImg:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+    } 
 
 .categories {
     padding-right: 5%;
