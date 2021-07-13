@@ -12,4 +12,7 @@ export class AppComponent {
 @Output("clicked")
 public clicked:EventEmitter<void>=new EventEmitter<void>();
 
+getClicked(){
+  this.clicked.emit('clicked');
+}
 }

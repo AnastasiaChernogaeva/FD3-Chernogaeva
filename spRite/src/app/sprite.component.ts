@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter  } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -8,8 +8,6 @@ import { Component, Output, EventEmitter  } from '@angular/core';
 })
 export class SpriteComponent {
 
-  @Output("clicked")
-  public clicked:EventEmitter<void>=new EventEmitter<void>();
   
 
   title = 'sprite';
