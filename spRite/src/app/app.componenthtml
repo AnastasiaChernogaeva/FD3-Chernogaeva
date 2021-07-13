@@ -1,0 +1,4 @@
+<div class='app' (click)="clicked.emit("clicked")">
+    <sprite   [(clicked)]="getChangedParametrs()"  [background]="getPhoto()" [background-position]="getOffset()" 
+    [width]="getWidth()" [height]="getHeight()"></sprite>
+</div>
