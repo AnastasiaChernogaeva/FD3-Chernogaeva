@@ -1,4 +1,4 @@
 <div class='app' (click)="getClicked()">
-    <sprite   [(clicked)]="getChangedParametrs()"  [background]="getPhoto()" [background-position]="getOffset()" 
+    <sprite   (clicked)="getOffset()"  [background]="getPhoto()" [background-position]="getOffset()" 
     [width]="getWidth()" [height]="getHeight()"></sprite>
 </div>

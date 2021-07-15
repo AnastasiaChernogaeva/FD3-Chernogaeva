@@ -1,0 +1,4 @@
+<input type=number  onChange='numberFunction($event.target.value)' > <!-- Когда записываю таким образом, выпадает ошибка в консоли, что не находит функцию numberFunction. -->
+<!-- <input type=number  (change)='numberFunction($event.target.value)' >//Когда записываю таким образом, выпадает ошибка в терминале. -->
+
+<p>У вас  {{getApples()|numword:'яблоко':'яблока':'яблок'}} </p>
