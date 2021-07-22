@@ -1,4 +1,9 @@
-<div class='app' (click)="getClicked()">
+<!-- <div class='app' (click)="getClicked()">
     <sprite   (clicked)="getOffset()"  [background]="getPhoto()" [background-position]="getOffset()" 
     [width]="getWidth()" [height]="getHeight()"></sprite>
+</div> -->
+
+<div class='app' (clicked)="getOffset()" [background]="getPhoto()" [background-position]="getOffset()" 
+[width]="getWidth()" [height]="getHeight()">
+    <sprite  (click)="getClicked()"></sprite>
 </div>
