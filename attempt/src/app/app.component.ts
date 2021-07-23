@@ -9,6 +9,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
+  private ph:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOcDz-LgorGnHMbZYhvPrjc1YieQHwXOA6Qw&usqp=CAU";
+
   num:number=0;
 
   getNum():number{
@@ -25,10 +27,9 @@ export class AppComponent {
       this.num=newNum;
     }
   }
-// @Output("clicked")
-// public clicked:EventEmitter<string>=new EventEmitter<string>();
 
-// getClicked(){
-//   this.clicked.emit('clicked');
-// }
+  getPhoto():string{
+    return this.ph;
+  }
+
 }
