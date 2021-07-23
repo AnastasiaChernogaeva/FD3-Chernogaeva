@@ -1,4 +1,4 @@
-import { Component, EventEmitter,Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'sprite',
@@ -11,51 +11,37 @@ export class SpriteComponent {
 
   title = 'sprite';
 
-  // private photoSprite:string="  http://fe.it-academy.by/Examples/cards2.png  ";
 
-  // private widthWhole:number=574;
+  
+@Input("backgroundUrl")
+private backgroundUrl:any;
 
-  // private heightWhole:number=2712;
- 
-  // private width:number=138;
+getUrl(){
+  return this.backgroundUrl;
+}
 
-  // private height:number=186;
+@Input("backgroundPosition")
+private backgroundPosition:any;
 
-  // private offsetX:number=2;
+getPos(){
+  return this.backgroundPosition;
+}
 
-  // private offsetY:number=2;
+@Input("widthW")
+private widthW:any;
 
-  // getPhoto():string {
-  //   return this.photoSprite;
-  // };
+getWidth(){
+  return this.widthW;
+}
 
+@Input("heightH")
+private heightH:any;
 
-  // getWidth():string {
-  //   let meanWidth=`${this.width}+px`;
-  //   return meanWidth;
-  // };
+getHeight(){
+  return this.heightH;
+}
 
-  // getHeight():string{
-  //   let meanHeight=`${this.height}+px`;
-  //   return meanHeight;
-  // }
-
-  // getOffset():string{
-  //   if(this.width+this.offsetX<this.widthWhole){
-  //     this.offsetX+=this.width;
-  //   }
-  //   let width=`${this.offsetX}+px`;
-  //   if(this.height+this.offsetY<this.heightWhole){
-  //     this.offsetY+=this.height;
-  //   }
-  //   let height=`${this.offsetY}+px`;
-
-  //   let row=width+height;
-  //   return row;
-
-  // };
-
-  @Output("clicked")
+@Output("clicked")
 public clicked:EventEmitter<string>=new EventEmitter<string>();
 
 getClicked(){

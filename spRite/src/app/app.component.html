@@ -3,7 +3,19 @@
     [width]="getWidth()" [height]="getHeight()"></sprite>
 </div> -->
 
-<div class='app' (clicked)="getOffset()" [background]="getPhoto()" [background-position]="getOffset()" 
+<!-- <div class='app' (clicked)="getOffset()"  [background                                                                                                                                                                                                                                                                                                                                                                       `                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]="getPhoto()" [background-position]="getOffset()" 
 [width]="getWidth()" [height]="getHeight()">
-    <sprite  (click)="getClicked()"></sprite>
+    <sprite  (click)="getClicked()" [background]="getPhoto()" [background-position]="getOffset()" 
+    [width]="getWidth()" [height]="getHeight()"></sprite>
+</div> -->
+
+
+<div class='app' [(clicked)]="getOffset()"  >
+    <sprite  (click)="getClicked()" [backgroundUrl]="getPhoto()" [backgroundPosition]="getOffset()" [widthW]="getWidth()" [heightH]="getHeight()" ></sprite>
 </div>
+
+
+
+<!-- <div class='app' (clicked)="getOffset()"  [background]="getUrl()" [background-position]="getPos()"     [width]="getWidth()" [height]="getHeight()">
+    <sprite  (click)="getClicked()" ></sprite>
+</div> -->
