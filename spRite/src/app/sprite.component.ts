@@ -14,34 +14,35 @@ export class SpriteComponent {
 
   
 @Input("backgroundUrl")
-private backgroundUrl:any;
+public backgroundUrl:any;
 
-getUrl(){
-  return this.backgroundUrl;
+getAll(){
+  let backgroundUrlView=`url(${this.backgroundUrl}) ${this.backgroundPosition}`;
+  return backgroundUrlView ;
 }
 
 @Input("backgroundPosition")
-private backgroundPosition:any;
+public backgroundPosition:any;
 
-getPos(){
-  return this.backgroundPosition;
-}
+// getPos(){
+//   return this.backgroundPosition;
+// }
 
 @Input("widthW")
-private widthW:any;
+public widthW:any;
 
 getWidth(){
   return this.widthW;
 }
 
 @Input("heightH")
-private heightH:any;
+public heightH:any;
 
 getHeight(){
   return this.heightH;
 }
 
-@Output("clicked")
+@Output("clicked-clicked")
 public clicked:EventEmitter<string>=new EventEmitter<string>();
 
 getClicked(){
