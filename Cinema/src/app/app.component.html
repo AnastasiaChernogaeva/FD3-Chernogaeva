@@ -1,5 +1,7 @@
 <div>
-  <hall></hall>
-
-  <cash></cash>
+  <hall [freePlaces]="getFreePlaces()" [allPlaces]="getAllPlaces()" [occupiedPlaces]="getOccupiedPlaces()"></hall>
+  <h3>Введите количесвто билетов</h3>
+  <input type=number (change)="amountWeNeed($event.target)">
+  <h1>{{textT}}</h1>
+  <cash (order-ticket)="changesTickets()" ></cash>
 </div>

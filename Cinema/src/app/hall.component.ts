@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'hall',
@@ -7,20 +7,18 @@ import { Component } from '@angular/core';
 export class HallComponent {
   title = 'Cinema';
 
-  private allPlaces:number=10;
-  private freePlaces:number=10;
-  private occupiedPlaces:number=0;
+
+  @Input("freePlaces")
+  public freePlaces:any;
+
+  @Input("allPlaces")
+  public allPlaces:any;
+
+  @Input("occupiedPlaces")
+  public occupiedPlaces:any;
 
 
-  getFreePlaces(){
-    return this.freePlaces;
-  }
 
-  getOccupiedPlaces(){
-    return this.occupiedPlaces;
-  }
 
-  getAllPlaces(){
-    return this.allPlaces;
-  }
+ 
 }

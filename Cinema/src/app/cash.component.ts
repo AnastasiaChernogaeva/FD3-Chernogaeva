@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'cash',
@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
 })
 export class CashComponent {
   title = 'Cinema';
+
+
+  @Output("order-ticket")
+  public orderTicket:EventEmitter<number>=new EventEmitter<number>();
+
+  getTicket(){
+    this.orderTicket.emit( );
+  }
+
+  
 }
