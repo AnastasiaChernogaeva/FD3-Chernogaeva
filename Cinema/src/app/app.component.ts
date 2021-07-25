@@ -15,6 +15,8 @@ export class AppComponent {
   private occupiedPlaces:number=0;
   private ticketChanges;
   public textT:string="";
+  private placeNumbers:Array<number>=[1,2,3,4,5,6,7,8,9,10];
+  public bookedTickets="";
 
   private theAmountOfTheTickets:number=0;
 
@@ -26,13 +28,22 @@ export class AppComponent {
   amountWeNeed(ev:any){
     this.theAmountOfTheTickets=ev.value;
   }
+  getBookedTickets(){
+    if(this.bookedTickets!="")
+    return "Номера Ваших заказанных билетов:"+this.bookedTickets;
+    else
+      return "";
+  }
 
   changesTickets(){
-    let resultArr=this.ticketChanges.orderTickets( this.theAmountOfTheTickets ,this.occupiedPlaces, this.freePlaces);
+    this.bookedTickets="";
+    let resultArr=this.ticketChanges.orderTickets(this.placeNumbers, this.theAmountOfTheTickets ,this.occupiedPlaces, this.freePlaces);
 
     if(typeof resultArr!="string"){
       this.occupiedPlaces=resultArr[0];
       this.freePlaces=resultArr[1];
+      this.bookedTickets=resultArr[2];
+      this.placeNumbers=resultArr[3];
       this.textT="";
     }
     else{
