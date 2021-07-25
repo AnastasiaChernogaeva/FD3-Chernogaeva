@@ -12,7 +12,7 @@ export class AppComponent {
 
 
     numberFunction(ev:any) {
-        this.apples=ev;
+        this.apples=ev.value;
     }
 
     getApples(){
