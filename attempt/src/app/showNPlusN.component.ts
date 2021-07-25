@@ -15,6 +15,11 @@ export class showNPlusN {
   @Input("background-M")
   public backgroundM:any;
 
+  getBackgroundM(){
+    let bV=`url(${this.backgroundM})`;
+    return bV;
+  }
+
 
 //   getNumber():number{
 //     return this.numberChanged+Math.random();
