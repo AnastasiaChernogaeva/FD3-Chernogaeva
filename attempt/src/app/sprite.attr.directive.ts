@@ -29,7 +29,7 @@ export class SpriteBG {
   setBG():void {
 
     if(this.width+this.offsetX<this.widthWhole){
-        this.offsetX=this.offsetX+this.width+5;
+        this.offsetX=this.offsetX+this.width;
       }
       else{
         this.offsetX=0;
