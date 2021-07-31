@@ -1,7 +1,24 @@
-<div class="hall">
-    <p> Количество всех мест в зале: {{allPlaces}}</p> 
+<div>
+<p> Количество всех мест в зале: {{allPlaces}}</p> 
     
 <p> Количество свободных мест: {{freePlaces}} </p>
-<p> Количество занятых мест:  {{occupiedPlaces}}</p>   
+<p> Количество занятых мест:  {{occupiedPlaces}}</p> 
+
+<div *ngFor="let place of placeNumbers"  [ngClass]="occupied[place.pl-1]==true?'Places Booked':'Places'">
+    <p>{{place.pl}}</p>
+    <p>{{occupied[place.pl-1]==true?'Занято':'Свободно'}}</p>
+</div>
+
+<!-- 
+<div class="Places" *ngFor="let place of placeNumbers">
+    <p>{{place.pl}}</p>
+    <p>{{occupied[place.pl-1]}}</p>
+</div> -->
+
+<!-- <ng-template #booked>
+    *ngIf="getType()!='Free'; else booked"
+    <div class="Places" *ngFor="let place of placeNumbers" class="Booked">{{place.pl}}</div>
+
+</ng-template> -->
 
 </div>
