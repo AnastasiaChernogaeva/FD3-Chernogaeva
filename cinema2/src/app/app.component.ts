@@ -44,19 +44,35 @@ export class AppComponent {
     this.bookedTickets="";
     let resultArr=this.ticketChanges.orderTickets(this.placeNumbers, this.theAmountOfTheTickets ,this.occupiedPlaces, this.freePlaces);
     
-
-    if(typeof resultArr!="string"){
-      this.occupiedPlaces=resultArr[0];
-      this.freePlaces=resultArr[1];
-      this.bookedTickets=resultArr[2];
-      this.placeNumbers=resultArr[3];
+   if( resultArr.success!=false){
+      this.occupiedPlaces=resultArr.result[0];
+      this.freePlaces=resultArr.result[1];
+      this.bookedTickets=resultArr.result[2];
+      this.placeNumbers=resultArr.result[3];
       this.textT="";
       let res=this.ticketChanges.getTicketsInfo(this.arrResBoolean, this.bookedTickets);
       this.arrResBoolean=res;
     }
     else{
-        this.textT=resultArr;
+      if(resultArr.errno=='OUT_OF_SEATS')
+        this.textT="К сожалению, мест не хватает! Введите меньшее число билетов!";
+      else
+      this.textT="Все места заняты!";
+
     }
+
+    // if(typeof resultArr!="string"){
+    //   this.occupiedPlaces=resultArr[0];
+    //   this.freePlaces=resultArr[1];
+    //   this.bookedTickets=resultArr[2];
+    //   this.placeNumbers=resultArr[3];
+    //   this.textT="";
+    //   let res=this.ticketChanges.getTicketsInfo(this.arrResBoolean, this.bookedTickets);
+    //   this.arrResBoolean=res;
+    // }
+    // else{
+    //     this.textT=resultArr;
+    // }
   }
 
   getFreePlaces(){
